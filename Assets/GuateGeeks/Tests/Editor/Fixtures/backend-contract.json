@@ -1,0 +1,86 @@
+{
+  "graph": {
+    "schemaVersion": 1,
+    "region": "us-east-1",
+    "nodes": [
+      {
+        "id": "node0",
+        "kind": 0,
+        "name": "API Gateway",
+        "setting": 0,
+        "position": {
+          "x": -0.88,
+          "y": 1.52,
+          "z": 2.65
+        },
+        "state": 0
+      },
+      {
+        "id": "node1",
+        "kind": 1,
+        "name": "Lambda",
+        "setting": 0,
+        "position": {
+          "x": 0.0,
+          "y": 1.52,
+          "z": 2.65
+        },
+        "state": 0
+      },
+      {
+        "id": "node2",
+        "kind": 2,
+        "name": "DynamoDB",
+        "setting": 0,
+        "position": {
+          "x": 0.88,
+          "y": 1.52,
+          "z": 2.65
+        },
+        "state": 0
+      }
+    ],
+    "links": [
+      {
+        "from": "node0",
+        "to": "node1"
+      },
+      {
+        "from": "node1",
+        "to": "node2"
+      }
+    ]
+  },
+  "session": {
+    "Code": 200,
+    "Json": "{\"connected\": true, \"region\": \"us-east-1\", \"schemaVersion\": 1}"
+  },
+  "catalog": {
+    "Code": 200,
+    "Json": "{\"maxNodes\": 12, \"deploymentSlots\": [\"1\", \"2\", \"3\"], \"services\": [{\"kind\": 0, \"name\": \"ApiGateway\"}, {\"kind\": 1, \"name\": \"Lambda\"}, {\"kind\": 2, \"name\": \"DynamoDB\"}, {\"kind\": 3, \"name\": \"S3\"}, {\"kind\": 4, \"name\": \"SQS\"}, {\"kind\": 5, \"name\": \"EventBridge\"}, {\"kind\": 6, \"name\": \"CloudWatch\"}], \"limitations\": [\"HTTP API only\", \"One S3 notification destination\", \"One Lambda consumer per queue/API\", \"S3 to FIFO unsupported\", \"Replace designs by delete then create\"]}"
+  },
+  "validation": {
+    "Code": 200,
+    "Json": "{\"valid\": true, \"graphHash\": \"ff42b2ba596191ff6ffc96f9ef9c61b2dbce83fb13b1e84fe72bea154ce81c01\", \"nodeCount\": 3}"
+  },
+  "created": {
+    "Code": 202,
+    "Json": "{\"deploymentId\": \"1\", \"stackId\": \"contract-stack-1\", \"graphHash\": \"ff42b2ba596191ff6ffc96f9ef9c61b2dbce83fb13b1e84fe72bea154ce81c01\", \"status\": \"CREATE_IN_PROGRESS\", \"finished\": false, \"success\": false, \"pollAfterSeconds\": 3}"
+  },
+  "pending": {
+    "Code": 200,
+    "Json": "{\"deploymentId\": \"1\", \"stackId\": \"contract-stack-1\", \"graphHash\": \"ff42b2ba596191ff6ffc96f9ef9c61b2dbce83fb13b1e84fe72bea154ce81c01\", \"status\": \"CREATE_IN_PROGRESS\", \"finished\": false, \"success\": false, \"nodes\": [], \"message\": \"\"}"
+  },
+  "ready": {
+    "Code": 200,
+    "Json": "{\"deploymentId\": \"1\", \"stackId\": \"contract-stack-1\", \"graphHash\": \"ff42b2ba596191ff6ffc96f9ef9c61b2dbce83fb13b1e84fe72bea154ce81c01\", \"status\": \"CREATE_COMPLETE\", \"finished\": true, \"success\": true, \"nodes\": [{\"resourceId\": \"node0\", \"kind\": 0, \"status\": \"CREATE_COMPLETE\", \"physicalId\": \"offline-resource-node0\", \"message\": \"\"}, {\"resourceId\": \"node1\", \"kind\": 1, \"status\": \"CREATE_COMPLETE\", \"physicalId\": \"offline-resource-node1\", \"message\": \"\"}, {\"resourceId\": \"node2\", \"kind\": 2, \"status\": \"CREATE_COMPLETE\", \"physicalId\": \"offline-resource-node2\", \"message\": \"\"}], \"message\": \"\"}"
+  },
+  "accepted": {
+    "Code": 202,
+    "Json": "{\"eventId\": \"offline-event-1\", \"accepted\": true, \"message\": \"Evento aceptado; consulta CloudWatch para confirmar su procesamiento.\"}"
+  },
+  "rollback": {
+    "Code": 200,
+    "Json": "{\"deploymentId\": \"1\", \"stackId\": \"contract-stack-1\", \"graphHash\": \"ff42b2ba596191ff6ffc96f9ef9c61b2dbce83fb13b1e84fe72bea154ce81c01\", \"status\": \"ROLLBACK_COMPLETE\", \"finished\": true, \"success\": false, \"nodes\": [], \"message\": \"\"}"
+  }
+}

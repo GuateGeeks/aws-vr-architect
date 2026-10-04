@@ -1,0 +1,16 @@
+AWS Architect Lab 0.8.0 — validation on 2026-10-03 (America/Guatemala)
+
+Edit Mode: 42 passed, 0 failed. See EditMode-results.xml.
+Play Mode final source: 19 passed, 0 failed. See PlayMode-results.xml (run ended 2026-10-04 01:00:02 UTC).
+Android final source: Succeeded, 0 errors, 8 warnings. See quest3-build.txt (2026-10-04 01:01:59 UTC).
+APK: Builds/Quest3/GuateGeeksAWSVR-Quest3.apk, 43,784,280 bytes, version 0.8.0 / code 8, ARM64.
+
+Visual inspection: 21-reactor-lab.png, 22-armored-hand.png and 20-live-reader.png rendered by Unity.
+The hand pose is synthetic; reader fixtures use example.invalid and do not query AWS.
+Live-reader coverage: new DynamoDB items, automatic CloudWatch cursor traversal, retained text selection,
+pause, shared-slot identity failure, close, and disconnect while the reader remains open.
+Decorative animation freeze and volumetric hand geometry/tracking-loss visibility are covered.
+
+No backend deployment, cloud resource creation, APK installation, or headset performance measurement was performed.
+Physical Quest tracking, stereo readability and sustained frame timing still require on-device acceptance.
+Build warnings include existing OpenXR recommendations, SSAO configuration, diagnostic symbols and TMP compilation notices.

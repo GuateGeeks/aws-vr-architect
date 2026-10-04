@@ -1,0 +1,9 @@
+Performing Streamed Install
+Success
+  bash arg: -p
+  bash arg: com.guategeeks.awsarchitectlab
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+Events injected: 1
+## Network stats: elapsed time=11ms (0ms mobile, 0ms wifi, 11ms not connected)

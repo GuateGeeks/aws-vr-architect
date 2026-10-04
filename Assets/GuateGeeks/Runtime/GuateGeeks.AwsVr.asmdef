@@ -1,0 +1,15 @@
+{
+  "name": "GuateGeeks.AwsVr",
+  "rootNamespace": "GuateGeeks.AwsVr",
+  "references": [
+    "Unity.InputSystem",
+    "Unity.ugui",
+    "Unity.XR.Management",
+    "Unity.TextMeshPro",
+    "Unity.XR.ARFoundation",
+    "Unity.XR.ARSubsystems",
+    "Unity.XR.Hands",
+    "Unity.WebRTC"
+  ],
+  "autoReferenced": true
+}

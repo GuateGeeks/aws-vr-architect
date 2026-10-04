@@ -1,0 +1,5 @@
+{
+  "name": "GuateGeeks.AwsVr.PlayTests",
+  "references": ["GuateGeeks.AwsVr", "Unity.ugui", "Unity.TextMeshPro", "Unity.XR.Hands", "Unity.WebRTC"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

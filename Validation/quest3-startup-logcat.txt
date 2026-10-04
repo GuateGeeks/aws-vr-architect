@@ -1,0 +1,9 @@
+--------- beginning of system
+10-01 01:09:42.574  1553  1601 I ActivityManager: Start proc 16366:com.guategeeks.awsarchitectlab/u0a164 for next-top-activity {com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity}
+10-01 01:09:42.600  1553  1590 I ActivityManager: Killing 11392:com.android.statementservice/u0a34 (adj 985): empty #17
+10-01 01:09:42.701  1553  4094 I ActivityManager: Flag disabled. Ignoring finishAttachApplication from uid: 10164. pid: 16366
+--------- beginning of main
+10-01 01:09:42.822 16366 16366 V Unity   : Context Type: GameActivity
+10-01 01:09:42.848 16366 16403 I Unity   : UnityApplication::CreateInstance
+10-01 01:09:42.848 16366 16403 I Unity   : GameActivity Package Version '4.4.0'
+10-01 01:09:42.849 16366 16403 I Unity   : Starting Game Loop

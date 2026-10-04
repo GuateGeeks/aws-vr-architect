@@ -1,0 +1,27 @@
+Meta Quest 3 deployment | 2026-10-01 | America/Guatemala
+Application: GuateGeeks AWS Architect Lab
+Package: com.guategeeks.awsarchitectlab
+Version: 0.1.0 (1)
+APK: Builds/Quest3/GuateGeeksAWSVR-Quest3.apk
+Size: 37876468 bytes
+SHA256: 3A2AC22E46D194ABE7645CCE3B17F459AC64581E8CCB13FA05D7C7E1DC726FFE
+
+PASS Unity Android build: Succeeded, 0 errors, 8 warnings.
+PASS APK Signature Scheme v2 verification, one signer (local development signing).
+PASS ARM64 only; minimum API 29, target API 36.
+PASS Quest 3 manifest target eureka; VR launcher category and head tracking feature.
+PASS Internet permission absent; all cloud operations remain local mock operations.
+PASS adb install -r: Success; device package lastUpdateTime 2026-10-01 01:16:25.
+PASS Application process running; UnityPlayerGameActivity is resumed and visible.
+PASS Runtime log: AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+PASS Both /interaction_profiles/meta/touch_controller_plus profiles activated in the final process.
+PASS No Unity errors or fatal exceptions found in the captured final process log.
+PASS Real stereoscopic screenshot inspected: catalog, holographic resources, connections, workspace panels and controller rays visible.
+PASS User confirmation: Ya desperté los controles y veo el laboratorio.
+
+First on-device run exposed IL2CPP stripping of CapsuleCollider; fixed with Assets/GuateGeeks/link.xml, rebuilt and updated on device. Original failure preserved separately in quest3-first-start-stripping-failure.txt.
+Meta required the user to wake Touch Plus controllers before the final launch.
+Observed short VrApi samples included 72/72 FPS and a startup dip to 57/72. This is not a sustained performance certification.
+Remaining manual coverage: grab/connect/edit/deploy workflows with both physical controls, seated comfort, tracking recovery and longer CPU/GPU profiling.
+
+Evidence: quest3-build.txt, quest3-apk-signature.txt, quest3-apk-badging.txt, quest3-apk-manifest.txt, quest3-install.txt, quest3-runtime-logcat.txt, quest3-headset.png.

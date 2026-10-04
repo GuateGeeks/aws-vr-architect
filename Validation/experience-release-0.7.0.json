@@ -1,0 +1,26 @@
+{
+  "version": "0.7.0",
+  "versionCode": 7,
+  "installedAtUtc": "2026-10-03T03:28:27.564426+00:00",
+  "device": "2G0YC5ZG9J06XL",
+  "package": "com.guategeeks.awsarchitectlab",
+  "apkSha256": "1d95d7eb9a694cc6d42088be194a4f22769cc9ab9c4c20143fc747729417b712",
+  "editMode": "Passed | passed=42 failed=0 skipped=0",
+  "playMode": "Passed | passed=17 failed=0 skipped=0",
+  "build": "2026-10-03T03:26:54.6658428Z | Succeeded | errors=0 warnings=9",
+  "signature": "APK v2 signature verified; ARM64 only",
+  "manifest": "com.oculus.permission.HAND_TRACKING; oculus.software.handtracking optional",
+  "devicePermission": "com.oculus.permission.HAND_TRACKING and horizonos.permission.HAND_TRACKING granted",
+  "install": "adb install -r: Success; existing app data preserved",
+  "launch": "Status ok; UnityPlayerGameActivity cold launch; no controller-required dialog returned",
+  "startupObservation": "OpenXR loader initialized; headset Asleep, proximity false, app paused before lab-ready log. Unity reports optional Play AssetPackManager class missing during startup.",
+  "physicalAcceptance": "Pending user wearing headset and testing pinch selection, panel movement, and Settings",
+  "visualReview": [
+    "14-items.png",
+    "16-dedicated-inspector.png",
+    "17-unified-settings.png",
+    "18-hand-controls.png",
+    "08-wireless-connection-form.png",
+    "19-aws-settings.png"
+  ]
+}

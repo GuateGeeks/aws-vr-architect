@@ -1,0 +1,9 @@
+Performing Streamed Install
+Success
+Starting: Intent { cmp=com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity
+TotalTime: 159
+WaitTime: 194
+Complete

@@ -1,0 +1,42 @@
+{
+  "version": "0.5.0",
+  "versionCode": 5,
+  "package": "com.guategeeks.awsarchitectlab",
+  "validatedUtc": "2026-10-02T04:09:31.258238+00:00",
+  "editMode": "Passed | passed=35 failed=0 skipped=0",
+  "playMode": "Passed | passed=15 failed=0 skipped=0",
+  "build": "2026-10-02T04:07:33.5764828Z | Succeeded | errors=0 warnings=9",
+  "apkSha256": "9b51d9f936181987b15c8152d85688bce109f1a36741c5a512d36a98e02c38f6",
+  "apkBytes": 43334842,
+  "signature": "apksigner verify succeeded; v2 signature",
+  "device": "Quest 3 2G0YC5ZG9J06XL",
+  "installation": "adb install -r succeeded; no data clear or uninstall",
+  "launch": "Confirmed lab startup and OpenXR focus in device process log on recheck; previous controller launch gate was passed.",
+  "headsetInteractionValidation": "pending physical use",
+  "sustained72Hz": "not measured",
+  "cloudResourcesCreatedDuringValidation": false,
+  "captures": [
+    "01-lab-overview.png",
+    "04-connection-preview.png",
+    "06-cloud-confirmation.png",
+    "09-studio-definition.png",
+    "10-studio-review.png",
+    "11-studio-flow.png",
+    "12-studio-library.png"
+  ],
+  "deviceRecheck": {
+    "checkedUtc": "2026-10-03T01:06:29.555319+00:00",
+    "installedVersion": "0.5.0",
+    "installedVersionCode": 5,
+    "processId": 18589,
+    "apkSha256MatchesRecordedRelease": true,
+    "startup": "Lab ready and OpenXR FOCUSED observed in current process log; Android activity resumed",
+    "lastObservedXrState": "IDLE after STOPPING; this does not establish current headset interaction",
+    "fatalCrashInReviewedProcessLog": false,
+    "runtimeDiagnostics": [
+      "Meta loader could not resolve xrDiscoverSpacesMETA (spatial entity discovery; lab has no plane/anchor/mesh/bounding box components)",
+      "Meta VolumetricWindowManager warns that manifest has no minimum HzOS SDK version"
+    ],
+    "manualInteractionAndSustainedPerformance": "still not independently validated"
+  }
+}

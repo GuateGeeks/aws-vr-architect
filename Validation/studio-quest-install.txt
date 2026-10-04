@@ -1,0 +1,9 @@
+Performing Streamed Install
+Success
+Starting: Intent { cmp=com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity }
+Status: ok
+LaunchState: WARM
+Activity: com.oculus.vrshell/.systemdialog.launchcheck.LaunchCheckControllerRequiredDialogActivity
+TotalTime: 39
+WaitTime: 65
+Complete

@@ -1,0 +1,17 @@
+{
+  "version": "0.10.0",
+  "versionCode": 10,
+  "installedOn": "Quest 3",
+  "launchRequest": "accepted",
+  "headsetState": "asleep",
+  "headsetMicrophoneAcceptance": "pending",
+  "regressionTests": {
+    "backend": 56,
+    "editMode": 51,
+    "playMode": 24
+  },
+  "liveOpenAITest": "passed in Unity Editor using native WebRTC and deployed broker",
+  "releaseHashesVerified": true,
+  "sourceFilesVerified": 366,
+  "lambdaCodeAuthoring": "not included in this milestone"
+}

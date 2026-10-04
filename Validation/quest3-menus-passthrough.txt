@@ -1,0 +1,40 @@
+GuateGeeks AWS Architect Lab 0.2.0 (2)
+Validation: 2026-10-01, America/Guatemala
+
+Implemented
+- Eight independently movable interface panels with dedicated MOVER PANEL handles.
+- Grip/ray translation, wrist rotation, thumbstick distance, desktop drag/wheel.
+- One grab owner per panel; release on cancel, focus loss, pause or tracking loss.
+- Local saved panel positions/rotations; inspector refresh preserves the handle and pose.
+- Restore default menu layout from the configuration panel, A + X, or Shift+R.
+- Saved background modes: virtual lab, hidden environment, real Quest passthrough.
+- Passthrough uses Unity OpenXR Meta 2.4.1, AR Foundation 6.4.0 and composition layers 2.2.0.
+- Environment hiding retains all menus, resources and connections; AWS remains mocked.
+
+Automated validation
+PASS 5 PlayMode scenarios, 0 failed, 0 skipped; final run 02:01:40.
+PASS Menu ownership, translation/rotation, scene-reload persistence, inspector refresh, reset.
+PASS Environment visibility, graph preservation, unsupported desktop passthrough fallback.
+PASS Existing full architecture/deployment/holographic interaction scenarios.
+PASS Unity-rendered final layout reviewed in 05-movable-menus.png; handles are above panels and the help handle is clear of the console.
+PASS OpenXR project validation including camera, session and composition-layer features.
+
+Headset validation
+PASS User tested the device-validation build and confirmed: Passthrough works and I can move menus.
+PASS That run logged AWS Architect Lab ready and AWS Architect Lab passthrough: active.
+PASS Runtime created the Insight MR passthrough feature and composition layer.
+NOTE Meta logs include unavailable xrDiscoverSpacesMETA and No suitable capture camera found. Real-room compositor passthrough nevertheless worked and was confirmed by the user; the application does not request CPU camera images or use spatial discovery.
+
+Final artifact and installation
+APK: Builds/Quest3/GuateGeeksAWSVR-Quest3.apk
+Build completion: 2026-10-01T08:03:16Z
+Build result: Succeeded; 0 errors, 8 warnings.
+Size: 43155746 bytes
+SHA256: C1CDD3FE688A5327DDB6E52D03358C9A932584CA14254ECFDBDA3D885181B440
+PASS APK signature v2; ARM64; minimum API 32; target API 36; versionCode 2.
+PASS Final APK installed with adb install -r at 02:04:11, preserving saved data.
+PASS Launch request succeeded and app process 25796 exists.
+The final artifact adds the tested handle-placement and tracking-release refinements after the user's passthrough check. During the final restart the headset reported Asleep with proximity false, so post-update automatic restoration of the saved passthrough mode was not visually rechecked. Final startup also logged an optional Google Play AssetPackManager lookup exception before continuing to OpenXR instance creation; this standalone APK does not use asset packs.
+
+Evidence: PlayMode-results.xml, PlayMode-summary.txt, 05-movable-menus.png, quest3-build.txt, quest3-apk-badging.txt, quest3-apk-signature.txt, quest3-apk-manifest.txt, quest3-v020-install.txt, quest3-menus-passthrough-logcat.txt, quest3-v020-final-startup.txt.
+Remaining extended validation: sustained performance and comfort, repeated headset sleep/resume with passthrough, and longer two-controller editing sessions.

@@ -1,0 +1,11 @@
+{"requestId": "test", "errorType": "RuntimeError", "awsErrorCode": null}
+----------------------------------------------------------------------
+{"eventId": "test-id", "nodeId": "lambda1", "stage": "received", "level": "INFO", "requestId": ""}
+{"eventId": "test-id", "nodeId": "lambda1", "stage": "failed", "level": "ERROR", "requestId": "", "targetNodeId": "", "errorType": "RuntimeError"}
+{"eventId": "test-id", "nodeId": "lambda1", "stage": "received", "level": "INFO", "requestId": ""}
+{"eventId": "test-id", "nodeId": "lambda1", "stage": "processed", "level": "INFO", "requestId": "", "processed": true}
+{"eventId": "original-event", "nodeId": "lambda1", "stage": "received", "level": "INFO", "requestId": ""}
+{"eventId": "original-event", "nodeId": "lambda1", "stage": "processed", "level": "INFO", "requestId": "", "processed": true}
+Ran 69 tests in 0.097s
+
+OK

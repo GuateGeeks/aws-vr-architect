@@ -1,0 +1,5 @@
+{
+  "name": "GuateGeeks.AwsVr.Editor",
+  "references": ["GuateGeeks.AwsVr", "Unity.ugui", "Unity.XR.Management", "Unity.XR.Management.Editor", "Unity.XR.OpenXR", "Unity.XR.OpenXR.Editor", "UnityEditor.TestRunner", "UnityEngine.TestRunner"],
+  "includePlatforms": ["Editor"]
+}

@@ -1,0 +1,11 @@
+control: 14 resources, 14394 bytes, 0 findings
+api-serverless: 8 resources, 6042 bytes, 0 findings
+eventos-cola: 8 resources, 6281 bytes, 0 findings
+procesar-archivos: 5 resources, 5994 bytes, 0 findings
+s3-sqs-fifo-lambda: 8 resources, 6431 bytes, 0 findings
+s3-sqs-standard: 7 resources, 6612 bytes, 0 findings
+event-lambda-s3: 6 resources, 6009 bytes, 0 findings
+lambda-event-queue: 6 resources, 5643 bytes, 0 findings
+lambda-s3: 3 resources, 5086 bytes, 0 findings
+observability: 12 resources, 8273 bytes, 0 findings
+max-lambdas: 23 resources, 46843 bytes, 0 findings

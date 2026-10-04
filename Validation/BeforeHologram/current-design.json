@@ -1,0 +1,36 @@
+{
+    "schemaVersion": 1,
+    "region": "us-east-1",
+    "nodes": [
+        {
+            "id": "15562b0965ae43c18cd79a8c0f0c1205",
+            "kind": 0,
+            "name": "API Gateway 1",
+            "position": {
+                "x": -0.8430097103118896,
+                "y": 1.4606430530548096,
+                "z": 1.9566525220870972
+            },
+            "setting": 0,
+            "state": 2
+        },
+        {
+            "id": "0ddb78069dcc495fbe8f0f958a1bb4cb",
+            "kind": 1,
+            "name": "Lambda 1",
+            "position": {
+                "x": 0.7921928763389587,
+                "y": 1.4283661842346191,
+                "z": 1.8758840560913086
+            },
+            "setting": 0,
+            "state": 2
+        }
+    ],
+    "links": [
+        {
+            "from": "15562b0965ae43c18cd79a8c0f0c1205",
+            "to": "0ddb78069dcc495fbe8f0f958a1bb4cb"
+        }
+    ]
+}

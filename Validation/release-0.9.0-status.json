@@ -1,0 +1,31 @@
+{
+  "timestampUtc": "2026-10-04T04:34:38.1079502Z",
+  "version": "0.9.0",
+  "build": {
+    "warnings": 8,
+    "errors": 0
+  },
+  "versionCode": 9,
+  "tests": {
+    "failed": 0,
+    "editMode": 46,
+    "backend": 52,
+    "playMode": 22
+  },
+  "release": "Releases/0.9.0-20261004T043007Z",
+  "quest": {
+    "installedVersionVerified": true,
+    "powerStateAtCheck": "Asleep",
+    "installed": true,
+    "launchStatus": "ok",
+    "serial": "2G0YC5ZG9J06XL",
+    "physicalAcceptance": "pending"
+  },
+  "backend": {
+    "sourceVerified": true,
+    "stack": "guategeeks-aws2026",
+    "status": "UPDATE_COMPLETE",
+    "workloadSlots": "all empty",
+    "liveEventAcceptance": "pending"
+  }
+}

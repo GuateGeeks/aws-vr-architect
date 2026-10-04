@@ -1,0 +1,704 @@
+--------- beginning of main
+10-01 02:04:12.135 25796 25796 I awsarchitectlab: Using CollectorTypeCC GC.
+10-01 02:04:12.153 25796 25796 I awsarchitectlab: Failed to add image file: Failed to find OatDexFile for DexFile /data/app/~~z_VxQuPyBMUJdJGu11MBVw==/com.guategeeks.awsarchitectlab-pGDhjsIQgAAhoG4mk8f4xQ==/base.apk (canonical path /data/app/~~z_VxQuPyBMUJdJGu11MBVw==/com.guategeeks.awsarchitectlab-pGDhjsIQgAAhoG4mk8f4xQ==/base.apk) in OatFile /data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/oat/arm64/base.odex
+10-01 02:04:12.154 25796 25796 D nativeloader: Configuring clns-6 for other apk /data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/lib/arm64:/data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/base.apk!/lib/arm64-v8a:/apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.guategeeks.awsarchitectlab
+10-01 02:04:12.160 25796 25796 V GraphicsEnvironment: Currently set values for:
+10-01 02:04:12.160 25796 25796 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-01 02:04:12.160 25796 25796 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-01 02:04:12.160 25796 25796 V GraphicsEnvironment: ANGLE GameManagerService for com.guategeeks.awsarchitectlab: false
+10-01 02:04:12.160 25796 25796 V GraphicsEnvironment: com.guategeeks.awsarchitectlab is not listed in per-application setting
+10-01 02:04:12.160 25796 25796 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-01 02:04:12.172 25796 25796 D GameActivity: GameActivity_register
+10-01 02:04:12.175 25796 25796 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+10-01 02:04:12.179 25796 25796 D VrosSpatialAudio: Immersive activity detected, skip VrosSpatialAudio init
+10-01 02:04:12.183 25796 25796 D gti.InputConnection: InputConnection created
+10-01 02:04:12.183 25796 25796 D gti.InputConnection: setEditorInfo
+10-01 02:04:12.208 25796 25796 I IL2CPP  : JNI_OnLoad
+10-01 02:04:12.208 25796 25796 V Unity   : Context Type: GameActivity
+10-01 02:04:12.214 25796 25796 I GameActivity: Looking for library libgame.so
+10-01 02:04:12.214 25796 25796 I GameActivity: Found library libgame.so. Loading...
+10-01 02:04:12.214 25796 25796 D GameActivity: SDK version: 34
+10-01 02:04:12.215 25796 25818 I Unity   : UnityApplication::CreateInstance
+10-01 02:04:12.215 25796 25818 I Unity   : GameActivity Package Version '4.4.0'
+10-01 02:04:12.215 25796 25818 I Unity   : Starting Game Loop
+10-01 02:04:12.222 25796 25818 I Unity   : Handle cmd APP_CMD_START(11)
+10-01 02:04:12.223 25796 25818 I Unity   : Handle cmd APP_CMD_RESUME(12)
+10-01 02:04:12.225 25796 25796 I VrosSpatialAudio: init with android.view.ViewRootImpl$W@bb8c9ba
+10-01 02:04:12.229 25796 25818 I Unity   : Handle cmd APP_CMD_PAUSE(14)
+10-01 02:04:12.230 25796 25818 I Unity   : Handle cmd APP_CMD_LOW_MEMORY(10)
+10-01 02:04:12.243 25796 25818 I Unity   : Handle cmd APP_CMD_GAINED_FOCUS(7)
+10-01 02:04:12.244 25796 25818 I Unity   : Handle cmd APP_CMD_LOST_FOCUS(8)
+10-01 02:04:12.245 25796 25796 V GameActivity: onImeInsetsChanged from Text Listener
+10-01 02:04:12.245 25796 25818 I Unity   : Handle cmd APP_CMD_WINDOW_INSETS_CHANGED(17)
+10-01 02:04:12.249 25796 25818 I Unity   : Handle cmd APP_CMD_CONTENT_RECT_CHANGED(5)
+10-01 02:04:12.251 25796 25818 I Unity   : Handle cmd APP_CMD_INIT_WINDOW(1)
+10-01 02:04:12.261 25796 25818 I Unity   : MemoryManager: Using 'Dynamic Heap' Allocator.
+10-01 02:04:12.261 25796 25818 I Unity   : Mimalloc is enabled and will override the Dynamic Heap and Dual Thread (Main and MainThread) allocators.
+10-01 02:04:12.268 25796 25818 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/base.apk"],nativeLibraryDirectories=[/data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/lib/arm64, /data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/base.apk!/lib/arm64-v8a, /apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64]]
+10-01 02:04:12.271 25796 25818 I Unity   : SystemInfo CPU = ARM64 FP ASIMD AES, Cores = 3, Memory = 7756mb
+10-01 02:04:12.271 25796 25818 I Unity   : SystemInfo ARM big.LITTLE configuration: 1 big (mask: 0x4), 2 little (mask: 0x3)
+10-01 02:04:12.271 25796 25818 I Unity   : XR UsableCoreMask: 0x7
+10-01 02:04:12.271 25796 25818 I Unity   : ApplicationInfo 'com.guategeeks.awsarchitectlab', Version '0.2.0', Min API Level '32', Target API Level '36'
+10-01 02:04:12.271 25796 25818 I Unity   : Built from '6000.6/staging' branch, Version '6000.6.3f1 (45d8eee7de74)', Build type 'Release', Scripting Backend 'il2cpp', CPU 'arm64-v8a', Stripping 'Enabled'
+10-01 02:04:12.271 25796 25818 I Unity   : Device Model 'Oculus Quest 3', OS 'Android OS 14 (API 34)'
+10-01 02:04:12.409 25796 25818 I Unity   : Company Name: GuateGeeks
+10-01 02:04:12.409 25796 25818 I Unity   : Product Name: GuateGeeks AWS Architect Lab
+10-01 02:04:12.413 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrInitializeLoaderKHR | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.413 25796 25818 V OpenXR-Loader: Verbose [GENERAL | InitializeLoaderInitData | OpenXR-Loader] : Unloading any previously loaded runtime
+10-01 02:04:12.416 25796 25818 D vulkan  : searching for layers in '/data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/lib/arm64'
+10-01 02:04:12.416 25796 25818 D vulkan  : searching for layers in '/data/app/~~8hzFjaf0aynUycNncvtHJQ==/com.guategeeks.awsarchitectlab-212w_zjE01bu-b6AwUfT0w==/base.apk!/lib/arm64-v8a'
+10-01 02:04:12.416 25796 25818 D vulkan  : searching for layers in '/apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a'
+10-01 02:04:12.423 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.424 25796 25818 I OpenXR-Loader: getActiveRuntimeCursor: Querying URI: content://org.khronos.openxr.runtime_broker/openxr/1/abi/arm64-v8a/runtimes/active
+10-01 02:04:12.425 25796 25818 W OpenXR-Loader: Null cursor when querying installable content resolver.
+10-01 02:04:12.425 25796 25818 I OpenXR-Loader: getActiveRuntimeCursor: Querying URI: content://org.khronos.openxr.system_runtime_broker/openxr/1/abi/arm64-v8a/runtimes/active
+10-01 02:04:12.426 25796 25818 W OpenXR-Loader: Null cursor when querying system content resolver.
+10-01 02:04:12.426 25796 25818 E OpenXR-Loader: Could access neither the installable nor system runtime broker.
+10-01 02:04:12.426 25796 25818 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeManifestFile::FindManifestFiles - using global runtime file /odm/etc/openxr/1/active_runtime.aarch64.json
+10-01 02:04:12.426 25796 25818 I OpenXR-Loader: Info [GENERAL |  | OpenXR-Loader] : RuntimeManifestFile::CreateIfValid - attempting to load /odm/etc/openxr/1/active_runtime.aarch64.json
+10-01 02:04:12.427 25796 25818 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntime forwarding xrInitializeLoaderKHR call to runtime before calling xrNegotiateLoaderRuntimeInterface.
+10-01 02:04:12.427 25796 25818 V OpenXR  : OpenXRForwardLoader::xrInitializeLoaderKHR [start]
+10-01 02:04:12.428 25796 25818 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+10-01 02:04:12.428 25796 25818 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.hidl.manager-V1.0-java.jar
+10-01 02:04:12.428 25796 25818 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.hidl.base-V1.0-java.jar
+10-01 02:04:12.429 25796 25818 D nativeloader: Configuring clns-shared-7 for other apk /system/framework/org.apache.http.legacy.jar. target_sdk_version=24, uses_libraries=ALL, library_path=/apex/com.meta.xr/priv-app/VrDriver/lib/arm64:/apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64:/apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand::/apex/com.meta.xr/priv-app/VrDriver:/system/lib64:/system_ext/lib64
+10-01 02:04:12.429 25796 25818 D nativeloader: Extending system_exposed_libraries: libaudiotapper.oculus.so:libcalibrationmanager.oculus.so:libheadtracker.oculus.so:libinstsamp.oculus.so:libossdk.oculus.so:libparfait.oculus.so:libripcclient.oculus.so:libripcmanager.oculus.so:libappsensoraccess.oculus.so:libOVRMrcLib.oculus.so:libhzos.meta.so:libhzos_featurejournal.meta.so:libhzos_fphal.meta.so:libhzos_gaze.meta.so:libhzos_orthofit.meta.so:libhzos_prescriptionlens.meta.so:libhzos_reportstatsevent.meta.so:libhzos_spaces.meta.so:libhzos_trackedinput.meta.so:libhzos_trackingasset.meta.so:libhzos_trackingclient.meta.so
+10-01 02:04:12.431 25796 25818 D nativeloader: Configuring clns-shared-8 for other apk /apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk. target_sdk_version=24, uses_libraries=, library_path=/apex/com.meta.xr/priv-app/VrDriver/lib/arm64:/apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64:/apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand::/apex/com.meta.xr/priv-app/VrDriver:/system/lib64:/system_ext/lib64
+10-01 02:04:12.431 25796 25818 D nativeloader: Extending system_exposed_libraries: libaudiotapper.oculus.so:libcalibrationmanager.oculus.so:libheadtracker.oculus.so:libinstsamp.oculus.so:libossdk.oculus.so:libparfait.oculus.so:libripcclient.oculus.so:libripcmanager.oculus.so:libappsensoraccess.oculus.so:libOVRMrcLib.oculus.so:libhzos.meta.so:libhzos_featurejournal.meta.so:libhzos_fphal.meta.so:libhzos_gaze.meta.so:libhzos_orthofit.meta.so:libhzos_prescriptionlens.meta.so:libhzos_reportstatsevent.meta.so:libhzos_spaces.meta.so:libhzos_trackedinput.meta.so:libhzos_trackingasset.meta.so:libhzos_trackingclient.meta.so
+10-01 02:04:12.433 25796 25818 D nativeloader: InitApexLibraries:
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_adservices: libhpke_jni.so:libtflite_support_classifiers_native.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_appsearch: libicing.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_art: libartservice.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_btservices: libbluetooth_jni.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_conscrypt: libjavacrypto.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_extservices: libhpke_jni.so:libtflite_support_classifiers_native.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_os_statsd: libstats_jni.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_tethering: libcronet.114.0.5735.84.so:libframework-connectivity-jni.so:libframework-connectivity-tiramisu-jni.so:libandroid_net_connectivity_com_android_net_module_util_jni.so:libservice-connectivity.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_uwb: libuwb_uci_jni_rust.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_android_virt: libvirtualizationservice_jni.so:libvirtualmachine_jni.so
+10-01 02:04:12.433 25796 25818 D nativeloader:   com_meta_xr: libmrservice_plugin.so
+10-01 02:04:12.434 25796 25818 I OpenXR  : Loading 64-bit Runtime.
+10-01 02:04:12.440 25796 25818 I VrRuntimeClient: VrRuntimeClient(): 0x7170783bd0
+10-01 02:04:12.440 25796 25818 D OsSdkLoader: OSSDK loading module 'libossdk.oculus.so'
+10-01 02:04:12.447 25796 25818 I DriverLoader: Calling into SetLegacyVrApiEntryPointOverride
+10-01 02:04:12.447 25796 25818 V VrApi_DriverLoader: SetLegacyVrApiEntryPointOverride: calling sprintf
+10-01 02:04:12.447 25796 25818 V VrApi_DriverLoader: SetLegacyVrApiEntryPointOverride: env buffer is '0x71705e88c8'
+10-01 02:04:12.447 25796 25818 V VrApi_DriverLoader: SetLegacyVrApiEntryPointOverride: calling setenv
+10-01 02:04:12.447 25796 25818 I DriverLoader: Creating Temp JNIEnv
+10-01 02:04:12.447 25796 25818 I DriverLoader: Calling FindClass
+10-01 02:04:12.447 25796 25818 I DriverLoader: Calling RegisterNativeVrApiLoaderMethods
+10-01 02:04:12.447 25796 25818 I VrApi_DriverLoader: RegisterNativeVrApiLoaderMethods: calling RegisterNatives
+10-01 02:04:12.447 25796 25818 I DriverLoader: Calling RegisterNativeXrLoaderMethods
+10-01 02:04:12.447 25796 25818 I OpenXR_DriverLoader: RegisterNativeVrApiLoaderMethods: calling RegisterNatives
+10-01 02:04:12.447 25796 25818 I DriverLoader: Exiting JNI_OnLoad
+10-01 02:04:12.447 25796 25818 I OpenXR_ClientState: OpenXRClientState::create - from xrInitializeLoaderKHR
+10-01 02:04:12.447 25796 25818 I XrRuntimeSharedClientState: SharedClientState::create called from 'OpenXRClientState::init'
+10-01 02:04:12.447 25796 25818 I RuntimeIPCLoader [RUNTIMEIPC]: RuntimeIPC: Loader: IPC Service API Loader Version: 86 Sep 22 2026 19:57:45
+10-01 02:04:12.447 25796 25818 I RuntimeIPCLoader [RUNTIMEIPC]: Using android_get_exported_namespace: libripcclient.oculus.so
+10-01 02:04:12.448 25796 25818 I RuntimeIPCLoader [RUNTIMEIPC]: android_get_exported_namespace SUCCESS: libripcclient.oculus.so
+10-01 02:04:12.449 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.449 25796 25818 D OsSdkLoader: OSSDK loading module 'libossdk.oculus.so'
+10-01 02:04:12.450 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: Init: Java VM is null
+10-01 02:04:12.450 25796 25818 I BrokerMethodsAndroidLegacyOssdk [RUNTIMEIPC]: BrokerMethodsAndroidLegacyOssdk::Init
+10-01 02:04:12.450 25796 25818 D OsSdkLoader: OSSDK loading module 'libripcmanager.oculus.so'
+10-01 02:04:12.451 25796 25818 I BrokerMethodsAndroidLegacyOssdk [RUNTIMEIPC]: BrokerMethodsAndroidLegacyOssdk::Init SUCCESS
+10-01 02:04:12.451 25796 25818 I BrokerRPC [RUNTIMEIPC]: InitRPCToServiceInternal
+10-01 02:04:12.452 25796 25818 I RuntimeIpcManager: RuntimeIpcManager: attempting to get a service connection
+10-01 02:04:12.453 25796 25818 I RuntimeIpcManager: RuntimeIpcManager: Binder call to service->connect SUCCESS
+10-01 02:04:12.453 25796 25818 I BrokerRPC [RUNTIMEIPC]: InitRPCToServiceInternal: SUCCESS
+10-01 02:04:12.453 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init SUCCESS: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.454 25796 25848 I RipcServerMgr [RUNTIMEIPC]: UpdateServerListOnBroker: SUCCESS: pid=25796, shouldNotify=true, servers=[]
+10-01 02:04:12.455 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.455 25796 25849 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.455 25796 25849 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.455 25796 25818 I ClientProcessConnector [RUNTIMEIPC]: GetProcessConnection: com.oculus.systemdriver:com.oculus.vrruntimeservice
+10-01 02:04:12.457 25796 25818 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 02:04:12.457 25796 25818 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.457 25796 25849 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.457 25796 25818 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.457 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.457 25796 25849 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.457 25796 25818 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler GksChangedEvent registered after connect. Events may have been missed. hash: 1005594166, server: gkcache
+10-01 02:04:12.457 25796 25818 I RipcClientState [RUNTIMEIPC]: InitServerStateBuffer: SUCCESS. 0, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (gkcache)
+10-01 02:04:12.457 25796 25818 I OpenXR_ClientState: Client state creation succeeded.
+10-01 02:04:12.457 25796 25818 V OpenXR  : OpenXRForwardLoader::xrInitializeLoaderKHR [end]
+10-01 02:04:12.457 25796 25818 V OpenXR  : OpenXRForwardLoader::xrNegotiateLoaderRuntimeInterface [start]
+10-01 02:04:12.458 25796 25818 V OpenXR  : OpenXRForwardLoader::xrNegotiateLoaderRuntimeInterface [end]
+10-01 02:04:12.458 25796 25818 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntime succeeded loading runtime defined in manifest file /odm/etc/openxr/1/active_runtime.aarch64.json using interface version 1 and OpenXR API version 1.0
+10-01 02:04:12.460 25796 25818 I ApplicationAttributes: IsPrivileged 0
+10-01 02:04:12.460 25796 25818 I OpenXR_ExtensionAccess: Is_X_PartnerGateKeeper
+10-01 02:04:12.460 25796 25818 I OpenXR_ExtensionAccess: PGK Status: exp = 0, dc = false
+10-01 02:04:12.460 25796 25818 I OpenXR_ExtensionAccess: oculus_first_access = false
+10-01 02:04:12.460 25796 25818 I OpenXR_Properties: Extension status: P
+10-01 02:04:12.461 25796 25818 I ApplicationAttributes: IsSystem 0
+10-01 02:04:12.461 25796 25818 E libosutils: Failed to get real path of file '/sys/devices/soc0/oem_variant', err: Permission denied
+10-01 02:04:12.461 25796 25818 E libosutils: Failed to get real path of file '/sys/devices/soc0/platform_subtype_id', err: Permission denied
+10-01 02:04:12.461 25796 25818 E libosutils: Failed to get real path of file '/sys/devices/soc0/platform_version', err: Permission denied
+10-01 02:04:12.461 25796 25818 W libdeviceid: DeviceId unknown with subtype FFFFFFFF and version: 0xFFFFFFFF
+10-01 02:04:12.459 25796 25796 W com.guategeeks.awsarchitectlab: type=1400 audit(0.0:614): avc:  denied  { search } for  comm=556E697479204D61696E2054687265 name="soc0" dev="sysfs" ino=61862 scontext=u:r:untrusted_app:s0:c164,c256,c512,c768 tcontext=u:object_r:vendor_sysfs_soc:s0 tclass=dir permissive=0 app=com.guategeeks.awsarchitectlab
+10-01 02:04:12.459 25796 25796 W com.guategeeks.awsarchitectlab: type=1400 audit(0.0:615): avc:  denied  { search } for  comm=556E697479204D61696E2054687265 name="soc0" dev="sysfs" ino=61862 scontext=u:r:untrusted_app:s0:c164,c256,c512,c768 tcontext=u:object_r:vendor_sysfs_soc:s0 tclass=dir permissive=0 app=com.guategeeks.awsarchitectlab
+10-01 02:04:12.459 25796 25796 W com.guategeeks.awsarchitectlab: type=1400 audit(0.0:616): avc:  denied  { search } for  comm=556E697479204D61696E2054687265 name="soc0" dev="sysfs" ino=61862 scontext=u:r:untrusted_app:s0:c164,c256,c512,c768 tcontext=u:object_r:vendor_sysfs_soc:s0 tclass=dir permissive=0 app=com.guategeeks.awsarchitectlab
+10-01 02:04:12.463 25796 25818 W libc    : Access denied finding property "ro.vendor.product.model_extended"
+10-01 02:04:12.463 25796 25818 I OpenXR_ExtensionAccess: Checking for permissions of package com.guategeeks.awsarchitectlab
+10-01 02:04:12.464 25796 25818 I OpenXR_ExtensionAccess: Checking for features of package com.guategeeks.awsarchitectlab
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_body_tracking_full_body` due to: missing uses-feature string `com.oculus.software.body_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_body_tracking` due to: missing uses-feature string `com.oculus.software.body_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_spatial_entity` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_render_model` due to: missing uses-feature string `com.oculus.feature.RENDER_MODEL` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_spatial_entity_query` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_spatial_entity_persistence` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_spatial_entity_discovery` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FBX1_touch_controller_extras` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_spatial_entity_storage` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_spatial_entity_storage_batch` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_spatial_entity_sharing` due to: missing uses-permission string `horizonos.permission.IMPORT_EXPORT_IOT_MAP_DATA` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_spatial_entity_sharing` due to: missing uses-permission string `horizonos.permission.IMPORT_EXPORT_IOT_MAP_DATA` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_spatial_entity_group_sharing` due to: missing uses-permission string `horizonos.permission.IMPORT_EXPORT_IOT_MAP_DATA` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_spatial_entity_container` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_colocation_discovery` due to: missing uses-permission string `com.oculus.permission.USE_COLOCATION_DISCOVERY_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_scene` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_scene_capture` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_spatial_entity_mesh` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_spatial_entity_room_mesh` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_face_tracking` due to: missing uses-feature string `oculus.software.face_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_face_tracking2` due to: missing uses-feature string `oculus.software.face_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_face_tracking_visemes` due to: missing uses-feature string `oculus.software.face_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension 'XR_META_local_dimming' as device requirements requirements (16) are not met.
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_foveation_eye_tracked` due to: missing uses-feature string `oculus.software.eye_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FB_eye_tracking_social` due to: missing uses-feature string `oculus.software.eye_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_FBX1_composition_layer_depth_test` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXT_eye_gaze_interaction` due to: missing uses-permission string `horizonos.permission.EYE_TRACKING` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_hand_tracking_wide_motion_mode` due to: missing uses-feature string `com.oculus.software.body_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_hand_tracking_wide_motion_mode2` due to: missing uses-feature string `com.oculus.software.body_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX1_spatial_entity_marker` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX1_virtual_keyboard` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX2_virtual_keyboard` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXTX1_event_channel` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX1_environment_depth` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX2_environment_depth` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_environment_depth` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_environment_raycast` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_body_tracking_fidelity` due to: missing uses-feature string `com.oculus.software.body_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_body_tracking_calibration` due to: missing uses-feature string `com.oculus.software.body_tracking` from AndroidManifest
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_boundary_visibility` due to: missing uses-permission string `com.oculus.permission.BOUNDARY_VISIBILITY` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX1_dynamic_object_tracker` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_dynamic_object_tracker` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_META_dynamic_object_keyboard` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX1_temporal_pixel_synthesis` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_ExtensionAccess: checkTrexKillswitchGk 'oculus_trex_temporal_pixel_synthesis_killsw' = false
+10-01 02:04:12.464 25796 25818 I OpenXR_ExtensionAccess: PassesGKKillswitch 1
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX2_debug_utils_region_profiling` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX3_debug_utils_region_profiling` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXTX2_stationary_reference_space` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXT_spatial_entity` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXT_spatial_anchor` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXT_spatial_plane_tracking` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXT_spatial_persistence` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXT_spatial_persistence_operations` due to: missing uses-permission string `horizonos.permission.USE_ANCHOR_API` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXT_spatial_marker_tracking` due to: missing uses-permission string `horizonos.permission.USE_SCENE` from AndroidManifest in package `com.guategeeks.awsarchitectlab`
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_METAX1_space_instant_acceleration` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 I OpenXR_Properties: xrEnumerateInstanceExtensionProperties: skipping extension=`XR_EXTX1_haptic_parametric` due to: Tier=40 extState=P deviceIsExpEnabled=false expManifestSet=false isFirstPartyApp=false isSystemApp=false
+10-01 02:04:12.464 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.464 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.464 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.464 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.465 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.465 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.465 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.465 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateApiLayerProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.465 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateApiLayerProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.465 25796 25818 I Unity   : [XR] [495476767216] [02:04:12.465][Info   ] Available Layers: (0)
+10-01 02:04:12.466 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.466 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering LoaderInstance::CreateInstance
+10-01 02:04:12.466 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering loader terminator
+10-01 02:04:12.466 25796 25818 I OpenXR_Properties: ----------- xrCreateInstance [start] ----------
+10-01 02:04:12.466 25796 25818 I OpenXR_ClientState: OpenXRClientState::create - from xrCreateInstance
+10-01 02:04:12.466 25796 25818 I VersionGater: App OpenXR version is 1.1.53
+10-01 02:04:12.466 25796 25818 I VersionGater: Version gate state: 1111 1111 1111 1111 1111 1111 00
+10-01 02:04:12.469 25796 25818 I TREX    : Initializing TREX for client ac2ec1833550de6b...
+10-01 02:04:12.469 25796 25818 I TREX    : Initializing system...
+10-01 02:04:12.466 25796 25796 W com.guategeeks.awsarchitectlab: type=1400 audit(0.0:617): avc:  denied  { read } for  comm=556E697479204D61696E2054687265 name="u:object_r:hzos_device_features_prop:s0" dev="tmpfs" ino=298 scontext=u:r:untrusted_app:s0:c164,c256,c512,c768 tcontext=u:object_r:hzos_device_features_prop:s0 tclass=file permissive=0 app=com.guategeeks.awsarchitectlab
+10-01 02:04:12.469 25796 25818 W libc    : Access denied finding property "ro.device.feature.tracking.inside_out_body_tracking.disabled"
+10-01 02:04:12.469 25796 25818 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insightsdk_killsw' not successful: 4
+10-01 02:04:12.469 25796 25818 W libc    : Access denied finding property "ro.vendor.hw.device_config"
+10-01 02:04:12.469 25796 25818 W libc    : Access denied finding property "ro.vendor.product.model_extended"
+10-01 02:04:12.469 25796 25818 I TREX    : PTINC: API=vrruntime
+10-01 02:04:12.469 25796 25818 I TREXLoadPolicy: InsightMrPassthrough: all features matched!
+10-01 02:04:12.470 25796 25818 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 02:04:12.470 25796 25818 I [CT]    : MIXEDREALITY: TREX-MRPT: Passthrough API in VrRuntime enabled.
+10-01 02:04:12.470 25796 25818 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insightsdk_killsw' not successful: 4
+10-01 02:04:12.470 25796 25818 I TREXLoadPolicy: Plugin ':': GK killswitch is enabled! Plugin will be skipped!
+10-01 02:04:12.470 25796 25818 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 02:04:12.470 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.472 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.472 25796 25852 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.472 25796 25852 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.473 25796 25818 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 02:04:12.473 25796 25818 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.473 25796 25852 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.473 25796 25818 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.473 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.473 25796 25852 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.473 25796 25818 I TREX    : Loading EMGSDK Client Plugin
+10-01 02:04:12.473 25796 25818 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 02:04:12.473 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.476 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.476 25796 25855 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.476 25796 25855 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.476 25796 25818 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 02:04:12.476 25796 25818 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.476 25796 25855 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.476 25796 25818 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.476 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.476 25796 25855 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.478 25796 25818 I TrexHandInputDataClientPlugin: HandInputDataTREXClientBase::Initialize success
+10-01 02:04:12.478 25796 25818 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insight_debug_killsw' not successful: 4
+10-01 02:04:12.478 25796 25818 I TREXLoadPolicy: InsightSdk: all features matched!
+10-01 02:04:12.478 25796 25818 I TREX    : Loading plugin :libmrservice_plugin.so
+10-01 02:04:12.478 25796 25818 D AndroidLibraryResolver: Loading 'libmrservice_plugin.so'
+10-01 02:04:12.479 25796 25818 D PosixLibraryResolver: dlopen success for 'libmrservice_plugin.so'
+10-01 02:04:12.479 25796 25818 I TREX    : loaded 'libmrservice_plugin.so'
+10-01 02:04:12.479 25796 25818 I PosixLibraryHandle: retrieved address for 'trex_GetPluginInfo'
+10-01 02:04:12.479 25796 25818 I PosixLibraryHandle: retrieved address for 'trex_Initialize'
+10-01 02:04:12.479 25796 25818 I PosixLibraryHandle: retrieved address for 'trex_Shutdown'
+10-01 02:04:12.479 25796 25818 W TREX    : Interface version 2 is already registered! Check debug build for more information.
+10-01 02:04:12.479 25796 25818 W [CT]    : MIXEDREALITY: TREX-MR-HELPER: Failed to register feature interface InsightMrSessionEventInterface v2.
+10-01 02:04:12.479 25796 25818 W TREX    : Interface version 2 is already registered! Check debug build for more information.
+10-01 02:04:12.479 25796 25818 W [CT]    : MIXEDREALITY: TREX-MR-HELPER: Failed to register feature interface InsightMrPassthroughInterface v2.
+10-01 02:04:12.479 25796 25818 W TREX    : Interface version 1 is already registered! Check debug build for more information.
+10-01 02:04:12.479 25796 25818 W [CT]    : MIXEDREALITY: TREX-MR-HELPER: Failed to register feature interface InsightMrPassthroughGeometryMeshInterface v1.
+10-01 02:04:12.479 25796 25818 I TREX    : Loading plugin com.oculus.wearableinputservice:libtrex_emgwristband_client_plugin.so
+10-01 02:04:12.480 25796 25818 I TREX    : package 'com.oculus.wearableinputservice' not found, skipping
+10-01 02:04:12.480 25796 25818 I TREX    : Plugin 'com.oculus.wearableinputservice:libtrex_emgwristband_client_plugin.so' not loaded.
+10-01 02:04:12.480 25796 25818 I TREX    : Loading plugin com.oculus.appautomation:libtrex_app_automation_plugin_v1.so
+10-01 02:04:12.482 25796 25818 D AndroidLibraryResolver: Loading 'libtrex_app_automation_plugin_v1.so' from package 'com.oculus.appautomation'
+10-01 02:04:12.487 25796 25818 D nativeloader: Configuring clns-shared-9 for other apk /system_ext/app/OculusAppAutomationTREX/OculusAppAutomationTREX.apk. target_sdk_version=34, uses_libraries=, library_path=/system_ext/app/OculusAppAutomationTREX/lib/arm64:/system_ext/app/OculusAppAutomationTREX/OculusAppAutomationTREX.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64:/apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand::/system_ext/app/OculusAppAutomationTREX:/system/lib64:/system_ext/lib64
+10-01 02:04:12.489 25796 25818 D AndroidLibraryResolver: Attempting to find getAPIFunction64
+10-01 02:04:12.489 25796 25818 V LibLoaderImpl: Loading 64-bit LibLoaderImpl.
+10-01 02:04:12.489 25796 25818 V LibLoaderImpl: internalGetAPIFunction: loadLibrary 'loaderimpl'
+10-01 02:04:12.489 25796 25818 V LibLoaderImpl: Using System.loadLibrary
+10-01 02:04:12.490 25796 25818 I libloaderimpl: nativeSetClassLoader:0x39a6
+10-01 02:04:12.490 25796 25818 V LibLoaderImpl: internalGetAPIFunction: calling nativeGetAPIFunction
+10-01 02:04:12.490 25796 25818 I libloaderimpl: LibLoaderImpl nativeGetAPIFunction.
+10-01 02:04:12.490 25796 25818 I libloaderimpl: LibLoaderHandle SUCCESS
+10-01 02:04:12.490 25796 25818 I TREX    : loaded 'com.oculus.appautomation:libtrex_app_automation_plugin_v1.so'
+10-01 02:04:12.490 25796 25818 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_GetPluginInfo
+10-01 02:04:12.491 25796 25818 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_Initialize
+10-01 02:04:12.491 25796 25818 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_Shutdown
+10-01 02:04:12.491 25796 25818 I TREX    : Created plugin package context for com.oculus.appautomation
+10-01 02:04:12.491 25796 25818 I TREX    : Interface 'WristbandClientInterface', version 6 was not found. Check debug build for more information.
+10-01 02:04:12.491 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.494 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.494 25796 25859 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.495 25796 25859 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.495 25796 25818 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 02:04:12.495 25796 25818 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.495 25796 25859 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.495 25796 25818 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.495 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.495 25796 25859 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.496 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.496 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.496 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.496 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: COMPLETE: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.496 25796 25861 W IPCDataChannelPipe [RUNTIMEIPC]: WaitForRequest: WaitForReadable failed (This is expected if the client or server is shutting down the connection.)
+10-01 02:04:12.496 25796 25861 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: WaitForNotification canceled during shutdown
+10-01 02:04:12.496 25796 25861 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: exiting
+10-01 02:04:12.497 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: COMPLETE: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice), result=SUCCESS
+10-01 02:04:12.497 25796 25818 I RipcClientMgr [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer DONE: clientId: 5, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.497 25796 25818 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 02:04:12.497 25796 25818 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 02:04:12.497 25796 25818 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 02:04:12.498 25796 25818 I VrRuntimeCompatHelper: DevicesSupported : 1 devices, eureka
+10-01 02:04:12.498 25796 25818 I ApplicationAttributes: IsSystem 0
+10-01 02:04:12.498 25796 25818 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 02:04:12.498 25796 25818 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 02:04:12.498 25796 25818 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 02:04:12.498 25796 25818 I OpenXR_Properties: ----------- xrCreateInstance [end] ----------
+10-01 02:04:12.498 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSetDebugUtilsObjectNameEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.498 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrCreateDebugUtilsMessengerEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.498 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrDestroyDebugUtilsMessengerEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.498 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSubmitDebugUtilsMessageEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.498 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionBeginDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.498 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionEndDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.498 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionInsertDebugUtilsLabelEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.498 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Completed loader terminator
+10-01 02:04:12.499 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionBeginDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.499 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionEndDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.499 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionInsertDebugUtilsLabelEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.499 25796 25818 I OpenXR-Loader: Info [GENERAL | xrCreateInstance | OpenXR-Loader] : LoaderInstance::CreateInstance succeeded with 0 layers enabled and runtime interface - created instance = 0x0000000000000001
+10-01 02:04:12.499 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.501 25796 25818 W Adreno-AppProfiles: Could not find QSPM HAL service. Skipping adreno profile processing.
+10-01 02:04:12.502 25796 25818 I AdrenoVK-0: ===== BEGIN DUMP OF OVERRIDDEN SETTINGS =====
+10-01 02:04:12.502 25796 25818 I AdrenoVK-0: ===== END DUMP OF OVERRIDDEN SETTINGS =====
+10-01 02:04:12.504 25796 25818 W Adreno-AppProfiles: Could not find QSPM HAL service. Skipping adreno profile processing.
+10-01 02:04:12.505 25796 25818 I AdrenoVK-0: ===== BEGIN DUMP OF OVERRIDDEN SETTINGS =====
+10-01 02:04:12.505 25796 25818 I AdrenoVK-0: ===== END DUMP OF OVERRIDDEN SETTINGS =====
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: QUALCOMM build          : 810c66ceb7, Idb4ff819d7
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Build Date              : 06/24/26
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Shader Compiler Version : E031.50.14.00
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Local Branch            : 
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Remote Branch           : refs/tags/AU_LINUX_ANDROID_LA.VENDOR.12.3.11.00.00.934.442
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Remote Branch           : NONE
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Reconstruct Branch      : NOTHING
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Build Config            : S P 12.1.6 AArch64
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Driver Path             : /vendor/lib64/hw/vulkan.adreno.so
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Driver Version          : 0837.0.9
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: PFP                     : 0x01511181
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: ME                      : 0x00000000
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Application Name    : GuateGeeks AWS Architect Lab
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Process Name        : com.guategeeks.awsarchitectlab
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Application Version : 0x00000001
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Engine Name         : Unity
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Engine Version      : 0x00000001
+10-01 02:04:12.506 25796 25818 I AdrenoVK-0: Api Version         : 0x00401000
+10-01 02:04:12.506 25796 25818 I VulkanLoader: ovrVulkanLoader::Load
+10-01 02:04:12.507 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugReportCallbackEXT
+10-01 02:04:12.507 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugUtilsMessengerEXT
+10-01 02:04:12.507 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugReportCallbackEXT
+10-01 02:04:12.507 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugUtilsMessengerEXT
+10-01 02:04:12.507 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkGetPhysicalDeviceSurfaceCapabilities2KHR
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: --------------------------------
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: Device Name          : Adreno (TM) 740
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: Device Type          : integrated GPU
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: Vendor ID            : 0x5143
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: Device ID            : 0x43050B00
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: Driver Version       : 512.837.9
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: API Version          : 1.3.295
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: Queue Families       : 0 = graphics compute transfer (4 queues, 4 priorities)
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils:                        1 = (1 queues, 4 priorities)
+10-01 02:04:12.507 25796 25818 I Vulkan_Utils: Work Queue Family    : 0
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils: Device Extensions    : VK_KHR_swapchain (required, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_external_memory (required, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_get_memory_requirements2 (required, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_ANDROID_external_memory_android_hardware_buffer (required, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_queue_family_foreign (required, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_external_memory_fd (required, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_sampler_ycbcr_conversion (required, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils: Device Extensions      VK_EXT_fragment_density_map (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_fragment_density_map2 (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_maintenance1 (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_bind_memory2 (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_dedicated_allocation (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_external_fence_fd (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_extended_dynamic_state (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_vertex_input_dynamic_state (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_filter_cubic (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_QCOM_filter_cubic_weights (optional, not found)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_global_priority (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_robustness2 (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_maintenance5 (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_pipeline_binary (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_EXT_device_memory_report (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_calibrated_timestamps (optional, not found)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_NV_optical_flow (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_format_feature_flags2 (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_synchronization2 (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_push_descriptor (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_imageless_framebuffer (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_image_format_list (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_timeline_semaphore (optional, enabled)
+10-01 02:04:12.515 25796 25818 I Vulkan_Utils:                        VK_KHR_shared_presentable_image (optional, enabled)
+10-01 02:04:12.518 25796 25818 W Adreno-AppProfiles: Could not find QSPM HAL service. Skipping adreno profile processing.
+10-01 02:04:12.519 25796 25818 I AdrenoVK-0: ===== BEGIN DUMP OF OVERRIDDEN SETTINGS =====
+10-01 02:04:12.519 25796 25818 I AdrenoVK-0: ===== END DUMP OF OVERRIDDEN SETTINGS =====
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: QUALCOMM build          : 810c66ceb7, Idb4ff819d7
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Build Date              : 06/24/26
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Shader Compiler Version : E031.50.14.00
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Local Branch            : 
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Remote Branch           : refs/tags/AU_LINUX_ANDROID_LA.VENDOR.12.3.11.00.00.934.442
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Remote Branch           : NONE
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Reconstruct Branch      : NOTHING
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Build Config            : S P 12.1.6 AArch64
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Driver Path             : /vendor/lib64/hw/vulkan.adreno.so
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Driver Version          : 0837.0.9
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: PFP                     : 0x01511181
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: ME                      : 0x00000000
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Application Name    : GuateGeeks AWS Architect Lab
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Process Name        : com.guategeeks.awsarchitectlab
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Application Version : 0x00000001
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Engine Name         : Unity
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Engine Version      : 0x00000001
+10-01 02:04:12.520 25796 25818 I AdrenoVK-0: Api Version         : 0x00401000
+10-01 02:04:12.521 25796 25818 W OpenXR_Vulkan: xrGetVulkanGraphicsDevice2KHR: Called twice.
+10-01 02:04:12.521 25796 25818 I VulkanLoader: ovrVulkanLoader::Load
+10-01 02:04:12.521 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugReportCallbackEXT
+10-01 02:04:12.521 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugUtilsMessengerEXT
+10-01 02:04:12.521 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugReportCallbackEXT
+10-01 02:04:12.521 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugUtilsMessengerEXT
+10-01 02:04:12.521 25796 25818 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkGetPhysicalDeviceSurfaceCapabilities2KHR
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: --------------------------------
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Device Name          : Adreno (TM) 740
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Device Type          : integrated GPU
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Vendor ID            : 0x5143
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Device ID            : 0x43050B00
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Driver Version       : 512.837.9
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: API Version          : 1.3.295
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Queue Families       : 0 = graphics compute transfer (4 queues, 4 priorities)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        1 = (1 queues, 4 priorities)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Work Queue Family    : 0
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Device Extensions    : VK_KHR_swapchain (required, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_external_memory (required, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_get_memory_requirements2 (required, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_ANDROID_external_memory_android_hardware_buffer (required, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_queue_family_foreign (required, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_external_memory_fd (required, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_sampler_ycbcr_conversion (required, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils: Device Extensions      VK_EXT_fragment_density_map (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_fragment_density_map2 (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_maintenance1 (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_bind_memory2 (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_dedicated_allocation (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_external_fence_fd (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_extended_dynamic_state (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_vertex_input_dynamic_state (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_filter_cubic (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_QCOM_filter_cubic_weights (optional, not found)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_global_priority (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_robustness2 (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_maintenance5 (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_pipeline_binary (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_EXT_device_memory_report (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_calibrated_timestamps (optional, not found)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_NV_optical_flow (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_format_feature_flags2 (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_synchronization2 (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_push_descriptor (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_imageless_framebuffer (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_image_format_list (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_timeline_semaphore (optional, enabled)
+10-01 02:04:12.521 25796 25818 I Vulkan_Utils:                        VK_KHR_shared_presentable_image (optional, enabled)
+10-01 02:04:12.541 25796 25818 W libc    : Access denied finding property "vendor.debug.egl.profiler"
+10-01 02:04:12.539 25796 25796 W com.guategeeks.awsarchitectlab: type=1400 audit(0.0:618): avc:  denied  { read } for  comm=556E697479204D61696E2054687265 name="u:object_r:gpuprofiler_prop:s0" dev="tmpfs" ino=282 scontext=u:r:untrusted_app:s0:c164,c256,c512,c768 tcontext=u:object_r:gpuprofiler_prop:s0 tclass=file permissive=0 app=com.guategeeks.awsarchitectlab
+10-01 02:04:12.552 25796 25818 V MediaRouter: Selecting route: RouteInfo{ name=Teléfono, description=null, status=null, category=RouteCategory{ name=Sistema types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=null }
+10-01 02:04:12.553 25796 25818 I MediaRouter: Skip setBluetoothA2dpOn(): types=8388615, isPlaybackActive()=false, BT route=null
+10-01 02:04:12.563 25796 25818 I AAudio  : AAudioStreamBuilder_openStream() called ----------------------------------------
+10-01 02:04:12.563 25796 25818 I AudioStreamBuilder: rate   =  24000, channels  = 2, channelMask = 0x80000003, format   = 5, sharing = SH, dir = OUTPUT
+10-01 02:04:12.563 25796 25818 I AudioStreamBuilder: device =      0, sessionId = 0, perfMode = 12, callback: ON with frames = 512
+10-01 02:04:12.563 25796 25818 I AudioStreamBuilder: usage  =      0, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+10-01 02:04:12.563 25796 25818 I AudioStreamBuilder: privacy sensitive = false, opPackageName = (null), attributionTag = (null)
+10-01 02:04:12.563 25796 25818 D AudioStreamBuilder: build() disable aaudio output mmap via gk
+10-01 02:04:12.563 25796 25818 D AudioStreamBuilder: build() MMAP not used because this is a 2D activity and spatialization is notdisabled on this stream.
+10-01 02:04:12.563 25796 25818 D AudioStreamBuilder: build() MMAP not used because sessionId specified.
+10-01 02:04:12.563 25796 25818 D awsarchitectlab: PlayerBase::PlayerBase()
+10-01 02:04:12.564 25796 25818 D AudioStreamTrack: open(), request notificationFrames = 0, frameCount = 8192
+10-01 02:04:12.569 25796 25818 I AudioTrack: registerVolumetricWindowToken_l session=2113 token=0xb400007359be9220 force=true
+10-01 02:04:12.569 25796 25818 I AudioTrack: setPackageForSession_l session=2113 packageName=
+10-01 02:04:12.569 25796 25818 W AudioTrack: setPackageForSession_l: packageName is empty
+10-01 02:04:12.571 25796 25818 D AudioStreamTrack: open() flags changed from 0x00000004 to 0x00000000
+10-01 02:04:12.571 25796 25818 D AudioStreamTrack: open() perfMode changed from 12 to 10
+10-01 02:04:12.571 25796 25818 D AAudioStream: setState(s#1) from 0 to 2
+10-01 02:04:12.571 25796 25818 W libaudiotapper: connection to audiotapper service failed: not enabled
+10-01 02:04:12.572 25796 25818 I AAudio  : AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#1 ----------------
+10-01 02:04:12.572 25796 25818 D AAudio  : AAudioStream_requestStart(s#1) called --------------
+10-01 02:04:12.572 25796 25818 D AAudioStream: setState(s#1) from 2 to 3
+10-01 02:04:12.572 25796 25818 I AudioTrack: registerVolumetricWindowToken_l session=2113 token=0xb400007359be9220 force=false
+10-01 02:04:12.573 25796 25818 D AAudio  : AAudioStream_requestStart(s#1) returned 0 ---------
+10-01 02:04:12.582 25796 25809 D AudioStreamLegacy: onAudioDeviceUpdate(deviceId = 1)
+10-01 02:04:12.593 25796 25872 D AAudioStream: setState(s#1) from 3 to 4
+10-01 02:04:12.756 25796 25818 I Unity   : XRGeneral Settings awakening...
+10-01 02:04:12.756 25796 25818 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 02:04:12.756 25796 25818 I Unity   : UnityEngine.XR.Management.XRGeneralSettings:Awake()
+10-01 02:04:12.756 25796 25818 I Unity   : 
+10-01 02:04:12.765 25796 25818 I IL2CPP  : Locale es-ES
+10-01 02:04:12.805 25796 25818 I Unity   : Loading OpenXR loader library at path: openxr_loader
+10-01 02:04:12.805 25796 25818 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 02:04:12.805 25796 25818 I Unity   : UnityEngine.XR.OpenXR.OpenXRLoaderBase:LoadOpenXRSymbols()
+10-01 02:04:12.805 25796 25818 I Unity   : UnityEngine.XR.OpenXR.OpenXRLoaderBase:InitializeInternal()
+10-01 02:04:12.805 25796 25818 I Unity   : UnityEngine.XR.OpenXR.OpenXRLoaderBase:Initialize()
+10-01 02:04:12.805 25796 25818 I Unity   : UnityEngine.XR.Management.XRManagerSettings:InitializeLoaderSync()
+10-01 02:04:12.805 25796 25818 I Unity   : 
+10-01 02:04:12.806 25796 25818 W Unity   : [XR] XR_META_performance_metrics: Attempted to stop before session ready
+10-01 02:04:12.806 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.806 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Entering loader terminator
+10-01 02:04:12.806 25796 25818 I OpenXR_Properties: ------------ xrDestroyInstance [start] -----------
+10-01 02:04:12.807 25796 25818 I TREX    : Shutting down system...
+10-01 02:04:12.807 25796 25818 I [CT]    : MIXEDREALITY: TREX-MR-in-VrRuntime: Shutting down Insight MR plugin.
+10-01 02:04:12.807 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.807 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.807 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.807 25796 25854 W IPCDataChannelPipe [RUNTIMEIPC]: WaitForRequest: WaitForReadable failed (This is expected if the client or server is shutting down the connection.)
+10-01 02:04:12.807 25796 25854 W RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: WaitForNotification FAILED: -1
+10-01 02:04:12.807 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: COMPLETE: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.807 25796 25854 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: exiting
+10-01 02:04:12.808 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: COMPLETE: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer), result=SUCCESS
+10-01 02:04:12.808 25796 25818 I RipcClientMgr [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer DONE: clientId: 3, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.808 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.808 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.808 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.808 25796 25857 W IPCDataChannelPipe [RUNTIMEIPC]: WaitForRequest: WaitForReadable failed (This is expected if the client or server is shutting down the connection.)
+10-01 02:04:12.808 25796 25857 W RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: WaitForNotification FAILED: -1
+10-01 02:04:12.808 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: COMPLETE: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.808 25796 25857 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: exiting
+10-01 02:04:12.809 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: COMPLETE: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer), result=SUCCESS
+10-01 02:04:12.809 25796 25818 I RipcClientMgr [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer DONE: clientId: 4, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.809 25796 25818 I [CT]    : MIXEDREALITY: TREX-MR: Shutting down Insight MR plugin.
+10-01 02:04:12.809 25796 25818 I [CT]    : MIXEDREALITY: TREX: Shutting down Insight MR plugin.
+10-01 02:04:12.809 25796 25818 I TREX    : Shutting down interface manager.
+10-01 02:04:12.809 25796 25818 I OpenXR_Properties: [OATS]: Destroying OATS instance
+10-01 02:04:12.809 25796 25818 I OpenXR_Properties: ------------ xrDestroyInstance [end]-----------
+10-01 02:04:12.809 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Completed loader terminator
+10-01 02:04:12.809 25796 25818 I OpenXR-Loader: Info [GENERAL | xrDestroyInstance | OpenXR-Loader] : Destroying LoaderInstance = 0xb400007359b86380
+10-01 02:04:12.809 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.809 25796 25818 I OpenXR-Loader: Info [GENERAL | xrDestroyInstance | OpenXR-Loader] : RuntimeInterface::UnloadRuntime - Unloading RuntimeInterface
+10-01 02:04:12.809 25796 25818 I OpenXR-Loader: Info [GENERAL |  | OpenXR-Loader] : RuntimeInterface being destroyed.
+10-01 02:04:12.817 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrInitializeLoaderKHR | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.817 25796 25818 V OpenXR-Loader: Verbose [GENERAL | InitializeLoaderInitData | OpenXR-Loader] : Unloading any previously loaded runtime
+10-01 02:04:12.818 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.818 25796 25818 I OpenXR-Loader: getActiveRuntimeCursor: Querying URI: content://org.khronos.openxr.runtime_broker/openxr/1/abi/arm64-v8a/runtimes/active
+10-01 02:04:12.819 25796 25818 W OpenXR-Loader: Null cursor when querying installable content resolver.
+10-01 02:04:12.819 25796 25818 I OpenXR-Loader: getActiveRuntimeCursor: Querying URI: content://org.khronos.openxr.system_runtime_broker/openxr/1/abi/arm64-v8a/runtimes/active
+10-01 02:04:12.819 25796 25818 W OpenXR-Loader: Null cursor when querying system content resolver.
+10-01 02:04:12.819 25796 25818 E OpenXR-Loader: Could access neither the installable nor system runtime broker.
+10-01 02:04:12.819 25796 25818 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeManifestFile::FindManifestFiles - using global runtime file /odm/etc/openxr/1/active_runtime.aarch64.json
+10-01 02:04:12.819 25796 25818 I OpenXR-Loader: Info [GENERAL |  | OpenXR-Loader] : RuntimeManifestFile::CreateIfValid - attempting to load /odm/etc/openxr/1/active_runtime.aarch64.json
+10-01 02:04:12.820 25796 25818 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntime forwarding xrInitializeLoaderKHR call to runtime before calling xrNegotiateLoaderRuntimeInterface.
+10-01 02:04:12.820 25796 25818 V OpenXR  : OpenXRForwardLoader::xrInitializeLoaderKHR [start]
+10-01 02:04:12.821 25796 25818 I OpenXR  : Loading 64-bit Runtime.
+10-01 02:04:12.821 25796 25818 I OpenXR_ClientState: OpenXRClientState::create - from xrInitializeLoaderKHR
+10-01 02:04:12.821 25796 25818 V OpenXR  : OpenXRForwardLoader::xrInitializeLoaderKHR [end]
+10-01 02:04:12.821 25796 25818 V OpenXR  : OpenXRForwardLoader::xrNegotiateLoaderRuntimeInterface [start]
+10-01 02:04:12.821 25796 25818 V OpenXR  : OpenXRForwardLoader::xrNegotiateLoaderRuntimeInterface [end]
+10-01 02:04:12.821 25796 25818 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntime succeeded loading runtime defined in manifest file /odm/etc/openxr/1/active_runtime.aarch64.json using interface version 1 and OpenXR API version 1.0
+10-01 02:04:12.821 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.821 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.821 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.834 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.835 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.835 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.835 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.835 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateApiLayerProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.835 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateApiLayerProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.835 25796 25818 I Unity   : [XR] [495476767216] [02:04:12.835][Info   ] Available Layers: (0)
+10-01 02:04:12.835 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering loader trampoline
+10-01 02:04:12.836 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering LoaderInstance::CreateInstance
+10-01 02:04:12.836 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering loader terminator
+10-01 02:04:12.836 25796 25818 I OpenXR_Properties: ----------- xrCreateInstance [start] ----------
+10-01 02:04:12.836 25796 25818 I OpenXR_ClientState: OpenXRClientState::create - from xrCreateInstance
+10-01 02:04:12.836 25796 25818 I VersionGater: App OpenXR version is 1.1.53
+10-01 02:04:12.836 25796 25818 I VersionGater: Version gate state: 1111 1111 1111 1111 1111 1111 00
+10-01 02:04:12.838 25796 25818 I TREX    : Initializing TREX for client ac2ec1833550de6c...
+10-01 02:04:12.838 25796 25818 I TREX    : Initializing system...
+10-01 02:04:12.836 25796 25796 W com.guategeeks.awsarchitectlab: type=1400 audit(0.0:619): avc:  denied  { read } for  comm=556E697479204D61696E2054687265 name="u:object_r:hzos_device_features_prop:s0" dev="tmpfs" ino=298 scontext=u:r:untrusted_app:s0:c164,c256,c512,c768 tcontext=u:object_r:hzos_device_features_prop:s0 tclass=file permissive=0 app=com.guategeeks.awsarchitectlab
+10-01 02:04:12.838 25796 25818 W libc    : Access denied finding property "ro.device.feature.tracking.inside_out_body_tracking.disabled"
+10-01 02:04:12.838 25796 25818 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insightsdk_killsw' not successful: 4
+10-01 02:04:12.838 25796 25818 I TREX    : PTINC: API=vrruntime
+10-01 02:04:12.838 25796 25818 I TREXLoadPolicy: InsightMrPassthrough: all features matched!
+10-01 02:04:12.838 25796 25818 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 02:04:12.839 25796 25818 I [CT]    : MIXEDREALITY: TREX-MRPT: Passthrough API in VrRuntime enabled.
+10-01 02:04:12.839 25796 25818 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insightsdk_killsw' not successful: 4
+10-01 02:04:12.839 25796 25818 I TREXLoadPolicy: Plugin ':': GK killswitch is enabled! Plugin will be skipped!
+10-01 02:04:12.839 25796 25818 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 02:04:12.839 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.841 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.841 25796 25892 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.841 25796 25892 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.842 25796 25818 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 02:04:12.842 25796 25818 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.842 25796 25892 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.842 25796 25818 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.842 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.843 25796 25892 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 02:04:12.843 25796 25818 I TREX    : Loading EMGSDK Client Plugin
+10-01 02:04:12.843 25796 25818 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 02:04:12.843 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.845 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.845 25796 25895 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.845 25796 25895 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.846 25796 25818 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 02:04:12.847 25796 25818 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.847 25796 25895 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.847 25796 25818 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.847 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.847 25796 25895 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 02:04:12.848 25796 25818 I TrexHandInputDataClientPlugin: HandInputDataTREXClientBase::Initialize success
+10-01 02:04:12.848 25796 25818 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insight_debug_killsw' not successful: 4
+10-01 02:04:12.848 25796 25818 I TREXLoadPolicy: InsightSdk: all features matched!
+10-01 02:04:12.848 25796 25818 I TREX    : Loading plugin :libmrservice_plugin.so
+10-01 02:04:12.848 25796 25818 D AndroidLibraryResolver: Loading 'libmrservice_plugin.so'
+10-01 02:04:12.849 25796 25818 D PosixLibraryResolver: dlopen success for 'libmrservice_plugin.so'
+10-01 02:04:12.849 25796 25818 I TREX    : loaded 'libmrservice_plugin.so'
+10-01 02:04:12.849 25796 25818 I PosixLibraryHandle: retrieved address for 'trex_GetPluginInfo'
+10-01 02:04:12.849 25796 25818 I PosixLibraryHandle: retrieved address for 'trex_Initialize'
+10-01 02:04:12.849 25796 25818 I PosixLibraryHandle: retrieved address for 'trex_Shutdown'
+10-01 02:04:12.849 25796 25818 W TREX    : Interface version 2 is already registered! Check debug build for more information.
+10-01 02:04:12.849 25796 25818 W [CT]    : MIXEDREALITY: TREX-MR-HELPER: Failed to register feature interface InsightMrSessionEventInterface v2.
+10-01 02:04:12.850 25796 25818 W TREX    : Interface version 2 is already registered! Check debug build for more information.
+10-01 02:04:12.850 25796 25818 W [CT]    : MIXEDREALITY: TREX-MR-HELPER: Failed to register feature interface InsightMrPassthroughInterface v2.
+10-01 02:04:12.850 25796 25818 W TREX    : Interface version 1 is already registered! Check debug build for more information.
+10-01 02:04:12.850 25796 25818 W [CT]    : MIXEDREALITY: TREX-MR-HELPER: Failed to register feature interface InsightMrPassthroughGeometryMeshInterface v1.
+10-01 02:04:12.850 25796 25818 I TREX    : Loading plugin com.oculus.wearableinputservice:libtrex_emgwristband_client_plugin.so
+10-01 02:04:12.850 25796 25818 I TREX    : package 'com.oculus.wearableinputservice' not found, skipping
+10-01 02:04:12.850 25796 25818 I TREX    : Plugin 'com.oculus.wearableinputservice:libtrex_emgwristband_client_plugin.so' not loaded.
+10-01 02:04:12.850 25796 25818 I TREX    : Loading plugin com.oculus.appautomation:libtrex_app_automation_plugin_v1.so
+10-01 02:04:12.851 25796 25818 D AndroidLibraryResolver: Loading 'libtrex_app_automation_plugin_v1.so' from package 'com.oculus.appautomation'
+10-01 02:04:12.852 25796 25818 D AndroidLibraryResolver: Attempting to find getAPIFunction64
+10-01 02:04:12.852 25796 25818 V LibLoaderImpl: Loading 64-bit LibLoaderImpl.
+10-01 02:04:12.852 25796 25818 V LibLoaderImpl: internalGetAPIFunction: loadLibrary 'loaderimpl'
+10-01 02:04:12.852 25796 25818 V LibLoaderImpl: Using System.loadLibrary
+10-01 02:04:12.852 25796 25818 V LibLoaderImpl: internalGetAPIFunction: calling nativeGetAPIFunction
+10-01 02:04:12.852 25796 25818 I libloaderimpl: LibLoaderImpl nativeGetAPIFunction.
+10-01 02:04:12.852 25796 25818 I TREX    : loaded 'com.oculus.appautomation:libtrex_app_automation_plugin_v1.so'
+10-01 02:04:12.852 25796 25818 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_GetPluginInfo
+10-01 02:04:12.852 25796 25818 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_Initialize
+10-01 02:04:12.852 25796 25818 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_Shutdown
+10-01 02:04:12.852 25796 25818 I TREX    : Created plugin package context for com.oculus.appautomation
+10-01 02:04:12.853 25796 25818 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.856 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.857 25796 25898 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.857 25796 25898 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.857 25796 25818 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 02:04:12.857 25796 25818 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 02:04:12.857 25796 25898 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.857 25796 25818 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.857 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.858 25796 25898 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.860 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.860 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.860 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.860 25796 25818 I RipcClient [RUNTIMEIPC]: ShutdownLocked: COMPLETE: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.861 25796 25900 W IPCDataChannelPipe [RUNTIMEIPC]: WaitForRequest: WaitForReadable failed (This is expected if the client or server is shutting down the connection.)
+10-01 02:04:12.861 25796 25900 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: WaitForNotification canceled during shutdown
+10-01 02:04:12.861 25796 25900 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: exiting
+10-01 02:04:12.861 25796 25818 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: COMPLETE: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice), result=SUCCESS
+10-01 02:04:12.861 25796 25818 I RipcClientMgr [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer DONE: clientId: 8, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:25796, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 02:04:12.861 25796 25818 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 02:04:12.861 25796 25818 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 02:04:12.861 25796 25818 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 02:04:12.862 25796 25818 I VrRuntimeCompatHelper: DevicesSupported : 1 devices, eureka
+10-01 02:04:12.862 25796 25818 I ApplicationAttributes: IsSystem 0
+10-01 02:04:12.863 25796 25818 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 02:04:12.863 25796 25818 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 02:04:12.863 25796 25818 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 02:04:12.863 25796 25818 I OpenXR_Properties: ----------- xrCreateInstance [end] ----------
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSetDebugUtilsObjectNameEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrCreateDebugUtilsMessengerEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrDestroyDebugUtilsMessengerEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSubmitDebugUtilsMessageEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionBeginDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionEndDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionInsertDebugUtilsLabelEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Completed loader terminator
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionBeginDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionEndDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionInsertDebugUtilsLabelEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 02:04:12.863 25796 25818 I OpenXR-Loader: Info [GENERAL | xrCreateInstance | OpenXR-Loader] : LoaderInstance::CreateInstance succeeded with 0 layers enabled and runtime interface - created instance = 0x0000000000000002
+10-01 02:04:12.863 25796 25818 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Completed loader trampoline
+10-01 02:04:12.876 25796 25818 W Unity   : Orientation Listener cannot detect orientation.
+10-01 02:04:12.876 25796 25818 I Unity   :     HasWindow = 1, HasFocus = 0
+10-01 02:04:12.876 25796 25818 I Unity   : Handle cmd APP_CMD_WINDOW_RESIZED(3)
+10-01 02:04:12.877 25796 25818 I Unity   : Handle cmd APP_CMD_WINDOW_REDRAW_NEEDED(4)
+10-01 02:04:12.877 25796 25818 I Unity   : Handle cmd APP_CMD_TERM_WINDOW(2)
+10-01 02:04:12.878 25796 25818 D AAudio  : AAudioStream_requestStop(s#1) called
+10-01 02:04:12.878 25796 25818 D AAudioStream: setState(s#1) from 4 to 9
+10-01 02:04:12.878 25796 25818 D AudioTrack: stop(285): called with 9120 frames delivered
+10-01 02:04:12.879 25796 25818 D AAudioStream: setState(s#1) from 9 to 10
+10-01 02:04:12.881 25796 25905 W OpenGLRenderer: Surface doesn't have any previously queued frames, nothing to readback from
+10-01 02:04:12.881 25796 25796 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=falsecallback=com.unity3d.player.a.c$$ExternalSyntheticLambda0@d68f847
+10-01 02:04:12.883 25796 25818 I Unity   : Handle cmd APP_CMD_STOP(15)
+10-01 02:04:12.883 25796 25818 I Unity   : Handle cmd APP_CMD_SAVE_STATE(13)
+10-01 02:04:12.883 25796 25796 I Choreographer: Skipped 44 frames!  The application may be doing too much work on its main thread.
+10-01 02:04:12.885 25796 25796 D MediaRouter: onRestoreRoute() : route=RouteInfo{ name=Teléfono, description=null, status=null, category=RouteCategory{ name=Sistema types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=null }
+10-01 02:04:12.885 25796 25796 V MediaRouter: Selecting route: RouteInfo{ name=Teléfono, description=null, status=null, category=RouteCategory{ name=Sistema types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=null }
+10-01 02:04:12.901 25796 25796 V GameActivity: onImeInsetsChanged from Text Listener
+10-01 02:04:12.901 25796 25818 I Unity   : Handle cmd APP_CMD_WINDOW_INSETS_CHANGED(17)

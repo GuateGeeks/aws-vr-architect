@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="44" result="Passed" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:17:57Z" duration="100.7768611">
+  <test-suite type="TestSuite" id="1148" name="GuateGeeks AWS Architect Lab" fullname="GuateGeeks AWS Architect Lab" runstate="Runnable" testcasecount="45" result="Passed" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:17:57Z" duration="100.776861" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1198" name="GuateGeeks.AwsVr.PlayTests.dll" fullname="C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Library/ScriptAssemblies/GuateGeeks.AwsVr.PlayTests.dll" runstate="Runnable" testcasecount="45" result="Passed" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:17:57Z" duration="100.773597" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="61704" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1199" name="GuateGeeks" fullname="GuateGeeks" runstate="Runnable" testcasecount="45" result="Passed" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:17:57Z" duration="100.771124" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1200" name="AwsVr" fullname="GuateGeeks.AwsVr" runstate="Runnable" testcasecount="45" result="Passed" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:17:57Z" duration="100.768930" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1201" name="Tests" fullname="GuateGeeks.AwsVr.Tests" runstate="Runnable" testcasecount="45" result="Passed" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:17:57Z" duration="100.766646" total="44" passed="44" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1149" name="LabExperienceTests" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" testcasecount="37" result="Passed" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:17:57Z" duration="100.648918" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1172" name="ArmoredHandsHaveVolumeAndEnvironmentMotionCanFreeze" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.ArmoredHandsHaveVolumeAndEnvironmentMotionCanFreeze" methodname="ArmoredHandsHaveVolumeAndEnvironmentMotionCanFreeze" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1213527829" result="Passed" start-time="2026-10-04 09:16:17Z" end-time="2026-10-04 09:16:18Z" duration="1.431997" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1164" name="AssistantDiscardsProposalAfterManualEditAndCannotOverwriteDraft" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.AssistantDiscardsProposalAfterManualEditAndCannotOverwriteDraft" methodname="AssistantDiscardsProposalAfterManualEditAndCannotOverwriteDraft" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1340078876" result="Passed" start-time="2026-10-04 09:16:18Z" end-time="2026-10-04 09:16:19Z" duration="0.901558" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1163" name="AssistantProposalsAreAtomicUndoableAndNeverDeployAutomatically" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.AssistantProposalsAreAtomicUndoableAndNeverDeployAutomatically" methodname="AssistantProposalsAreAtomicUndoableAndNeverDeployAutomatically" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1503617309" result="Passed" start-time="2026-10-04 09:16:19Z" end-time="2026-10-04 09:16:20Z" duration="1.439426" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1153" name="AssistantStaysEnabledWhenHiddenUntilExplicitlyDisabled" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.AssistantStaysEnabledWhenHiddenUntilExplicitlyDisabled" methodname="AssistantStaysEnabledWhenHiddenUntilExplicitlyDisabled" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="627580332" result="Passed" start-time="2026-10-04 09:16:20Z" end-time="2026-10-04 09:16:22Z" duration="1.371020" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1182" name="BuildInspectConnectDeployAndTestFromWorldControls" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.BuildInspectConnectDeployAndTestFromWorldControls" methodname="BuildInspectConnectDeployAndTestFromWorldControls" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="861151890" result="Passed" start-time="2026-10-04 09:16:22Z" end-time="2026-10-04 09:16:27Z" duration="5.566854" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1180" name="CloudControlsRequireExplicitCreationAndKeepDemoSeparate" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.CloudControlsRequireExplicitCreationAndKeepDemoSeparate" methodname="CloudControlsRequireExplicitCreationAndKeepDemoSeparate" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="207182774" result="Passed" start-time="2026-10-04 09:16:27Z" end-time="2026-10-04 09:16:29Z" duration="1.848307" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1159" name="CodeDraftRejectsStaleHashAndKeyboardPreservesPythonIndentation" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.CodeDraftRejectsStaleHashAndKeyboardPreservesPythonIndentation" methodname="CodeDraftRejectsStaleHashAndKeyboardPreservesPythonIndentation" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="866673854" result="Passed" start-time="2026-10-04 09:16:29Z" end-time="2026-10-04 09:16:30Z" duration="1.001055" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1160" name="CodeReviewCannotSilentlySwitchRollbackVersionOrConfirmFromVoice" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.CodeReviewCannotSilentlySwitchRollbackVersionOrConfirmFromVoice" methodname="CodeReviewCannotSilentlySwitchRollbackVersionOrConfirmFromVoice" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1610254124" result="Passed" start-time="2026-10-04 09:16:30Z" end-time="2026-10-04 09:16:31Z" duration="0.948163" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1152" name="ComponentSizingPreservesDeploymentAndAppliesToNewObjects" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.ComponentSizingPreservesDeploymentAndAppliesToNewObjects" methodname="ComponentSizingPreservesDeploymentAndAppliesToNewObjects" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1269077571" result="Passed" start-time="2026-10-04 09:16:31Z" end-time="2026-10-04 09:16:35Z" duration="3.664614" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1174" name="ConfirmedLinksAndPreviewAreDistinctAndNeverAnimateObservation" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.ConfirmedLinksAndPreviewAreDistinctAndNeverAnimateObservation" methodname="ConfirmedLinksAndPreviewAreDistinctAndNeverAnimateObservation" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="2095713276" result="Passed" start-time="2026-10-04 09:16:35Z" end-time="2026-10-04 09:16:36Z" duration="0.875635" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1165" name="DedicatedObjectInspectorDoesNotReplaceReaderAndSettingsShareOnePanel" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.DedicatedObjectInspectorDoesNotReplaceReaderAndSettingsShareOnePanel" methodname="DedicatedObjectInspectorDoesNotReplaceReaderAndSettingsShareOnePanel" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="647489348" result="Passed" start-time="2026-10-04 09:16:36Z" end-time="2026-10-04 09:16:37Z" duration="1.264385" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1162" name="DiagnosticsAutomaticallyReadAndStopOnCloseWithoutSendingEvents" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.DiagnosticsAutomaticallyReadAndStopOnCloseWithoutSendingEvents" methodname="DiagnosticsAutomaticallyReadAndStopOnCloseWithoutSendingEvents" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1202860960" result="Passed" start-time="2026-10-04 09:16:37Z" end-time="2026-10-04 09:16:43Z" duration="6.636526" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1185" name="EnvironmentSettingsHideOnlyTheRoomAndRestoreIt" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.EnvironmentSettingsHideOnlyTheRoomAndRestoreIt" methodname="EnvironmentSettingsHideOnlyTheRoomAndRestoreIt" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1075342512" result="Passed" start-time="2026-10-04 09:16:43Z" end-time="2026-10-04 09:16:44Z" duration="0.869888" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1181" name="FailedCloudConnectionStaysExplicitlyOfflineUntilDemoIsSelected" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.FailedCloudConnectionStaysExplicitlyOfflineUntilDemoIsSelected" methodname="FailedCloudConnectionStaysExplicitlyOfflineUntilDemoIsSelected" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1375732155" result="Passed" start-time="2026-10-04 09:16:44Z" end-time="2026-10-04 09:16:46Z" duration="1.541733" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1186" name="FailureRetryCancelResetAndCorruptSaveAreRecoverable" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.FailureRetryCancelResetAndCorruptSaveAreRecoverable" methodname="FailureRetryCancelResetAndCorruptSaveAreRecoverable" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="267109186" result="Passed" start-time="2026-10-04 09:16:46Z" end-time="2026-10-04 09:16:52Z" duration="6.529602" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1167" name="FlowIsFiniteOrderedAndNeverAnimatesObservationEdges" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.FlowIsFiniteOrderedAndNeverAnimatesObservationEdges" methodname="FlowIsFiniteOrderedAndNeverAnimatesObservationEdges" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1124173405" result="Passed" start-time="2026-10-04 09:16:52Z" end-time="2026-10-04 09:16:58Z" duration="5.902554" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1173" name="GuidedDemoRequiresConfirmationAndCompletesLocalWorkflow" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.GuidedDemoRequiresConfirmationAndCompletesLocalWorkflow" methodname="GuidedDemoRequiresConfirmationAndCompletesLocalWorkflow" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="682341689" result="Passed" start-time="2026-10-04 09:16:58Z" end-time="2026-10-04 09:17:04Z" duration="5.299803" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1183" name="HolographicControlsPreviewSnapAndComfortStayConsistent" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.HolographicControlsPreviewSnapAndComfortStayConsistent" methodname="HolographicControlsPreviewSnapAndComfortStayConsistent" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1467147202" result="Passed" start-time="2026-10-04 09:17:04Z" end-time="2026-10-04 09:17:05Z" duration="1.155175" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1171" name="IncrementalReaderMergesStableIdsAndRestartsForFilters" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.IncrementalReaderMergesStableIdsAndRestartsForFilters" methodname="IncrementalReaderMergesStableIdsAndRestartsForFilters" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1050623765" result="Passed" start-time="2026-10-04 09:17:05Z" end-time="2026-10-04 09:17:10Z" duration="5.149592" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1157" name="InterruptingPreviewOrManuallyEditingPreventsDelayedVoiceMutation" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.InterruptingPreviewOrManuallyEditingPreventsDelayedVoiceMutation" methodname="InterruptingPreviewOrManuallyEditingPreventsDelayedVoiceMutation" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="743087846" result="Passed" start-time="2026-10-04 09:17:10Z" end-time="2026-10-04 09:17:13Z" duration="2.629907" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1170" name="LiveReaderRefreshesPreservesSelectionAndStopsWhenClosed" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.LiveReaderRefreshesPreservesSelectionAndStopsWhenClosed" methodname="LiveReaderRefreshesPreservesSelectionAndStopsWhenClosed" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="427020755" result="Passed" start-time="2026-10-04 09:17:13Z" end-time="2026-10-04 09:17:27Z" duration="14.884383" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1184" name="MenusMoveIndependentlyPersistAndSurviveInspectorRefresh" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.MenusMoveIndependentlyPersistAndSurviveInspectorRefresh" methodname="MenusMoveIndependentlyPersistAndSurviveInspectorRefresh" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="787337137" result="Passed" start-time="2026-10-04 09:17:27Z" end-time="2026-10-04 09:17:29Z" duration="1.769055" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1168" name="NamedLibraryAndLayoutUndoPreserveDefinition" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.NamedLibraryAndLayoutUndoPreserveDefinition" methodname="NamedLibraryAndLayoutUndoPreserveDefinition" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1135239193" result="Passed" start-time="2026-10-04 09:17:29Z" end-time="2026-10-04 09:17:33Z" duration="3.758125" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1177" name="RejectedSessionNeverStoresCredential" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.RejectedSessionNeverStoresCredential" methodname="RejectedSessionNeverStoresCredential" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1166733170" result="Passed" start-time="2026-10-04 09:17:33Z" end-time="2026-10-04 09:17:34Z" duration="0.874082" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1176" name="RememberOnlyAfterSessionAndCatalogThenDisconnectAndForget" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.RememberOnlyAfterSessionAndCatalogThenDisconnectAndForget" methodname="RememberOnlyAfterSessionAndCatalogThenDisconnectAndForget" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1787331358" result="Passed" start-time="2026-10-04 09:17:34Z" end-time="2026-10-04 09:17:35Z" duration="0.908497" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1161" name="ReviewedCodePublicationStaysLockedThroughAwsPolling" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.ReviewedCodePublicationStaysLockedThroughAwsPolling" methodname="ReviewedCodePublicationStaysLockedThroughAwsPolling" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1328883775" result="Passed" start-time="2026-10-04 09:17:35Z" end-time="2026-10-04 09:17:40Z" duration="5.031103" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1169" name="SlotInspectionAndCleanupRequireExplicitConfirmation" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.SlotInspectionAndCleanupRequireExplicitConfirmation" methodname="SlotInspectionAndCleanupRequireExplicitConfirmation" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="789852167" result="Passed" start-time="2026-10-04 09:17:40Z" end-time="2026-10-04 09:17:45Z" duration="4.751027" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1179" name="SlowCloudConnectionCanBeStoppedBeforeSessionExists" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.SlowCloudConnectionCanBeStoppedBeforeSessionExists" methodname="SlowCloudConnectionCanBeStoppedBeforeSessionExists" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="233123645" result="Passed" start-time="2026-10-04 09:17:45Z" end-time="2026-10-04 09:17:46Z" duration="1.532920" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1154" name="SpatialVoiceMovesAndResizesOnlyTheReferencedNodesWithUndo" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.SpatialVoiceMovesAndResizesOnlyTheReferencedNodesWithUndo" methodname="SpatialVoiceMovesAndResizesOnlyTheReferencedNodesWithUndo" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1016423728" result="Passed" start-time="2026-10-04 09:17:46Z" end-time="2026-10-04 09:17:47Z" duration="1.268360" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1166" name="StudioPlacementDraftKeyboardAndReviewRemainExplicit" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.StudioPlacementDraftKeyboardAndReviewRemainExplicit" methodname="StudioPlacementDraftKeyboardAndReviewRemainExplicit" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="2103819449" result="Passed" start-time="2026-10-04 09:17:47Z" end-time="2026-10-04 09:17:48Z" duration="1.087972" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1178" name="VaultFailureKeepsOnlyTemporarySession" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.VaultFailureKeepsOnlyTemporarySession" methodname="VaultFailureKeepsOnlyTemporarySession" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1819622612" result="Passed" start-time="2026-10-04 09:17:48Z" end-time="2026-10-04 09:17:49Z" duration="0.885021" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1151" name="VoiceActionsRespectStaleContextManualDraftsAndAwsConfirmation" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.VoiceActionsRespectStaleContextManualDraftsAndAwsConfirmation" methodname="VoiceActionsRespectStaleContextManualDraftsAndAwsConfirmation" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1327143887" result="Passed" start-time="2026-10-04 09:17:49Z" end-time="2026-10-04 09:17:50Z" duration="0.872483" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1150" name="VoiceCommandsEditComponentsConnectionsAndUndoThroughTheLab" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.VoiceCommandsEditComponentsConnectionsAndUndoThroughTheLab" methodname="VoiceCommandsEditComponentsConnectionsAndUndoThroughTheLab" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="218390769" result="Passed" start-time="2026-10-04 09:17:50Z" end-time="2026-10-04 09:17:51Z" duration="0.974940" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1155" name="VoiceMoveUsesVisibleTableBelowControllerAndShowsItsDestination" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.VoiceMoveUsesVisibleTableBelowControllerAndShowsItsDestination" methodname="VoiceMoveUsesVisibleTableBelowControllerAndShowsItsDestination" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="994009684" result="Passed" start-time="2026-10-04 09:17:51Z" end-time="2026-10-04 09:17:53Z" duration="1.823369" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1156" name="VoiceSizeAndArrangeIsOneUndoAndCompactResultStaysVisible" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.VoiceSizeAndArrangeIsOneUndoAndCompactResultStaysVisible" methodname="VoiceSizeAndArrangeIsOneUndoAndCompactResultStaysVisible" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="589277814" result="Passed" start-time="2026-10-04 09:17:53Z" end-time="2026-10-04 09:17:54Z" duration="1.164348" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1175" name="VrKeyboardMasksLimitsPasswordAndBlocksGraph" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.VrKeyboardMasksLimitsPasswordAndBlocksGraph" methodname="VrKeyboardMasksLimitsPasswordAndBlocksGraph" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="687364118" result="Passed" start-time="2026-10-04 09:17:54Z" end-time="2026-10-04 09:17:56Z" duration="1.614797" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+              <test-case id="1158" name="WorkflowReviewCombinesGraphLayoutAndSizeWithSingleUndo" fullname="GuateGeeks.AwsVr.Tests.LabExperienceTests.WorkflowReviewCombinesGraphLayoutAndSizeWithSingleUndo" methodname="WorkflowReviewCombinesGraphLayoutAndSizeWithSingleUndo" classname="GuateGeeks.AwsVr.Tests.LabExperienceTests" runstate="Runnable" seed="1051361453" result="Passed" start-time="2026-10-04 09:17:56Z" end-time="2026-10-04 09:17:57Z" duration="1.406009" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1187" name="RealtimeAudioInputTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeAudioInputTests" classname="GuateGeeks.AwsVr.Tests.RealtimeAudioInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.087454" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1188" name="ReadsOnlyRecordedFramesAndHandlesMicrophoneWrap" fullname="GuateGeeks.AwsVr.Tests.RealtimeAudioInputTests.ReadsOnlyRecordedFramesAndHandlesMicrophoneWrap" methodname="ReadsOnlyRecordedFramesAndHandlesMicrophoneWrap" classname="GuateGeeks.AwsVr.Tests.RealtimeAudioInputTests" runstate="Runnable" seed="1178017116" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.040571" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1189" name="SilenceIsReportedAndQueueOverflowCannotGrowUnbounded" fullname="GuateGeeks.AwsVr.Tests.RealtimeAudioInputTests.SilenceIsReportedAndQueueOverflowCannotGrowUnbounded" methodname="SilenceIsReportedAndQueueOverflowCannotGrowUnbounded" classname="GuateGeeks.AwsVr.Tests.RealtimeAudioInputTests" runstate="Runnable" seed="2071361592" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.041298" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1190" name="RealtimeLiveTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" classname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.000172" total="0" passed="0" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+            </test-suite>
+            <test-suite type="TestFixture" id="1192" name="RealtimeVoiceStateTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests" classname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.026677" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1196" name="FocusLossIgnoresLateAutomaticSpeechCommit" fullname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests.FocusLossIgnoresLateAutomaticSpeechCommit" methodname="FocusLossIgnoresLateAutomaticSpeechCommit" classname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests" runstate="Runnable" seed="1583002203" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.007199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1194" name="PrivacyPauseAndManualDisconnectRejectLateSpeechTurns" fullname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests.PrivacyPauseAndManualDisconnectRejectLateSpeechTurns" methodname="PrivacyPauseAndManualDisconnectRejectLateSpeechTurns" classname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests" runstate="Runnable" seed="1113951566" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.001053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[ATLAS audio: automatic speech turn accepted
+]]></output>
+              </test-case>
+              <test-case id="1197" name="SpeechAndPlaybackEventsExposeStateAndMeasureFirstAudioOnce" fullname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests.SpeechAndPlaybackEventsExposeStateAndMeasureFirstAudioOnce" methodname="SpeechAndPlaybackEventsExposeStateAndMeasureFirstAudioOnce" classname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests" runstate="Runnable" seed="1152211042" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.001726" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[ATLAS audio: automatic speech turn accepted
+ATLAS latency: mode=semantic commit_to_audio_ms=0
+]]></output>
+              </test-case>
+              <test-case id="1193" name="SpeechInterruptsOldResponseWithoutStoppingContinuousCapture" fullname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests.SpeechInterruptsOldResponseWithoutStoppingContinuousCapture" methodname="SpeechInterruptsOldResponseWithoutStoppingContinuousCapture" classname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests" runstate="Runnable" seed="1957977685" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.001180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[ATLAS audio: automatic speech turn accepted
+]]></output>
+              </test-case>
+              <test-case id="1195" name="ToolContinuationKeepsCaptionUntilTheNextUserTurn" fullname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests.ToolContinuationKeepsCaptionUntilTheNextUserTurn" methodname="ToolContinuationKeepsCaptionUntilTheNextUserTurn" classname="GuateGeeks.AwsVr.Tests.RealtimeVoiceStateTests" runstate="Runnable" seed="688599102" result="Passed" start-time="2026-10-04 09:17:57Z" end-time="2026-10-04 09:17:57Z" duration="0.000662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/adawolfs/AppData/LocalLow/GuateGeeks/GuateGeeks AWS Architect Lab\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

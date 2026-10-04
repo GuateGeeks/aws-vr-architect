@@ -1,0 +1,5 @@
+10-04 03:23:35.948 I/Unity   (15642): Handle cmd APP_CMD_STOP(15)
+10-04 03:24:57.870 I/Unity   (15642): Handle cmd APP_CMD_RESUME(12)
+10-04 03:24:58.209 I/Unity   (15642): Handle cmd APP_CMD_RESUME(12)
+10-04 03:25:02.995 I/Unity   (15642): AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+10-04 03:25:13.168 I/Unity   (15642): Handle cmd APP_CMD_STOP(15)

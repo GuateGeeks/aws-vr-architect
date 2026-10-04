@@ -1,0 +1,895 @@
+--------- beginning of main
+10-01 01:09:43.406 16366 16403 I AudioStreamBuilder: usage  =      0, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+10-01 01:09:43.406 16366 16403 I AudioStreamBuilder: privacy sensitive = false, opPackageName = (null), attributionTag = (null)
+10-01 01:09:43.406 16366 16403 D AudioStreamBuilder: build() disable aaudio output mmap via gk
+10-01 01:09:43.407 16366 16403 D AudioStreamBuilder: build() MMAP not used because this is a 2D activity and spatialization is notdisabled on this stream.
+10-01 01:09:43.407 16366 16403 D AudioStreamBuilder: build() MMAP not used because sessionId specified.
+10-01 01:09:43.407 16366 16403 D awsarchitectlab: PlayerBase::PlayerBase()
+10-01 01:09:43.407 16366 16403 D AudioStreamTrack: open(), request notificationFrames = 0, frameCount = 8192
+10-01 01:09:43.413 16366 16403 I AudioTrack: registerVolumetricWindowToken_l session=921 token=0xb40000734f279400 force=true
+10-01 01:09:43.413 16366 16403 I AudioTrack: setPackageForSession_l session=921 packageName=
+10-01 01:09:43.413 16366 16403 W AudioTrack: setPackageForSession_l: packageName is empty
+10-01 01:09:43.414 16366 16403 D AudioStreamTrack: open() flags changed from 0x00000004 to 0x00000000
+10-01 01:09:43.414 16366 16403 D AudioStreamTrack: open() perfMode changed from 12 to 10
+10-01 01:09:43.414 16366 16403 D AAudioStream: setState(s#1) from 0 to 2
+10-01 01:09:43.414 16366 16403 W libaudiotapper: connection to audiotapper service failed: not enabled
+10-01 01:09:43.414 16366 16403 I AAudio  : AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#1 ----------------
+10-01 01:09:43.415 16366 16403 D AAudio  : AAudioStream_requestStart(s#1) called --------------
+10-01 01:09:43.415 16366 16403 D AAudioStream: setState(s#1) from 2 to 3
+10-01 01:09:43.415 16366 16403 I AudioTrack: registerVolumetricWindowToken_l session=921 token=0xb40000734f279400 force=false
+10-01 01:09:43.415 16366 16403 D AAudio  : AAudioStream_requestStart(s#1) returned 0 ---------
+10-01 01:09:43.416 16366 16366 D MediaRouter: onRestoreRoute() : route=RouteInfo{ name=Teléfono, description=null, status=null, category=RouteCategory{ name=Sistema types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=null }
+10-01 01:09:43.416 16366 16366 V MediaRouter: Selecting route: RouteInfo{ name=Teléfono, description=null, status=null, category=RouteCategory{ name=Sistema types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=null }
+10-01 01:09:43.423 16366 16378 D AudioStreamLegacy: onAudioDeviceUpdate(deviceId = 1)
+10-01 01:09:43.435 16366 16480 D AAudioStream: setState(s#1) from 3 to 4
+10-01 01:09:43.552 16366 16403 I Unity   : XRGeneral Settings awakening...
+10-01 01:09:43.552 16366 16403 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 01:09:43.552 16366 16403 I Unity   : UnityEngine.XR.Management.XRGeneralSettings:Awake()
+10-01 01:09:43.552 16366 16403 I Unity   : 
+10-01 01:09:43.557 16366 16403 I IL2CPP  : Locale es-ES
+10-01 01:09:43.593 16366 16403 I Unity   : Loading OpenXR loader library at path: openxr_loader
+10-01 01:09:43.593 16366 16403 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 01:09:43.593 16366 16403 I Unity   : UnityEngine.XR.OpenXR.OpenXRLoaderBase:LoadOpenXRSymbols()
+10-01 01:09:43.593 16366 16403 I Unity   : UnityEngine.XR.OpenXR.OpenXRLoaderBase:InitializeInternal()
+10-01 01:09:43.593 16366 16403 I Unity   : UnityEngine.XR.OpenXR.OpenXRLoaderBase:Initialize()
+10-01 01:09:43.593 16366 16403 I Unity   : UnityEngine.XR.Management.XRManagerSettings:InitializeLoaderSync()
+10-01 01:09:43.593 16366 16403 I Unity   : 
+10-01 01:09:43.593 16366 16403 W Unity   : [XR] XR_META_performance_metrics: Attempted to stop before session ready
+10-01 01:09:43.594 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.594 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Entering loader terminator
+10-01 01:09:43.594 16366 16403 I OpenXR_Properties: ------------ xrDestroyInstance [start] -----------
+10-01 01:09:43.594 16366 16403 I TREX    : Shutting down system...
+10-01 01:09:43.594 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.594 16366 16403 I RipcClient [RUNTIMEIPC]: ShutdownLocked: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.594 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.594 16366 16403 I RipcClient [RUNTIMEIPC]: ShutdownLocked: COMPLETE: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.594 16366 16464 W IPCDataChannelPipe [RUNTIMEIPC]: WaitForRequest: WaitForReadable failed (This is expected if the client or server is shutting down the connection.)
+10-01 01:09:43.594 16366 16464 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: WaitForNotification canceled during shutdown
+10-01 01:09:43.594 16366 16464 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: exiting
+10-01 01:09:43.595 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: COMPLETE: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer), result=SUCCESS
+10-01 01:09:43.595 16366 16403 I RipcClientMgr [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer DONE: clientId: 3, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.595 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.595 16366 16403 I RipcClient [RUNTIMEIPC]: ShutdownLocked: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.595 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.595 16366 16403 I RipcClient [RUNTIMEIPC]: ShutdownLocked: COMPLETE: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.595 16366 16467 W IPCDataChannelPipe [RUNTIMEIPC]: WaitForRequest: WaitForReadable failed (This is expected if the client or server is shutting down the connection.)
+10-01 01:09:43.595 16366 16467 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: WaitForNotification canceled during shutdown
+10-01 01:09:43.595 16366 16467 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: exiting
+10-01 01:09:43.596 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: COMPLETE: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer), result=SUCCESS
+10-01 01:09:43.596 16366 16403 I RipcClientMgr [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer DONE: clientId: 4, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.596 16366 16403 I TREX    : Shutting down interface manager.
+10-01 01:09:43.597 16366 16403 I OpenXR_Properties: [OATS]: Destroying OATS instance
+10-01 01:09:43.598 16366 16403 I OpenXR_Properties: ------------ xrDestroyInstance [end]-----------
+10-01 01:09:43.598 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Completed loader terminator
+10-01 01:09:43.598 16366 16403 I OpenXR-Loader: Info [GENERAL | xrDestroyInstance | OpenXR-Loader] : Destroying LoaderInstance = 0xb40000718fa06180
+10-01 01:09:43.598 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrDestroyInstance | OpenXR-Loader] : Completed loader trampoline
+10-01 01:09:43.598 16366 16403 I OpenXR-Loader: Info [GENERAL | xrDestroyInstance | OpenXR-Loader] : RuntimeInterface::UnloadRuntime - Unloading RuntimeInterface
+10-01 01:09:43.598 16366 16403 I OpenXR-Loader: Info [GENERAL |  | OpenXR-Loader] : RuntimeInterface being destroyed.
+10-01 01:09:43.600 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrInitializeLoaderKHR | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.600 16366 16403 V OpenXR-Loader: Verbose [GENERAL | InitializeLoaderInitData | OpenXR-Loader] : Unloading any previously loaded runtime
+10-01 01:09:43.602 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.602 16366 16403 I OpenXR-Loader: getActiveRuntimeCursor: Querying URI: content://org.khronos.openxr.runtime_broker/openxr/1/abi/arm64-v8a/runtimes/active
+10-01 01:09:43.603 16366 16403 W OpenXR-Loader: Null cursor when querying installable content resolver.
+10-01 01:09:43.603 16366 16403 I OpenXR-Loader: getActiveRuntimeCursor: Querying URI: content://org.khronos.openxr.system_runtime_broker/openxr/1/abi/arm64-v8a/runtimes/active
+10-01 01:09:43.603 16366 16403 W OpenXR-Loader: Null cursor when querying system content resolver.
+10-01 01:09:43.603 16366 16403 E OpenXR-Loader: Could access neither the installable nor system runtime broker.
+10-01 01:09:43.603 16366 16403 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeManifestFile::FindManifestFiles - using global runtime file /odm/etc/openxr/1/active_runtime.aarch64.json
+10-01 01:09:43.603 16366 16403 I OpenXR-Loader: Info [GENERAL |  | OpenXR-Loader] : RuntimeManifestFile::CreateIfValid - attempting to load /odm/etc/openxr/1/active_runtime.aarch64.json
+10-01 01:09:43.604 16366 16403 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntime forwarding xrInitializeLoaderKHR call to runtime before calling xrNegotiateLoaderRuntimeInterface.
+10-01 01:09:43.604 16366 16403 V OpenXR  : OpenXRForwardLoader::xrInitializeLoaderKHR [start]
+10-01 01:09:43.604 16366 16403 I OpenXR  : Loading 64-bit Runtime.
+10-01 01:09:43.604 16366 16403 I OpenXR_ClientState: OpenXRClientState::create - from xrInitializeLoaderKHR
+10-01 01:09:43.604 16366 16403 V OpenXR  : OpenXRForwardLoader::xrInitializeLoaderKHR [end]
+10-01 01:09:43.604 16366 16403 V OpenXR  : OpenXRForwardLoader::xrNegotiateLoaderRuntimeInterface [start]
+10-01 01:09:43.604 16366 16403 V OpenXR  : OpenXRForwardLoader::xrNegotiateLoaderRuntimeInterface [end]
+10-01 01:09:43.604 16366 16403 I OpenXR-Loader: Info [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntime succeeded loading runtime defined in manifest file /odm/etc/openxr/1/active_runtime.aarch64.json using interface version 1 and OpenXR API version 1.0
+10-01 01:09:43.605 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 01:09:43.605 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.605 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 01:09:43.615 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.615 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 01:09:43.615 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.615 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Completed loader trampoline
+10-01 01:09:43.615 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateApiLayerProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.616 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrEnumerateApiLayerProperties | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.616 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.616][Info   ] Available Layers: (0)
+10-01 01:09:43.616 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering loader trampoline
+10-01 01:09:43.616 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering LoaderInstance::CreateInstance
+10-01 01:09:43.616 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Entering loader terminator
+10-01 01:09:43.616 16366 16403 I OpenXR_Properties: ----------- xrCreateInstance [start] ----------
+10-01 01:09:43.616 16366 16403 I OpenXR_ClientState: OpenXRClientState::create - from xrCreateInstance
+10-01 01:09:43.616 16366 16403 I VersionGater: App OpenXR version is 1.1.53
+10-01 01:09:43.616 16366 16403 I VersionGater: Version gate state: 1111 1111 1111 1111 1111 1111 00
+10-01 01:09:43.618 16366 16403 I TREX    : Initializing TREX for client ac2ec1833550de6c...
+10-01 01:09:43.618 16366 16403 I TREX    : Initializing system...
+10-01 01:09:43.618 16366 16403 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insightsdk_killsw' not successful: 4
+10-01 01:09:43.618 16366 16403 I TREX    : PTINC: API=vrruntime
+10-01 01:09:43.618 16366 16403 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insightsdk_killsw' not successful: 4
+10-01 01:09:43.618 16366 16403 I TREXLoadPolicy: Plugin ':': GK killswitch is enabled! Plugin will be skipped!
+10-01 01:09:43.618 16366 16403 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 01:09:43.619 16366 16403 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.620 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.620 16366 16487 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.620 16366 16487 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.621 16366 16403 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 01:09:43.621 16366 16403 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.621 16366 16487 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.621 16366 16403 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.621 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.621 16366 16487 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HapticsServer)
+10-01 01:09:43.621 16366 16403 I TREX    : Loading EMGSDK Client Plugin
+10-01 01:09:43.621 16366 16403 I TREX    : Created plugin package context for com.oculus.systemdriver
+10-01 01:09:43.621 16366 16403 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.624 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.624 16366 16490 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.624 16366 16490 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.624 16366 16403 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 01:09:43.624 16366 16403 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.624 16366 16490 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.624 16366 16403 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.624 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.625 16366 16490 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.627 16366 16403 I TrexHandInputDataClientPlugin: HandInputDataTREXClientBase::Initialize success
+10-01 01:09:43.627 16366 16403 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:oculus_trex_insight_debug_killsw' not successful: 4
+10-01 01:09:43.627 16366 16403 I TREX    : Loading plugin com.oculus.wearableinputservice:libtrex_emgwristband_client_plugin.so
+10-01 01:09:43.627 16366 16403 I TREX    : package 'com.oculus.wearableinputservice' not found, skipping
+10-01 01:09:43.627 16366 16403 I TREX    : Plugin 'com.oculus.wearableinputservice:libtrex_emgwristband_client_plugin.so' not loaded.
+10-01 01:09:43.627 16366 16403 I TREX    : Loading plugin com.oculus.appautomation:libtrex_app_automation_plugin_v1.so
+10-01 01:09:43.628 16366 16403 D AndroidLibraryResolver: Loading 'libtrex_app_automation_plugin_v1.so' from package 'com.oculus.appautomation'
+10-01 01:09:43.628 16366 16403 D AndroidLibraryResolver: Attempting to find getAPIFunction64
+10-01 01:09:43.628 16366 16403 V LibLoaderImpl: Loading 64-bit LibLoaderImpl.
+10-01 01:09:43.628 16366 16403 V LibLoaderImpl: internalGetAPIFunction: loadLibrary 'loaderimpl'
+10-01 01:09:43.628 16366 16403 V LibLoaderImpl: Using System.loadLibrary
+10-01 01:09:43.628 16366 16403 V LibLoaderImpl: internalGetAPIFunction: calling nativeGetAPIFunction
+10-01 01:09:43.628 16366 16403 I libloaderimpl: LibLoaderImpl nativeGetAPIFunction.
+10-01 01:09:43.628 16366 16403 I TREX    : loaded 'com.oculus.appautomation:libtrex_app_automation_plugin_v1.so'
+10-01 01:09:43.628 16366 16403 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_GetPluginInfo
+10-01 01:09:43.628 16366 16403 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_Initialize
+10-01 01:09:43.628 16366 16403 I libloaderimpl: LibLoaderImpl GetAPIFunction. libName: libtrex_app_automation_plugin_v1.so, funcName: trex_Shutdown
+10-01 01:09:43.628 16366 16403 I TREX    : Created plugin package context for com.oculus.appautomation
+10-01 01:09:43.628 16366 16403 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.633 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.633 16366 16493 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.633 16366 16493 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.634 16366 16403 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 01:09:43.634 16366 16403 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.634 16366 16493 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.634 16366 16403 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.634 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.634 16366 16493 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.635 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.635 16366 16403 I RipcClient [RUNTIMEIPC]: ShutdownLocked: BEGIN: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.635 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.635 16366 16403 I RipcClient [RUNTIMEIPC]: ShutdownLocked: COMPLETE: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.635 16366 16495 W IPCDataChannelPipe [RUNTIMEIPC]: WaitForRequest: WaitForReadable failed (This is expected if the client or server is shutting down the connection.)
+10-01 01:09:43.635 16366 16495 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: WaitForNotification canceled during shutdown
+10-01 01:09:43.635 16366 16495 I RuntimeIPCNotificationThread [RUNTIMEIPC]: RuntimeIPCNotificationThread MainLoop: exiting
+10-01 01:09:43.635 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] Shutdown: COMPLETE: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice), result=SUCCESS
+10-01 01:09:43.635 16366 16403 I RipcClientMgr [RUNTIMEIPC]: [RIPC_CONNECT_LOG] DisconnectFromServer DONE: clientId: 8, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceDevice)
+10-01 01:09:43.637 16366 16403 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 01:09:43.637 16366 16403 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 01:09:43.637 16366 16403 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 01:09:43.637 16366 16403 I VrRuntimeCompatHelper: DevicesSupported : 1 devices, eureka
+10-01 01:09:43.637 16366 16403 I ApplicationAttributes: IsSystem 0
+10-01 01:09:43.638 16366 16403 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 01:09:43.638 16366 16403 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 01:09:43.638 16366 16403 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 01:09:43.638 16366 16403 I OpenXR_Properties: ----------- xrCreateInstance [end] ----------
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSetDebugUtilsObjectNameEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrCreateDebugUtilsMessengerEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrDestroyDebugUtilsMessengerEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSubmitDebugUtilsMessageEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionBeginDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionEndDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionInsertDebugUtilsLabelEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Completed loader terminator
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionBeginDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionEndDebugUtilsLabelRegionEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 V OpenXR_DriverLoader: xrGetInstanceProcAddr: xrSessionInsertDebugUtilsLabelEXT not supported, the extension is not enabled for the requested OpenXR API version or enabled OpenXR extensions
+10-01 01:09:43.638 16366 16403 I OpenXR-Loader: Info [GENERAL | xrCreateInstance | OpenXR-Loader] : LoaderInstance::CreateInstance succeeded with 0 layers enabled and runtime interface - created instance = 0x0000000000000002
+10-01 01:09:43.638 16366 16403 V OpenXR-Loader: Verbose [GENERAL | xrCreateInstance | OpenXR-Loader] : Completed loader trampoline
+10-01 01:09:43.648 16366 16403 W Unity   : Orientation Listener cannot detect orientation.
+10-01 01:09:43.648 16366 16403 I Unity   :     HasWindow = 1, HasFocus = 0
+10-01 01:09:43.649 16366 16403 I Unity   : Handle cmd APP_CMD_WINDOW_RESIZED(3)
+10-01 01:09:43.649 16366 16403 I Unity   : Handle cmd APP_CMD_WINDOW_REDRAW_NEEDED(4)
+10-01 01:09:43.649 16366 16403 I Unity   : Handle cmd APP_CMD_GAINED_FOCUS(7)
+10-01 01:09:43.649 16366 16403 I Unity   : Handle cmd APP_CMD_WINDOW_INSETS_CHANGED(17)
+10-01 01:09:43.680 16366 16403 I VulkanLoader: ovrVulkanLoader::Load
+10-01 01:09:43.680 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugReportCallbackEXT
+10-01 01:09:43.680 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugUtilsMessengerEXT
+10-01 01:09:43.680 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugReportCallbackEXT
+10-01 01:09:43.680 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugUtilsMessengerEXT
+10-01 01:09:43.680 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkGetPhysicalDeviceSurfaceCapabilities2KHR
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: --------------------------------
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Device Name          : Adreno (TM) 740
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Device Type          : integrated GPU
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Vendor ID            : 0x5143
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Device ID            : 0x43050B00
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Driver Version       : 512.837.9
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: API Version          : 1.3.295
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Queue Families       : 0 = graphics compute transfer (4 queues, 4 priorities)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        1 = (1 queues, 4 priorities)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Work Queue Family    : 0
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Device Extensions    : VK_KHR_swapchain (required, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_external_memory (required, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_get_memory_requirements2 (required, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_ANDROID_external_memory_android_hardware_buffer (required, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_queue_family_foreign (required, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_external_memory_fd (required, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_sampler_ycbcr_conversion (required, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils: Device Extensions      VK_EXT_fragment_density_map (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_fragment_density_map2 (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_maintenance1 (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_bind_memory2 (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_dedicated_allocation (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_external_fence_fd (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_extended_dynamic_state (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_vertex_input_dynamic_state (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_filter_cubic (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_QCOM_filter_cubic_weights (optional, not found)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_global_priority (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_robustness2 (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_maintenance5 (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_pipeline_binary (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_EXT_device_memory_report (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_calibrated_timestamps (optional, not found)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_NV_optical_flow (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_format_feature_flags2 (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_synchronization2 (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_push_descriptor (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_imageless_framebuffer (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_image_format_list (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_timeline_semaphore (optional, enabled)
+10-01 01:09:43.680 16366 16403 I Vulkan_Utils:                        VK_KHR_shared_presentable_image (optional, enabled)
+10-01 01:09:43.680 16366 16403 I OpenXR_SessionImpl: ------------ xrCreateSession [start] -----------
+10-01 01:09:43.680 16366 16403 I VrRuntimeClient: VrRuntimeClient(): 0xb400007361492600
+10-01 01:09:43.681 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getDisplayID] is valid: [1]
+10-01 01:09:43.682 16366 16403 E VrosSystemServiceRegistry: Package com.guategeeks.awsarchitectlab is retrieving an HzOS SDK Manager (VolumetricWindowManager), but the client's manifest does not specify a minimum HzOS SDK version. Clients must fix this to continue to access this SDK in the future.
+10-01 01:09:43.684 16366 16403 D StatsReporter: HzOS Supplement class horizonos/supplement/telemetry/TelemetryManager not found. This message may appear if you depend only on coreSDK or if you depend on both coreSDK and the coreSDK supplement, and is not necessarily a problem.
+10-01 01:09:43.689 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getUUIDforVolumetricWindow] is valid: [1]
+10-01 01:09:43.689 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.690 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.690 16366 16403 I VrRuntimeClient: s_->rssdkClient.InitClient
+10-01 01:09:43.690 16366 16403 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.692 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.693 16366 16498 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.693 16366 16498 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: :, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.694 16366 16403 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 01:09:43.694 16366 16403 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.694 16366 16498 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.694 16366 16403 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.694 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.694 16366 16498 I VrRuntimeClient: s_->rssdkClient.Connected: com.oculus.systemdriver:com.oculus.vrruntimeservice
+10-01 01:09:43.694 16366 16498 I VrRuntimeClient: RegisterClient RequestDescriptor com.guategeeks.awsarchitectlab:16366 clientType 0 clientFlags 0 clientSessionPlacement 0 clientLaunchId 
+10-01 01:09:43.699 16366 16498 I VrRuntimeClient: RegisterClient success 
+10-01 01:09:43.700 16366 16498 I VrRuntimeClient: RuntimeIPC: ServiceConnected: SharedMemoryDebug: publicReadOnly SharedMemorySize=128 (com.guategeeks.awsarchitectlab) sizeof(s_->sharedMemoryPublicReadOnly)=160
+10-01 01:09:43.700 16366 16498 I VrRuntimeClient: RuntimeIPC: ServiceConnected: SharedMemoryDebug: privateReadWrite SharedMemorySize=463088 (com.guategeeks.awsarchitectlab) sizeof(privateSharedMemorySize)=8
+10-01 01:09:43.700 16366 16498 I VrRuntimeClient: nativeRuntimeServiceConnected: SharedMemoryDebug: publicReadOnlyFd=150, privateReadWriteFd=151 (com.guategeeks.awsarchitectlab)
+10-01 01:09:43.700 16366 16498 I VrRuntimeClient: SharedMemoryDebug: ServiceConnected: V1 layout = false
+10-01 01:09:43.700 16366 16498 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=6, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.707 16366 16403 I VrRuntimeClient: s_->rssdkClient.InitClient SUCCESS. Version: 5.0, Custom: 1.0
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler InternalPerformanceChangeEvent registered after connect. Events may have been missed. hash: 294960700, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler CompositorLayerFailureEvent registered after connect. Events may have been missed. hash: 2105726139, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler CompositorPresentationTimeEvent registered after connect. Events may have been missed. hash: 504398337, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler CloseAperture registered after connect. Events may have been missed. hash: 279692419, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ApertureVisibilityChangedEvent registered after connect. Events may have been missed. hash: 4125103457, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ApertureBoundsChangedEvent registered after connect. Events may have been missed. hash: 2478222884, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ApertureBoundsModeChangedEvent registered after connect. Events may have been missed. hash: 4257626185, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ApertureInteractabilityChangedEvent registered after connect. Events may have been missed. hash: 2868307617, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ApertureUpdatesEvent registered after connect. Events may have been missed. hash: 3631832805, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ApertureCommittedEvent registered after connect. Events may have been missed. hash: 1635021525, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ApertureHashEvent registered after connect. Events may have been missed. hash: 191531347, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler BoundaryVisibilityChangeEvent registered after connect. Events may have been missed. hash: 984496569, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ClientDumpsysEvent registered after connect. Events may have been missed. hash: 3023308731, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler CustomTelemetryRecordingEvent registered after connect. Events may have been missed. hash: 2066725562, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler RequestApertureVisibilityEvent registered after connect. Events may have been missed. hash: 3124104320, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler RequestApertureBoundsModeEvent registered after connect. Events may have been missed. hash: 2465408104, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler SharedMemoryReallocatedEvent registered after connect. Events may have been missed. hash: 1585913111, server: RuntimeServiceServer
+10-01 01:09:43.707 16366 16403 I VrRuntimeClient: Connected to VrRuntimeService on attempt 0
+10-01 01:09:43.707 16366 16403 I OpenXR_SessionImpl: [com.guategeeks.awsarchitectlab] PhaseSync Mode: FRAME_SYNC (enabled)
+10-01 01:09:43.707 16366 16403 I VrRuntimeClient: SetPhaseSyncMode 4
+10-01 01:09:43.707 16366 16403 I VrRuntimeClient: VrRuntimeClient: Init
+10-01 01:09:43.707 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getDisplayID] is valid: [1]
+10-01 01:09:43.710 16366 16403 I RipcClientState [RUNTIMEIPC]: InitServerStateBuffer: SUCCESS. 0, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.710 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getFoveationTileOffset] is valid: [1]
+10-01 01:09:43.710 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getFoveationTileTurnOff] is valid: [1]
+10-01 01:09:43.710 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getFrameSyncManifestValue] is valid: [1]
+10-01 01:09:43.710 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getUseForwardHeadPoseFlag] is valid: [1]
+10-01 01:09:43.710 16366 16403 I Foveation: InitFoveationClient: TileOffset=0,TileTurnOff=1,TileAlignedFoveation=1
+10-01 01:09:43.710 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:initialize] is valid: [1]
+10-01 01:09:43.710 16366 16403 I RuntimeIPCSystem [RUNTIMEIPC]: RuntimeIPCSystem: Init called: Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.711 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: BEGIN: friendlyName=Client: :, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver)
+10-01 01:09:43.711 16366 16503 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=1, friendlyName=Client: :, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver)
+10-01 01:09:43.711 16366 16503 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: :, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver)
+10-01 01:09:43.711 16366 16403 I ClientProcessConnector [RUNTIMEIPC]: GetProcessConnection: com.oculus.guardian:com.oculus.vrguardianservice
+10-01 01:09:43.713 16366 16403 I RipcClientConnection [RUNTIMEIPC]: Event buffer size (client): eventBufferSize=8192
+10-01 01:09:43.713 16366 16403 I RipcClientConnection [RUNTIMEIPC]: TryToGetIPCResourcesFromServer: RPC_CONNECTOR_CONNECT_TO_SERVER SUCCESS: Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver), Version: 86, Platform: Android, Build Date: Sep 23 2026, Build Time: 16:09:58, BuildMode: shared
+10-01 01:09:43.713 16366 16503 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: BEGIN: type=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver)
+10-01 01:09:43.713 16366 16403 I RipcClientConnection [RUNTIMEIPC]: EnsureServerConnection: SUCCESS. Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver)
+10-01 01:09:43.713 16366 16403 I RipcClient [RUNTIMEIPC]: [RIPC_CONNECT_LOG] establishConnection: SUCCESS: friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver)
+10-01 01:09:43.713 16366 16503 I RipcClient [RUNTIMEIPC]: SendConnectEventInternal: completed: elapsed_ms=0, friendlyName=Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.guardian:com.oculus.vrguardianservice:0 (guardianserver)
+10-01 01:09:43.716 16366 16505 W RipcFramework_Client [RUNTIMEIPC]: FindEventHandler: eventHandler not found: 131238570, server: guardianserver
+10-01 01:09:43.719 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler SceneCaptureCompleteEvent registered after connect. Events may have been missed. hash: 1523232066, server: guardianserver
+10-01 01:09:43.719 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ColocationHostSetupCompleteEvent registered after connect. Events may have been missed. hash: 2617053498, server: guardianserver
+10-01 01:09:43.719 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler ColocationGuestSetupCompleteEvent registered after connect. Events may have been missed. hash: 704060420, server: guardianserver
+10-01 01:09:43.719 16366 16403 I FaceEyeTrackingClientManager: [FaceEyeTrackingClientManager] Initializing FaceEyeTrackingClientManager...
+10-01 01:09:43.720 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getAllowedAudioCapturePolicy] is valid: [1]
+10-01 01:09:43.720 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.721 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.721 16366 16403 I LogTimer: CPUTIME: VrRuntimeClient_Init took 14.0073 ms
+10-01 01:09:43.721 16366 16403 I VulkanLoader: ovrVulkanLoader::Load
+10-01 01:09:43.721 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugReportCallbackEXT
+10-01 01:09:43.721 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkCreateDebugUtilsMessengerEXT
+10-01 01:09:43.721 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugReportCallbackEXT
+10-01 01:09:43.721 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkDestroyDebugUtilsMessengerEXT
+10-01 01:09:43.721 16366 16403 W VulkanLoader: VulkanLoader::LoadInstanceFunctions: Failed to load optional function vkGetPhysicalDeviceSurfaceCapabilities2KHR
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdDebugMarkerInsertEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdSetCullModeEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdSetDepthCompareOpEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdSetDepthTestEnableEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdSetDepthWriteEnableEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkDebugMarkerSetObjectTagEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdInsertDebugUtilsLabelEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkSetDebugUtilsObjectTagEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdSetColorBlendEnableEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdSetColorBlendEquationEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCmdSetColorWriteMaskEXT
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkCreatePipelineBinariesKHR
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkDestroyPipelineBinaryKHR
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkGetPipelineBinaryDataKHR
+10-01 01:09:43.722 16366 16403 W VulkanLoader: VulkanLoader::LoadDeviceFunctions: Failed to load optional function vkReleaseCapturedPipelineDataKHR
+10-01 01:09:43.722 16366 16403 I Foveation: Vulkan FFR is supported: MinFragmentDensityTexelSize=(16,16)
+10-01 01:09:43.722 16366 16403 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 01:09:43.722 16366 16403 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 01:09:43.722 16366 16403 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 01:09:43.723 16366 16403 I Distortion_HmdConfig: Initializing Mesh Decenter Correction
+10-01 01:09:43.723 16366 16403 I Distortion_HmdConfig: Decenter tester version = 200
+10-01 01:09:43.723 16366 16403 I Distortion_HmdConfig: SetLensPositions - iad=0.0635, left offset=-0.00313218,2.19967e-05, right offset=0.00342725,-0.000173343
+10-01 01:09:43.724 16366 16403 I ClientInputSettings: HANDTRACKING: Hands V2.0 enforced.
+10-01 01:09:43.725 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getApplicationMetadata] is valid: [1]
+10-01 01:09:43.725 16366 16403 I ClientInputInterface: HANDTRACKING sethandtrackingfrequency 1
+10-01 01:09:43.725 16366 16403 I ClientInputSettings: HANDTRACKING: NO, not in the GK oculus_mobile_enable_hand_emulation_of_controllers
+10-01 01:09:43.725 16366 16403 I ClientInputInterface: HANDTRACKING SetHandTrackingControllerEmulationGkFlag 0
+10-01 01:09:43.725 16366 16403 W GkCacheQuerierClient: getGkValue: Query result for 'oculus_xrruntime:arvr_gk_hand_tracking_valid_flags' not successful: 4
+10-01 01:09:43.725 16366 16403 W GkHelper: GkHelper: query failed, result code: 4
+10-01 01:09:43.725 16366 16403 I ClientInputSettings: HANDTRACKING: NO, not in the GK arvr_gk_hand_tracking_valid_flags
+10-01 01:09:43.725 16366 16403 W RipcFramework_Client [RUNTIMEIPC]: RegisterClientEventHandler: event handler SimultaneousHandsControllersTrackingEvent registered after connect. Events may have been missed. hash: 696955400, server: RuntimeServiceServer
+10-01 01:09:43.725 16366 16403 I ActivityLifecycleListener: Registering LifecycleListener
+10-01 01:09:43.726 16366 16506 I OpenXR_SessionImpl: nativeOnActivityReady: com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity
+10-01 01:09:43.726 16366 16403 I OpenXR_SessionImpl: xrCreateSession: Activity is already in the ready state.
+10-01 01:09:43.726 16366 16403 I OpenXR_Aperture: ------------ ovrCreateApertureMETAX1 -----------
+10-01 01:09:43.726 16366 16403 I VrRuntimeClient: CreateAperture: apertureId=a133174a-774c-443a-87b1-29c7ba0dbe6d (source: vwToken), vwToken=a133174a-774c-443a-87b1-29c7ba0dbe6d
+10-01 01:09:43.728 16366 16403 I RipcClientState [RUNTIMEIPC]: InitServerStateBuffer: SUCCESS. 0, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (RuntimeServiceServer)
+10-01 01:09:43.728 16366 16403 I OpenXR_SessionImpl: ------------ xrCreateSession [end] -----------
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: Spaces info
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: Local version=70
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: RawFromLocal       = (-0.000, -0.127, -0.000, 0.992), (-0.05, -0.07, -0.03)
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: RawFromLocalTilted = (0.012, -0.129, 0.101, 0.986), (-0.05, -0.07, -0.03)
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: Stage IsValid=false
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: Stage HasActiveSafetyBound=true
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: Stage Width=1.088944, Depth=1.088944
+10-01 01:09:43.728 16366 16403 I OpenXR_Space: xrCreateReferenceSpace: RawFromStage       = (0.000, 0.000, 0.000, 1.000), (0.00, -1.08, 0.00)
+10-01 01:09:43.797 16366 16403 I VrRuntimeClient: UpdateEvents: Detected STAGE reference space update. Sending reference space update event
+10-01 01:09:43.799 16366 16403 I OpenXR_SessionImpl: PostSessionStateChange:[pid: 16366] XR_SESSION_STATE_UNKNOWN -> XR_SESSION_STATE_IDLE
+10-01 01:09:43.799 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.800 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.800 16366 16403 W VrRuntimeClient: useHzInterstitialCBGKEnabled not enabled
+10-01 01:09:43.800 16366 16403 I OpenXR_SessionImpl: PostSessionStateChange:[pid: 16366] XR_SESSION_STATE_IDLE -> XR_SESSION_STATE_READY
+10-01 01:09:43.800 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.801 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.801 16366 16403 W VrRuntimeClient: useHzInterstitialCBGKEnabled not enabled
+10-01 01:09:43.801 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.801][Info   ] OpenXRSession::HandleSessionStateChangedEvent: state XR_SESSION_STATE_UNKNOWN->XR_SESSION_STATE_IDLE session=3 time=2266630063703
+10-01 01:09:43.802 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.802][Info   ] OpenXRSession::HandleSessionStateChangedEvent: state XR_SESSION_STATE_IDLE->XR_SESSION_STATE_READY session=3 time=2266631654797
+10-01 01:09:43.802 16366 16403 I OpenXR_ViewConfiguration: xrEnumerateEnvironmentBlendModes: XR_ENVIRONMENT_BLEND_MODE_ALPHA_BLEND is unavailable since the app doesn't declare the com.oculus.feature.PASSTHROUGH feature flag in its Android manifest. Refer to the developer documentation on passthrough for more information.
+10-01 01:09:43.802 16366 16403 I OpenXR_ViewConfiguration: xrEnumerateEnvironmentBlendModes: XR_ENVIRONMENT_BLEND_MODE_ALPHA_BLEND is unavailable since the app doesn't declare the com.oculus.feature.PASSTHROUGH feature flag in its Android manifest. Refer to the developer documentation on passthrough for more information.
+10-01 01:09:43.804 16366 16403 I OpenXR_SessionImpl: ------------ xrBeginSession [start] -----------
+10-01 01:09:43.804 16366 16403 I DRR     : DRR is supported: 1
+10-01 01:09:43.804 16366 16403 I DRR     : DRR is enabled: 0
+10-01 01:09:43.805 16366 16403 D OsSdkLoader: OSSDK loading module 'libheadtracker.oculus.so'
+10-01 01:09:43.807 16366 16403 D OsSdkLoader: OSSDK loading module 'libossdk.oculus.so'
+10-01 01:09:43.808 16366 16403 D MemoryBrokerClient: memorybroker::ClientConnection ctor
+10-01 01:09:43.812 16366 16366 I DefaultSwitchOffs: Moved configs SharedPreferences from CE to DE
+10-01 01:09:43.812 16366 16403 W MemoryBrokerClient: Face: failed to remap FACE_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing app permission(s)')
+10-01 01:09:43.817 16366 16403 W OrthofitClientProvider: OrthofitClientProvider: Failed to get orthofit client functions: undefined symbol: destroyOrthofitClient
+10-01 01:09:43.821 16366 16403 W ImageSuitabilityDetectionClientProvider: ImageSuitabilityDetectionClientProvider: Failed to get image suitability detection client functions: undefined symbol: destroyImageSuitabilityDetectionClient
+10-01 01:09:43.822 16366 16403 I VrRuntimeClient: Mounted state at BeginSession: True
+10-01 01:09:43.822 16366 16403 I AppLoadTimeTelemetryCommon: App load time recorded [packageName=com.guategeeks.awsarchitectlab, time=1.064924, method="BeginSession", launchType="Launch", launchId=""]
+10-01 01:09:43.822 16366 16403 I LogTimer: CPUTIME: VrRuntimeClient_BeginSession took 18.1262 ms
+10-01 01:09:43.822 16366 16403 V SystemActivitiesEvents: SystemActivitiesEvents_Init: client 9 already registered
+10-01 01:09:43.823 16366 16511 W RuntimeTelemetryThread: OVRMetricsToolInterface is not available
+10-01 01:09:43.823 16366 16403 I ClientInputSettings: HANDTRACKING: enabled input settings, setting hand mode control settings to ControllersOnly
+10-01 01:09:43.823 16366 16403 I ClientInputSettings: HANDTRACKING package name is com.guategeeks.awsarchitectlab
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:checkPackageHasPermission] is valid: [1]
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:checkPackageHasPermission] is valid: [1]
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:checkPackageHasPermission] is valid: [1]
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:checkPackageHasFeature] is valid: [1]
+10-01 01:09:43.823 16366 16403 I ClientInputSettings: HANDTRACKING: feature flag set to 0
+10-01 01:09:43.823 16366 16403 I ClientInputInterface: HANDTRACKING sethandmanifest 0
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:isSupportedContextType] is valid: [1]
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:IsNativeActivity] is valid: [1]
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:EnableInputHooks] is valid: [1]
+10-01 01:09:43.823 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:startListener] is valid: [1]
+10-01 01:09:43.823 16366 16403 I InputDeviceManager: ovrInputDeviceManager::Initialize
+10-01 01:09:43.824 16366 16512 W ClientInputInterface: connecting gamepad when already connected
+10-01 01:09:43.824 16366 16512 W ClientInputInterface: different hardware id on already connected gamepad
+10-01 01:09:43.824 16366 16511 I Metrics : device model = Quest 3
+10-01 01:09:43.824 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: 'xrruntime_mobile_app_info' with limits of 300 events every 60 second(s).
+10-01 01:09:43.823 16366 16366 W com.guategeeks.awsarchitectlab: type=1400 audit(0.0:349): avc:  denied  { read } for  comm=556E697479204D61696E2054687265 name="u:object_r:oculus_tracking_prop:s0" dev="tmpfs" ino=358 scontext=u:r:untrusted_app:s0:c164,c256,c512,c768 tcontext=u:object_r:oculus_tracking_prop:s0 tclass=file permissive=0 app=com.guategeeks.awsarchitectlab
+10-01 01:09:43.825 16366 16403 W libc    : Access denied finding property "persist.ovr.tracking.handtracking.use_pal"
+10-01 01:09:43.826 16366 16511 I RuntimeTelemetryThread: Aligning telemetry thread time, will wait for: 174 ms...
+10-01 01:09:43.826 16366 16403 V FrameSync: FrameSync Initialized Instance 0
+10-01 01:09:43.826 16366 16403 I VrRuntimeClient: FrameSync Instance created
+10-01 01:09:43.826 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getClientWindow] is valid: [1]
+10-01 01:09:43.827 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getActivityID] is valid: [1]
+10-01 01:09:43.827 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.828 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.831 16366 16500 W RipcFramework_Client [RUNTIMEIPC]: FindEventHandler: eventHandler not found: 709769581, server: RuntimeServiceServer
+10-01 01:09:43.831 16366 16403 I VrRuntimeClient: Client has gained focus in BeginRendering.
+10-01 01:09:43.831 16366 16403 I VrRuntimeClient: VirtualInputPoseInjection_HighFrequency skipped (server reports automation_enabled_v2=false)
+10-01 01:09:43.831 16366 16403 I OpenXR_SessionImpl: usesManifestForCpuBoost:0
+10-01 01:09:43.831 16366 16403 I OpenXR_SessionImpl: ------------ xrBeginSession [end] -----------
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: Active providers:
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/app/gpu_frametime
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/app/gpu_frametime
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/compositor/gpu_frametime
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/compositor/gpu_frametime
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/device/gpu_utilization
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/device/cpu_utilization_average
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/device/cpu_utilization_worst
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/compositor/dropped_frame_count
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/compositor/dropped_frame_count
+10-01 01:09:43.832 16366 16403 I Unity   : [XR] XR_META_performance_metrics: /perfmetrics_meta/app/motion_to_photon_latency
+10-01 01:09:43.832 16366 16403 I OpenXR_PerformanceMetrics: ----- xrSetPerformanceMetricsStateMETA : Enabled --------
+10-01 01:09:43.837 16366 16513 W InputDevice_TrackedRemote: Did not pass RIPC GK, fetching controller input data from shared memory
+10-01 01:09:43.837 16366 16513 I InputDevice_TrackedRemote: REMOTE: Hand=1 IndexAnalog=0.00 GripAnalog=0.00 Buttons=0x00000000
+10-01 01:09:43.837 16366 16513 I InputDevice_TrackedRemote: REMOTE: Hand=2 IndexAnalog=0.00 GripAnalog=0.00 Buttons=0x00000000
+10-01 01:09:43.838 16366 16513 I RipcClientState [RUNTIMEIPC]: InitServerStateBuffer: SUCCESS. 2, Client: com.guategeeks.awsarchitectlab:com.guategeeks.awsarchitectlab:16366, Server: com.oculus.systemdriver:com.oculus.vrruntimeservice:0 (HandInputDataServer)
+10-01 01:09:43.838 16366 16513 I InputDeviceManager: HANDTRACKING Root pose filter profile changed for freq to 18 from 0  inf: 1
+10-01 01:09:43.838 16366 16513 I [CT]    : HandPoseSampler: HandPoseSampler::setConfigEnum 18
+10-01 01:09:43.838 16366 16513 I [CT]    : HandPoseSampler: HandPoseSampler::setConfigEnum 10
+10-01 01:09:43.838 16366 16513 I [CT]    : HandPoseSampler: HandPoseSampler::setConfigEnum 10
+10-01 01:09:43.841 16366 16403 V OpenXR_Actions: -- xrSuggestInteractionProfileBindings -
+10-01 01:09:43.841 16366 16403 V OpenXR_Actions: -- xrSuggestInteractionProfileBindings -
+10-01 01:09:43.878 16366 16403 I Unity   : Shader 'Hidden/Universal Render Pipeline/GaussianDepthOfField' is not supported or has been stripped from the build (in 'DepthOfFieldGaussianPostProcessPass'). PostProcessing render passes will not execute.
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcessUtils:LoadShader(Shader, String, LogType)
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.Universal.DepthOfFieldGaussianPostProcessPass:.ctor(Shader)
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcess:.ctor(PostProcessData)
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderer:.ctor(UniversalRendererData)
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRendererData:Create()
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreateRenderers()
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreatePipeline()
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineAsset:InternalCreatePipeline()
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:TryPrepareRenderPipeline(RenderPipelineAsset)
+10-01 01:09:43.878 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal(RenderPipelineAsset, IntPtr, Object)
+10-01 01:09:43.878 16366 16403 I Unity   : 
+10-01 01:09:43.879 16366 16403 I Unity   : Shader 'Hidden/Universal Render Pipeline/GaussianDepthOfField' is not supported or has been stripped from the build (in 'DepthOfFieldGaussianPostProcessPass'). PostProcessing render passes will not execute.
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcessUtils:LoadShader(Shader, String, LogType)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.DepthOfFieldGaussianPostProcessPass:.ctor(Shader)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcess:.ctor(PostProcessData)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderer:.ctor(UniversalRendererData)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRendererData:Create()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreateRenderers()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreatePipeline()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineAsset:InternalCreatePipeline()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:TryPrepareRenderPipeline(RenderPipelineAsset)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal(RenderPipelineAsset, IntPtr, Object)
+10-01 01:09:43.879 16366 16403 I Unity   : 
+10-01 01:09:43.879 16366 16403 I Unity   : Shader 'Hidden/Universal Render Pipeline/BokehDepthOfField' is not supported or has been stripped from the build (in 'DepthOfFieldBokehPostProcessPass'). PostProcessing render passes will not execute.
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcessUtils:LoadShader(Shader, String, LogType)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.DepthOfFieldBokehPostProcessPass:.ctor(Shader)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcess:.ctor(PostProcessData)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderer:.ctor(UniversalRendererData)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRendererData:Create()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreateRenderers()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreatePipeline()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineAsset:InternalCreatePipeline()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:TryPrepareRenderPipeline(RenderPipelineAsset)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal(RenderPipelineAsset, IntPtr, Object)
+10-01 01:09:43.879 16366 16403 I Unity   : 
+10-01 01:09:43.879 16366 16403 I Unity   : Shader 'Hidden/Universal Render Pipeline/PaniniProjection' is not supported or has been stripped from the build (in 'PaniniProjectionPostProcessPass'). PostProcessing render passes will not execute.
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcessUtils:LoadShader(Shader, String, LogType)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PaniniProjectionPostProcessPass:.ctor(Shader)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.PostProcess:.ctor(PostProcessData)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderer:.ctor(UniversalRendererData)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRendererData:Create()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreateRenderers()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset:CreatePipeline()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineAsset:InternalCreatePipeline()
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:TryPrepareRenderPipeline(RenderPipelineAsset)
+10-01 01:09:43.879 16366 16403 I Unity   : UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal(RenderPipelineAsset, IntPtr, Object)
+10-01 01:09:43.879 16366 16403 I Unity   : 
+10-01 01:09:43.899 16366 16475 V SwapChain_Vulkan_Memory_Export: Imported texture has requirements 3, ends up index 0
+10-01 01:09:43.900 16366 16475 V SwapChain_Vulkan_Memory_Export: Imported texture has requirements 3, ends up index 0
+10-01 01:09:43.900 16366 16475 V SwapChain_Vulkan_Memory_Export: Imported texture has requirements 3, ends up index 0
+10-01 01:09:43.900 16366 16475 I OpenXR_GPUMemTrace: OpenXR GPU memory tracing is enabled on heap(oculus.OpenXR) with id(2)
+10-01 01:09:43.900 16366 16475 V OpenXR_GPUMemTrace: Swapchain creation, id=253, idx=0, width: 1680, height: 1760, array size: 2, MemoryAllocationSize: 23877 KB
+10-01 01:09:43.900 16366 16475 V OpenXR_GPUMemTrace: Swapchain creation, id=253, idx=1, width: 1680, height: 1760, array size: 2, MemoryAllocationSize: 23877 KB
+10-01 01:09:43.900 16366 16475 V OpenXR_GPUMemTrace: Swapchain creation, id=253, idx=2, width: 1680, height: 1760, array size: 2, MemoryAllocationSize: 23877 KB
+10-01 01:09:43.970 16366 16515 I FenceChecker: FenceChecker::MainLoop - started
+10-01 01:09:43.972 16366 16475 I VrRuntimeClient: SetClientAppColorspace: P3
+10-01 01:09:43.973 16366 16475 I AppLoadTimeTelemetryCommon: App load time recorded [packageName=com.guategeeks.awsarchitectlab, time=1.215488, method="BeginFrame (1)", launchType="Launch", launchId=""]
+10-01 01:09:43.973 16366 16403 I OpenXR_SessionImpl: PostSessionStateChange:[pid: 16366] XR_SESSION_STATE_READY -> XR_SESSION_STATE_SYNCHRONIZED
+10-01 01:09:43.973 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.974 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.974 16366 16403 W VrRuntimeClient: useHzInterstitialCBGKEnabled not enabled
+10-01 01:09:43.975 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.975][Info   ] OpenXRSession::HandleSessionStateChangedEvent: state XR_SESSION_STATE_READY->XR_SESSION_STATE_SYNCHRONIZED session=3 time=2266804667419
+10-01 01:09:43.975 16366 16403 I OpenXR_SessionImpl: PostSessionStateChange:[pid: 16366] XR_SESSION_STATE_SYNCHRONIZED -> XR_SESSION_STATE_VISIBLE
+10-01 01:09:43.975 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.975 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.975 16366 16403 W VrRuntimeClient: useHzInterstitialCBGKEnabled not enabled
+10-01 01:09:43.976 16366 16403 I OpenXR_SessionImpl: PostSessionStateChange:[pid: 16366] XR_SESSION_STATE_VISIBLE -> XR_SESSION_STATE_FOCUSED
+10-01 01:09:43.976 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:09:43.977 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:09:43.977 16366 16403 W VrRuntimeClient: useHzInterstitialCBGKEnabled not enabled
+10-01 01:09:43.977 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.977][Info   ] OpenXRSession::HandleSessionStateChangedEvent: state XR_SESSION_STATE_SYNCHRONIZED->XR_SESSION_STATE_VISIBLE session=3 time=2266806324815
+10-01 01:09:43.977 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.977][Info   ] OpenXRSession::HandleSessionStateChangedEvent: state XR_SESSION_STATE_VISIBLE->XR_SESSION_STATE_FOCUSED session=3 time=2266807674086
+10-01 01:09:43.977 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.977][Info   ] 
+10-01 01:09:43.977 16366 16403 I Unity   : 
+10-01 01:09:43.977 16366 16403 I Unity   : ==== Start Unity OpenXR Diagnostic Report ====
+10-01 01:09:43.977 16366 16403 I Unity   : 
+10-01 01:09:43.977 16366 16403 I Unity   : 
+10-01 01:09:43.977 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.977][Info   ] ==== Report Reason: System Startup Completed ====
+10-01 01:09:43.977 16366 16403 I Unity   : 
+10-01 01:09:43.977 16366 16403 I Unity   : 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.977][Info   ] ==== OpenXR Settings ====
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Symmetric Projection: False
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Stereo Rendering Mode: SinglePassInstanced
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Latency Optimization: PrioritizeRendering
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Color Submission Modes: kRenderTextureFormatGroup8888
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Depth Submission Mode: None
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Space Warp Motion Vector Texture Format: RGBA16f
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Optimize Buffer Discards: True
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Multiview Render Regions Optimization Mode: None
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Use OpenXR Predicted Time: False
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Foveated Rendering API: Legacy
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] ==== OpenXR Provider Info ====
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Provider Version: 1.16.0-18-gc7a9defb
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] App: GuateGeeks AWS Architect Lab #1521753221
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Engine: 6000.6.3f1 #90190849
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] ==== Vulkan ====
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Depth Support Available: Yes
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Enable: XR_KHR_vulkan_enable2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] ==== OpenXR Runtime Info ====
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Available Runtime Extensions: (72)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_android_create_instance: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_android_surface_swapchain: Version=4
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_android_thread_settings: Version=6
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_android_surface_swapchain_create: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_opengl_es_enable: Version=10
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_vulkan_enable: Version=10
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_vulkan_enable2: Version=4
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_composition_layer_cube: Version=8
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_composition_layer_cylinder: Version=4
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_composition_layer_equirect2: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_composition_layer_color_scale_bias: Version=5
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_composition_layer_depth: Version=6
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_color_space: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_performance_settings: Version=4
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_hand_tracking: Version=4
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_debug_utils: Version=5
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_display_refresh_rate: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_swapchain_update_state: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_swapchain_update_state_opengl_es: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_swapchain_update_state_vulkan: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_swapchain_update_state_android_surface: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_OCULUS_common_reference_spaces: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_composition_layer_image_layout: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_composition_layer_alpha_blend: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_composition_layer_inverted_alpha: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_common_events: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_hand_tracking_mesh: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_hand_tracking_aim: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_hand_tracking_capsules: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_hand_tracking_microgestures: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_foveation: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_foveation_configuration: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_foveation_vulkan: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_composition_layer_secure_content: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_convert_timespec_time: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_passthrough_preferences: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_touch_controller_proximity: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_touch_controller_pro: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_touch_controller_plus: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_haptic_amplitude_envelope: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_haptic_pcm: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_spatial_entity_user: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_space_warp: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_vulkan_swapchain_create_info: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_composition_layer_settings: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_feature_fidelity: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_composition_layer_depth_test: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_hand_joints_motion_range: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_hand_tracking_data_source: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_hand_tracking_frequency_hint: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_hand_tracking_unextrapolated_poses: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_performance_metrics: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_virtual_keyboard: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_detached_controllers: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_MSFT_hand_interaction: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_headset_id: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_recommended_layer_resolution: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_active_action_set_priority: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_automatic_layer_filter: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_palm_pose: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_simultaneous_hands_and_controllers: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_local_floor: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_hand_interaction: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_user_presence: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_temporal_pixel_synthesis: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_visibility_mask: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_LOGITECH_mx_ink_stylus_interaction: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_future: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_frame_synthesis: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_haptic_parametric: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_tile_properties_hint: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_maintenance1: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Available Layers: (0)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Runtime Name: Oculus
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Runtime Version: 207.297.0
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Form factor: XR_FORM_FACTOR_HEAD_MOUNTED_DISPLAY
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Runtime extensions enabled: (11)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_EXT_user_presence: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_android_create_instance: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_composition_layer_depth: Version=6
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_visibility_mask: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_vulkan_enable2: Version=4
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_touch_controller_plus: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_META_performance_metrics: Version=2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_foveation: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_foveation_configuration: Version=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_FB_swapchain_update_state: Version=3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_KHR_android_thread_settings: Version=6
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Available Reference Spaces: (4)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_REFERENCE_SPACE_TYPE_LOCAL
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_REFERENCE_SPACE_TYPE_LOCAL_FLOOR
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_REFERENCE_SPACE_TYPE_VIEW
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_REFERENCE_SPACE_TYPE_STAGE
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Instance Id  : 0x2
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] System Id    : 0xcccc0001
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Session Id   : 0x3
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Available View Configuration Types: (1)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO (Selected): FovMutable=True
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]     [0]: Recommended: Width=1680, Height=1760, SampleCount=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]     [0]:     Maximum: Width=8192, Height=8192, SampleCount=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]     [1]: Recommended: Width=1680, Height=1760, SampleCount=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]     [1]:     Maximum: Width=8192, Height=8192, SampleCount=1
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Skip Present To Main Screen: Yes
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Available Environment Blend Modes: (1)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_ENVIRONMENT_BLEND_MODE_OPAQUE (Selected)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Features requested to be enabled: (3)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   Meta Quest Support: Version=1.0.0, Company="Unity", Extensions="XR_OCULUS_android_initialize_loader"
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   Meta Quest Touch Plus Controller Profile: Version=0.0.1, Company="Unity", Extensions="XR_META_touch_controller_plus"
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   Oculus Touch Controller Profile: Version=0.0.1, Company="Unity"
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Requested feature extensions not supported by runtime: (1)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   XR_OCULUS_android_initialize_loader: Feature="Meta Quest Support": Version=1.0.0, Company="Unity"
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] System Properties: Name="Oculus Headset2", VendorId=10291
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] System Graphics Properties: MaxWidth=8192, MaxHeight=8192, MaxLayers=32
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] System Tracking Properties: OrientationTracking=True, PositionTracking=True
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] ==== OpenXR API Spec Version ====
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] XrInstance Created with OpenXR API Version: 1.1.53
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] ==== OpenXR Input ====
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Action Sets (2): 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   questtouchpluscontroller: ActionCount=22
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]   oculustouchcontroller: ActionCount=17
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] ==== OpenXR Swapchain Details ====
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Render Mode: Single Pass Instanced
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Latency Optimization: Prioritize Rendering
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Color Submission Mode: RGBA, 8 bits per channel (LDR)
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Depth Submission Mode: None
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Swapchain Format Preferences: 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]    kRenderTextureFormatGroup8888
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] Swapchain Formats: 
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]    VK_FORMAT_R8G8_SRGB
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ] [c:VK_FORMAT_R8G8B8A8_SRGB]
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]    VK_FORMAT_R8_UNORM
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]    VK_FORMAT_R8G8_UNORM
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]    VK_FORMAT_R8G8B8A8_UNORM
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]    VK_FORMAT_R8_SNORM
+10-01 01:09:43.978 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.978][Info   ]    VK_FORMAT_R8G8_SNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R8G8B8A8_SNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R8_SRGB
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16_UNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16_UNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16B16A16_UNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16_SNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16_SNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16B16A16_SNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16_UINT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16_UINT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16B16A16_UINT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16_SINT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16_SINT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16B16A16_SINT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16_SFLOAT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16_SFLOAT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R16G16B16A16_SFLOAT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R32_SFLOAT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_R4G4B4A4_UNORM_PACK16
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_A1R5G5B5_UNORM_PACK16
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_B10G11R11_UFLOAT_PACK32
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_EAC_R11_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_EAC_R11G11_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_EAC_R11_SNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_EAC_R11G11_SNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_4x4_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_5x4_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_5x5_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_6x5_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_6x6_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_8x5_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_8x6_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_8x8_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x5_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x6_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x8_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x10_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_12x10_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_12x12_UNORM_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_4x4_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_5x4_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_5x5_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_6x5_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_6x6_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_8x5_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_8x6_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_8x8_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x5_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x6_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x8_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_10x10_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_12x10_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_ASTC_12x12_SRGB_BLOCK
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_D16_UNORM
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_X8_D24_UNORM_PACK32
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_D32_SFLOAT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]    VK_FORMAT_D24_UNORM_S8_UINT
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] Swapchain Views: (2)
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ]   [0]: Width=1680, Height=1760, SampleCount=1
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] 
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] ==== Last 20 Events ====
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] XrEventDataSessionStateChanged: XR_SESSION_STATE_UNKNOWN->XR_SESSION_STATE_IDLE
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] XrEventDataSessionStateChanged: XR_SESSION_STATE_IDLE->XR_SESSION_STATE_READY
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] XrEventDataSessionStateChanged: XR_SESSION_STATE_READY->XR_SESSION_STATE_SYNCHRONIZED
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] XrEventDataSessionStateChanged: XR_SESSION_STATE_SYNCHRONIZED->XR_SESSION_STATE_VISIBLE
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] XrEventDataSessionStateChanged: XR_SESSION_STATE_VISIBLE->XR_SESSION_STATE_FOCUSED
+10-01 01:09:43.979 16366 16403 I Unity   : [XR] [495477922288] [01:09:43.979][Info   ] 
+10-01 01:09:43.979 16366 16403 I Unity   : 
+10-01 01:09:43.979 16366 16403 I Unity   : ==== End Unity OpenXR Diagnostic Report ====
+10-01 01:09:43.979 16366 16403 I Unity   : 
+10-01 01:09:43.979 16366 16403 I Unity   : 
+10-01 01:09:43.981 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/right/interaction_profiles/meta/touch_controller_plus, 7
+10-01 01:09:43.981 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/left/interaction_profiles/meta/touch_controller_plus, 6
+10-01 01:09:43.984 16366 16403 I InputDevice_TrackedRemote: Fetching controller poses from sensor API
+10-01 01:09:44.317 16366 16475 I [CT]    : IadSensor: IAD sensor stabilized after 5 consecutive valid reads, IPD: 0.062354
+10-01 01:09:45.012 16366 16511 V ClientSharedTelemetryStats: App memory usage: PSS=230 MiB, PrivateDirty=162 MiB, PrivateClean=53 MiB, GPU=25.4/25.4 MiB (100% allocated)
+10-01 01:09:45.013 16366 16511 I VrApi   : FPS=1/72,Prd=0ms,Tear=4,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=4/4,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=37.0C/0.0C,TW=0.77ms,App=55457.07ms,GD=0.00ms,CPU&GPU=65.56ms,LCnt=1(DR20,LM0),GPU%=0.26,CPU%=0.48(W0.51),CFL=-3.85/24.46,ICFLp95=23.25,LD=0,SF=0.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=192,PoseAgeP95=0.00
+10-01 01:09:45.013 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: 'oculus_mobile_features_used' with limits of 300 events every 60 second(s).
+10-01 01:09:45.013 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: '7' with limits of 300 events every 60 second(s).
+10-01 01:09:45.013 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: '6' with limits of 300 events every 60 second(s).
+10-01 01:09:46.000 16366 16511 I VrApi   : FPS=69/72,Prd=46ms,Tear=0,Early=34,Stale=19,Stale2/5/10/max=0/0/1/19,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=3/3,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=37.0C/0.0C,TW=1.36ms,App=3.32ms,GD=0.00ms,CPU&GPU=4.22ms,LCnt=2(DR68,LM0),GPU%=0.32,CPU%=0.43(W0.50),CFL=14.96/23.08,ICFLp95=21.24,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=194,PoseAgeP95=0.00
+10-01 01:09:47.000 16366 16511 I VrApi   : FPS=72/72,Prd=30ms,Tear=0,Early=40,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=37.0C/0.0C,TW=1.41ms,App=1.14ms,GD=0.00ms,CPU&GPU=2.74ms,LCnt=2(DR0,LM0),GPU%=0.25,CPU%=0.22(W0.24),CFL=13.73/18.23,ICFLp95=17.00,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=144,PoseAgeP95=0.00
+10-01 01:09:48.000 16366 16511 I VrApi   : FPS=72/72,Prd=31ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=37.0C/0.0C,TW=1.58ms,App=1.40ms,GD=0.00ms,CPU&GPU=2.27ms,LCnt=2(DR0,LM0),GPU%=0.24,CPU%=0.18(W0.19),CFL=13.24/17.44,ICFLp95=16.58,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=146,PoseAgeP95=0.00
+10-01 01:09:48.288 16366 16366 D GameActivity: ************** mainWorkCallback *********
+10-01 01:09:48.288 16366 16366 D gti.InputConnection: setSoftKeyboardActive, active: false
+10-01 01:09:48.289 16366 16366 I ImeTracker: com.guategeeks.awsarchitectlab:90b47eb5: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+10-01 01:09:48.308 16366 16403 E Unity   : Can't add component because class 'CapsuleCollider' doesn't exist!
+10-01 01:09:48.308 16366 16403 E Unity   : UnityEngine.GameObject:CreatePrimitive(PrimitiveType)
+10-01 01:09:48.308 16366 16403 E Unity   : GuateGeeks.AwsVr.LabVisuals:Shape(Transform, String, PrimitiveType, Vector3, Vector3, Color, Boolean)
+10-01 01:09:48.308 16366 16403 E Unity   : GuateGeeks.AwsVr.HoloEnvironment:Build(Transform)
+10-01 01:09:48.308 16366 16403 E Unity   : GuateGeeks.AwsVr.ArchitectureLab:Start()
+10-01 01:09:48.308 16366 16403 E Unity   : 
+10-01 01:09:48.308 16366 16403 E Unity   : [./Runtime/Misc/GameObjectUtility.cpp line 1556678408]
+10-01 01:09:48.308 16366 16403 E Unity   : 
+10-01 01:09:48.310 16366 16403 E Unity   : NullReferenceException: Object reference not set to an instance of an object.
+10-01 01:09:48.310 16366 16403 E Unity   :   at GuateGeeks.AwsVr.LabVisuals.Shape (UnityEngine.Transform parent, System.String name, UnityEngine.PrimitiveType type, UnityEngine.Vector3 position, UnityEngine.Vector3 scale, UnityEngine.Color color, System.Boolean collider) [0x00000] in <00000000000000000000000000000000>:0 
+10-01 01:09:48.310 16366 16403 E Unity   :   at GuateGeeks.AwsVr.HoloEnvironment.Build (UnityEngine.Transform world) [0x00000] in <00000000000000000000000000000000>:0 
+10-01 01:09:48.310 16366 16403 E Unity   :   at GuateGeeks.AwsVr.ArchitectureLab.Start () [0x00000] in <00000000000000000000000000000000>:0 
+10-01 01:09:48.310 16366 16403 E Unity   : 
+10-01 01:09:49.001 16366 16511 I VrApi   : FPS=72/72,Prd=32ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.58ms,App=1.40ms,GD=0.00ms,CPU&GPU=2.39ms,LCnt=3(DR0,LM0),GPU%=0.24,CPU%=0.17(W0.18),CFL=13.06/17.34,ICFLp95=16.52,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=264,PoseAgeP95=0.00
+10-01 01:09:50.001 16366 16511 I VrApi   : FPS=71/72,Prd=23ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.55ms,App=0.41ms,GD=0.00ms,CPU&GPU=0.92ms,LCnt=3(DR0,LM0),GPU%=0.19,CPU%=0.15(W0.17),CFL=12.99/16.77,ICFLp95=16.00,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=282,PoseAgeP95=0.00
+10-01 01:09:50.983 16366 16475 I AppLoadTimeTelemetryCommon: App load time recorded [packageName=com.guategeeks.awsarchitectlab, time=8.226102, method="BeginFrame (500)", launchType="Launch", launchId=""]
+10-01 01:09:51.001 16366 16511 I VrApi   : FPS=72/72,Prd=21ms,Tear=0,Early=0,Stale=1,Stale2/5/10/max=0/0/0/1,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.40ms,App=0.44ms,GD=0.00ms,CPU&GPU=0.77ms,LCnt=3(DR66,LM2),GPU%=0.17,CPU%=0.11(W0.13),CFL=12.70/16.24,ICFLp95=15.49,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=170,PoseAgeP95=0.00
+10-01 01:09:52.001 16366 16511 I VrApi   : FPS=72/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.40ms,App=0.52ms,GD=0.00ms,CPU&GPU=0.80ms,LCnt=3(DR72,LM3),GPU%=0.17,CPU%=0.09(W0.10),CFL=12.64/16.26,ICFLp95=15.52,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=200,PoseAgeP95=0.00
+10-01 01:09:53.001 16366 16511 I VrApi   : FPS=73/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/545MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.40ms,App=0.52ms,GD=0.00ms,CPU&GPU=0.76ms,LCnt=3(DR72,LM3),GPU%=0.16,CPU%=0.13(W0.17),CFL=12.50/16.16,ICFLp95=15.35,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=254,PoseAgeP95=0.00
+10-01 01:09:54.001 16366 16511 I VrApi   : FPS=72/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.40ms,App=0.50ms,GD=0.00ms,CPU&GPU=0.72ms,LCnt=3(DR72,LM3),GPU%=0.17,CPU%=0.11(W0.14),CFL=12.28/15.98,ICFLp95=15.17,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=190,PoseAgeP95=0.00
+10-01 01:09:55.001 16366 16511 I VrApi   : FPS=73/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.40ms,App=0.46ms,GD=0.00ms,CPU&GPU=0.87ms,LCnt=3(DR73,LM3),GPU%=0.16,CPU%=0.11(W0.13),CFL=12.28/15.94,ICFLp95=15.20,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=252,PoseAgeP95=0.00
+10-01 01:09:56.001 16366 16511 I VrApi   : FPS=73/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.39ms,App=0.52ms,GD=0.00ms,CPU&GPU=0.73ms,LCnt=3(DR73,LM3),GPU%=0.16,CPU%=0.12(W0.13),CFL=12.25/16.03,ICFLp95=15.22,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=164,PoseAgeP95=0.00
+10-01 01:09:57.001 16366 16511 I VrApi   : FPS=73/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.41ms,App=0.48ms,GD=0.00ms,CPU&GPU=0.82ms,LCnt=3(DR72,LM3),GPU%=0.16,CPU%=0.15(W0.17),CFL=12.59/15.98,ICFLp95=15.27,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=192,PoseAgeP95=0.00
+10-01 01:09:57.927 16366 16475 I AppLoadTimeTelemetryCommon: App load time recorded [packageName=com.guategeeks.awsarchitectlab, time=15.170310, method="BeginFrame (1000)", launchType="Launch", launchId=""]
+10-01 01:09:58.001 16366 16511 I VrApi   : FPS=73/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.42ms,App=0.59ms,GD=0.00ms,CPU&GPU=0.81ms,LCnt=3(DR72,LM3),GPU%=0.16,CPU%=0.17(W0.19),CFL=12.45/16.38,ICFLp95=15.26,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=216,PoseAgeP95=0.00
+10-01 01:09:58.559 16366 16513 I AppLoadTimeTelemetryCommon: App load time recorded [packageName=com.guategeeks.awsarchitectlab, time=15.801509, method="Input", launchType="Launch", launchId=""]
+10-01 01:09:59.001 16366 16511 I VrApi   : FPS=73/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.43ms,App=0.52ms,GD=0.00ms,CPU&GPU=0.72ms,LCnt=3(DR72,LM3),GPU%=0.17,CPU%=0.11(W0.15),CFL=12.26/15.99,ICFLp95=15.23,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=234,PoseAgeP95=0.00
+10-01 01:10:00.001 16366 16511 I VrApi   : FPS=72/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.38ms,App=0.53ms,GD=0.00ms,CPU&GPU=0.93ms,LCnt=3(DR72,LM3),GPU%=0.16,CPU%=0.13(W0.15),CFL=12.23/16.04,ICFLp95=15.23,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=222,PoseAgeP95=0.00
+10-01 01:10:00.003 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: 'xrruntime_mobile_perf_events' with limits of 300 events every 60 second(s).
+10-01 01:10:00.198 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:00.198 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:00.206 16366 16403 W MemoryBrokerClient: InputHub: failed to remap INPUT_TYPE_MAP: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:00.206 16366 16403 I Unity   : Handle cmd APP_CMD_LOST_FOCUS(8)
+10-01 01:10:00.234 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/left/interaction_profiles/meta/touch_controller_plus, -1
+10-01 01:10:00.234 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/right/interaction_profiles/meta/touch_controller_plus, -1
+10-01 01:10:01.001 16366 16511 I VrApi   : FPS=73/72,Prd=20ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=1.39ms,App=0.51ms,GD=0.00ms,CPU&GPU=0.71ms,LCnt=3(DR72,LM3),GPU%=0.16,CPU%=0.12(W0.14),CFL=12.15/16.27,ICFLp95=15.29,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=170,PoseAgeP95=0.00
+10-01 01:10:01.001 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: 'oculus_mobile_hmd_stats' with limits of 300 events every 60 second(s).
+10-01 01:10:01.001 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: 'controller_input_press_periodic' with limits of 300 events every 60 second(s).
+10-01 01:10:01.001 16366 16511 I [CT]    : Telemetry: EventsLimiter: New event limiter created for event: '-1' with limits of 300 events every 60 second(s).
+10-01 01:10:01.309 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:01.309 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:02.001 16366 16511 I VrApi   : FPS=73/72,Prd=31ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=3/3,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=3.78ms,App=1.24ms,GD=0.00ms,CPU&GPU=0.72ms,LCnt=3(DR72,LM0),GPU%=0.27,CPU%=0.19(W0.21),CFL=12.23/15.97,ICFLp95=15.24,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=1,ShrpR=0.500,SSLCnt=0/0,Preempt=218,PoseAgeP95=0.00
+10-01 01:10:02.420 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:02.420 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'request throttled')
+10-01 01:10:03.001 16366 16511 I VrApi   : FPS=72/72,Prd=28ms,Tear=5,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1651/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=2092MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=3.21ms,App=0.76ms,GD=0.00ms,CPU&GPU=0.98ms,LCnt=12(DR0,LM0),GPU%=0.32,CPU%=0.78(W0.80),CFL=13.30/24.02,ICFLp95=23.47,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=7,ShrpR=0.000,SSLCnt=1/2,Preempt=306,PoseAgeP95=0.00
+10-01 01:10:03.531 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'request throttled')
+10-01 01:10:03.531 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'request throttled')
+10-01 01:10:04.002 16366 16511 I VrApi   : FPS=72/72,Prd=25ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3651MB,PLS=0,Temp=39.0C/0.0C,TW=3.45ms,App=0.87ms,GD=0.00ms,CPU&GPU=0.99ms,LCnt=12(DR0,LM4),GPU%=0.33,CPU%=0.36(W0.38),CFL=15.68/21.32,ICFLp95=20.09,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=6,ShrpR=0.000,SSLCnt=1/2,Preempt=220,PoseAgeP95=0.00
+10-01 01:10:04.572 16366 16513 I InputDevice_TrackedRemote: REMOTE: Hand=1 IndexAnalog=0.00 GripAnalog=0.00 Buttons=0x00000000
+10-01 01:10:04.572 16366 16513 I InputDevice_TrackedRemote: REMOTE: Hand=2 IndexAnalog=0.00 GripAnalog=0.00 Buttons=0x00000000
+10-01 01:10:04.578 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/right/interaction_profiles/meta/touch_controller_plus, 7
+10-01 01:10:04.578 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/left/interaction_profiles/meta/touch_controller_plus, 6
+10-01 01:10:04.606 16366 16403 I Unity   : Handle cmd APP_CMD_GAINED_FOCUS(7)
+10-01 01:10:04.642 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'request throttled')
+10-01 01:10:04.642 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'request throttled')
+10-01 01:10:05.012 16366 16511 V ClientSharedTelemetryStats: App memory usage: PSS=233 MiB, PrivateDirty=164 MiB, PrivateClean=53 MiB, GPU=25.5/25.5 MiB (100% allocated)
+10-01 01:10:05.012 16366 16511 I VrApi   : FPS=72/72,Prd=25ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=3.40ms,App=0.79ms,GD=0.00ms,CPU&GPU=0.87ms,LCnt=12(DR0,LM5),GPU%=0.33,CPU%=0.34(W0.36),CFL=14.49/18.88,ICFLp95=17.63,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=6,ShrpR=0.000,SSLCnt=1/2,Preempt=258,PoseAgeP95=0.00
+10-01 01:10:06.002 16366 16511 I VrApi   : FPS=72/72,Prd=23ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=1.35ms,App=0.00ms,GD=0.00ms,CPU&GPU=0.77ms,LCnt=12(DR0,LM5),GPU%=0.27,CPU%=0.29(W0.31),CFL=13.74/17.85,ICFLp95=16.84,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,ShrpLCnt=6,ShrpR=0.000,SSLCnt=1/2,Preempt=184,PoseAgeP95=0.00
+10-01 01:10:07.002 16366 16511 I VrApi   : FPS=72/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=1.40ms,App=0.42ms,GD=0.00ms,CPU&GPU=1.10ms,LCnt=2(DR38,LM2),GPU%=0.19,CPU%=0.26(W0.28),CFL=12.75/18.20,ICFLp95=17.27,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=218,PoseAgeP95=0.00
+10-01 01:10:08.002 16366 16511 I VrApi   : FPS=72/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=1.40ms,App=0.39ms,GD=0.00ms,CPU&GPU=0.96ms,LCnt=2(DR72,LM2),GPU%=0.16,CPU%=0.12(W0.14),CFL=12.44/16.14,ICFLp95=15.48,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=144,PoseAgeP95=0.00
+10-01 01:10:09.002 16366 16511 I VrApi   : FPS=73/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=1.39ms,App=0.35ms,GD=0.00ms,CPU&GPU=0.85ms,LCnt=2(DR72,LM2),GPU%=0.15,CPU%=0.11(W0.13),CFL=12.14/16.10,ICFLp95=15.27,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=144,PoseAgeP95=0.00
+10-01 01:10:09.635 16366 16366 D MediaRouter: onRestoreRoute() : route=RouteInfo{ name=Teléfono, description=null, status=null, category=RouteCategory{ name=Sistema types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=null }
+10-01 01:10:09.635 16366 16366 V MediaRouter: Selecting route: RouteInfo{ name=Teléfono, description=null, status=null, category=RouteCategory{ name=Sistema types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=null }
+10-01 01:10:10.002 16366 16511 I VrApi   : FPS=73/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=1.35ms,App=0.39ms,GD=0.00ms,CPU&GPU=0.96ms,LCnt=2(DR72,LM2),GPU%=0.14,CPU%=0.16(W0.18),CFL=11.99/16.03,ICFLp95=15.18,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=144,PoseAgeP95=0.00
+10-01 01:10:11.002 16366 16511 I VrApi   : FPS=73/72,Prd=22ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=0.83ms,App=0.08ms,GD=0.00ms,CPU&GPU=1.04ms,LCnt=2(DR72,LM2),GPU%=0.11,CPU%=0.08(W0.12),CFL=11.95/16.07,ICFLp95=15.14,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=144,PoseAgeP95=0.00
+10-01 01:10:11.816 16366 16475 I AppLoadTimeTelemetryCommon: App load time recorded [packageName=com.guategeeks.awsarchitectlab, time=29.058821, method="BeginFrame (2000)", launchType="Launch", launchId=""]
+10-01 01:10:12.002 16366 16511 I VrApi   : FPS=72/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=0.85ms,App=0.02ms,GD=0.00ms,CPU&GPU=1.02ms,LCnt=1(DR73,LM0),GPU%=0.09,CPU%=0.10(W0.14),CFL=11.91/18.13,ICFLp95=17.53,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=148,PoseAgeP95=0.00
+10-01 01:10:13.002 16366 16511 I VrApi   : FPS=72/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,2361/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=3196MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=0.88ms,App=0.02ms,GD=0.00ms,CPU&GPU=1.06ms,LCnt=1(DR72,LM0),GPU%=0.08,CPU%=0.10(W0.15),CFL=12.75/17.03,ICFLp95=16.12,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=144,PoseAgeP95=0.00
+10-01 01:10:13.442 16366 16403 W MemoryBrokerClient: InputHub: failed to remap INPUT_TYPE_MAP: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:13.447 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:13.447 16366 16513 W MemoryBrokerClient: Hands: failed to remap HAND_TRACKER: getSharedMemoryFileDescriptor (Status(-1, EX_SECURITY): 'missing runtime permission(s)')
+10-01 01:10:13.456 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/left/interaction_profiles/meta/touch_controller_plus, -1
+10-01 01:10:13.456 16366 16403 I OpenXR_ClientState: [OATS]: IP changed: /user/hand/right/interaction_profiles/meta/touch_controller_plus, -1
+10-01 01:10:13.551 16366 16403 I VrRuntimeClient: Client has lost focus.
+10-01 01:10:13.551 16366 16403 I VrRuntimeClient: VirtualInputPoseInjection_HighFrequency: server is null on focus lost
+10-01 01:10:13.551 16366 16403 I OpenXR_SessionImpl: PostSessionStateChange:[pid: 16366] XR_SESSION_STATE_FOCUSED -> XR_SESSION_STATE_VISIBLE
+10-01 01:10:13.551 16366 16403 I JVMHandler: JVMHandler: callStaticMethodWithVariableArguments. [functionName:getLaunchId] is valid: [1]
+10-01 01:10:13.571 16366 16403 W VrRuntimeClient: Failed to call getLaunchId
+10-01 01:10:13.571 16366 16403 W VrRuntimeClient: useHzInterstitialCBGKEnabled not enabled
+10-01 01:10:13.572 16366 16403 I Unity   : [XR] [495477922288] [01:10:13.572][Info   ] OpenXRSession::HandleSessionStateChangedEvent: state XR_SESSION_STATE_FOCUSED->XR_SESSION_STATE_VISIBLE session=3 time=2296382219844
+10-01 01:10:13.573 16366 16403 I Unity   : Handle cmd APP_CMD_LOST_FOCUS(8)
+10-01 01:10:13.685 16366 16475 I TREX    : Interface 'SpatialPersistence', version 35 was not found. Check debug build for more information.
+10-01 01:10:14.002 16366 16511 I VrApi   : FPS=72/72,Prd=21ms,Tear=0,Early=0,Stale=0,Stale2/5/10/max=0/0/0/0,VSnc=1,Lat=-4,Fov=0,CPU4/GPU=2/2,1382/456MHz,OC=3F,TA=0/38/38,SP=N/N/N,Mem=1708MHz,Free=3605MB,PLS=0,Temp=39.0C/0.0C,TW=0.88ms,App=0.03ms,GD=0.00ms,CPU&GPU=1.06ms,LCnt=1(DR72,LM0),GPU%=0.08,CPU%=0.12(W0.15),CFL=12.14/16.22,ICFLp95=15.53,LD=0,SF=1.00,DpuScale=1.00,LP=0,DVFS=0,Preempt=144,PoseAgeP95=0.00

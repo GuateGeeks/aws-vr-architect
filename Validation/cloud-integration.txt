@@ -1,0 +1,55 @@
+GuateGeeksAWSVR / GuateGeeksAWS2026 integration — 2026-10-01 (America/Guatemala)
+
+Scope: prepare integration and deployment setup; no AWS resources created.
+Unity version: 6000.6.3f1. App 0.3.0, Android versionCode 3.
+Default mode remains local mock. AWS mode is explicitly selected with runtime credentials.
+
+Validation:
+- Backend unittest: 39 passed.
+- CloudFormation lint: 11 template scenarios, zero findings.
+- Unity EditMode: 27 passed, zero failures.
+- Unity PlayMode: 8 passed, zero failures.
+- Contract fixtures generated from real Lambda routes with AWS clients mocked.
+- PlayMode AWS screenshots: 06-cloud-confirmation.png, 07-cloud-ready.png.
+  These screenshots use offline contract fixtures, not a deployed AWS endpoint.
+- SAM CLI build through WSL: Succeeded. .aws-sam/build/template.yaml.
+  Packaged ControlFunction/app.py SHA256 matches src/app.py.
+- Android IL2CPP build: Succeeded, 0 errors, 9 warnings.
+  Finished 2026-10-02T01:28:16Z (October 1, 19:28 Guatemala).
+- APK: Builds/Quest3/GuateGeeksAWSVR-Quest3.apk
+  Size: 43203542 bytes.
+  SHA256: 414B8468D05026DAC9B25E831AA4F70A0A2BBD1D6C67F09E4472575B21EBBB8E
+- aapt: com.guategeeks.awsarchitectlab, 0.3.0 / 3, ARM64, min SDK 32, target 36.
+  android.permission.INTERNET present; com.oculus.feature.PASSTHROUGH present.
+- apksigner: signature verifies using v2 (local development signing).
+
+Behavior covered:
+Explicit AWS creation confirmation, session/catalog checks, server validation,
+shared slot identity via graphHash and stackId, create/poll/invoke, 202 acceptance,
+uncertain creation response recovery without duplicate POST, rollback/conflict,
+401 and throttling, one-time credential expiry/deletion, USB stdin provisioning,
+mode switching, stopping a stalled connection, recovery checkpoint without secrets,
+and the existing graph editing / movable-menu / environment flows.
+
+Operational limits:
+No backend is deployed and no live endpoint/credentials were used.
+Quest 3 reconnected after the build. adb install -r succeeded on 2G0YC5ZG9J06XL.
+Installed package version 0.3.0 / versionCode 3 verified through dumpsys package.
+Launch request reached Meta's controller-required dialog; wake both Touch Plus controllers
+and open the lab. No in-headset interaction or live-cloud test was completed for this APK.
+The previous 0.2.0 device validation does not certify this new APK's interactions.
+Existing Windows executable was not rebuilt; use Editor for current desktop preview.
+Cloud cleanup is an operator action via GuateGeeksAWS2026/tools/demo.py delete.
+Stopping observation never cancels or deletes CloudFormation resources.
+See Documentation/Cloud-Integration.md for deployment, USB provisioning and recovery.
+Detailed Android warnings are retained in Validation/quest3-build.txt.
+
+Subsequent authorized backend deployment, October 1, 2026:
+- Stack guategeeks-aws2026 reached CREATE_COMPLETE in us-east-1.
+- Live session/auth rejection, catalog, free slots and all preset validation checks passed.
+- User confirmed Quest is connected: AWS · SLOT 1.
+- USB credential bootstrap consumed; both temporary files verified absent.
+- API logged two successful HTTP 200 requests at 2026-10-02T01:51:44Z
+  (October 1, approximately 19:51 Guatemala time).
+- Real workload creation from VR has not yet been exercised.
+- Current endpoint and operator steps: ../GuateGeeksAWS2026/deployment/current-backend.md.

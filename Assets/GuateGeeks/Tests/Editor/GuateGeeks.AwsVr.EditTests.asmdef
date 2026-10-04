@@ -1,0 +1,6 @@
+{
+  "name": "GuateGeeks.AwsVr.EditTests",
+  "references": ["GuateGeeks.AwsVr"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

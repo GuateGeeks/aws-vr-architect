@@ -1,0 +1,17 @@
+{
+  "version": "0.6.0",
+  "versionCode": 6,
+  "installedAtUtc": "2026-10-03T02:48:27.5569007Z",
+  "device": "2G0YC5ZG9J06XL",
+  "package": "com.guategeeks.awsarchitectlab",
+  "apkSha256": "f995fda73250939730a3d702b8441e171c3038ab26d4fe22bfe885369d949c5e",
+  "editMode": "Passed | passed=40 failed=0 skipped=0",
+  "playMode": "Passed | passed=16 failed=0 skipped=0",
+  "backendTests": 47,
+  "backendLiveAcceptance": "../GuateGeeksAWS2026/deployment/inspection-acceptance.json",
+  "build": "2026-10-03T02:47:38.2314479Z | Succeeded | errors=0 warnings=8",
+  "install": "adb install -r: Success",
+  "installedPackage": "versionCode=6 minSdk=32 targetSdk=36\r\n    versionName=0.6.0",
+  "launch": "Meta LaunchCheckControllerRequiredDialogActivity; wake controllers in headset",
+  "physicalAcceptance": "Pending user verification"
+}
