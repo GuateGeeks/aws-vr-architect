@@ -1,0 +1,121 @@
+{
+  "at": "2026-10-03T01:59:31.286547+00:00",
+  "region": "us-east-1",
+  "stacks": [
+    {
+      "name": "guategeeks-aws2026",
+      "id": "arn:aws:cloudformation:us-east-1:590183968738:stack/guategeeks-aws2026/253cffd0-be03-11f1-912a-0afff03b6193",
+      "status": "UPDATE_COMPLETE",
+      "tags": []
+    },
+    {
+      "name": "ggawsday-demo-1",
+      "id": "arn:aws:cloudformation:us-east-1:590183968738:stack/ggawsday-demo-1/150b6470-becc-11f1-8b5f-12bf9b0f9551",
+      "status": "CREATE_COMPLETE",
+      "tags": [
+        {
+          "Key": "Project",
+          "Value": "GuateGeeksAWS2026"
+        },
+        {
+          "Key": "GraphHash",
+          "Value": "0fa7f94cfacc064586e6d67aea094c611ff613965fe95a35bc28ff633018514f"
+        }
+      ],
+      "resources": [
+        {
+          "LogicalResourceId": "N304020809a266e3f977e",
+          "PhysicalResourceId": "isl4qk4x6f",
+          "ResourceType": "AWS::ApiGatewayV2::Api",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:22.033000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        },
+        {
+          "LogicalResourceId": "N304020809a266e3f977eIntegration",
+          "PhysicalResourceId": "h3l7fr0",
+          "ResourceType": "AWS::ApiGatewayV2::Integration",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:47.360000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        },
+        {
+          "LogicalResourceId": "N304020809a266e3f977ePermission",
+          "PhysicalResourceId": "ggawsday-demo-1-N304020809a266e3f977ePermission-JxodhF23oWw5",
+          "ResourceType": "AWS::Lambda::Permission",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:47.349000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        },
+        {
+          "LogicalResourceId": "N304020809a266e3f977eRoute",
+          "PhysicalResourceId": "6ao19q7",
+          "ResourceType": "AWS::ApiGatewayV2::Route",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:49.331000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        },
+        {
+          "LogicalResourceId": "N304020809a266e3f977eStage",
+          "PhysicalResourceId": "$default",
+          "ResourceType": "AWS::ApiGatewayV2::Stage",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:24.267000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        },
+        {
+          "LogicalResourceId": "N4c2bb30ca5028977b63e",
+          "PhysicalResourceId": "ggawsday-demo-1-n4c2bb30ca5028977b63e",
+          "ResourceType": "AWS::DynamoDB::Table",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:36.249000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        },
+        {
+          "LogicalResourceId": "Ne88c5153e4b673bacdf4",
+          "PhysicalResourceId": "ggawsday-demo-1-ne88c5153e4b673bacdf4",
+          "ResourceType": "AWS::Lambda::Function",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:45.456000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        },
+        {
+          "LogicalResourceId": "Ne88c5153e4b673bacdf4Logs",
+          "PhysicalResourceId": "/aws/lambda/ggawsday-demo-1-ne88c5153e4b673bacdf4",
+          "ResourceType": "AWS::Logs::LogGroup",
+          "LastUpdatedTimestamp": "2026-10-03 01:45:33.043000+00:00",
+          "ResourceStatus": "CREATE_COMPLETE",
+          "DriftInformation": {
+            "StackResourceDriftStatus": "NOT_CHECKED"
+          }
+        }
+      ],
+      "failures": []
+    },
+    {
+      "name": "ggawsday-demo-2",
+      "status": "ABSENT"
+    },
+    {
+      "name": "ggawsday-demo-3",
+      "status": "ABSENT"
+    }
+  ],
+  "logGroups": [
+    "/aws/lambda/ggawsday-demo-1-ne88c5153e4b673bacdf4"
+  ]
+}

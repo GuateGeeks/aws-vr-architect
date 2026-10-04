@@ -1,0 +1,295 @@
+openapi: 3.0.3
+info:
+  title: GuateGeeks AWS Day Control API
+  version: 1.2.0
+  description: Basic Auth over HTTPS, restricted to event egress IP. Lambda checks the trusted API Gateway sourceIp before authentication. All operations may return 403 for a rejected source. No AWS credentials in clients.
+security:
+  - basicAuth: []
+paths:
+  /v1/code/validate:
+    post:
+      operationId: validateLambdaDraft
+      description: Compile a single Python index.py of at most 8 KiB without executing it.
+      requestBody: {$ref: '#/components/requestBodies/CodeOperation'}
+      responses:
+        '200': {description: 'valid, sourceHash, message; syntax validation only'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+  /v1/code/test:
+    post:
+      operationId: testLambdaDraft
+      description: Execute in the separate three-second tester with own-log permissions only; no deployed workload invocation. Requires source and eventJson object of at most 4 KiB.
+      requestBody: {$ref: '#/components/requestBodies/CodeOperation'}
+      responses:
+        '200': {description: 'valid, passed, sourceHash, output, logs, message; passed=false for execution failure/timeout'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+  /v1/deployments/{deploymentId}/code:
+    parameters:
+      - {$ref: '#/components/parameters/Slot'}
+    get:
+      operationId: readLambdaCode
+      parameters:
+        - {name: stackId, in: query, required: true, schema: {type: string}}
+        - {name: resourceId, in: query, required: true, schema: {type: string}}
+      responses:
+        '200': {description: 'source, revisionId, codeSha256, version, updateStatus, versions (last ten), truncated, message'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+  /v1/deployments/{deploymentId}/code/publish:
+    parameters:
+      - {$ref: '#/components/parameters/Slot'}
+    post:
+      operationId: publishLambdaCode
+      description: Requires source, stackId, resourceId, revisionId and confirmed=true. Checkpoints existing code then updates active code with Publish=true. Never automatically retry ambiguous writes.
+      requestBody: {$ref: '#/components/requestBodies/CodeOperation'}
+      responses:
+        '202': {description: 'Accepted update, revisionId, version, updateStatus, rollbackVersion. Poll GET code to confirm completion.'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+  /v1/deployments/{deploymentId}/code/rollback:
+    parameters:
+      - {$ref: '#/components/parameters/Slot'}
+    post:
+      operationId: restoreLambdaCode
+      description: Requires version, stackId, resourceId, revisionId and confirmed=true. Republishes immutable source as active code. Does not restore function configuration.
+      requestBody: {$ref: '#/components/requestBodies/CodeOperation'}
+      responses:
+        '202': {description: 'Accepted update, revisionId, version, updateStatus, rollbackVersion. Poll GET code to confirm completion.'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+  /v1/session:
+    get:
+      operationId: connect
+      responses:
+        '200': {description: 'Authenticated session: connected, region, schemaVersion'}
+        '401': {$ref: '#/components/responses/Error'}
+  /v1/catalog:
+    get:
+      operationId: catalog
+      responses:
+        '200': {description: 'services, maxNodes, deploymentSlots, limitations'}
+        '401': {$ref: '#/components/responses/Error'}
+  /v1/architectures/validate:
+    post:
+      operationId: validateArchitecture
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/Architecture'}
+      responses:
+        '200': {description: 'valid=true, graphHash, nodeCount; no resources created'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '413': {$ref: '#/components/responses/Error'}
+  /v1/deployments:
+    post:
+      operationId: createDeployment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [deploymentId, architecture]
+              properties:
+                deploymentId: {type: string, enum: ['1', '2', '3']}
+                architecture: {$ref: '#/components/schemas/Architecture'}
+      responses:
+        '202': {$ref: '#/components/responses/Deployment'}
+        '200': {$ref: '#/components/responses/Deployment'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '413': {$ref: '#/components/responses/Error'}
+        '502': {$ref: '#/components/responses/Error'}
+  /v1/deployments/{deploymentId}:
+    parameters:
+      - {$ref: '#/components/parameters/Slot'}
+    get:
+      operationId: deploymentStatus
+      responses:
+        '200': {$ref: '#/components/responses/Deployment'}
+        '404': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '502': {$ref: '#/components/responses/Error'}
+    delete:
+      operationId: deleteDeployment
+      description: 'Stop sending events first. purge=true deletes all S3 object versions. If retryDelete=true, repeat DELETE; otherwise poll GET until 404. Resource deletion may fail and must be retried after remediation.'
+      parameters:
+        - name: stackId
+          in: query
+          description: Confirmed stack identity. Rejects a replaced slot with 409. VR always supplies this guard.
+          schema: {type: string}
+        - name: purge
+          in: query
+          schema: {type: boolean, default: false}
+      responses:
+        '200': {$ref: '#/components/responses/Deployment'}
+        '202': {$ref: '#/components/responses/Deployment'}
+        '401': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '502': {$ref: '#/components/responses/Error'}
+  /v1/deployments/{deploymentId}/logs:
+    get:
+      operationId: inspectLogs
+      description: 'Lambda CloudWatch logs, last 15 minutes at refresh; signed incremental resume overlaps by 30 seconds. Read-only, at most 10 entries per page and 4096 characters per entry with explicit truncated flag. Resource identity resolved from the confirmed stack. Signed cursor expires after 15 minutes. Empty pages may have a cursor.'
+      parameters:
+        - {$ref: '#/components/parameters/Slot'}
+        - {name: stackId, in: query, required: true, schema: {type: string}}
+        - {name: resourceId, in: query, required: true, schema: {type: string}}
+        - {name: cursor, in: query, schema: {type: string}}
+        - {name: q, in: query, schema: {type: string, maxLength: 80}}
+        - {name: eventId, in: query, schema: {type: string, maxLength: 128, pattern: "^[A-Za-z0-9_-]+$"}}
+        - {name: resume, in: query, schema: {type: string}}
+        - {name: level, in: query, schema: {type: string, enum: [INFO, WARN, ERROR]}}
+      responses:
+        '200': {description: 'stackId, resourceId, entries (id/title/text/truncated and correlation metadata), cursor, resume, incremental, inspectionVersion, message'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '403': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '502': {$ref: '#/components/responses/Error'}
+  /v1/deployments/{deploymentId}/items:
+    get:
+      operationId: inspectItems
+      description: 'DynamoDB eventually consistent Scan, or strongly consistent GetItem when eventId is supplied; typed AttributeValue JSON. Read-only, at most 10 entries per page and 4096 characters per entry with explicit truncated flag. Resource identity resolved from the confirmed stack. Signed cursor expires after 15 minutes. Empty pages may have a cursor.'
+      parameters:
+        - {$ref: '#/components/parameters/Slot'}
+        - {name: stackId, in: query, required: true, schema: {type: string}}
+        - {name: resourceId, in: query, required: true, schema: {type: string}}
+        - {name: cursor, in: query, schema: {type: string}}
+        - {name: q, in: query, schema: {type: string, maxLength: 80}}
+        - {name: eventId, in: query, schema: {type: string, maxLength: 128, pattern: "^[A-Za-z0-9_-]+$"}}
+      responses:
+        '200': {description: 'stackId, resourceId, entries (id/title/text/truncated and correlation metadata), cursor, resume, incremental, inspectionVersion, message'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '403': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '502': {$ref: '#/components/responses/Error'}
+  /v1/deployments/{deploymentId}/events:
+    parameters:
+      - {$ref: '#/components/parameters/Slot'}
+    post:
+      operationId: sendTestEvent
+      description: 'Send a canned event through the chosen deployed entry node. 202 acknowledges submission, not downstream completion. HTTP API nodes invoke POST /demo with server-side SigV4.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [resourceId]
+              properties:
+                resourceId: {type: string}
+      responses:
+        '200': {description: Synchronous API result with eventId and accepted}
+        '202': {description: Asynchronous event accepted with eventId}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '502': {$ref: '#/components/responses/Error'}
+components:
+  requestBodies:
+    CodeOperation:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              source: {type: string, description: UTF-8 Python source at most 8192 bytes}
+              eventJson: {type: string, description: JSON object at most 4096 bytes}
+              stackId: {type: string}
+              resourceId: {type: string}
+              revisionId: {type: string}
+              version: {type: string, pattern: '^[1-9][0-9]{0,8}$'}
+              confirmed: {type: boolean, enum: [true]}
+  securitySchemes:
+    basicAuth: {type: http, scheme: basic}
+  parameters:
+    Slot:
+      name: deploymentId
+      in: path
+      required: true
+      schema: {type: string, enum: ['1', '2', '3']}
+  schemas:
+    Architecture:
+      type: object
+      required: [schemaVersion, region, nodes, links]
+      properties:
+        schemaVersion: {type: integer, enum: [1]}
+        region: {type: string, description: Must equal the region hosting the API}
+        nodes:
+          type: array
+          minItems: 2
+          maxItems: 12
+          items:
+            type: object
+            required: [id, kind]
+            properties:
+              id: {type: string, pattern: '^[a-zA-Z0-9_-]{1,64}$'}
+              kind: {type: integer, minimum: 0, maximum: 6, description: '0 ApiGateway, 1 Lambda, 2 DynamoDB, 3 S3, 4 SQS, 5 EventBridge, 6 CloudWatch'}
+              name: {type: string, minLength: 1, maxLength: 80}
+              setting: {type: integer, minimum: 0, maximum: 3, default: 0, description: Validated by service; see README}
+              position: {type: object, description: Unity layout; ignored by provisioning}
+              state: {type: integer, description: Unity visual state; ignored by provisioning}
+        links:
+          type: array
+          maxItems: 36
+          items:
+            type: object
+            required: [from, to]
+            properties:
+              from: {type: string}
+              to: {type: string}
+    Deployment:
+      type: object
+      required: [deploymentId, status, finished]
+      properties:
+        deploymentId: {type: string}
+        stackId: {type: string}
+        graphHash: {type: string, nullable: true, description: 'Canonical architecture fingerprint from validation. Present on creation/status; clients verify it before recovering a shared slot.'}
+        status: {type: string}
+        finished: {type: boolean}
+        success: {type: boolean, description: True only for CREATE_COMPLETE}
+        pollAfterSeconds: {type: integer}
+        retryDelete: {type: boolean}
+        message: {type: string}
+        nodes:
+          type: array
+          items:
+            type: object
+            properties:
+              resourceId: {type: string}
+              kind: {type: integer}
+              status: {type: string}
+              physicalId: {type: string, nullable: true}
+              message: {type: string}
+  responses:
+    Deployment:
+      description: Asynchronous deployment state; poll every 3 seconds with backoff on 429
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Deployment'}
+    Error:
+      description: 'JSON error from Lambda. API Gateway can return its own message envelope for 403/429/5xx.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: {type: string}
+              message: {type: string}
+              requestId: {type: string}

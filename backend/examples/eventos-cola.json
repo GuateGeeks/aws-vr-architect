@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "region": "us-east-1",
+  "nodes": [
+    {
+      "id": "node0",
+      "kind": 5,
+      "name": "EventBridge",
+      "setting": 0,
+      "position": {
+        "x": 0,
+        "y": 1.52,
+        "z": 2.65
+      },
+      "state": 0
+    },
+    {
+      "id": "node1",
+      "kind": 4,
+      "name": "SQS",
+      "setting": 0,
+      "position": {
+        "x": 1,
+        "y": 1.52,
+        "z": 2.65
+      },
+      "state": 0
+    },
+    {
+      "id": "node2",
+      "kind": 1,
+      "name": "Lambda",
+      "setting": 0,
+      "position": {
+        "x": 2,
+        "y": 1.52,
+        "z": 2.65
+      },
+      "state": 0
+    },
+    {
+      "id": "node3",
+      "kind": 2,
+      "name": "DynamoDB",
+      "setting": 0,
+      "position": {
+        "x": 3,
+        "y": 1.52,
+        "z": 2.65
+      },
+      "state": 0
+    }
+  ],
+  "links": [
+    {
+      "from": "node0",
+      "to": "node1"
+    },
+    {
+      "from": "node1",
+      "to": "node2"
+    },
+    {
+      "from": "node2",
+      "to": "node3"
+    }
+  ]
+}

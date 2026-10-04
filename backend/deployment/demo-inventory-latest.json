@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-03T02:28:09.201329+00:00",
+  "region": "us-east-1",
+  "stacks": [
+    {
+      "name": "guategeeks-aws2026",
+      "id": "arn:aws:cloudformation:us-east-1:590183968738:stack/guategeeks-aws2026/253cffd0-be03-11f1-912a-0afff03b6193",
+      "status": "UPDATE_COMPLETE",
+      "tags": []
+    },
+    {
+      "name": "ggawsday-demo-1",
+      "status": "ABSENT"
+    },
+    {
+      "name": "ggawsday-demo-2",
+      "status": "ABSENT"
+    },
+    {
+      "name": "ggawsday-demo-3",
+      "status": "ABSENT"
+    }
+  ],
+  "logGroups": []
+}

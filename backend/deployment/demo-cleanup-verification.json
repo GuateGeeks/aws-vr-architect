@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-02T02:06:55.061197+00:00",
+  "checks": [
+    {
+      "type": "AWS::ApiGatewayV2::Api",
+      "id": "k2k4l7rask",
+      "status": "ABSENT"
+    },
+    {
+      "type": "AWS::Lambda::Function",
+      "id": "ggawsday-demo-1-nd316b65e313247df41a4",
+      "status": "ABSENT"
+    },
+    {
+      "type": "AWS::DynamoDB::Table",
+      "id": "ggawsday-demo-1-nefc5928933c589a92b39",
+      "status": "ABSENT"
+    }
+  ]
+}

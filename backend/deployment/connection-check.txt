@@ -1,0 +1,11 @@
+PASS authenticated session: us-east-1
+PASS unauthenticated access rejected
+PASS catalog and shared slots
+SLOT 1: free
+SLOT 2: free
+SLOT 3: free
+PASS server validation: api-serverless
+PASS server validation: eventos-cola
+PASS server validation: procesar-archivos
+READY: https://9bc46tb7d6.execute-api.us-east-1.amazonaws.com/demo
+No deployment slots were created, changed or deleted.

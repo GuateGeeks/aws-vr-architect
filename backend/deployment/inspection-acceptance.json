@@ -1,0 +1,24 @@
+{
+  "stackId": "arn:aws:cloudformation:us-east-1:590183968738:stack/ggawsday-demo-3/a0bf7420-bed1-11f1-8af5-0affe82f647f",
+  "slot": "3",
+  "checks": [
+    {
+      "kind": "items",
+      "httpStatus": 200,
+      "entries": 1,
+      "eventFound": true
+    },
+    {
+      "kind": "logs",
+      "httpStatus": 200,
+      "entries": 5,
+      "eventFound": true
+    },
+    {
+      "kind": "replacement-protection",
+      "httpStatus": 409
+    }
+  ],
+  "cleaned": true,
+  "finishedUtc": "2026-10-03T02:26:04Z"
+}
