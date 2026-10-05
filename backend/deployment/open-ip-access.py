@@ -53,7 +53,8 @@ def patch_package(raw):
     return result.getvalue(),changed
 
 def main():
-    args=argparse.ArgumentParser();args.add_argument('--apply',action='store_true');opts=args.parse_args()
+    args=argparse.ArgumentParser();args.add_argument('--apply',action='store_true');args.add_argument('--prepare',action='store_true');opts=args.parse_args()
+    assert not (opts.apply and opts.prepare)
     session=boto3.Session(profile_name='awsday',region_name=REGION)
     assert session.client('sts').get_caller_identity()['Account']==ACCOUNT,'Unexpected account'
     cfn=session.client('cloudformation');gateway=session.client('apigateway');lam=session.client('lambda')
@@ -70,7 +71,7 @@ def main():
     function_ids=[key for key,value in template['Resources'].items() if value['Type'] in ('AWS::Serverless::Function','AWS::Lambda::Function') and 'ALLOWED_CIDR' in value.get('Properties',{}).get('Environment',{}).get('Variables',{})]
     inspection={'stack':STACK,'status':stack['StackStatus'],'apiId':api_id,'ipRestrictionPresent':'aws:SourceIp' in json.dumps(policy),'guardedFunctions':function_ids}
     print(json.dumps(inspection),flush=True)
-    if not opts.apply:return
+    if not (opts.apply or opts.prepare):return
     WORK.mkdir(parents=True,exist_ok=True)
     (WORK/'original-template.json').write_text(json.dumps(template,indent=2),encoding='utf-8')
     for key,value in template['Resources'].items():
@@ -85,7 +86,8 @@ def main():
         (WORK/(key+'-original.zip')).write_bytes(raw)
         patched,changed=patch_package(raw);assert changed,'No source guard found'
         digest=hashlib.sha256(patched).hexdigest();object_key='public-ip-access/'+digest+'.zip'
-        session.client('s3').put_object(Bucket=BUCKET,Key=object_key,Body=patched,ServerSideEncryption='AES256')
+        (WORK/(key+'-prepared.zip')).write_bytes(patched)
+        if opts.apply:session.client('s3').put_object(Bucket=BUCKET,Key=object_key,Body=patched,ServerSideEncryption='AES256')
         properties=template['Resources'][key]['Properties']
         properties['Environment']['Variables'].pop('ALLOWED_CIDR')
         if template['Resources'][key]['Type']=='AWS::Serverless::Function':properties['CodeUri']={'Bucket':BUCKET,'Key':object_key}
@@ -94,6 +96,10 @@ def main():
     template.get('Parameters',{}).pop('AllowedCidr',None)
     assert 'AllowedCidr' not in json.dumps(template) and 'aws:SourceIp' not in json.dumps(template)
     parameters=[{'ParameterKey':v['ParameterKey'],'UsePreviousValue':True} for v in stack.get('Parameters',[]) if v['ParameterKey'] in template.get('Parameters',{})]
+    (WORK/'prepared-template.json').write_text(json.dumps(template,indent=2),encoding='utf-8')
+    if opts.prepare:
+        print(json.dumps({'prepared':True,'cloudModified':False,'changedFunctions':list(expected),'removedParameter':'AllowedCidr','otherParametersPreserved':True}),flush=True)
+        return
     name='open-source-ip-'+str(int(time.time()))
     body=json.dumps(template)
     assert len(body.encode())<=51200,'Template exceeds direct change-set size'
@@ -104,10 +110,10 @@ def main():
     print(json.dumps({'changeSet':name,'changes':summary}),flush=True)
     assert all((v['logicalId'] in function_ids or v['logicalId'].startswith('ControlApi')) and v['replacement']!='True' for v in summary),'Unexpected change-set scope; not executed'
     (WORK/'change-set.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+    assert any(v['logicalId'].startswith('ControlApiDeployment') and v['action']=='Add' for v in summary), 'REST policy must be included in a fresh stage deployment'
     cfn.execute_change_set(StackName=STACK,ChangeSetName=name)
     cfn.get_waiter('stack_update_complete').wait(StackName=STACK,WaiterConfig={'Delay':5,'MaxAttempts':120})
-    # Force a new REST deployment; policy changes must reach the active stage as well.
-    gateway.create_deployment(restApiId=api_id,stageName='demo',description='Authenticated access from any source IP')
+
     after=cfn.describe_stacks(StackName=STACK)['Stacks'][0]
     applied=parse_policy(gateway.get_rest_api(restApiId=api_id).get('policy','{}'))
     assert 'aws:SourceIp' not in json.dumps(applied)
