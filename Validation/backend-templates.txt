@@ -1,4 +1,4 @@
-control: 14 resources, 14394 bytes, 0 findings
+control: 14 resources, 14399 bytes, 0 findings
 api-serverless: 8 resources, 6042 bytes, 0 findings
 eventos-cola: 8 resources, 6281 bytes, 0 findings
 procesar-archivos: 5 resources, 5994 bytes, 0 findings

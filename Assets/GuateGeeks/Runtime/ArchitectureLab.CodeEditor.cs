@@ -13,6 +13,7 @@ namespace GuateGeeks.AwsVr
         LabTarget codeConfirm;LambdaCodeDraft codeDraft;AwsCloudApi codeReader;
         string codeIdentity,codeNodeId,codeStack,codePreviousSource,codeOutput="",codeNotice="",codeReviewHash="",codeReviewRevision="",codeReviewOperation="";
         AwsCloudApi codeCloud;AwsCloudApi.CodeVersion[] codeVersions=Array.Empty<AwsCloudApi.CodeVersion>();
+        int codeTestCase=-1;
         int codeLine,codePage,codeTab,codeVersion,codeEpoch;bool codeBusy,keyboardCodeMode,codeCaps,codeToolActive;
         string codeReviewVersion="",codeUpdateStatus="";
         public bool CodeBusy=>codeBusy;
@@ -27,7 +28,7 @@ namespace GuateGeeks.AwsVr
             if(ConfiguringConnection || credentialBusy)codePanel.gameObject.SetActive(false);
         }
         [Serializable] sealed class CodeToolRequest {public int baseRevision=-1;public string nodeId,source,summary,baseSourceHash,eventJson,action;}
-        [Serializable] sealed class CodeContext {public string nodeId,source,sourceHash,revisionId,eventJson;public bool validated,tested,publishRequiresClick=true;}
+        [Serializable] sealed class CodeContext {public string nodeId,source,sourceHash,revisionId,eventJson,expectedOutput;public LambdaCodeDraft.TestCase[] testCases;public bool validated,tested,publishRequiresClick=true;}
         public void OpenLambdaEditor(string nodeId)
         {
             var node=Graph.Find(nodeId);if(node==null || node.kind!=ServiceKind.Lambda || Busy || codeBusy || ConfiguringConnection || EditingText)return;
@@ -40,27 +41,27 @@ namespace GuateGeeks.AwsVr
                 if(IsCloud && Deployed && !File.Exists(Path.Combine(CodeDirectory,LambdaCodeDraft.Hash(identity)+".json"))) {
                     codeDraft=LambdaCodeDraft.Load(CodeDirectory,localIdentity,nodeId);codeDraft.baseSource=codeDraft.revisionId="";
                 }
-                codePreviousSource=codeDraft.source;codeLine=codePage=codeTab=codeVersion=0;
+                codePreviousSource=codeDraft.source;codeLine=codePage=codeTab=codeVersion=0;codeTestCase=-1;
                 codeVersions=Array.Empty<AwsCloudApi.CodeVersion>();codeOutput="";codeUpdateStatus="";codeNotice="Borrador local · Python 3.13 · index.py · máximo 8 KiB";ClearCodeReview();
             }
             codePanel.gameObject.SetActive(true);RefreshCodeEditor();
         }
         void BuildCodeEditor()
         {
-            codePanel=Panel(world,"Lambda code studio",new Vector3(0,2.02f,1.05f),new Vector2(1220,1160));codePanel.localScale=Vector3.one*.00112f;
+            codePanel=Focus(Panel(PersonalRoot,"Lambda code studio",new Vector3(0,2.02f,1.05f),new Vector2(1220,1420)));codePanel.localScale=Vector3.one*.00112f;
             codePanel.GetComponent<HoloPanelGraphic>().color=new Color(.02f,.045f,.07f,1);
             codeTitle=Text(codePanel,"LAMBDA / CÓDIGO",new Vector2(0,510),new Vector2(1150,60),30,Cyan);
             string[] tabs={"Código","Cambios","Prueba","Versiones"};for(int i=0;i<tabs.Length;i++){int tab=i;Button(codePanel,tabs[i],new Vector2(-420+i*280,445),new Vector2(260,48),()=>{codeTab=tab;codePage=0;RefreshCodeEditor();});}
             Block(codePanel,new Vector2(0,133),new Vector2(1160,550),new Color(.009f,.022f,.035f,1));
-            codeBody=Text(codePanel,"",new Vector2(0,133),new Vector2(1140,530),25,White);codeBody.richText=false;codeBody.alignment=TMPro.TextAlignmentOptions.TopLeft;
+            codeBody=Text(codePanel,"",new Vector2(0,133),new Vector2(1140,530),25,White);codeBody.richText=true;codeBody.alignment=TMPro.TextAlignmentOptions.TopLeft;
             codeStatus=Text(codePanel,"",new Vector2(0,-194),new Vector2(1140,100),22,Cyan);codeStatus.richText=false;codeStatus.enableAutoSizing=true;codeStatus.fontSizeMin=17;codeStatus.fontSizeMax=22;
-            Button(codePanel,"‹ Página",new Vector2(-460,-135),new Vector2(210,45),()=>{codePage=Math.Max(0,codePage-1);RefreshCodeEditor();});
-            Button(codePanel,"Página ›",new Vector2(460,-135),new Vector2(210,45),()=>{codePage++;RefreshCodeEditor();});
-            Button(codePanel,"Línea −",new Vector2(-470,-282),new Vector2(180,48),()=>{codeLine=Math.Max(0,codeLine-1);codeTab=0;codePage=codeLine/14;RefreshCodeEditor();});
-            Button(codePanel,"Línea +",new Vector2(-275,-282),new Vector2(180,48),()=>{codeLine=Math.Min(codeDraft.source.Split('\n').Length-1,codeLine+1);codeTab=0;codePage=codeLine/14;RefreshCodeEditor();});
-            Button(codePanel,"Editar línea",new Vector2(-60,-282),new Vector2(230,48),EditCodeLine);
-            Button(codePanel,"Insertar línea",new Vector2(190,-282),new Vector2(230,48),()=>{if(codeBusy)return;var lines=codeDraft.source.Split('\n').ToList();lines.Insert(codeLine+1,"");ChangeCode(string.Join("\n",lines));codeLine++;RefreshCodeEditor();});
-            Button(codePanel,"Borrar línea",new Vector2(440,-282),new Vector2(230,48),()=>{if(codeBusy)return;var lines=codeDraft.source.Split('\n').ToList();if(lines.Count>1){lines.RemoveAt(codeLine);ChangeCode(string.Join("\n",lines));codeLine=Math.Min(codeLine,lines.Count-1);RefreshCodeEditor();}});
+            Ghost(Button(codePanel,"‹ Página",new Vector2(-460,-135),new Vector2(210,45),()=>{codePage=Math.Max(0,codePage-1);RefreshCodeEditor();}));
+            Ghost(Button(codePanel,"Página ›",new Vector2(460,-135),new Vector2(210,45),()=>{codePage++;RefreshCodeEditor();}));
+            Ghost(Button(codePanel,"Línea −",new Vector2(-470,-282),new Vector2(180,48),()=>{codeLine=Math.Max(0,codeLine-1);codeTab=0;codePage=codeLine/14;RefreshCodeEditor();}));
+            Ghost(Button(codePanel,"Línea +",new Vector2(-275,-282),new Vector2(180,48),()=>{codeLine=Math.Min(codeDraft.source.Split('\n').Length-1,codeLine+1);codeTab=0;codePage=codeLine/14;RefreshCodeEditor();}));
+            Ghost(Button(codePanel,"Editar línea",new Vector2(-60,-282),new Vector2(230,48),EditCodeLine));
+            Ghost(Button(codePanel,"Insertar línea",new Vector2(190,-282),new Vector2(230,48),()=>{if(codeBusy)return;var lines=codeDraft.source.Split('\n').ToList();lines.Insert(codeLine+1,"");ChangeCode(string.Join("\n",lines));codeLine++;RefreshCodeEditor();}));
+            Ghost(Button(codePanel,"Borrar línea",new Vector2(440,-282),new Vector2(230,48),()=>{if(codeBusy)return;var lines=codeDraft.source.Split('\n').ToList();if(lines.Count>1){lines.RemoveAt(codeLine);ChangeCode(string.Join("\n",lines));codeLine=Math.Min(codeLine,lines.Count-1);RefreshCodeEditor();}}));
             Button(codePanel,"Cargar AWS",new Vector2(-445,-347),new Vector2(270,50),()=>{if(!codeBusy)StartCoroutine(LoadCode(true));});
             Button(codePanel,"Evento JSON",new Vector2(-145,-347),new Vector2(270,50),()=>OpenCodeKeyboard("EVENTO JSON · prueba aislada",codeDraft.eventJson,v=>{codeDraft.eventJson=v;SaveCodeDraft();}));
             Button(codePanel,"Validar",new Vector2(155,-347),new Vector2(270,50),()=>{if(!codeBusy)StartCoroutine(RunCodeOperation("validate"));});
@@ -69,9 +70,46 @@ namespace GuateGeeks.AwsVr
             Button(codePanel,"Elegir versión",new Vector2(0,-411),new Vector2(330,50),()=>{if(codeBusy)return;ClearCodeReview();if(codeVersions.Length>0)codeVersion=(codeVersion+1)%codeVersions.Length;codeTab=3;RefreshCodeEditor();});
             Button(codePanel,"Revisar restauración",new Vector2(375,-411),new Vector2(360,50),()=>ReviewCode("rollback"),Orange);
             codeConfirm=Button(codePanel,"Confirmar código en AWS",new Vector2(0,-474),new Vector2(660,50),ConfirmCodeReview,Orange);
-            Button(codePanel,"Deshacer borrador",new Vector2(-370,-539),new Vector2(360,48),()=>{if(codeBusy)return;string previous=codePreviousSource;ChangeCode(previous);});
-            Button(codePanel,"Guardar borrador",new Vector2(0,-539),new Vector2(330,48),SaveCodeDraft);
-            Button(codePanel,"Cerrar código",new Vector2(375,-539),new Vector2(360,48),()=>codePanel.gameObject.SetActive(false));
+            Ghost(Button(codePanel,"Deshacer borrador",new Vector2(-370,-539),new Vector2(360,48),()=>{if(codeBusy)return;string previous=codePreviousSource;ChangeCode(previous);}));
+            Ghost(Button(codePanel,"Guardar borrador",new Vector2(0,-539),new Vector2(330,48),SaveCodeDraft));
+            Ghost(Button(codePanel,"Exportar .py",new Vector2(-440,-600),new Vector2(270,48),ExportLambdaCode));
+            Ghost(Button(codePanel,"Guardar caso",new Vector2(-145,-600),new Vector2(270,48),SaveLambdaTestCase));
+            Ghost(Button(codePanel,"Elegir caso",new Vector2(155,-600),new Vector2(270,48),SelectLambdaTestCase));
+            Ghost(Button(codePanel,"Salida esperada",new Vector2(450,-600),new Vector2(270,48),()=>OpenCodeKeyboard("SALIDA ESPERADA JSON · vacío: solo ejecución",codeDraft.expectedOutput,v=>{codeDraft.expectedOutput=v;SaveCodeDraft();})));
+            Button(codePanel,"Borrar caso",new Vector2(-370,-665),new Vector2(360,48),()=>{
+                if(codeBusy || codeTestCase<0 || codeTestCase>=(codeDraft.testCases?.Length??0))return;
+                codeDraft.testCases=codeDraft.testCases.Where((c,i)=>i!=codeTestCase).ToArray();codeTestCase=-1;SaveCodeDraft();
+            });
+            Button(codePanel,"Evento ejemplo",new Vector2(0,-665),new Vector2(330,48),()=>{
+                if(codeBusy)return;var example=IntegrationKnowledge.Retrieve(Graph,codeNodeId).FirstOrDefault(e=>e.toId==codeNodeId && e.eventJson!="{}");
+                if(example==null){codeNotice="Conecta una fuente compatible para obtener su evento de ejemplo.";RefreshCodeEditor();return;}
+                codeDraft.eventJson=example.eventJson;codeDraft.expectedOutput="";codeTestCase=-1;codeOutput="";codeTab=2;codePage=0;SaveCodeDraft();
+            });
+            Ghost(Button(codePanel,"Cerrar código",new Vector2(375,-539),new Vector2(360,48),()=>codePanel.gameObject.SetActive(false)));
+        }
+        void ExportLambdaCode()
+        {
+            if(codeBusy || codeDraft==null)return;
+            try {string directory=Path.Combine(Application.persistentDataPath,"lambda-exports",LambdaCodeDraft.Hash(codeIdentity));Directory.CreateDirectory(directory);File.WriteAllText(Path.Combine(directory,"index.py"),codeDraft.source,new System.Text.UTF8Encoding(false));File.WriteAllText(Path.Combine(directory,"tests.json"),JsonUtility.ToJson(codeDraft,true));codeNotice="Exportado localmente: "+directory;}
+            catch(IOException){codeNotice="No se pudo exportar el código.";}RefreshCodeEditor();
+        }
+        void SaveLambdaTestCase()
+        {
+            if(codeBusy || codeDraft==null)return;
+            OpenCodeKeyboard("NOMBRE DEL CASO · máximo 12 casos", "Caso "+((codeDraft.testCases?.Length??0)+1),name=>{
+                if(string.IsNullOrWhiteSpace(name) || name.Length>80){codeNotice="Nombre requerido de hasta 80 caracteres.";return;}
+                var cases=(codeDraft.testCases??Array.Empty<LambdaCodeDraft.TestCase>()).ToList();int index=cases.FindIndex(c=>c.name==name);
+                if(index<0 && cases.Count>=12){codeNotice="Máximo 12 casos; usa un nombre existente para reemplazar.";return;}
+                var test=new LambdaCodeDraft.TestCase{name=name,eventJson=codeDraft.eventJson,expectedOutput=codeDraft.expectedOutput};
+                if(index<0){cases.Add(test);index=cases.Count-1;}else cases[index]=test;
+                codeDraft.testCases=cases.ToArray();codeTestCase=index;SaveCodeDraft();codeTab=2;
+            });
+        }
+        void SelectLambdaTestCase()
+        {
+            if(codeBusy || codeDraft==null || (codeDraft.testCases?.Length??0)==0)return;
+            codeTestCase=(codeTestCase+1)%codeDraft.testCases.Length;var test=codeDraft.testCases[codeTestCase];
+            codeDraft.eventJson=test.eventJson;codeDraft.expectedOutput=test.expectedOutput;codeOutput="";codeTab=2;codePage=0;SaveCodeDraft();
         }
         void ChangeCode(string source)
         {
@@ -97,11 +135,11 @@ namespace GuateGeeks.AwsVr
             if(!codePanel || codeDraft==null)return;
             codeTitle.text="LAMBDA / "+(Graph.Find(codeNodeId)?.name??codeNodeId)+" · LÍNEA "+(codeLine+1);
             string content=codeTab==0?string.Join("\n",codeDraft.source.Split('\n').Select((s,i)=>(i==codeLine?"> ":"  ")+(i+1).ToString("D3")+"  "+s)):
-                codeTab==1?codeDraft.Difference():codeTab==2?"Evento:\n"+codeDraft.eventJson+"\n\n"+codeOutput:
+                codeTab==1?codeDraft.Difference():codeTab==2?"Caso: "+(codeTestCase>=0 && codeTestCase<(codeDraft.testCases?.Length??0)?codeDraft.testCases[codeTestCase].name:"sin guardar")+"\nEvento:\n"+codeDraft.eventJson+"\nEsperado:\n"+(string.IsNullOrEmpty(codeDraft.expectedOutput)?"Sin aserción":codeDraft.expectedOutput)+"\n\n"+codeOutput:
                 codeVersions.Length==0?"Carga AWS para ver sus versiones publicadas.":string.Join("\n",codeVersions.Select((v,i)=>(i==codeVersion?"> ":"  ")+"Versión "+v.version+" · "+v.description));
             // Wrap long source/diff lines into readable continuations; never hide review text.
             var lines=content.Split('\n').SelectMany(line=>Enumerable.Range(0,Math.Max(1,(line.Length+81)/82)).Select(part=>(part>0?"↳ ":"")+line.Substring(Math.Min(part*82,line.Length),Math.Min(82,Math.Max(0,line.Length-part*82))))).ToArray();codePage=Mathf.Clamp(codePage,0,Math.Max(0,(lines.Length-1)/14));
-            codeBody.text=string.Join("\n",lines.Skip(codePage*14).Take(14));
+            codeBody.text=string.Join("\n",lines.Skip(codePage*14).Take(14).Select(line=>codeTab==0?CodePresentation.Highlight(line):codeTab==1 && (line.StartsWith("+ ") || line.StartsWith("− "))?"<color=#"+(line.StartsWith("+ ")?"A8DF9B":"FF9292")+">"+CodePresentation.Escape(line)+"</color>":CodePresentation.Escape(line)));
             codeStatus.text=(codeBusy?"OPERACIÓN EN CURSO · ":"")+codeNotice;
             codeConfirm.SetAvailable(CanConfirmCode);
         }
@@ -115,7 +153,7 @@ namespace GuateGeeks.AwsVr
         {
             if(codeBusy || ConfiguringConnection || EditingText)return;
             Rig.ReleaseForConfiguration();if(designKeyboard)Destroy(designKeyboard.gameObject);
-            designKeyboard=Panel(world,"Code keyboard",new Vector3(0,1.9f,1.1f),new Vector2(1160,900));
+            designKeyboard=Focus(Panel(PersonalRoot,"Code keyboard",new Vector3(0,1.9f,1.1f),new Vector2(1160,900)));
             keyboardCodeMode=true;codeCaps=false;keyboardValue=value;keyboardLimit=4096;acceptKeyboard=accept;
             Text(designKeyboard,title,new Vector2(0,390),new Vector2(1090,55),24,Cyan);
             keyboardText=Text(designKeyboard,value,new Vector2(0,306),new Vector2(1090,100),23,White);keyboardText.richText=false;
@@ -166,14 +204,17 @@ namespace GuateGeeks.AwsVr
             if(codeBusy || codeDraft==null || !IsCloud || !SessionReady || !CodeTargetCurrent){codeNotice="Abre una Lambda y conecta AWS antes de continuar.";RefreshCodeEditor();completed?.Invoke(AssistantReply("blocked",codeNotice));yield break;}
             if((operation=="publish" || operation=="rollback") && (!confirmed || !Deployed)){completed?.Invoke(AssistantReply("blocked","Confirma en el editor de código."));yield break;}
             int epoch=codeEpoch;codeBusy=true;string sourceHash=LambdaCodeDraft.Hash(codeDraft.source);var reader=codeReader=Cloud.CreateInspectionReader();codeNotice="Procesando "+operation+"…";RefreshCodeEditor();
-            var request=new AwsCloudApi.CodeRequest{source=codeDraft.source,eventJson=codeDraft.eventJson,stackId=codeStack,resourceId=codeNodeId,revisionId=codeDraft.revisionId,
+            var request=new AwsCloudApi.CodeRequest{source=codeDraft.source,eventJson=codeDraft.eventJson,expectedOutput=codeDraft.expectedOutput,stackId=codeStack,resourceId=codeNodeId,revisionId=codeDraft.revisionId,
                 version=codeVersions.Length>0?codeVersions[codeVersion].version:"",confirmed=confirmed};
             AwsCloudApi.CodeResult result=null;string error=null;yield return reader.CodeOperation(operation,request,(r,e)=>{result=r;error=e;});
             reader.Disconnect();if(epoch!=codeEpoch)yield break;codeReader=null;
             if(!CodeTargetCurrent){codeBusy=false;completed?.Invoke(AssistantReply("stale","La sesión cambió. Consulta AWS antes de reintentar."));yield break;}
             if(result==null){codeBusy=false;if(operation=="publish" || operation=="rollback")codeUpdateStatus="";codeNotice=error??"Sin respuesta. Consulta AWS antes de reintentar una publicación.";RefreshCodeEditor();completed?.Invoke(AssistantReply("error",codeNotice));yield break;}
             if(result.valid && sourceHash==LambdaCodeDraft.Hash(codeDraft.source))codeDraft.validatedHash=sourceHash;
-            if(operation=="test") {codeDraft.testedHash=result.passed?LambdaCodeDraft.Hash(codeDraft.source+"\n"+codeDraft.eventJson):"";codeOutput=result.message+"\n"+result.output+"\n"+result.logs;codeTab=2;codePage=0;}
+            if(operation=="test") {
+                if(result.passed && !string.IsNullOrEmpty(codeDraft.expectedOutput) && !result.expectedChecked){result.passed=false;result.message="El backend no verificó la salida esperada. Actualiza el backend antes de aprobar este caso.";}
+                codeDraft.testedHash=result.passed?codeDraft.TestHash:"";codeOutput=result.message+"\n"+result.output+"\n"+result.logs;codeTab=2;codePage=0;
+            }
             if(operation=="publish" || operation=="rollback") {
                 codeDraft.rollbackVersion=result.rollbackVersion;codeNotice=result.message;RefreshCodeEditor();
                 codeUpdateStatus="InProgress";
@@ -204,7 +245,7 @@ namespace GuateGeeks.AwsVr
             OpenLambdaEditor(request.nodeId);
             if(name=="get_lambda_code") {
                 if(Deployed)yield return LoadCode(string.IsNullOrEmpty(codeDraft.revisionId) && codeDraft.source==LambdaCodeDraft.Starter);
-                completed(JsonUtility.ToJson(new CodeContext{nodeId=codeNodeId,source=RedactAssistantData(codeDraft.source),sourceHash=LambdaCodeDraft.Hash(codeDraft.source),revisionId=codeDraft.revisionId,eventJson=RedactAssistantData(codeDraft.eventJson),validated=codeDraft.Validated,tested=codeDraft.Tested}));yield break;
+                completed(JsonUtility.ToJson(new CodeContext{nodeId=codeNodeId,source=RedactAssistantData(codeDraft.source),sourceHash=LambdaCodeDraft.Hash(codeDraft.source),revisionId=codeDraft.revisionId,eventJson=RedactAssistantData(codeDraft.eventJson),expectedOutput=RedactAssistantData(codeDraft.expectedOutput),testCases=(codeDraft.testCases??Array.Empty<LambdaCodeDraft.TestCase>()).Select(c=>new LambdaCodeDraft.TestCase{name=RedactAssistantData(c.name),eventJson=RedactAssistantData(c.eventJson),expectedOutput=RedactAssistantData(c.expectedOutput)}).ToArray(),validated=codeDraft.Validated,tested=codeDraft.Tested}));yield break;
             }
             if(request.action=="validate" || request.action=="test"){yield return RunCodeOperation(request.action,false,completed);yield break;}
             if(request.action=="review_publish" || request.action=="review_rollback"){ReviewCode(request.action=="review_publish"?"publish":"rollback");completed(AssistantReply("review_opened",codeNotice));yield break;}

@@ -10,6 +10,10 @@ namespace GuateGeeks.AwsVr
     [Serializable] public sealed class LambdaCodeDraft
     {
         public const string Starter="import json\n\ndef handler(event, context):\n    return {\"statusCode\": 200, \"body\": json.dumps(event)}\n";
+        [Serializable] public sealed class TestCase {public string name,eventJson,expectedOutput;}
+        public TestCase[] testCases=Array.Empty<TestCase>();
+        public string expectedOutput="";
+        public string TestHash=>Hash(source+"\n"+eventJson+(string.IsNullOrEmpty(expectedOutput)?"":"\nexpected:"+expectedOutput));
         public string nodeId,source=Starter,baseSource="",revisionId="",eventJson="{\"amount\": 21}",validatedHash="",testedHash="",rollbackVersion="";
         public static string Hash(string source)
         {
@@ -17,16 +21,11 @@ namespace GuateGeeks.AwsVr
         }
         public static bool Readable(string source)=>!string.IsNullOrWhiteSpace(source) && Encoding.UTF8.GetByteCount(source)<=8192 && source.IndexOf('\0')<0;
         public bool Validated=>validatedHash==Hash(source);
-        public bool Tested=>testedHash==Hash(source+"\n"+eventJson);
+        public bool Tested=>testedHash==TestHash;
         public void Edit(string value){if(!Readable(value))throw new ArgumentException("Código requerido de hasta 8 KiB.");source=value;validatedHash=testedHash="";}
         public string Difference()
         {
-            var before=(baseSource??"").Split('\n');var after=(source??"").Split('\n');var result=new StringBuilder();
-            for(int i=0;i<Math.Max(before.Length,after.Length);i++) {
-                string old=i<before.Length?before[i]:null,next=i<after.Length?after[i]:null;
-                if(old==next)continue;if(old!=null)result.AppendLine("− "+(i+1)+": "+old);if(next!=null)result.AppendLine("+ "+(i+1)+": "+next);
-            }
-            return result.Length==0?"Sin cambios de código.":result.ToString();
+            return CodePresentation.Difference(baseSource,source);
         }
         public void Save(string directory,string identity)
         {

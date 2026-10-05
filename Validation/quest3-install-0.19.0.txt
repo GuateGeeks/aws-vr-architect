@@ -1,0 +1,28 @@
+2026-10-05T17:12:15.1423963Z | install-quest
+> adb devices
+List of devices attached
+2G0YC5ZG9J06XL	device
+> adb -s 2G0YC5ZG9J06XL shell getprop ro.product.model
+Quest 3
+> adb -s 2G0YC5ZG9J06XL install -r "C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Builds\Quest3\GuateGeeksAWSVR-Quest3.apk"
+Performing Streamed Install
+Success
+> adb -s 2G0YC5ZG9J06XL shell am start -W -n com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity
+Starting: Intent { cmp=com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity
+TotalTime: 137
+WaitTime: 155
+Complete
+> adb -s 2G0YC5ZG9J06XL shell dumpsys package com.guategeeks.awsarchitectlab | grep version
+versionCode=21 minSdk=32 targetSdk=36
+    versionName=0.19.0
+    signatures=PackageSignatures{7eed31a version:2, signatures:[e39a30ed], past signatures:[]}
+> adb -s 2G0YC5ZG9J06XL shell pm path com.guategeeks.awsarchitectlab
+package:/data/app/~~1S98eT1pV7vijQkPs43jdQ==/com.guategeeks.awsarchitectlab-CxMJaeAs97h1zlwR9HInqQ==/base.apk
+> adb -s 2G0YC5ZG9J06XL shell sha256sum /data/app/~~1S98eT1pV7vijQkPs43jdQ==/com.guategeeks.awsarchitectlab-CxMJaeAs97h1zlwR9HInqQ==/base.apk
+d037cb1ca8190ed66b45eea1a3aac5e41ad69e45c4a0324cc37dfab244b3a668  /data/app/~~1S98eT1pV7vijQkPs43jdQ==/com.guategeeks.awsarchitectlab-CxMJaeAs97h1zlwR9HInqQ==/base.apk
+Local APK SHA-256: d037cb1ca8190ed66b45eea1a3aac5e41ad69e45c4a0324cc37dfab244b3a668
+Installed base.apk SHA-256: d037cb1ca8190ed66b45eea1a3aac5e41ad69e45c4a0324cc37dfab244b3a668
+VERIFIED: installed APK matches the built APK. Launch requested: Status ok.

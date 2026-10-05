@@ -16,6 +16,19 @@ SOURCE = 'def handler(event, context):\n    return {"total": event.get("amount",
 class AuthoringTests(unittest.TestCase):
     setUp = baseline.ApiTests.setUp
     event = baseline.ApiTests.event
+    def test_expected_output_matches_json_and_rejects_mismatch(self):
+        for expected, passed in [('{"total":42}', True), ('{"total":43}', False), ('{"total":true}', False)]:
+            client = MagicMock()
+            client.invoke.return_value = {'Payload': io.BytesIO(json.dumps({'passed': True, 'output': '{"total":42}'}).encode())}
+            with patch.dict(os.environ, CODE_TEST_FUNCTION='isolated-test'), patch.object(app, 'client', return_value=client):
+                result = authoring.test_draft({'source': SOURCE, 'eventJson': '{"amount":21}', 'expectedOutput': expected}, app)
+            self.assertEqual(passed, result['passed'])
+
+    def test_invalid_expected_output_never_invokes_runner(self):
+        with patch.object(app, 'client') as client:
+            with self.assertRaises(app.ApiError):
+                authoring.test_draft({'source': SOURCE, 'expectedOutput': 'NaN'}, app)
+            client.assert_not_called()
     def test_routes_require_authentication_and_source_ip(self):
         for path in ('/v1/code/test', '/v1/code/validate', '/v1/deployments/1/code/publish'):
             event = self.event('POST', path, {'source': SOURCE})

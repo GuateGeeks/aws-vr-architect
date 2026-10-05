@@ -19,6 +19,8 @@ namespace GuateGeeks.AwsVr
         int cursor,head,tail,count,captured,sent;
         float peak,level;
         bool overflow;
+        bool transmit = true;
+        public void SetTransmissionEnabled(bool enabled) { lock(gate) { transmit=enabled; if(!enabled) {head=tail=count=0;level=0;} } }
         public int CapturedSamples {get {lock(gate)return captured;}}
         public int SentSamples {get {lock(gate)return sent;}}
         public float Peak {get {lock(gate)return peak;}}
@@ -45,7 +47,7 @@ namespace GuateGeeks.AwsVr
                     var frame=frames[tail];float energy=0;
                     for(int i=0;i<FrameSamples;i++) {
                         float sample=0;for(int channel=0;channel<clip.channels;channel++)sample+=capture[i*clip.channels+channel];
-                        sample/=clip.channels;frame[i]=sample;energy+=sample*sample;peak=Math.Max(peak,Math.Abs(sample));
+                        sample=transmit ? sample/clip.channels : 0;frame[i]=sample;energy+=sample*sample;peak=Math.Max(peak,Math.Abs(sample));
                     }
                     level=(float)Math.Sqrt(energy/FrameSamples);captured+=FrameSamples;
                     tail=(tail+1)%frames.Length;count++;

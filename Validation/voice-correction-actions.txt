@@ -1,1 +1,1 @@
-{"scale":0.75,"arrange":false,"baseRevision":1}
+pending=1; transcript=Cambia el tamaño visual de todos los componentes al cincuenta por ciento y mejora el setenta y cinco por ciento. No los reordenes.; args={"scale":0.75,"arrange":false,"baseRevision":1}

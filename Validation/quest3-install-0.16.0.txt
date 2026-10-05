@@ -1,0 +1,10 @@
+Performing Streamed Install
+Success
+Starting: Intent { cmp=com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.guategeeks.awsarchitectlab/com.unity3d.player.UnityPlayerGameActivity
+TotalTime: 145
+WaitTime: 178
+Complete
+Demo instalada; apertura solicitada en Meta Quest 3. Comprueba el laboratorio dentro del visor. CONEXIÓN AWS permite configurar la API desde VR y recordar la credencial cifrada opcionalmente.

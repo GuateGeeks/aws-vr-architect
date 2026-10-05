@@ -35,21 +35,22 @@ namespace GuateGeeks.AwsVr
             for (int i = 0; i < names.Length; i++)
             {
                 var position = new Vector2(left + widths[i] / 2, -143);var size = new Vector2(widths[i], 48);
-                if (names[i] == "ATLAS IA") assistantDock=Button(dock,names[i],position,size,actions[i]);
-                else if (names[i] == "Ajustes") Button(dock, names[i], position, size, actions[i]);
-                else EditButton(dock, names[i], position, size, actions[i]);
+                if (names[i] == "ATLAS IA") assistantDock=Button(dock,names[i],position,size,actions[i],Ice);
+                else if (names[i] == "Ajustes") Ghost(Button(dock, names[i], position, size, actions[i]));
+                else Ghost(EditButton(dock, names[i], position, size, actions[i]));
                 left += widths[i] + 10;
             }
         }
         void ToggleSettings() => ToggleUnifiedSettings();
         public void StartPlacement(ServiceKind kind)
         {
-            if (Busy || EditingText || ConfiguringConnection) return;
+            if (Busy || RoomReadOnly || EditingText || ConfiguringConnection) return;
             if (Graph.nodes.Count >= Architecture.MaxNodes) { SetStatus("Mesa llena: máximo 12 objetos."); return; }
             CancelPlacement(); ConnectingMode = false; connectionSource = null; RefreshSelection(); Rig.ReleaseForConfiguration();
             placementKind = kind;
             placementGhost = Shape(world, "Placement preview", PrimitiveType.Cube, new Vector3(0, 1.45f, 2), Vector3.one * .38f * ComponentScale, ServiceCatalog.Get(kind).Color).transform;
             placementGhost.GetComponent<Renderer>().sharedMaterial = SpecialMaterial("LabHologram", ServiceCatalog.Get(kind).Color);
+            AwsServiceEmblem.Create(placementGhost, kind, .92f / .38f); // full-size emblem inside the unit-scaled ghost volume
             ClearInspector(); Text(inspector, "CREAR / " + ServiceCatalog.Get(kind).Name, new Vector2(0, 320), new Vector2(506, 80), 30, Cyan);
             Text(inspector, "Apunta al espacio de la mesa.\nGatillo sobre espacio libre: colocar.\n\nB / Y / Esc: cancelar.\nTodavía no se ha creado el objeto.", new Vector2(0, 105), new Vector2(506, 250), 25, White);
             Button(inspector, "Confirmar ubicación", new Vector2(0, -150), new Vector2(506, 65), ConfirmPlacement, Green);
@@ -62,8 +63,16 @@ namespace GuateGeeks.AwsVr
             if (!Placing || Busy) return;
             var point = placementGhost.localPosition;
             if (Graph.nodes.Any(n => Vector3.Distance(n.position, point) < .48f*ComponentScale)) { SetStatus("Elige un espacio libre: el objeto está demasiado cerca de otro."); return; }
-            Remember(); var node = Graph.Add(placementKind, point); CancelPlacement(); CreateView(node); Changed(); selected = views[node.id]; draftId = null;
+            Remember(); var node = Graph.Add(placementKind, point); node.setting=PlayerPrefs.GetInt("GuateGeeks.ComponentDefault."+(int)node.kind,0);node.setting=Mathf.Clamp(node.setting,0,DesignSemantics.OptionCount(node.kind)-1); CancelPlacement(); CreateView(node); Changed(); selected = views[node.id]; draftId = null;
             RefreshSelection(); CloseWorkspace(); SetStatus(node.name + " creado. Define sus propiedades y conexiones."); Feedback.Play(1);
+            HoloPulse.Spawn(world, node.position + Vector3.down * .27f * EffectiveScale(node), .15f, .6f, ServiceCatalog.Get(node.kind).Color, .02f, 0, .55f);
+        }
+        public void RemoveSelectedComponent()
+        {
+            if(!selected || !AssistantCanEdit)return;
+            string name=selected.Model.name,id=selected.Model.id;int links=Graph.links.Count(l=>l.from==id || l.to==id);
+            Remember();var next=Graph.Copy();next.Remove(id);SetGraph(next);
+            SetStatus(name+" quitado del diseño con "+links+" conexiones. Deshacer recupera el objeto; AWS no cambió.");
         }
         void CancelPlacement() { if (placementGhost) { placementGhost.gameObject.SetActive(false); Destroy(placementGhost.gameObject); placementGhost = null; } }
         void PrepareDraft()
@@ -76,7 +85,8 @@ namespace GuateGeeks.AwsVr
             PrepareDraft(); var node = selected.Model; var def = ServiceCatalog.Get(node.kind);
             var name = EditButton(inspector, "Nombre: " + draftName, new Vector2(0, 315), new Vector2(506, 62), () => OpenDesignKeyboard("NOMBRE VISIBLE / NO ES EL NOMBRE FÍSICO AWS", draftName, 80, v => { draftName = v; ShowInspector(); }));
             name.Label.richText = false; name.Label.fontSizeMax = 22; name.Label.enableAutoSizing = true; name.Label.fontSizeMin = 12;
-            Text(inspector, def.Name + " / " + def.Category, new Vector2(0, 255), new Vector2(506, 38), 19, def.Color);
+            AwsServiceIcons.Add(inspector, node.kind, new Vector2(-229, 255), 42);
+            Text(inspector, def.Name + " / " + def.Category, new Vector2(29, 255), new Vector2(448, 38), 19, def.Color);
             Text(inspector, def.SettingLabel.ToUpperInvariant() + " · elige y aplica", new Vector2(0, 210), new Vector2(506, 35), 17, Muted);
             int count = DesignSemantics.OptionCount(node.kind);
             for (int i = 0; i < count; i++) {
@@ -86,8 +96,10 @@ namespace GuateGeeks.AwsVr
             }
             EditButton(inspector, "Aplicar cambios", new Vector2(-130, 20), new Vector2(245, 54), ApplyDefinition, Green);
             EditButton(inspector, "Cancelar edición", new Vector2(130, 20), new Vector2(245, 54), () => { draftId = null; ShowInspector(); SetStatus("Edición descartada."); });
-            EditButton(inspector, "Relaciones", new Vector2(-130, -53), new Vector2(245, 54), () => ShowRelations(0));
-            EditButton(inspector, "Ayuda / ficha", new Vector2(130, -53), new Vector2(245, 54), ShowDefinitionHelp);
+            Ghost(EditButton(inspector,"Usar ajuste al crear",new Vector2(-130, -109),new Vector2(245,42),()=>{PlayerPrefs.SetInt("GuateGeeks.ComponentDefault."+(int)node.kind,draftSetting);PlayerPrefs.Save();SetStatus("Configuración predeterminada guardada para nuevos "+def.Name+".");}));
+            EditButton(inspector,"Quitar objeto",new Vector2(130,-109),new Vector2(245,42),RemoveSelectedComponent,Orange);
+            Ghost(EditButton(inspector, "Relaciones", new Vector2(-130, -53), new Vector2(245, 54), () => ShowRelations(0)));
+            Ghost(EditButton(inspector, "Ayuda / ficha", new Vector2(130, -53), new Vector2(245, 54), ShowDefinitionHelp));
         }
         public void ApplyDefinition()
         {
@@ -111,7 +123,8 @@ namespace GuateGeeks.AwsVr
         }
         void PositionInspector()
         {
-            if (inspectorPinned || !selected || objectInspector.GetComponent<LabMenu>().Grabbed) return;
+            // In a shared room the inspector stays on your console instead of flying to an object in a neighbour's sector.
+            if (inspectorPinned || !selected || SharedSpace.SharedRoomActive || objectInspector.GetComponent<LabMenu>().Grabbed) return;
             objectInspector.position = selected.transform.position + new Vector3(.95f, .1f, -.35f);
             var direction = objectInspector.position - Rig.ViewCamera.transform.position; direction.y = 0;
             if (direction.sqrMagnitude > .01f) objectInspector.rotation = Quaternion.LookRotation(direction);
@@ -171,9 +184,10 @@ namespace GuateGeeks.AwsVr
             SetStatus("PREVISUALIZACIÓN DEL DISEÑO · cápsulas ilustrativas · no es tráfico AWS observado");
         }
         public void StopFlowPreview() { flowRemaining = 0; foreach (var link in linkViews) link.StopPreview(); if (Graph != null && countsText) UpdateCounts(); }
-        void Update() { TickGuide(); TickAssistant();TickCodeEditor(); if (flowRemaining > 0) { flowRemaining -= Time.unscaledDeltaTime; if (flowRemaining <= 0) { StopFlowPreview(); SetStatus("Previsualización finalizada. Edita o revisa tu arquitectura."); } } }
+        void Update() { TickNetworkRoom(); TickGuide(); TickAssistant();TickCodeEditor();TickContextRing();AnimateAssistantCore();TickTableTraces();TickCollab(); if (flowRemaining > 0) { flowRemaining -= Time.unscaledDeltaTime; if (flowRemaining <= 0) { StopFlowPreview(); SetStatus("Previsualización finalizada. Edita o revisa tu arquitectura."); } } }
         void ArrangeDesign()
         {
+            if (RoomReadOnly) return;
             if (views.Values.Any(v => v.Grabbed)) { SetStatus("Suelta los objetos antes de ordenar."); return; }
             Remember();
             for (int i = 0; i < Graph.nodes.Count; i++) { var n = Graph.nodes[i]; n.position = TablePosition(i); views[n.id].transform.localPosition = n.position; }
@@ -191,7 +205,7 @@ namespace GuateGeeks.AwsVr
                 var title = Text(inspector, entry.name, new Vector2(0, 205), new Vector2(506, 75), 28, White); title.richText = false; title.fontSizeMax = 28; title.enableAutoSizing = true;
                 DrawThumbnail(entry.architecture);
                 Text(inspector, (libraryPage + 1) + " / " + entries.Count + " · " + entry.architecture.nodes.Count + " objetos · " + entry.architecture.region, new Vector2(0, -75), new Vector2(506, 40), 19, Muted);
-                EditButton(inspector, "Abrir este diseño", new Vector2(0, -143), new Vector2(506, 60), () => { Remember(); var next = entry.architecture.Copy(); foreach (var n in next.nodes) n.position = ClampWorkspace(n.position); SetGraph(next); SetStatus("Diseño abierto. Deshacer recupera el anterior; no se ha desplegado."); });
+                EditButton(inspector, "Abrir este diseño", new Vector2(0, -143), new Vector2(506, 60), () => { roomGlobal=NetworkRoom!=null; Remember(); var next = entry.architecture.Copy(); foreach (var n in next.nodes) n.position = ClampWorkspace(n.position); SetGraph(next); SetStatus("Diseño abierto. Deshacer recupera el anterior; no se ha desplegado."); });
                 EditButton(inspector, "← Anterior", new Vector2(-130, -225), new Vector2(245, 55), () => ShowLibrary(libraryPage - 1));
                 EditButton(inspector, "Siguiente →", new Vector2(130, -225), new Vector2(245, 55), () => ShowLibrary(libraryPage + 1));
             } else Text(inspector, "Guarda tus diseños para volver a abrirlos aquí. Se conserva su disposición espacial. No se guardan credenciales.", new Vector2(0, 40), new Vector2(506, 280), 26, White);
@@ -211,14 +225,14 @@ namespace GuateGeeks.AwsVr
             float minZ = graph.nodes.Min(n => n.position.z), maxZ = graph.nodes.Max(n => n.position.z);
             foreach (var n in graph.nodes) positions[n.id] = new Vector2(Mathf.InverseLerp(minX - .2f, maxX + .2f, n.position.x) * 420 - 210, Mathf.InverseLerp(minZ - .2f, maxZ + .2f, n.position.z) * 150 - 25);
             foreach (var l in graph.links) { var a = positions[l.from]; var b = positions[l.to]; var bar = Block(inspector, (a + b) / 2, new Vector2((b - a).magnitude, 2), Muted); bar.rectTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg); }
-            foreach (var n in graph.nodes) { Block(inspector, positions[n.id], new Vector2(48, 34), PanelColor); Text(inspector, ServiceCatalog.Get(n.kind).Glyph, positions[n.id], new Vector2(48, 34), 18, ServiceCatalog.Get(n.kind).Color, TextAnchor.MiddleCenter); }
+            foreach (var n in graph.nodes) AwsServiceIcons.Add(inspector, n.kind, positions[n.id], 34);
         }
         void OpenDesignKeyboard(string title, string value, int limit, Action<string> accept, bool allowEmpty = false, string acceptLabel = "Aceptar nombre", string cancelLabel = "Cancelar nombre")
         {
             keyboardCodeMode=false;
             Rig.ReleaseForConfiguration(); ConnectingMode = false; connectionSource = null; RefreshSelection();
             if (designKeyboard) { designKeyboard.gameObject.SetActive(false); Destroy(designKeyboard.gameObject); }
-            designKeyboard = Panel(world, "Design keyboard", new Vector3(0, 1.9f, 1.15f), new Vector2(1000, 740));
+            designKeyboard = Focus(Panel(PersonalRoot, "Design keyboard", new Vector3(0, 1.9f, 1.15f), new Vector2(1000, 740)));
             keyboardValue = value; keyboardLimit = limit; acceptKeyboard = accept;
             Text(designKeyboard, title, new Vector2(0, 315), new Vector2(920, 60), 24, Cyan);
             keyboardText = Text(designKeyboard, value, new Vector2(0, 228), new Vector2(920, 96), 26, White); keyboardText.richText = false;

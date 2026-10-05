@@ -1,0 +1,24 @@
+PASS deployed assistant/authoring/inspection/compiler/workload source matches release
+{
+  "timestamp": "2026-10-04T19:43:28.845460+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "deployedSourceMatches": true,
+  "slots": [
+    {
+      "slot": "1",
+      "status": "ABSENT"
+    },
+    {
+      "slot": "2",
+      "status": "ABSENT"
+    },
+    {
+      "slot": "3",
+      "status": "ABSENT"
+    }
+  ],
+  "inspectionChecks": []
+}
+No workload was created, invoked, changed or deleted.
+PASS all existing stack parameters preserved
+PASS authenticated voice broker; model=gpt-realtime-2.1

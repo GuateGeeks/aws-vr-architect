@@ -1,0 +1,26 @@
+[
+    {
+        "ParameterKey": "AllowedCidr",
+        "ParameterValue": "186.151.64.244/32"
+    },
+    {
+        "ParameterKey": "OpenAIRealtimeModel",
+        "ParameterValue": "gpt-realtime-2.1"
+    },
+    {
+        "ParameterKey": "MonthlyBudgetUsd",
+        "ParameterValue": "10"
+    },
+    {
+        "ParameterKey": "BudgetEmail",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "DemoPrefix",
+        "ParameterValue": "ggawsday"
+    },
+    {
+        "ParameterKey": "OpenAISecretArn",
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:590183968738:secret:ggawsday-openai-realtime-j0Qehj"
+    }
+]

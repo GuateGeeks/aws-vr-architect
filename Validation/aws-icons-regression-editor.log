@@ -1,0 +1,1611 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 52892)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 32020)
+VBCSCompiler prewarm took 16.43 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.3f1 (45d8eee7de74) revision 4577518'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-adawolfs" at "2026-10-05T02:13:25.9376479Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'en' Physical Memory: 32673 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-05T02:13:25Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 33772, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              05e090ffa354497a89e3502f9d8f07e4
+  Correlation Id:          0e7cccdef079c541bc30904a51710806
+  External correlation Id: 2368916032804681252
+  Machine Id:              u3ln1R3H6dO0AvGtRo33k7+r6Io=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-adawolfs" (connect: 0.00s, validation: 0.00s, handshake: 0.05s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-adawolfs-notifications" at "2026-10-05T02:13:25.989849Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4673115652041-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Module] Licensing Background thread has ended after 0.06s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.3f1\Editor\Unity.exe
+-batchmode
+-projectPath
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR
+-runTests
+-testPlatform
+PlayMode
+-testFilter
+GuateGeeks.AwsVr.Tests.LabExperienceTests
+-testResults
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Validation/AwsIcons-regression-results.xml
+-logFile
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Validation/aws-icons-regression-editor.log
+Successfully changed project path to: C:/Users/adawolfs/Unity/GuateGeeksAWSVR
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [32272]  Target information:
+
+Player connection [32272]  * "[IP] 192.168.5.150 [Port] 55504 [Flags] 2 [Guid] 1319366913 [EditorId] 1319366913 [Version] 1048832 [Id] WindowsEditor(7,DEATH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [32272]  * "[IP] 172.28.224.1 [Port] 55504 [Flags] 2 [Guid] 1319366913 [EditorId] 1319366913 [Version] 1048832 [Id] WindowsEditor(7,DEATH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [32272]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 1319366913 [EditorId] 1319366913 [Version] 1048832 [Id] WindowsEditor(7,DEATH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [32272] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [32272] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-37436" after 0.3 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/Users/adawolfs/Unity/GuateGeeksAWSVRUnity Data Store running and initialised
+[Licensing::Client] Successfully resolved entitlement details
+Refreshing native plugins compatible for Editor in 3.67 ms, found 0 plugins.
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.3f1 (45d8eee7de74)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3060 Ti (ID=0x2486)
+    Vendor:   NVIDIA
+    VRAM:     8024 MB
+    Driver:   32.0.15.9186
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56436
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Registered in 0.003900 seconds.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.899 seconds
+Domain Reload Profiling: 1651ms
+	BeginReloadAssembly (168ms)
+		CreateAndSetChildDomain (11ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (22ms)
+	initialDomainReloadingComplete (95ms)
+	LoadAllAssembliesAndSetupDomain (459ms)
+		LoadAssemblies (153ms)
+		TypeCache.Refresh (328ms)
+			TypeCache.ScanAssembly (311ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (901ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			BeforeProcessingInitializeOnLoad (142ms)
+			ProcessInitializeOnLoadAttributes (168ms)
+			ProcessInitializeOnLoadMethodAttributes (297ms)
+			EditorAssembliesLoaded (3ms)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 70 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.14 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.ai.navigation@134dd6a3b97b)
+    com.unity.collab-proxy@2.13.6 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.collab-proxy@4628d2ba6ea4)
+    com.unity.ide.rider@3.0.38 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.inputsystem@7a4e1a2a8194)
+    com.unity.visualscripting@1.9.12 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.visualscripting@4edfcc09512f)
+    com.unity.xr.openxr@1.16.1 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.openxr@ef0033a586bf)
+    com.unity.xr.meta-openxr@2.4.1 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.meta-openxr@5213c0c9b85c)
+    com.unity.xr.hands@1.9.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.hands@aec06f9cdb0b)
+    com.unity.webrtc@3.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.webrtc@9605a106619b)
+    com.unity.xr.core-utils@2.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.core-utils@a8b900321199)
+    com.unity.xr.management@4.7.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.management@2ad85c7dd480)
+    com.unity.xr.arfoundation@6.6.2 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.arfoundation@d57b0b4d336a)
+    com.unity.xr.compositionlayers@2.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.compositionlayers@4101f28daab7)
+    com.unity.xr.legacyinputhelpers@3.0.1 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.legacyinputhelpers@3f62d634f63b)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.searcher@4.9.5 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+  Built-in packages:
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.render-pipelines.universal@327d93d1cbc8)
+    com.unity.test-framework@1.8.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.test-framework@80f691d4262b)
+    com.unity.timeline@6.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.timeline@c56d56b0070b)
+    com.unity.ugui@2.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.ugui@0727b404f3a0)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.xr)
+    com.unity.editorcoroutines@6.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.editorcoroutines@8cd72baa102a)
+    com.unity.collections@6.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.collections@10fff0607388)
+    com.unity.mathematics@1.4.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.render-pipelines.core@02d75770e4b3)
+    com.unity.shadergraph@17.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.shadergraph@1dd0fd24b57e)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.burst@2.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.test-framework.performance@6.6.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.test-framework.performance@b6023decb532)
+    com.unity.graph-authoring@1.0.0 (location: C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+[Package Manager] com.unity.webrtc is deprecated: This feature set is no longer supported on this editor version.
+[Subsystems] Looking for new subsystems at path C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.openxr@ef0033a586bf
+[Subsystems] Novel subsystem found at Library/PackageCache/com.unity.xr.openxr@ef0033a586bf/Runtime/UnitySubsystemsManifest.json
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Assets
+[Subsystems] Discovering subsystems at path C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.openxr@ef0033a586bf
+[Subsystems] No descriptors matched for  examples in Library/PackageCache/com.unity.xr.openxr@ef0033a586bf/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'inputs' descriptors matched in Library/PackageCache/com.unity.xr.openxr@ef0033a586bf/Runtime/UnitySubsystemsManifest.json
+[Subsystems] 1 'displays' descriptors matched in Library/PackageCache/com.unity.xr.openxr@ef0033a586bf/Runtime/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  meshings in Library/PackageCache/com.unity.xr.openxr@ef0033a586bf/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] Discovering subsystems at path C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.meta-openxr@5213c0c9b85c
+[Subsystems] No descriptors matched for  examples in Library/PackageCache/com.unity.xr.meta-openxr@5213c0c9b85c/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  inputs in Library/PackageCache/com.unity.xr.meta-openxr@5213c0c9b85c/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  displays in Library/PackageCache/com.unity.xr.meta-openxr@5213c0c9b85c/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'meshings' descriptors matched in Library/PackageCache/com.unity.xr.meta-openxr@5213c0c9b85c/Runtime/UnitySubsystemsManifest.json
+[Subsystems] Discovering subsystems at path C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\PackageCache\com.unity.xr.arfoundation@d57b0b4d336a
+[Subsystems] No descriptors matched for  examples in Library/PackageCache/com.unity.xr.arfoundation@d57b0b4d336a/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'inputs' descriptors matched in Library/PackageCache/com.unity.xr.arfoundation@d57b0b4d336a/Runtime/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  displays in Library/PackageCache/com.unity.xr.arfoundation@d57b0b4d336a/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'meshings' descriptors matched in Library/PackageCache/com.unity.xr.arfoundation@d57b0b4d336a/Runtime/UnitySubsystemsManifest.json
+[Package Manager] Done registering packages in 0.03 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.3f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/adawolfs/Unity/GuateGeeksAWSVR
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 1s522ms
+[1144/1506  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[1502/1506  0s] Csc Library/Bee/artifacts/1300b0aE.dag/GuateGeeks.AwsVr.PlayTests.dll (+2 others)
+[1503/1506  0s] ILPostProcess Library/Bee/artifacts/1300b0aE.dag/post-processed/GuateGeeks.AwsVr.PlayTests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1300b0aE.dag/GuateGeeks.AwsVr.PlayTests.dll, with 157 defines and 294 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[1504/1506  0s] CopyFiles Library/ScriptAssemblies/GuateGeeks.AwsVr.PlayTests.pdb
+[1505/1506  0s] CopyFiles Library/ScriptAssemblies/GuateGeeks.AwsVr.PlayTests.dll
+*** Tundra build success (1.48 seconds), 5 items updated, 1506 evaluated
+AssetDatabase: script compilation time: 2.306683s
+Begin MonoManager ReloadAssembly
+Total cache size 253664690
+Total cache size after purge 253664690, took 00:00:00.3943769
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 13.14 ms, found 14 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Native extension for Android target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+Refreshing native plugins compatible for Editor in 17.30 ms, found 14 plugins.
+- Finished resetting the current domain, in  2.168 seconds
+Domain Reload Profiling: 3475ms
+	BeginReloadAssembly (291ms)
+		DisableScriptedObjects (36ms)
+		CreateAndSetChildDomain (56ms)
+	RebuildCommonClasses (12ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (80ms)
+	LoadAllAssembliesAndSetupDomain (902ms)
+		LoadAssemblies (443ms)
+		TypeCache.Refresh (248ms)
+			TypeCache.ScanAssembly (230ms)
+		AnalyzeDomain (118ms)
+			BuildScriptInfoCaches (105ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (2170ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (3ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			BeforeProcessingInitializeOnLoad (148ms)
+			ProcessInitializeOnLoadAttributes (1138ms)
+			ProcessInitializeOnLoadMethodAttributes (166ms)
+			AfterProcessingInitializeOnLoad (9ms)
+		AwakeInstancesAfterBackupRestoration (41ms)
+Starting new worker id: 0 with log in C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 15.11 ms, found 14 plugins.
+
+Asset Pipeline Refresh (id=71535cd923801304f93ef5e3baf6bdc6): Total: 7.222 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=2990 ms
+		Asset DB Callback time: managed=354 ms, native=55 ms
+		Scripting: domain reloads=1, domain reload time=1398 ms, compile time=2308 ms, other=115 ms
+		Project Asset Count: scripts=1887, non-scripts=2665
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 30.651ms
+	ApplyChangesToAssetFolders: 0.969ms
+	Scan: 187.643ms
+	Collect global state as custom dependencies: 25.940ms
+	OnSourceAssetsModified: 0.689ms
+	CategorizeScriptCompilationAssets: 88.044ms
+	ProcessAssetsWithTransientArtifactChanges: 117.978ms
+	CategorizeAssets: 84.009ms
+	CompileScripts: 2308.186ms
+	ImportOutOfDateAssets: 2228.887ms (2211.541ms without children)
+		ReloadNativeAssets: 0.067ms
+		UnloadImportedAssets: 2.713ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.046ms
+		ImportSchedulerStart: 13.512ms
+	PostProcessAllAssets: 363.695ms
+		XRBuildSystem.XRAssetImported 7.793ms
+		VCAutoAddAssetPostprocess 1.113ms
+		PostProcessCallbackCreateDeferredMaterials 0.079ms
+		MonoPostProcessAllAssets: 353.872ms
+			AssetPostprocessor.OnPostprocessAllAssets 215.128ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 33.084ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 23.837ms
+			AssetCallbacks.OnPostprocessAllAssets 22.925ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 7.830ms
+			SyncVS.PostprocessSyncProject 6.698ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 3.452ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 3.072ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.620ms
+			AssetChangedListener.OnPostprocessAllAssets 2.462ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 2.063ms
+			MaterialPostprocessor.OnPostprocessAllAssets 1.280ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 1.252ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.186ms
+			EnvironmentAssetPostprocessor.OnPostprocessAllAssets 1.032ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.979ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.959ms
+			AssetEvents.OnPostprocessAllAssets 0.766ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.557ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.525ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.523ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.521ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.499ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.462ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.425ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.415ms
+			PostProcessor.OnPostprocessAllAssets 0.407ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.367ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.360ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.300ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.244ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.181ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.166ms
+			AssetReloadNotifier.OnPostprocessAllAssets 0.152ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.121ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.108ms
+	PostAssetChangesProfiler: 17.483ms
+	UnloadStreamsBegin: 2.567ms
+	PersistCurrentRevisions: 0.164ms
+	GenerateScriptTypeHashes: 2.917ms
+	GenerateScriptTypeSerializationHashes: 5.393ms
+	Untracked: 1737.780ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Scanning for USB devices : 10.939ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-GuateGeeks AWS Architect Lab
+Unloading 33 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 8260 unused Assets / (11.0 MB). Loaded Objects now: 9339.
+Memory consumption went from 485.7 MB to 474.7 MB.
+Total: 29.059900 ms (FindLiveObjects: 1.049900 ms CreateObjectMapping: 0.422300 ms MarkObjects: 20.331200 ms  DeleteObjects: 6.891100 ms)
+
+[Project] Loading completed in 11.474 seconds
+	Project init time: 				10.925 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.282 seconds
+		Asset Database init time: 		0.474 seconds
+		Global illumination init time: 	0.004 seconds
+		Assemblies load time: 			1.710 seconds
+		Unity extensions init time: 	0.030 seconds
+		Asset Database refresh time: 	7.223 seconds
+	Scene opening time: 			0.170 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1791166417387,"processId":37436,"projectLoad":11.4737189,"projectInit":10.9250151,"templateInit":0.0,"packageManagerInit":0.2818664,"assetDatabaseInit":0.4739996,"globalIlluminationInit":0.0036807,"assembliesLoad":1.709591,"unityExtensionsInit":0.0299372,"assetDatabaseRefresh":7.2229426,"sceneOpening":0.1699553}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1791166417387,"processId":37436,"editorVersion":"6000.6.3f1 (45d8eee7de74)","branch":"6000.6/staging","buildType":"Release","platform":"Windows"}
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Importing 'GUID: 3399daf172a703743bbd202b401c22c1 - Path: Assets/XR/Settings/OpenXR Package Settings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3399daf172a703743bbd202b401c22c1' -> (Import Result ID: 'e959880af93f233c568d0be4fb0c03ef') in 0.007 seconds [static dependencies only]. Details - ImportResultOutputID=662a967bc0af71fd314e7b7264594c40 DependenciesID=db939c2dd88aa830ba909355efb02ae0 StaticDependenciesID=81525a3befcc11c9a9e94da6b62b4501 
+Refreshing native plugins compatible for Editor in 13.26 ms, found 14 plugins.
+Asset Pipeline Refresh (id=c50bb48ed82af4349a48466b9ebdc33a): Total: 0.134 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3399daf172a703743bbd202b401c22c1 - Path: Assets/XR/Settings/OpenXR Package Settings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3399daf172a703743bbd202b401c22c1' -> (Import Result ID: 'e959880af93f233c568d0be4fb0c03ef') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=662a967bc0af71fd314e7b7264594c40 DependenciesID=db939c2dd88aa830ba909355efb02ae0 StaticDependenciesID=81525a3befcc11c9a9e94da6b62b4501 
+Refreshing native plugins compatible for Editor in 13.21 ms, found 14 plugins.
+Asset Pipeline Refresh (id=e535be8143b9a8343a352abef1d4f084): Total: 0.038 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3399daf172a703743bbd202b401c22c1 - Path: Assets/XR/Settings/OpenXR Package Settings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3399daf172a703743bbd202b401c22c1' -> (Import Result ID: 'e959880af93f233c568d0be4fb0c03ef') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=662a967bc0af71fd314e7b7264594c40 DependenciesID=db939c2dd88aa830ba909355efb02ae0 StaticDependenciesID=81525a3befcc11c9a9e94da6b62b4501 
+Refreshing native plugins compatible for Editor in 13.66 ms, found 14 plugins.
+Asset Pipeline Refresh (id=5f94eb1b46e2ba5419e204a79ad470d1): Total: 0.036 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Running tests for ExecutionSettings with details:
+targetPlatform = 
+playerHeartbeatTimeout = 600
+filters[0] = 
+   Filter with settings:
+   testMode = PlayMode
+   targetPlatform = 
+   testNames = null
+   groupNames = GuateGeeks.AwsVr.Tests.LabExperienceTests
+   categoryNames = null
+   assemblyNames = null
+ignoreTests = {}
+featureFlags = null
+
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:InitializeAndExecuteRun (string[]) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:53)
+UnityEditor.TestTools.TestRunner.CommandLineTest.TestStarter:InitializeAndExecuteRun () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/TestStarter.cs:64)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs Line: 53)
+
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+[UnityConnectServicesConfig] config is NOT valid, switching to default
+Created GICache directory at C:/Users/adawolfs/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.017s, timestamps: [11.477 - 11.494]
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 66 unused Assets / (77.3 KB). Loaded Objects now: 9570.
+Memory consumption went from 480.0 MB to 479.9 MB.
+Total: 21.694900 ms (FindLiveObjects: 0.657300 ms CreateObjectMapping: 0.164900 ms MarkObjects: 20.319000 ms  DeleteObjects: 0.283000 ms)
+
+Importing 'GUID: 74578e9ec5835244083b7cbc1b1d594c - Path: Assets/InitTestScene94a21cb6-f1cc-499a-8cc1-fba20baac1bb.unity' with importer (DefaultImporter)
+Imported 'GUID: 74578e9ec5835244083b7cbc1b1d594c' -> (Import Result ID: '96f73e0f1e03842756c0df3a06285acd') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=0a908f444e32cd7fbac8db026b5fd043 DependenciesID=919a0d10a778b39b3e83c004da9318d7 StaticDependenciesID=3f3dd5b1c1d529fe6348e529b444d39d 
+Refreshing native plugins compatible for Editor in 12.22 ms, found 14 plugins.
+Asset Pipeline Refresh (id=ca622b25c4786d84a8dbfbf167986ca2): Total: 0.085 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Worker ready: AssetImportWorkerHW0 0
+Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<ExecuteMethods>d__8<UnityEngine.TestTools.IPrebuildSetup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:48)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<Execute>d__7<UnityEngine.TestTools.IPrebuildSetup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:34)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs Line: 48)
+
+Entering Playmode with Reload Domain disabled.
+If you experience any issues, please disable "Enter Play Mode Options" in Editor Settings
+Entering Playmode with Reload Scene disabled. If you experience any issues, please disable "Enter Play Mode Options" in Editor Settings
+Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.815200 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            2.317 ms
+	Integration:            18.258 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.887 ms
+	Total Operation Time:   21.463 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 217 unused Assets / (208.9 KB). Loaded Objects now: 12342.
+Memory consumption went from 0.50 GB to 0.50 GB.
+Total: 30.045400 ms (FindLiveObjects: 0.922700 ms CreateObjectMapping: 0.222100 ms MarkObjects: 27.368700 ms  DeleteObjects: 1.210500 ms)
+
+Unloading 17 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.616800 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.630 ms
+	Integration:            16.254 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       19.027 ms
+	Total Operation Time:   35.915 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.50 GB to 0.50 GB.
+Total: 28.619000 ms (FindLiveObjects: 1.252000 ms CreateObjectMapping: 0.320900 ms MarkObjects: 26.671500 ms  DeleteObjects: 0.039000 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.190500 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.549 ms
+	Integration:            14.522 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       28.755 ms
+	Total Operation Time:   43.828 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.50 GB to 0.50 GB.
+Total: 26.125800 ms (FindLiveObjects: 0.694200 ms CreateObjectMapping: 0.188400 ms MarkObjects: 24.914800 ms  DeleteObjects: 0.039900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.200200 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.539 ms
+	Integration:            17.633 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       17.107 ms
+	Total Operation Time:   35.282 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.50 GB to 0.50 GB.
+Total: 25.920000 ms (FindLiveObjects: 0.818000 ms CreateObjectMapping: 0.187100 ms MarkObjects: 24.597700 ms  DeleteObjects: 0.036500 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.221300 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.542 ms
+	Integration:            17.236 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       14.846 ms
+	Total Operation Time:   32.626 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.752700 ms (FindLiveObjects: 0.681400 ms CreateObjectMapping: 0.174100 ms MarkObjects: 24.580300 ms  DeleteObjects: 0.037200 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.217000 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.525 ms
+	Integration:            17.042 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.657 ms
+	Total Operation Time:   42.228 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.848000 ms (FindLiveObjects: 0.708000 ms CreateObjectMapping: 0.173600 ms MarkObjects: 24.632900 ms  DeleteObjects: 0.042700 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.197000 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.515 ms
+	Integration:            14.219 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.686 ms
+	Total Operation Time:   39.423 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.185500 ms (FindLiveObjects: 0.780400 ms CreateObjectMapping: 0.211300 ms MarkObjects: 24.882500 ms  DeleteObjects: 0.037000 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.195800 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.554 ms
+	Integration:            14.819 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       28.393 ms
+	Total Operation Time:   43.769 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.925200 ms (FindLiveObjects: 0.752800 ms CreateObjectMapping: 0.189100 ms MarkObjects: 24.652100 ms  DeleteObjects: 0.037900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.220400 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.524 ms
+	Integration:            16.157 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       14.612 ms
+	Total Operation Time:   31.296 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.261800 ms (FindLiveObjects: 0.695900 ms CreateObjectMapping: 0.174700 ms MarkObjects: 24.079800 ms  DeleteObjects: 0.036100 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.200600 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.510 ms
+	Integration:            14.765 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.717 ms
+	Total Operation Time:   39.995 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.432900 ms (FindLiveObjects: 0.682500 ms CreateObjectMapping: 0.178800 ms MarkObjects: 24.255700 ms  DeleteObjects: 0.041500 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.185500 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.501 ms
+	Integration:            14.600 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       14.761 ms
+	Total Operation Time:   29.864 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (1.9 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.483000 ms (FindLiveObjects: 0.776700 ms CreateObjectMapping: 0.177400 ms MarkObjects: 25.212800 ms  DeleteObjects: 0.036900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.210600 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.530 ms
+	Integration:            14.978 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.875 ms
+	Total Operation Time:   40.386 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.567500 ms (FindLiveObjects: 0.721700 ms CreateObjectMapping: 0.309700 ms MarkObjects: 24.224000 ms  DeleteObjects: 0.036400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.209300 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.475 ms
+	Integration:            15.968 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       14.949 ms
+	Total Operation Time:   31.393 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 24.910500 ms (FindLiveObjects: 0.898900 ms CreateObjectMapping: 0.193100 ms MarkObjects: 23.478400 ms  DeleteObjects: 0.035900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.195700 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.544 ms
+	Integration:            14.399 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       13.819 ms
+	Total Operation Time:   28.764 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.583900 ms (FindLiveObjects: 0.842800 ms CreateObjectMapping: 0.187500 ms MarkObjects: 25.180000 ms  DeleteObjects: 0.040000 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.320700 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.570 ms
+	Integration:            16.193 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       14.912 ms
+	Total Operation Time:   31.678 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 27.002700 ms (FindLiveObjects: 0.701800 ms CreateObjectMapping: 0.177700 ms MarkObjects: 25.805800 ms  DeleteObjects: 0.039400 ms)
+
+TrimDiskCacheJob: Current cache size 0mb
+The character with Unicode value \u21B3 was not found in the [LiberationSans SDF] font asset or any potential fallbacks. It was replaced by Unicode character \u25A1 in text object [Text].
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object,UnityEngine.Object)
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+TMPro.TextMeshProUGUI:SetArraySizes (TMPro.TMP_Text/TextProcessingElement[]) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/TMP/TextMeshProUGUI.cs:1980)
+TMPro.TMP_Text:ParseInputText () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/TMP/TMP_Text.cs:2157)
+TMPro.TextMeshProUGUI:OnPreRenderCanvas () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/TMP/TextMeshProUGUI.cs:2465)
+TMPro.TextMeshProUGUI:Rebuild (UnityEngine.UI.CanvasUpdate) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/TMP/TextMeshProUGUI.cs:226)
+UnityEngine.UI.CanvasUpdateRegistry:PerformUpdate () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/CanvasUpdateRegistry.cs:226)
+UnityEngine.Canvas:SendWillRenderCanvases ()
+
+(Filename: ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/TMP/TextMeshProUGUI.cs Line: 1980)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.182700 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.513 ms
+	Integration:            14.796 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       23.817 ms
+	Total Operation Time:   39.130 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.080900 ms (FindLiveObjects: 0.783000 ms CreateObjectMapping: 0.185200 ms MarkObjects: 24.783200 ms  DeleteObjects: 0.042500 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.218300 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.592 ms
+	Integration:            14.447 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       23.879 ms
+	Total Operation Time:   38.922 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.665000 ms (FindLiveObjects: 0.741200 ms CreateObjectMapping: 0.192900 ms MarkObjects: 24.417000 ms  DeleteObjects: 0.038400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.204400 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.515 ms
+	Integration:            15.416 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       13.782 ms
+	Total Operation Time:   29.715 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.803400 ms (FindLiveObjects: 0.687500 ms CreateObjectMapping: 0.187300 ms MarkObjects: 24.611200 ms  DeleteObjects: 0.044300 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.194700 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.521 ms
+	Integration:            15.755 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       24.693 ms
+	Total Operation Time:   40.972 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.628500 ms (FindLiveObjects: 0.678400 ms CreateObjectMapping: 0.182200 ms MarkObjects: 24.457200 ms  DeleteObjects: 0.037000 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.207100 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.830 ms
+	Integration:            15.254 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.310 ms
+	Total Operation Time:   40.397 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.628800 ms (FindLiveObjects: 1.046600 ms CreateObjectMapping: 0.256600 ms MarkObjects: 24.971600 ms  DeleteObjects: 0.038100 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.212000 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.501 ms
+	Integration:            14.809 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.725 ms
+	Total Operation Time:   40.038 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.624000 ms (FindLiveObjects: 0.921400 ms CreateObjectMapping: 0.260100 ms MarkObjects: 25.090900 ms  DeleteObjects: 0.038400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.194500 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.513 ms
+	Integration:            15.590 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       24.594 ms
+	Total Operation Time:   40.700 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 27.292600 ms (FindLiveObjects: 0.677300 ms CreateObjectMapping: 0.168200 ms MarkObjects: 26.079300 ms  DeleteObjects: 0.089900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.184400 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.579 ms
+	Integration:            14.851 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       24.352 ms
+	Total Operation Time:   39.784 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.027700 ms (FindLiveObjects: 0.678800 ms CreateObjectMapping: 0.180100 ms MarkObjects: 24.846400 ms  DeleteObjects: 0.040400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.213100 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.535 ms
+	Integration:            15.466 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       23.854 ms
+	Total Operation Time:   39.858 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.142700 ms (FindLiveObjects: 0.800400 ms CreateObjectMapping: 0.173700 ms MarkObjects: 23.844400 ms  DeleteObjects: 0.048400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.237800 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.553 ms
+	Integration:            15.568 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       24.845 ms
+	Total Operation Time:   40.970 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.105400 ms (FindLiveObjects: 0.696800 ms CreateObjectMapping: 0.343400 ms MarkObjects: 24.734600 ms  DeleteObjects: 0.037000 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.167600 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.556 ms
+	Integration:            19.716 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       26.433 ms
+	Total Operation Time:   46.709 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.880700 ms (FindLiveObjects: 0.678000 ms CreateObjectMapping: 0.177000 ms MarkObjects: 25.698400 ms  DeleteObjects: 0.037800 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.209100 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.506 ms
+	Integration:            15.046 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       24.754 ms
+	Total Operation Time:   40.311 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.287100 ms (FindLiveObjects: 0.815200 ms CreateObjectMapping: 0.185300 ms MarkObjects: 23.961200 ms  DeleteObjects: 0.048400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.212400 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.546 ms
+	Integration:            17.240 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       13.795 ms
+	Total Operation Time:   31.585 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 28.110100 ms (FindLiveObjects: 0.712500 ms CreateObjectMapping: 0.177700 ms MarkObjects: 26.894200 ms  DeleteObjects: 0.041600 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.224400 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.555 ms
+	Integration:            15.442 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       24.517 ms
+	Total Operation Time:   40.517 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.661200 ms (FindLiveObjects: 0.836900 ms CreateObjectMapping: 0.183800 ms MarkObjects: 25.329500 ms  DeleteObjects: 0.037300 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.288600 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.534 ms
+	Integration:            15.245 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       28.902 ms
+	Total Operation Time:   44.685 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.138200 ms (FindLiveObjects: 0.761300 ms CreateObjectMapping: 0.192800 ms MarkObjects: 23.872600 ms  DeleteObjects: 0.037100 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.213700 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.491 ms
+	Integration:            15.624 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       13.924 ms
+	Total Operation Time:   30.042 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.560100 ms (FindLiveObjects: 0.946000 ms CreateObjectMapping: 0.167800 ms MarkObjects: 25.041200 ms  DeleteObjects: 0.113800 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.188300 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.515 ms
+	Integration:            15.433 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.230 ms
+	Total Operation Time:   40.181 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.568900 ms (FindLiveObjects: 0.685600 ms CreateObjectMapping: 0.170000 ms MarkObjects: 24.400900 ms  DeleteObjects: 0.037400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.188200 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.508 ms
+	Integration:            14.559 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.951 ms
+	Total Operation Time:   40.021 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.922900 ms (FindLiveObjects: 0.680700 ms CreateObjectMapping: 0.169800 ms MarkObjects: 24.758700 ms  DeleteObjects: 0.037500 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.171000 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.555 ms
+	Integration:            15.682 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       25.061 ms
+	Total Operation Time:   41.301 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.613100 ms (FindLiveObjects: 0.710800 ms CreateObjectMapping: 0.172000 ms MarkObjects: 24.416100 ms  DeleteObjects: 0.038400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.192900 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.540 ms
+	Integration:            16.400 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.556 ms
+	Total Operation Time:   41.499 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 27.398300 ms (FindLiveObjects: 0.699400 ms CreateObjectMapping: 0.200800 ms MarkObjects: 26.182100 ms  DeleteObjects: 0.037900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.196100 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.501 ms
+	Integration:            15.490 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.760 ms
+	Total Operation Time:   40.755 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.531000 ms (FindLiveObjects: 0.841200 ms CreateObjectMapping: 0.295800 ms MarkObjects: 24.066900 ms  DeleteObjects: 0.037200 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.183600 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.488 ms
+	Integration:            15.058 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       24.909 ms
+	Total Operation Time:   40.458 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 27.489400 ms (FindLiveObjects: 0.722500 ms CreateObjectMapping: 0.183300 ms MarkObjects: 26.270500 ms  DeleteObjects: 0.037400 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.186300 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.540 ms
+	Integration:            16.695 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       25.759 ms
+	Total Operation Time:   42.998 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 27.926400 ms (FindLiveObjects: 0.960900 ms CreateObjectMapping: 0.425100 ms MarkObjects: 26.183300 ms  DeleteObjects: 0.055600 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.185300 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.533 ms
+	Integration:            15.255 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       14.850 ms
+	Total Operation Time:   30.641 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 24.780800 ms (FindLiveObjects: 0.786000 ms CreateObjectMapping: 0.189900 ms MarkObjects: 23.491400 ms  DeleteObjects: 0.037900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.206500 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.502 ms
+	Integration:            15.407 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       28.331 ms
+	Total Operation Time:   44.244 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 26.616600 ms (FindLiveObjects: 0.730800 ms CreateObjectMapping: 0.168100 ms MarkObjects: 25.378400 ms  DeleteObjects: 0.038100 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.240400 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.941 ms
+	Integration:            24.345 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       23.955 ms
+	Total Operation Time:   49.246 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (Unknown). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 33.128600 ms (FindLiveObjects: 1.322500 ms CreateObjectMapping: 0.436700 ms MarkObjects: 30.973900 ms  DeleteObjects: 0.046200 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.212500 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.707 ms
+	Integration:            15.991 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       24.454 ms
+	Total Operation Time:   41.156 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.705200 ms (FindLiveObjects: 0.688700 ms CreateObjectMapping: 0.179100 ms MarkObjects: 24.516300 ms  DeleteObjects: 0.037000 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.196900 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.533 ms
+	Integration:            15.006 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       14.339 ms
+	Total Operation Time:   29.880 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.997700 ms (FindLiveObjects: 0.738800 ms CreateObjectMapping: 0.179000 ms MarkObjects: 24.758500 ms  DeleteObjects: 0.036200 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.185600 ms
+Loaded scene 'Assets/Scenes/AWSArchitectLab.unity'
+	Deserialize:            0.492 ms
+	Integration:            20.466 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       30.156 ms
+	Total Operation Time:   51.117 ms
+AWS Architect Lab ready: holographic environment, interface, rig and 3 resources created. API: local mock.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GuateGeeks.AwsVr.ArchitectureLab:Start () (at Assets/GuateGeeks/Runtime/ArchitectureLab.cs:76)
+
+(Filename: Assets/GuateGeeks/Runtime/ArchitectureLab.cs Line: 76)
+
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 12447.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 25.619600 ms (FindLiveObjects: 0.725300 ms CreateObjectMapping: 0.180800 ms MarkObjects: 24.390600 ms  DeleteObjects: 0.046000 ms)
+
+Saving results to: C:/Users/adawolfs/AppData/LocalLow/GuateGeeks/GuateGeeks AWS Architect Lab\TestResults.xml
+Saving results to: C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Validation/AwsIcons-regression-results.xml
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            1.426 ms
+	Integration:            14.925 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.010 ms
+	Total Operation Time:   16.364 ms
+Unloading 0 unused Assets / (Unknown). Loaded Objects now: 9601.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 29.399200 ms (FindLiveObjects: 0.559000 ms CreateObjectMapping: 0.131300 ms MarkObjects: 28.413900 ms  DeleteObjects: 0.023100 ms)
+
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<ExecuteMethods>d__8<UnityEngine.TestTools.IPostBuildCleanup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:48)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<Execute>d__7<UnityEngine.TestTools.IPostBuildCleanup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:34)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs Line: 48)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets / (0 B). Loaded Objects now: 9606.
+Memory consumption went from 0.51 GB to 0.51 GB.
+Total: 29.588000 ms (FindLiveObjects: 0.457900 ms CreateObjectMapping: 0.149800 ms MarkObjects: 28.711700 ms  DeleteObjects: 0.018300 ms)
+
+Refreshing native plugins compatible for Editor in 12.88 ms, found 14 plugins.
+Asset Pipeline Refresh (id=fd32bd0dd8781bb47a82f35ba17324ed): Total: 0.096 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+DisplayProgressbar: Undo
+Test run completed. Exiting with code 0 (Ok). Run completed.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitApplication (UnityEditor.TestTools.TestRunner.CommandLineTest.Executer/ReturnCodes,string) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:81)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitIfRunIsCompleted () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:74)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs Line: 81)
+
+MonoPathRemapper: Attempts to remap: 44731; Successful remaps: 25560
+Serialized file version minimum: 22, current 23
+Clearing [LiberationSans SDF - Fallback] dynamic font asset data.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TMPro.EditorEventCallbacks/<>c:<InitializeFontAssetResourceChangeCallBacks>b__0_0 () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Editor/TMP/TMP_EditorResourceManager.cs:36)
+UnityEditor.EditorApplication:Internal_EditorApplicationQuit ()
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitApplication (UnityEditor.TestTools.TestRunner.CommandLineTest.Executer/ReturnCodes,string) (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:83)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitIfRunIsCompleted () (at ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEditor.TestRunner/CommandLineTest/Executer.cs:74)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Editor/TMP/TMP_EditorResourceManager.cs Line: 36)
+
+Killing ADB server in 2.0907274 seconds.
+Importing 'GUID: 2e498d1c8094910479dc3e1b768306a4 - Path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 2e498d1c8094910479dc3e1b768306a4' -> (Import Result ID: 'f5f9b02fe3c35e9bb7fc240e4e4e4c2d') in 0.003 seconds [static dependencies only]. Details - ImportResultOutputID=15c8c079d336d28f621b2cb41a27d1c5 DependenciesID=755f1eaa547f38a6b4db020a01bebdd6 StaticDependenciesID=8e87d93b7a0cf118579cc3359cbff519 
+Refreshing native plugins compatible for Editor in 13.10 ms, found 14 plugins.
+Asset Pipeline Refresh (id=aa009785634378943bcf21f4ce8397ad): Total: 0.037 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-adawolfs-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-adawolfs channel disconnected successfully.
+Worker process still running after shutdown timeout - Worker ID: 0, Name: AssetImportWorkerHW0
+Waited for 1 workers to exit gracefully, force killed 1 workers
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791166538424,"processId":37436,"allocatedMemory":16467787,"memoryLabels":[{"Default":203445},{"Permanent":15516},{"NewDelete":70351},{"Thread":4197984},{"Manager":821373},{"VertexData":776},{"Geometry":816},{"Texture":24},{"Shader":852807},{"Material":68},{"GfxDevice":56472},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":16640},{"Input":42840},{"JobScheduler":256},{"TextLib":336},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1537800},{"BaseObject":115312},{"Resource":1252},{"Renderer":2376},{"Transform":4685},{"File":16300},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":545627},{"StaticString":3808},{"Utility":2674806},{"Curl":2478},{"PoolAlloc":2360},{"AI":80},{"TypeTree":20997},{"ScriptManager":12656},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":3600},{"WebRequest":592},{"VR":50082},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":464},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":131204},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4641011},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40465},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":266},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3210},{"Windowing":456},{"Licensing":12575},{"AssetReference":32},{"IPCStream":32}]}

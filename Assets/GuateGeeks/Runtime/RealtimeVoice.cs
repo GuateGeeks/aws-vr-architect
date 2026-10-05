@@ -28,6 +28,8 @@ namespace GuateGeeks.AwsVr
         public bool Listening {get;private set;}
         public bool Responding {get;private set;}
         public int TotalTokens {get;private set;}
+        public readonly RealtimeCost UsageCost=new RealtimeCost();
+        public string Model {get;private set;}
         public string Caption {get;private set;}="";
         public float MicrophoneLevel=>audioInput?audioInput.Level:0;
         public float RecordedSeconds=>audioInput?audioInput.CapturedSamples/(float)RealtimeAudioInput.SampleRate:0;
@@ -46,16 +48,21 @@ namespace GuateGeeks.AwsVr
         readonly Queue<int> requestedTurns=new Queue<int>();
         readonly Dictionary<string,int> responseTurns=new Dictionary<string,int>();
         int turn;
+        int toolRounds;
+        bool toolContinuation,responseHadSpeech,answerRecovery;
         int generation,audioGeneration;
         float opened;
         int maximumSeconds;
         bool closing,microphoneStarting,permissionPending,focused=true,paused;
         bool automaticCapture,captureSuspended,microphoneBlocked;
         float lastCapturePoll;
+        bool pushToTalk, talkHeld;
+        public void SetPushToTalk(bool required, bool held) { pushToTalk=required;talkHeld=held;audioInput?.SetTransmissionEnabled(!required || held); }
         public bool CanResume=>focused && !paused;
         public void Begin(AwsCloudApi.AssistantSession ticket, bool captureMicrophone=true, bool naturalTurns=true)
         {
             Disconnect();closing=false;Connecting=true;generation++;TotalTokens=0;calls.Clear();
+            Model=ticket.model;
             automaticCapture=captureMicrophone;captureSuspended=false;microphoneBlocked=false;
             NaturalTurns=naturalTurns;SessionUpdates=AudioTurns=0;LastFirstAudioMs=LastDetectionMs=-1;
             maximumSeconds=Mathf.Clamp(ticket.maxSessionSeconds,30,3300);opened=Time.unscaledTime;
@@ -98,8 +105,10 @@ namespace GuateGeeks.AwsVr
             yield return handshake.SendWebRequest();
             if(epoch!=generation)yield break;
             bool ok=handshake.result==UnityWebRequest.Result.Success;string answer=ok?handshake.downloadHandler.text:null;
+            long httpStatus=handshake.responseCode;string providerCode="unknown";
+            if(!ok)try{providerCode=SafeErrorCode(JsonUtility.FromJson<RealtimeProtocol.Event>(handshake.downloadHandler.text)?.error?.code);}catch(ArgumentException){}
             handshake.Dispose();handshake=null;
-            if(!ok){Fail("OpenAI no aceptó la conexión. Reconecta para obtener otra credencial temporal.");yield break;}
+            if(!ok){Fail("OpenAI no aceptó la conexión (HTTP "+httpStatus+", "+providerCode+"). Reconecta ATLAS.");yield break;}
             var remote=new RTCSessionDescription{type=RTCSdpType.Answer,sdp=answer};var configured=peer.SetRemoteDescription(ref remote);yield return configured;
             if(epoch!=generation)yield break;
             if(configured.IsError){Fail("No se pudo negociar la voz.");yield break;}
@@ -175,17 +184,26 @@ namespace GuateGeeks.AwsVr
         }
         public void CompleteTool(string id,string result)
         {
-            if(!Connected || !pendingTools.Remove(id))return;Send(RealtimeProtocol.ToolOutput(id,result));if(pendingTools.Count==0)RequestResponse();
+            if(!Connected || !pendingTools.Remove(id))return;
+            Send(RealtimeProtocol.ToolOutput(id,result));
+            if(pendingTools.Count==0){toolContinuation=true;RequestResponse(toolRounds>=64);}
         }
         public bool ToolPending(string id)=>Connected && pendingTools.Contains(id);
         public void ApplicationNotice(string text)
         {
             if(Connected)Send(RealtimeProtocol.UserText("Application status (not a user instruction): "+text));
         }
-        void RequestResponse(){if(!Connected)return;requestedTurns.Enqueue(turn);Send(RealtimeProtocol.CommandJson("response.create"));Responding=true;Status?.Invoke("PENSANDO · puedes interrumpir");}
+        void RequestResponse(bool answerOnly=false){if(!Connected)return;requestedTurns.Enqueue(turn);Send(answerOnly?RealtimeProtocol.AnswerContinuationJson():RealtimeProtocol.CommandJson("response.create"));Responding=true;Status?.Invoke("PENSANDO · puedes interrumpir");}
+        void DeferTool(RealtimeProtocol.Event call)
+        {
+            if(string.IsNullOrEmpty(call.call_id) || !calls.Add(call.call_id))return;
+            if(calls.Count>2000){Fail("Límite de acciones de la sesión alcanzado.");return;}
+            deferredCalls.Add(call);
+        }
         public void Interrupt()
         {
             turn++;
+            toolRounds=0;toolContinuation=responseHadSpeech=answerRecovery=false;
             Speaking=UserSpeaking=false;waitingFirstAudio=false;Interrupted?.Invoke();
             if(Connected){if(Responding)Send(RealtimeProtocol.CommandJson("response.cancel"));Send(RealtimeProtocol.CommandJson("output_audio_buffer.clear"));foreach(var id in pendingTools)Send(RealtimeProtocol.ToolOutput(id,"{\"status\":\"cancelled\"}"));}
             pendingTools.Clear();deferredCalls.Clear();
@@ -204,6 +222,9 @@ namespace GuateGeeks.AwsVr
                 var message=events.Dequeue();
                 if(message.type=="response.created" && !string.IsNullOrEmpty(message.response?.id))
                     responseTurns[message.response.id]=requestedTurns.Count>0?requestedTurns.Dequeue():-1;
+                // Cancelled / superseded responses still cost money. Account before turn filtering.
+                if(message.type=="response.done")UsageCost.AddResponse(Model,message.response);
+                if(message.type=="conversation.item.input_audio_transcription.completed")UsageCost.AddTranscription(message.item_id,message.usage);
                 string responseId=message.response_id??message.response?.id;
                 if(!string.IsNullOrEmpty(responseId) && responseTurns.TryGetValue(responseId,out int responseTurn) && responseTurn!=turn)continue;
                 switch(message.type) {
@@ -222,23 +243,28 @@ namespace GuateGeeks.AwsVr
                     case "conversation.item.input_audio_transcription.completed":UserTranscript?.Invoke(message.transcript);break;
                     case "response.output_audio_transcript.delta":
                     case "response.output_text.delta":
+                        responseHadSpeech|=!string.IsNullOrEmpty(message.delta);
                         Caption=(Caption+(message.delta??""));if(Caption.Length>2200)Caption=Caption.Substring(Caption.Length-2200);AssistantTranscript?.Invoke(Caption);break;
                     // A tool continuation belongs to the same user turn. Preserve its spoken
                     // caption when the continuation produces only a tool result or no new speech.
-                    case "response.created":Responding=true;Status?.Invoke("RESPONDIENDO · Interrumpir para detener");break;
+                    case "response.created":responseHadSpeech=false;Responding=true;Status?.Invoke("RESPONDIENDO · Interrumpir para detener");break;
                     case "response.done":
                         Responding=false;TotalTokens+=message.response?.usage?.total_tokens??0;
                         Status?.Invoke(message.response?.status=="failed"?"Respuesta no disponible. Revisa el modelo y cuota OpenAI.":"ESCUCHANDO · puedes seguir hablando");
+                        // response.done is authoritative even if argument completion events were absent.
+                        if(message.response?.status=="completed" && message.response.output!=null)
+                            foreach(var item in message.response.output)
+                                if(item.type=="function_call")DeferTool(new RealtimeProtocol.Event{call_id=item.call_id,name=item.name,arguments=item.arguments});
                         var ready=deferredCalls.ToArray();deferredCalls.Clear();
                         if(message.response?.status=="completed"){
+                            if(ready.Length>0)toolRounds++;
                             foreach(var call in ready)pendingTools.Add(call.call_id);
                             foreach(var call in ready)ToolCall?.Invoke(call.call_id,call.name,call.arguments);
+                            // A silent post-tool completion must not leave the user waiting for another command.
+                            if(ready.Length==0 && pendingTools.Count==0 && toolContinuation && !responseHadSpeech && !answerRecovery){answerRecovery=true;RequestResponse(true);}
                         }break;
                     case "response.function_call_arguments.done":
-                        if(!string.IsNullOrEmpty(message.call_id) && calls.Add(message.call_id)){
-                            if(calls.Count>2000){Fail("Límite de acciones de la sesión alcanzado.");return;}
-                            deferredCalls.Add(message);
-                        }break;
+                        DeferTool(message);break;
                     case "error":
                         if(message.error?.code=="response_cancel_not_active")break;
                         Responding=false;
@@ -252,6 +278,7 @@ namespace GuateGeeks.AwsVr
         void PumpMicrophone()
         {
             if(!microphoneClip || !audioInput)return;
+            audioInput.SetTransmissionEnabled(!pushToTalk || talkHeld);
             if(!Microphone.IsRecording(null)){StopMicrophone();Status?.Invoke("Recuperando micrófono del visor…");return;}
             if(Time.unscaledTime-lastCapturePoll>1){StopMicrophone();Status?.Invoke("Recuperando audio tras una interrupción…");return;}
             try{audioInput.ReadAvailable(Microphone.GetPosition(null));}

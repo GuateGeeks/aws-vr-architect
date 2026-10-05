@@ -24,7 +24,7 @@ namespace GuateGeeks.AwsVr
         string CheckpointPath => Path.Combine(Application.persistentDataPath, "aws-cloud-checkpoint.json");
         void BuildCloudPanel()
         {
-            var panel = Panel(world, "05 · Cloud connection", new Vector3(-2.12f, 3.32f, 2.5f), new Vector2(660, 500), -29);
+            var panel = Panel(PersonalRoot, "05 · Cloud connection", new Vector3(-2.12f, 3.32f, 2.5f), new Vector2(660, 500), -29);
             Text(panel, "05 / CONEXIÓN AWS", new Vector2(0, 153), new Vector2(600, 40), 24, Cyan);
             cloudDetails = Text(panel, "", new Vector2(0, 78), new Vector2(600, 95), 20, White);
             cloudButtons.Add(Button(panel, "Conectar AWS", new Vector2(-155, -12), new Vector2(290, 54), ConnectSaved, Orange));

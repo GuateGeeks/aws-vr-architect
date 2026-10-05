@@ -21,7 +21,7 @@ namespace GuateGeeks.AwsVr
         {
             if(Busy || EditingText || ConfiguringConnection || Placing) return;
             if(!guidedPanel) {
-                guidedPanel=Panel(world,"Guided mission",new Vector3(-1.85f,1.9f,1.8f),new Vector2(710,560),-40);
+                guidedPanel=Panel(PersonalRoot,"Guided mission",new Vector3(-1.85f,1.9f,1.8f),new Vector2(710,560),-40);
                 guidedPanel.localScale=Vector3.one*.00125f;
                 guidedTitle=Text(guidedPanel,"",new Vector2(0,216),new Vector2(650,65),27,Cyan);
                 guidedBody=Text(guidedPanel,"",new Vector2(0,45),new Vector2(650,260),23,White); guidedBody.richText=false;

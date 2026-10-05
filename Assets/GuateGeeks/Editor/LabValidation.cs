@@ -44,6 +44,8 @@ namespace GuateGeeks.AwsVr.Editor
                     case "quest-setup": QuestBuild.Configure(); break;
                     case "quest-check": QuestBuild.Check(); break;
                     case "build-quest": QuestBuild.RequestBuild(); break;
+                    case "install-quest": QuestInstall.Run(); break;
+                    case "quest-status": QuestInstall.Status(); break;
                     case "edit-tests": Run(TestMode.EditMode); break;
                     case "play-tests": Run(TestMode.PlayMode); break;
                     case "assistant-live-test": Run(TestMode.PlayMode,true); break;

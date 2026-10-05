@@ -9,10 +9,10 @@ namespace GuateGeeks.AwsVr
         [Serializable] public sealed class CodeVersion {public string version,description;}
         [Serializable] public sealed class CodeResult {
             public string source,revisionId,codeSha256,sourceHash,version,updateStatus,rollbackVersion,message,output,logs;
-            public bool valid,passed,truncated;public CodeVersion[] versions;
+            public bool valid,passed,truncated,expectedChecked;public CodeVersion[] versions;
         }
         [Serializable] public sealed class CodeRequest {
-            public string source,eventJson,stackId,resourceId,revisionId,version;public bool confirmed;
+            public string source,eventJson,expectedOutput,stackId,resourceId,revisionId,version;public bool confirmed;
         }
         public IEnumerator ReadLambdaCode(string stack,string node,Action<CodeResult,string> completed)
         {

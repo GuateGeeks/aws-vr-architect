@@ -28,9 +28,10 @@ namespace GuateGeeks.AwsVr
         void UpdateVoiceDestinationMarker(SpatialVoiceContext.Snapshot context)
         {
             if(!voiceDestinationMarker)return;
-            bool show=AssistantEnabled && context.hasLocation && !ConfiguringConnection && !EditingText && assistantVoice?.CanResume!=false;
+            bool show=AssistantEnabled && (voicePreviewDestination.HasValue || context.hasLocation) && !ConfiguringConnection && !EditingText && assistantVoice?.CanResume!=false;
             voiceDestinationMarker.SetActive(show);if(!show)return;
-            voiceDestinationMarker.transform.localPosition=new Vector3(context.location.x,VoiceTableHeight+.01f,context.location.z);
+            var location=voicePreviewDestination??context.location;
+            voiceDestinationMarker.transform.localPosition=new Vector3(location.x,VoiceTableHeight+.01f,location.z);
             if(Camera.main)voiceDestinationLabel.rotation=Quaternion.LookRotation(voiceDestinationLabel.position-Camera.main.transform.position);
         }
         public const float VoiceTableHeight=.74f;

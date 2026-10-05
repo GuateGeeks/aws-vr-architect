@@ -40,6 +40,15 @@ def test_draft(data, api):
             raise ValueError()
     except (ValueError, TypeError):
         raise api.ApiError(400, 'invalid_test', 'El evento de prueba debe ser un objeto JSON de hasta 4 KiB.') from None
+    expected_raw = data.get('expectedOutput', '')
+    expected = None
+    if expected_raw:
+        try:
+            if not isinstance(expected_raw, str) or len(expected_raw.encode()) > 4096:
+                raise ValueError()
+            expected = json.loads(expected_raw, parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+        except (ValueError, TypeError):
+            raise api.ApiError(400, 'invalid_expected', 'Salida esperada: JSON válido de hasta 4 KiB.') from None
     result = api.client('lambda').invoke(FunctionName=os.environ['CODE_TEST_FUNCTION'], InvocationType='RequestResponse',
         Payload=json.dumps({'source': data['source'], 'event': event}).encode())
     with result['Payload'] as stream:
@@ -47,7 +56,16 @@ def test_draft(data, api):
     if result.get('FunctionError') or len(raw_result) > 16000:
         return dict(validation, passed=False, output='', logs='', message='La prueba aislada falló o excedió sus límites. No se cambió la Lambda desplegada.')
     report = json.loads(raw_result)
-    return dict(validation, passed=bool(report.get('passed')), output=str(report.get('output', ''))[:6000],
+    if expected_raw and report.get('passed'):
+        try:
+            actual = json.loads(report.get('output', ''), parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+            # Canonical JSON preserves boolean/number distinctions, ignores object key order.
+            matched = json.dumps(actual, sort_keys=True, separators=(',', ':')) == json.dumps(expected, sort_keys=True, separators=(',', ':'))
+        except (ValueError, TypeError):
+            matched = False
+        report['passed'] = matched
+        report['message'] = 'Salida esperada coincide.' if matched else 'Salida distinta de la esperada.'
+    return dict(validation, passed=bool(report.get('passed')), expectedChecked=bool(expected_raw), output=str(report.get('output', ''))[:6000],
                 logs=str(report.get('logs', ''))[:2000], message=str(report.get('message', ''))[:300])
 
 

@@ -85,8 +85,8 @@ def main():
             save()
             s3.put_public_access_block(Bucket=state['artifacts'], PublicAccessBlockConfiguration={key: True for key in ['BlockPublicAcls', 'IgnorePublicAcls', 'BlockPublicPolicy', 'RestrictPublicBuckets']})
         env = dict(os.environ, AWS_DEFAULT_REGION=args.region, AWS_REGION=args.region, AWS_PAGER='', SAM_CLI_TELEMETRY='0')
-        subprocess.run(['sam', 'deploy', '--template-file', str(built), '--stack-name', state['stack'], '--profile', args.profile, '--region', args.region, '--s3-bucket', state['artifacts'], '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset', '--parameter-overrides', 'DemoPrefix=' + prefix, 'AllowedCidr=' + state['cidr']], check=True, cwd=ROOT, env=env)
-        passed('Control plane deployed with dedicated artifact bucket and current-IP restriction')
+        subprocess.run(['sam', 'deploy', '--template-file', str(built), '--stack-name', state['stack'], '--profile', args.profile, '--region', args.region, '--s3-bucket', state['artifacts'], '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset', '--parameter-overrides', 'DemoPrefix=' + prefix], check=True, cwd=ROOT, env=env)
+        passed('Control plane deployed with dedicated artifact bucket and authenticated access from any IP')
         return
 
     if args.phase == 'diagnostics':
@@ -250,42 +250,12 @@ def main():
         return
 
     if args.phase == 'network':
-        def change_cidr(cidr):
-            current = describe(state['stack'])
-            parameters = [{'ParameterKey': p['ParameterKey'], 'ParameterValue': cidr} if p['ParameterKey'] == 'AllowedCidr' else {'ParameterKey': p['ParameterKey'], 'UsePreviousValue': True} for p in current['Parameters']]
-            original = cfn.get_template(StackName=state['stack'], TemplateStage='Original')['TemplateBody']
-            original = json.dumps(original) if isinstance(original, dict) else original
-            try:
-                cfn.update_stack(StackName=state['stack'], TemplateBody=original, Parameters=parameters, Capabilities=['CAPABILITY_IAM', 'CAPABILITY_AUTO_EXPAND'])
-            except ClientError as error:
-                if 'No updates are to be performed' in str(error):
-                    return
-                raise
-            cfn.get_waiter('stack_update_complete').wait(StackName=state['stack'], WaiterConfig={'Delay': 5, 'MaxAttempts': 120})
-        try:
-            print('Testing source-IP policy with an intentionally different allowed IP', flush=True)
-            change_cidr('203.0.113.1/32')
-            api_id = outputs['ApiUrl'].split('//')[1].split('.')[0]
-            applied_policy = session.client('apigateway').get_rest_api(restApiId=api_id)['policy']
-            print('Changed IP is present in API resource policy:', '203.0.113.1' in applied_policy, flush=True)
-            deadline = time.monotonic() + 45
-            while True:
-                blocked = request('GET', '/v1/session', expect=(200, 403))
-                if not blocked.get('connected'):
-                    break
-                if time.monotonic() >= deadline:
-                    raise AssertionError('Changed-IP restriction never blocked the current client')
-                time.sleep(5)
-            passed('A parameter update to a different source IP blocks this client with HTTP 403')
-            layer = 'Lambda source-IP guard' if blocked.get('error') == 'source_ip_denied' else 'API Gateway'
-            passed('Observed IP rejection layer: ' + layer)
-            request('GET', '/v1/session', expect=(403,), extra_headers={'X-Forwarded-For': '203.0.113.1', 'X-Real-IP': '203.0.113.1'})
-            passed('Client-supplied forwarding headers cannot bypass the source-IP restriction')
-        finally:
-            print('Restoring original source-IP restriction', flush=True)
-            change_cidr(state['cidr'])
+        api_id = outputs['ApiUrl'].split('//')[1].split('.')[0]
+        applied_policy = session.client('apigateway').get_rest_api(restApiId=api_id).get('policy', '{}')
+        assert 'aws:SourceIp' not in applied_policy and 'NotIpAddress' not in applied_policy
         assert request('GET', '/v1/session')['connected']
-        passed('Restoring the source-IP parameter restores authenticated access')
+        assert request('GET', '/v1/session', extra_headers={'X-Forwarded-For': '203.0.113.1', 'X-Real-IP': '2001:db8::1'})['connected']
+        passed('No gateway source-IP policy; authenticated API remains healthy')
         return
 
     if args.phase in ('cleanup', 'cleanup-demos'):

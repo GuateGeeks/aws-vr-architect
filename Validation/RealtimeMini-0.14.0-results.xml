@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.9406802">
+  <test-suite type="TestSuite" id="1270" name="GuateGeeks AWS Architect Lab" fullname="GuateGeeks AWS Architect Lab" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.940680" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1321" name="GuateGeeks.AwsVr.PlayTests.dll" fullname="C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Library/ScriptAssemblies/GuateGeeks.AwsVr.PlayTests.dll" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.938349" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76488" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1322" name="GuateGeeks" fullname="GuateGeeks" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.937046" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1323" name="AwsVr" fullname="GuateGeeks.AwsVr" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.936424" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1324" name="Tests" fullname="GuateGeeks.AwsVr.Tests" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.935751" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1313" name="RealtimeLiveTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" classname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.935437" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1314" name="NativeWebRtcCompletesToolAndAudioResponse" fullname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests.NativeWebRtcCompletesToolAndAudioResponse" methodname="NativeWebRtcCompletesToolAndAudioResponse" classname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" runstate="Explicit" seed="1612676870" result="Failed" start-time="2026-10-04 17:20:42Z" end-time="2026-10-04 17:21:48Z" duration="65.934854" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="Category" value="LiveOpenAI" />
+                  <property name="_SKIPREASON" value="Requires a fresh broker ticket supplied after the ready marker." />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0.75f
+  But was:  0.5f
+]]></message>
+                  <stack-trace><![CDATA[at GuateGeeks.AwsVr.Tests.RealtimeLiveTests+<NativeWebRtcCompletesToolAndAudioResponse>d__0.MoveNext () [0x006b6] in C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Assets\GuateGeeks\Tests\PlayMode\RealtimeLiveTests.cs:68
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@80f691d4262b\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:52
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[ATLAS audio: automatic speech turn accepted
+ATLAS audio: automatic speech turn accepted
+ATLAS latency: mode=server commit_to_audio_ms=1043
+ATLAS latency: mode=server commit_to_audio_ms=1043
+ATLAS audio: automatic speech turn accepted
+ATLAS audio: automatic speech turn accepted
+ATLAS latency: mode=semantic commit_to_audio_ms=915
+ATLAS latency: mode=semantic commit_to_audio_ms=915
+ATLAS audio: automatic speech turn accepted
+ATLAS audio: automatic speech turn accepted
+ATLAS latency: mode=semantic commit_to_audio_ms=1625
+ATLAS latency: mode=semantic commit_to_audio_ms=1625
+Saving results to: C:/Users/adawolfs/AppData/LocalLow/GuateGeeks/GuateGeeks AWS Architect Lab\TestResults.xml
+Saving results to: C:/Users/adawolfs/AppData/LocalLow/GuateGeeks/GuateGeeks AWS Architect Lab\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -42,5 +42,7 @@ except urllib.error.HTTPError as error:
 assert ticket['clientSecret'].startswith('ek_')
 assert time.time() < ticket['expiresAt'] <= time.time() + 35
 assert ticket['maxSessionSeconds'] == 3300
-(validation / 'assistant-smoke-ticket.json').write_text(json.dumps(ticket))
+pending = validation / 'assistant-smoke-ticket.pending'
+pending.write_text(json.dumps(ticket))
+pending.replace(validation / 'assistant-smoke-ticket.json')
 print('PASS deployed broker source; authenticated ephemeral session created; model=' + ticket['model'], flush=True)

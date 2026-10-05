@@ -1,0 +1,128 @@
+Building codeuri: /mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/src runtime: python3.13 architecture: x86_64 functions: ControlFunction, CodeTestFunction
+ Running PythonPipBuilder:ResolveDependencies
+ Running PythonPipBuilder:CopySource
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Validate SAM template: sam validate
+[*] Invoke Function: sam local invoke
+[*] Test Function in the Cloud: sam sync --stack-name {{stack-name}} --watch
+[*] Deploy: sam deploy --guided
+	Uploading to 9a53a01b7a39751a012514e9f46a5032  1048576 / 14811508  (7.08%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  2097152 / 14811508  (14.16%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  3145728 / 14811508  (21.24%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  4194304 / 14811508  (28.32%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  5242880 / 14811508  (35.40%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  6291456 / 14811508  (42.48%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  7340032 / 14811508  (49.56%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  7471476 / 14811508  (50.44%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  8520052 / 14811508  (57.52%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  9568628 / 14811508  (64.60%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  10617204 / 14811508  (71.68%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  11665780 / 14811508  (78.76%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  12714356 / 14811508  (85.84%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  13762932 / 14811508  (92.92%)	Uploading to 9a53a01b7a39751a012514e9f46a5032  14811508 / 14811508  (100.00%)
+
+	File with same data already exists at 9a53a01b7a39751a012514e9f46a5032, skipping upload
+
+	Deploying with following values
+	===============================
+	Stack name                   : guategeeks-aws2026
+	Region                       : us-east-1
+	Confirm changeset            : False
+	Disable rollback             : False
+	Deployment s3 bucket         : guategeeks-aws2026-artifacts-590183968738-us-east-1
+	Capabilities                 : ["CAPABILITY_IAM"]
+	Parameter overrides          : {"AllowedCidr": "186.151.64.244/32", "OpenAIRealtimeModel": "gpt-realtime-2.1", "MonthlyBudgetUsd": "10", "DemoPrefix": "ggawsday", "OpenAISecretArn": "arn:aws:secretsmanager:us-east-1:590183968738:secret:ggawsday-openai-realtime-j0Qehj"}
+	Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+	Uploading to 6cc138152f25784382245b78161fc3e2.template  19388 / 19388  (100.00%)
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+-------------------------------------------------------------------------------------------------
+Operation                LogicalResourceId        ResourceType             Replacement            
+-------------------------------------------------------------------------------------------------
++ Add                    ControlApiDeploymentad   AWS::ApiGateway::Deplo   N/A                    
+                         5ee03f5f                 yment                                           
+* Modify                 CodeTestFunction         AWS::Lambda::Function    False                  
+* Modify                 ControlApidemoStage      AWS::ApiGateway::Stage   False                  
+* Modify                 ControlApi               AWS::ApiGateway::RestA   False                  
+                                                  pi                                              
+* Modify                 ControlFunction          AWS::Lambda::Function    False                  
+* Modify                 ControlRole              AWS::IAM::Role           False                  
+- Delete                 ControlApiDeploymentf3   AWS::ApiGateway::Deplo   N/A                    
+                         9f3271fd                 yment                                           
+-------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:590183968738:changeSet/samcli-deploy1791142882/b2058dd2-0801-4fdf-885c-c57133d937fb
+
+
+2026-10-04 13:41:44 - Waiting for stack create/update to complete
+
+CloudFormation events from stack operations (refresh every 5.0 seconds)
+-------------------------------------------------------------------------------------------------
+ResourceStatus           ResourceType             LogicalResourceId        ResourceStatusReason   
+-------------------------------------------------------------------------------------------------
+UPDATE_IN_PROGRESS       AWS::CloudFormation::S   guategeeks-aws2026       User Initiated         
+                         tack                                                                     
+UPDATE_IN_PROGRESS       AWS::Lambda::Function    CodeTestFunction         -                      
+UPDATE_IN_PROGRESS -     AWS::Lambda::Function    CodeTestFunction         Eventual consistency   
+CONFIGURATION_COMPLETE                                                     check initiated        
+UPDATE_COMPLETE          AWS::Lambda::Function    CodeTestFunction         -                      
+UPDATE_IN_PROGRESS       AWS::Lambda::Function    ControlFunction          -                      
+UPDATE_IN_PROGRESS -     AWS::Lambda::Function    ControlFunction          Eventual consistency   
+CONFIGURATION_COMPLETE                                                     check initiated        
+UPDATE_COMPLETE          AWS::Lambda::Function    ControlFunction          -                      
+CREATE_IN_PROGRESS       AWS::ApiGateway::Deplo   ControlApiDeploymentad   -                      
+                         yment                    5ee03f5f                                        
+CREATE_IN_PROGRESS       AWS::ApiGateway::Deplo   ControlApiDeploymentad   Resource creation      
+                         yment                    5ee03f5f                 Initiated              
+CREATE_IN_PROGRESS -     AWS::ApiGateway::Deplo   ControlApiDeploymentad   Eventual consistency   
+CONFIGURATION_COMPLETE   yment                    5ee03f5f                 check initiated        
+CREATE_COMPLETE          AWS::ApiGateway::Deplo   ControlApiDeploymentad   -                      
+                         yment                    5ee03f5f                                        
+UPDATE_IN_PROGRESS       AWS::ApiGateway::Stage   ControlApidemoStage      -                      
+UPDATE_IN_PROGRESS -     AWS::ApiGateway::Stage   ControlApidemoStage      Eventual consistency   
+CONFIGURATION_COMPLETE                                                     check initiated        
+UPDATE_COMPLETE          AWS::ApiGateway::Stage   ControlApidemoStage      -                      
+UPDATE_COMPLETE_CLEANU   AWS::CloudFormation::S   guategeeks-aws2026       -                      
+P_IN_PROGRESS            tack                                                                     
+DELETE_IN_PROGRESS       AWS::ApiGateway::Deplo   ControlApiDeploymentf3   -                      
+                         yment                    9f3271fd                                        
+DELETE_IN_PROGRESS -     AWS::ApiGateway::Deplo   ControlApiDeploymentf3   Eventual consistency   
+CONFIGURATION_COMPLETE   yment                    9f3271fd                 check initiated        
+DELETE_COMPLETE          AWS::ApiGateway::Deplo   ControlApiDeploymentf3   -                      
+                         yment                    9f3271fd                                        
+UPDATE_COMPLETE          AWS::CloudFormation::S   guategeeks-aws2026       -                      
+                         tack                                                                     
+-------------------------------------------------------------------------------------------------
+
+CloudFormation outputs from deployed stack
+-------------------------------------------------------------------------------------------------
+Outputs                                                                                         
+-------------------------------------------------------------------------------------------------
+Key                 ProvisionerRoleArn                                                          
+Description         -                                                                           
+Value               arn:aws:iam::590183968738:role/guategeeks-aws2026-ProvisionerRole-          
+GBHcabryrR0X                                                                                    
+
+Key                 ApiUrl                                                                      
+Description         -                                                                           
+Value               https://9bc46tb7d6.execute-api.us-east-1.amazonaws.com/demo                 
+
+Key                 WorkloadRoleArn                                                             
+Description         -                                                                           
+Value               arn:aws:iam::590183968738:role/guategeeks-aws2026-WorkloadRole-W4sCy05PwNsz 
+
+Key                 DemoPrefix                                                                  
+Description         -                                                                           
+Value               ggawsday                                                                    
+
+Key                 AuthSecretArn                                                               
+Description         -                                                                           
+Value               arn:aws:secretsmanager:us-                                                  
+east-1:590183968738:secret:AuthSecret-7hdXJL0AIHne-t63V4N                                       
+-------------------------------------------------------------------------------------------------
+
+
+Successfully created/updated stack - guategeeks-aws2026 in us-east-1
+

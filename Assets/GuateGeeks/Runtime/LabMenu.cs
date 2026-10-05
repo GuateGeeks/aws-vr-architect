@@ -16,19 +16,41 @@ namespace GuateGeeks.AwsVr
         Quaternion defaultRotation, grabRotation, initialAim;
         float distance;
         bool initialized;
-        string Key => PreferencePrefix + gameObject.name;
+        // Saved poses are per layout: the solo console and the compact shared-room console keep separate poses.
+        string layout = "";
+        string Key => PreferencePrefix + layout + gameObject.name;
 
         public void CreateHandle(Vector2 size)
         {
-            var target = LabVisuals.Button(transform, ":: MOVER PANEL ::", new Vector2(0, size.y / 2 + 23),
-                new Vector2(Mathf.Min(size.x, 260), 34), null);
-            target.Label.fontSize = 17;
+            // A quiet grip bar instead of a repeated label: it names itself only while aimed at.
+            var target = LabVisuals.Button(transform, "•  •  •  •  •", new Vector2(0, size.y / 2 + 21),
+                new Vector2(Mathf.Min(size.x, 220), 30), null, LabVisuals.Muted);
+            target.Label.fontSize = 16; target.Label.characterSpacing = 0;
+            target.HoverLabel = "MOVER PANEL";
+            LabVisuals.Ghost(target);
             target.Menu = this; Handle = target.transform;
         }
         void Start()
         {
-            // Capture after callers have applied their panel tilt and scale.
+            // Capture after callers have applied their panel tilt and scale (unless the shared space already did).
+            if (initialized) return;
             defaultPosition = transform.localPosition; defaultRotation = transform.localRotation; initialized = true;
+            LoadSaved();
+        }
+        public bool TryGetDefault(out Vector3 position, out Quaternion rotation)
+        {
+            position = defaultPosition; rotation = defaultRotation; return initialized;
+        }
+        // The personal console sets the home pose for the active layout, then restores a pose the user saved there.
+        public void Rehome(Vector3 position, Quaternion rotation, string layoutKey)
+        {
+            layout = layoutKey ?? ""; defaultPosition = position; defaultRotation = rotation; initialized = true;
+            if (owner != null) return;
+            transform.SetLocalPositionAndRotation(position, rotation);
+            LoadSaved();
+        }
+        void LoadSaved()
+        {
             if (!PlayerPrefs.HasKey(Key)) return;
             try
             {

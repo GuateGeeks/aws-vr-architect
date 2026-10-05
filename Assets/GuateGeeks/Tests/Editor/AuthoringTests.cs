@@ -6,6 +6,34 @@ namespace GuateGeeks.AwsVr.Tests
 {
     public sealed class AuthoringTests
     {
+        [Test] public void InsertedLineDoesNotMarkUnchangedCodeAsReplaced()
+        {
+            var diff=CodePresentation.Difference("a\nb\nc", "a\ninserted\nb\nc");
+            Assert.That(diff,Does.Contain("+ — / 2  inserted"));
+            Assert.That(diff,Does.Not.Contain("\n− "));Assert.That(diff,Does.Contain("2 / 3  b"));
+        }
+        [Test] public void HighlightEscapesMarkupAndColorsPython()
+        {
+            var text=CodePresentation.Highlight("return '<size=99>x</size>' # comment");
+            Assert.That(text,Does.Contain("<noparse><</noparse>size=99>"));Assert.That(text,Does.Not.Contain("<size=99>"));
+            Assert.That(text,Does.Contain("<color=#C5A0FF>return</color>"));
+        }
+        [Test] public void ExpectedOutputInvalidatesTestTrustAndCasesSurviveSave()
+        {
+            string path=Path.Combine(Path.GetTempPath(),"atlas-cases-"+Guid.NewGuid().ToString("N"));
+            try {
+                var draft=new LambdaCodeDraft{nodeId="fn",expectedOutput="42",testCases=new[]{new LambdaCodeDraft.TestCase{name="double",eventJson="{\"amount\":21}",expectedOutput="42"}}};
+                draft.testedHash=draft.TestHash;Assert.IsTrue(draft.Tested);draft.expectedOutput="43";Assert.IsFalse(draft.Tested);
+                draft.Save(path,"id");var loaded=LambdaCodeDraft.Load(path,"id","fn");Assert.AreEqual("42",loaded.testCases[0].expectedOutput);
+            }finally{if(Directory.Exists(path))Directory.Delete(path,true);}
+        }
+        [Test] public void RetrievalUsesCurrentLinksAndDropsDeletedComponents()
+        {
+            var graph=Architecture.Preset(0);string fn=graph.nodes[1].id;
+            var entries=IntegrationKnowledge.Retrieve(graph,fn);Assert.AreEqual(2,entries.Length);
+            Assert.That(entries[1].example+entries[0].example,Does.Contain("TARGETS"));
+            graph.Remove(fn);Assert.IsEmpty(IntegrationKnowledge.Retrieve(graph,fn));
+        }
         [Test] public void DraftValidationAndTestingBindToExactSourceAndEvent()
         {
             var draft=new LambdaCodeDraft{nodeId="fn"};draft.validatedHash=LambdaCodeDraft.Hash(draft.source);draft.testedHash=LambdaCodeDraft.Hash(draft.source+"\n"+draft.eventJson);

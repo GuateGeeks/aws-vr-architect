@@ -1,0 +1,6 @@
+Credits restored on October 4, 2026. Native WebRTC now connects.
+Mini passed two context/audio turns but failed Spanish correction: scale 0.5 rather than 0.75. It is not accepted as the deployed default.
+The first full-model run emitted scale 0.5 and then 0.75 (failed single-action assertion).
+A diagnostic full-model rerun passed all three turns, applying scale 0.75 once. This is a smoke test, not a guarantee of correction reliability; the earlier failures are retained here rather than hidden by the successful rerun.
+Deployed OpenAIRealtimeModel=gpt-realtime-2.1 (UPDATE_COMPLETE). Short confirmations, bounded context, on-demand diagnostic context, usage tracking and cancellable previews remain enabled.
+No new Quest binary was required. Existing sessions need ATLAS deactivated/reactivated to use the changed backend model.

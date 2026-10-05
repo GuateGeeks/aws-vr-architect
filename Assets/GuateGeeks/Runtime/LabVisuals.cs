@@ -9,10 +9,28 @@ namespace GuateGeeks.AwsVr
 {
     public static class LabVisuals
     {
-        public static readonly Color Cyan = Hex("#54DCEC"), Orange = Hex("#FFAD4F"), Muted = Hex("#91A9BC"),
-            White = Hex("#E6F6FF"), PanelColor = Hex("#102637"), LineColor = Hex("#214456"), Green = Hex("#7CF0BD");
+        // Holographic workshop palette: ice-cyan light for structure, amber for attention, red only for danger.
+        // AWS service colours remain identifiers on their official icons, never the dominant surface.
+        public static readonly Color Cyan = Hex("#5CE1F2"), Orange = Hex("#FFB24F"), Muted = Hex("#8FA9BC"),
+            White = Hex("#E8F7FF"), PanelColor = Hex("#102637"), LineColor = Hex("#1F4B5E"), Green = Hex("#7CF0BD"),
+            Ice = Hex("#C9F6FF"), Alert = Hex("#FF6474");
+        public static readonly Color Glass = new Color(.018f, .06f, .088f, .9f); // ~10% linear ≈ 30% perceived see-through
+        // Reading-heavy panels that float in front of others (code, keyboard, settings, assistant) need denser glass.
+        public static readonly Color FocusGlass = new Color(.014f, .048f, .072f, 1);
+        // They also sort after ordinary panels and holograms so content behind never bleeds through their text.
+        public const int FocusSortingOrder = 20, ContextSortingOrder = 10;
+        public static RectTransform Focus(RectTransform panel)
+        {
+            if (!panel) return panel;
+            var glass = panel.GetComponent<HoloPanelGraphic>(); if (glass) glass.color = FocusGlass;
+            var canvas = panel.GetComponent<Canvas>(); if (canvas) canvas.sortingOrder = FocusSortingOrder;
+            return panel;
+        }
+        public static Color Rgba(string hex, float alpha) { var c = Hex(hex); c.a = alpha; return c; }
         static readonly Dictionary<Color, Material> materials = new Dictionary<Color, Material>();
-        static readonly Dictionary<string, Material> specialMaterials = new Dictionary<string, Material>();
+        // Value-type keys: per-frame lookups (selection rings, traces, links) allocate nothing.
+        static readonly Dictionary<(string, Color), Material> specialMaterials = new Dictionary<(string, Color), Material>();
+        static readonly Dictionary<(Color, bool), Material> beams = new Dictionary<(Color, bool), Material>();
         static TMP_FontAsset font;
         public static Color Hex(string s) { ColorUtility.TryParseHtmlString(s, out var c); return c; }
         public static void Release()
@@ -21,13 +39,25 @@ namespace GuateGeeks.AwsVr
             materials.Clear();
             foreach (var material in specialMaterials.Values) if (material) UnityEngine.Object.Destroy(material);
             specialMaterials.Clear();
+            foreach (var material in beams.Values) if (material) UnityEngine.Object.Destroy(material);
+            beams.Clear();
+            AwsIconGeometry.Release();
         }
         public static Material SpecialMaterial(string shader, Color color)
         {
-            string key = shader + ColorUtility.ToHtmlStringRGBA(color);
+            var key = (shader, color);
             if (specialMaterials.TryGetValue(key, out var existing) && existing) return existing;
             var material = new Material(Resources.Load<Shader>(shader)); material.color = color;
             specialMaterials[key] = material; return material;
+        }
+        // Additive beam for LineRenderers; static beams (observation edges, rings) have no travelling dashes.
+        public static Material Beam(Color color, bool moving = true)
+        {
+            var key = (color, moving);
+            if (beams.TryGetValue(key, out var existing) && existing) return existing;
+            var material = new Material(Resources.Load<Shader>("LabFlow")); material.color = color;
+            if (!moving) { material.SetFloat("_Speed", 0); material.SetFloat("_Dashes", 0); }
+            beams[key] = material; return material;
         }
         public static Material Material(Color color)
         {
@@ -70,7 +100,12 @@ namespace GuateGeeks.AwsVr
             go.transform.localPosition = pos; go.transform.localRotation = Quaternion.Euler(0, yaw, 0); go.transform.localScale = Vector3.one * .002f;
             var rect = go.GetComponent<RectTransform>(); rect.sizeDelta = size;
             var canvas = go.GetComponent<Canvas>(); canvas.renderMode = RenderMode.WorldSpace;
-            if (background) { var img = go.AddComponent<HoloPanelGraphic>(); img.color = new Color(.025f, .055f, .082f, .98f); img.raycastTarget = false; }
+            if (background)
+            {
+                var img = go.AddComponent<HoloPanelGraphic>(); img.color = Glass; img.raycastTarget = false; img.Accent = Cyan;
+                go.AddComponent<CanvasGroup>().interactable = false; go.AddComponent<HoloReveal>();
+                EventBranding.Watermark(rect, size);
+            }
             if (movable) go.AddComponent<LabMenu>().CreateHandle(size);
             return rect;
         }
@@ -91,12 +126,27 @@ namespace GuateGeeks.AwsVr
             text.alignment = align == TextAnchor.MiddleCenter ? TextAlignmentOptions.Center : align == TextAnchor.MiddleRight ? TextAlignmentOptions.MidlineRight : TextAlignmentOptions.MidlineLeft;
             text.raycastTarget = false; text.richText = true; text.textWrappingMode = TextWrappingModes.Normal;
             text.overflowMode = TextOverflowModes.Truncate;
+            Track(text, value, size);
             return text;
         }
+        // Instrument-style labels: short uppercase strings get wide tracking when they still fit their box.
+        public static void Track(TMP_Text text, string value, Vector2 size, float spacing = 7)
+        {
+            if (string.IsNullOrEmpty(value) || value.Length > 60 || value.Contains("\n") || value.Contains("<")) return;
+            bool letters = false;
+            foreach (char c in value) { if (char.IsLower(c)) return; if (char.IsLetter(c)) letters = true; }
+            if (!letters) return;
+            text.characterSpacing = spacing;
+            if (text.GetPreferredValues(value, float.PositiveInfinity, size.y).x > size.x - 6) text.characterSpacing = 0;
+        }
+        // Re-evaluate tracking after a label's text changes at runtime.
+        public static void Retrack(TMP_Text text, float spacing = 7) { if (!text) return; text.characterSpacing = 0; Track(text, text.text, text.rectTransform.rect.size, spacing); }
+        // Secondary actions: no slab, only a baseline until aimed at.
+        public static LabTarget Ghost(LabTarget target) { if (target && target.Surface) { target.Surface.Ghost = true; target.SetAvailable(target.Available); } return target; }
         public static LabTarget Button(Transform parent, string label, Vector2 pos, Vector2 size, Action action, Color? accent = null)
         {
             var rt = Rect(parent, label, pos, size); var img = rt.gameObject.AddComponent<HoloPanelGraphic>();
-            img.color = Hex("#102F40"); img.raycastTarget = false; img.Detailed = false; img.Accent = accent ?? Cyan;
+            img.color = Rgba("#0D2B3B", .80f); img.raycastTarget = false; img.Detailed = false; img.Accent = accent ?? Cyan;
             var text = Text(rt, label, Vector2.zero, size - new Vector2(20, 4), 22, accent ?? White, TextAnchor.MiddleCenter);
             var collider = rt.gameObject.AddComponent<BoxCollider>(); collider.size = new Vector3(size.x, size.y, 12);
             var target = rt.gameObject.AddComponent<LabTarget>(); target.Action = action; target.Surface = img; target.Label = text; target.Accent = accent ?? White;

@@ -3,6 +3,7 @@ import base64
 import hashlib
 import io
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 import urllib.error
@@ -64,6 +65,6 @@ for slot in ('1', '2', '3'):
             code, following = get(path + '/' + mode + '?' + urllib.parse.urlencode(query))
             assert code == 200 and following['incremental']
         report['inspectionChecks'].append(dict(slot=slot, mode=mode, version=2))
-Path('deployment/release-0.13.0-verification.json').write_text(json.dumps(report, indent=2))
+Path(os.environ.get('RELEASE_VERIFY_REPORT', 'deployment/release-0.13.0-verification.json')).write_text(json.dumps(report, indent=2))
 print(json.dumps(report, indent=2))
 print('No workload was created, invoked, changed or deleted.')

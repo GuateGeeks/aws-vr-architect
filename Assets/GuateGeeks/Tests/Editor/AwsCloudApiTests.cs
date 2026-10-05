@@ -80,6 +80,25 @@ namespace GuateGeeks.AwsVr.Tests
             Assert.AreEqual(1, transport.Sent.Count(r => r.method == "POST" && r.url.EndsWith("/deployments")));
             Assert.That(transport.Sent.Last().url, Does.EndWith("/deployments/1"));
         }
+        [Test] public void CustomEventUsesDefaultEntrypointAndPreservesPayloadAndStackGuard()
+        {
+            Connect();Deploy(fixture.created,fixture.ready);
+            api.EventResourceId="node2"; // A previously selected target must not affect this request.
+            transport.Replies.Enqueue(fixture.ready);transport.Replies.Enqueue(fixture.accepted);
+            string payload="{\"message\":\"pedido nuevo\",\"amount\":42}";
+            Run(api.InvokeEvent("",payload,(ok,message)=>Assert.IsTrue(ok,message)));
+            var sent=transport.Sent.Last();
+            Assert.That(sent.body,Does.Contain("\"resourceId\":\""+AwsCloudApi.DefaultEventSource(fixture.graph).id+"\""));
+            Assert.That(sent.body,Does.Contain("\"stackId\":\""+api.StackId+"\""));
+            Assert.That(sent.body,Does.Contain("pedido nuevo"));
+        }
+        [Test] public void CancelledVoiceEventDoesNotSendAfterPreflight()
+        {
+            Connect();Deploy(fixture.created,fixture.ready);
+            transport.Replies.Enqueue(fixture.ready);
+            Run(api.InvokeEvent("","{}",(ok,message)=>{Assert.IsFalse(ok);Assert.That(message,Does.Contain("cancelado"));},()=>false));
+            Assert.IsFalse(transport.Sent.Any(r=>r.method=="POST" && r.url.EndsWith("/events")));
+        }
         [Test] public void AnotherDesignInSharedSlotIsNeverMarkedReady()
         {
             Connect(); var ready = new CloudReply { Code = 200, Json = fixture.ready.Json.Replace(JsonUtility.FromJson<AwsCloudApi.DeploymentStatus>(fixture.ready.Json).graphHash, "different-design") };

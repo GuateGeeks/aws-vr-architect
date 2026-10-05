@@ -120,6 +120,7 @@ namespace GuateGeeks.AwsVr
         {
             if (Busy || inspectedState == null || string.IsNullOrEmpty(inspectedState.stackId)) return;
             var state = inspectedState; string slot = inspectedSlot;
+            var source=Cloud;
             OperationsHeader("ELIMINAR SLOT " + slot + " EN AWS");
             FitText(Cloud.Endpoint + "\n" + Cloud.Region, new Vector2(0, 240), new Vector2(506, 125), 19, Muted);
             FitText("Se eliminarán todos los recursos del slot, incluidos tablas e ítems, colas, logs y versiones de objetos S3.\n\nEsta acción no se puede deshacer. Tu diseño local se conserva.", new Vector2(0, 65), new Vector2(506, 225), 24, White);
@@ -127,6 +128,7 @@ namespace GuateGeeks.AwsVr
             EditButton(inspector, "Cancelar", new Vector2(0, -257), new Vector2(506, 58), () => DrawSlots());
             EditButton(inspector, "Sí, eliminar slot " + slot, new Vector2(0, -336), new Vector2(506, 64), () =>
             {
+                if(source!=Cloud || !SessionReady || Busy){SetStatus("La sesión cambió. Actualiza y confirma el slot de nuevo.");return;}
                 StopFlowPreview();
                 if (slot == Cloud.Slot) { Deployed = false; EventCount = 0; Graph.ResetStates(); RefreshSelection(); }
                 BeginSlotOperation("LIMPIANDO SLOT " + slot, CleanSlotRoutine(slot, state.stackId));

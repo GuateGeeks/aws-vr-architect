@@ -1,0 +1,7 @@
+    versionCode=19 minSdk=32 targetSdk=36
+    versionName=0.17.0
+Running app PID: 2503
+
+10-04 20:37:10.456  2503  2581 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~NnjcYJLCVDNqRokk313C5Q==/com.guategeeks.awsarchitectlab-xZQ-e6vpx7HxpITct6ii5w==/base.apk"],nativeLibraryDirectories=[/data/app/~~NnjcYJLCVDNqRokk313C5Q==/com.guategeeks.awsarchitectlab-xZQ-e6vpx7HxpITct6ii5w==/lib/arm64, /data/app/~~NnjcYJLCVDNqRokk313C5Q==/com.guategeeks.awsarchitectlab-xZQ-e6vpx7HxpITct6ii5w==/base.apk!/lib/arm64-v8a, /apex/com.meta.xr/priv-app/VrDriver/VrDriver.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64]]
+
+Headset power state: Asleep. On-device visual acceptance pending; screen capture unavailable while asleep. Existing AssetPackManager class warning also recorded for 0.16.0.

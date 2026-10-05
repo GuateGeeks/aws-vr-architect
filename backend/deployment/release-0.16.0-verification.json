@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-10-04T19:43:28.845460+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "deployedSourceMatches": true,
+  "slots": [
+    {
+      "slot": "1",
+      "status": "ABSENT"
+    },
+    {
+      "slot": "2",
+      "status": "ABSENT"
+    },
+    {
+      "slot": "3",
+      "status": "ABSENT"
+    }
+  ],
+  "inspectionChecks": [],
+  "parametersPreserved": true,
+  "voiceBrokerReady": true,
+  "voiceModel": "gpt-realtime-2.1",
+  "newTools": [
+    "read_component",
+    "slot_action",
+    "send_event"
+  ]
+}

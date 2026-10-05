@@ -8,21 +8,21 @@ namespace GuateGeeks.AwsVr
     {
         RectTransform settingsPanel;
         bool readerBeforeSettings;
-        readonly GameObject[] settingsPages = new GameObject[3];
+        readonly GameObject[] settingsPages = new GameObject[4];
         TMPro.TMP_Text regionSetting, simulationSetting;
         void BuildUnifiedSettings()
         {
-            settingsPanel = Panel(world, "Settings console", new Vector3(0, 2.05f, .8f), new Vector2(1120, 1100));
+            settingsPanel = Focus(Panel(PersonalRoot, "Settings console", new Vector3(0, 2.05f, .8f), new Vector2(1120, 1100)));
             settingsPanel.localScale = Vector3.one * .0014f;
             Text(settingsPanel, "AJUSTES / TU ESPACIO", new Vector2(0, 492), new Vector2(1030, 60), 30, Cyan);
             settingsPanel.GetComponent<HoloPanelGraphic>().color = new Color(.035f, .085f, .12f, 1);
-            string[] tabs = { "Conexión AWS", "Espacio", "Controles" };
-            for (int i = 0; i < 3; i++)
+            string[] tabs = { "Conexión AWS", "Espacio", "Controles", "Sala compartida" };
+            for (int i = 0; i < tabs.Length; i++)
             {
                 int page = i;
                 settingsPages[i] = new GameObject(tabs[i], typeof(RectTransform));
                 settingsPages[i].transform.SetParent(settingsPanel, false);
-                Button(settingsPanel, tabs[i], new Vector2((i - 1) * 350, 413), new Vector2(330, 62), () => ShowSettingsPage(page));
+                Button(settingsPanel, tabs[i], new Vector2((i - 1.5f) * 262, 413), new Vector2(248, 62), () => ShowSettingsPage(page));
             }
             DockSettingsContent("05 · Cloud connection", 0, Vector2.zero, 1.35f);
             DockSettingsContent("04 · Environment settings", 1, new Vector2(0, 210), .92f);
@@ -47,6 +47,7 @@ namespace GuateGeeks.AwsVr
                 if (IsCloud) { SetStatus("AWS usa resultados reales."); return; }
                 SimulateFailure = !SimulateFailure; RefreshGlobalSettings();
             }).Label;
+            BuildRoomSettings(settingsPages[3].transform);
             ShowSettingsPage(0); settingsPanel.gameObject.SetActive(false);
         }
         void DockSettingsContent(string name, int page, Vector2 position, float scale)

@@ -34,11 +34,13 @@ namespace GuateGeeks.AwsVr.Editor
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel32;
-            PlayerSettings.bundleVersion = "0.13.0";
-            PlayerSettings.Android.bundleVersionCode = 15;
+            PlayerSettings.bundleVersion = "0.22.0";
+            PlayerSettings.Android.bundleVersionCode = 24;
             PlayerSettings.Android.forceInternetPermission = true;
             PlayerSettings.Android.optimizedFramePacing = false; // Unity WebRTC Android requirement; OpenXR controls headset pacing.
-            PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
+            // Immersive Meta Horizon uploads require API 34; Auto selects the newest installed SDK.
+            PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel34;
+            PlayerSettings.Android.preferredInstallLocation = AndroidPreferredInstallLocation.Auto;
             PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
             PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.Vulkan });
             PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
@@ -87,7 +89,7 @@ namespace GuateGeeks.AwsVr.Editor
                 foreach (var feature in xr.GetFeatures())
                 {
                     if (feature.GetType().Name == "OculusTouchControllerProfile" || feature.GetType().Name == "MetaQuestTouchPlusControllerProfile" ||
-                        (group == BuildTargetGroup.Android && (feature.GetType().Name == "MetaQuestFeature" || feature.GetType().Name == "ARCameraFeature" || feature.GetType().Name == "ARSessionFeature" || feature.GetType().Name == "OpenXRCompositionLayersFeature" || feature.GetType().Name == "HandTracking" || feature.GetType().Name == "MetaHandTrackingAim")))
+                        (group == BuildTargetGroup.Android && (feature.GetType().Name == "MetaQuestFeature" || feature.GetType().Name == "ARCameraFeature" || feature.GetType().Name == "ARSessionFeature" || feature.GetType().Name == "OpenXRCompositionLayersFeature" || feature.GetType().Name == "HandTracking" || feature.GetType().Name == "MetaHandTrackingAim" || feature.GetType().Name == "FoveatedRenderingFeature")))
                     { feature.enabled = true; EditorUtility.SetDirty(feature); }
                 }
                 EditorUtility.SetDirty(xr);

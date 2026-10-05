@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.9199655">
-  <test-suite type="TestSuite" id="1056" name="GuateGeeks AWS Architect Lab" fullname="GuateGeeks AWS Architect Lab" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.919966" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.2757502">
+  <test-suite type="TestSuite" id="1058" name="GuateGeeks AWS Architect Lab" fullname="GuateGeeks AWS Architect Lab" runstate="Runnable" testcasecount="46" result="Passed" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.275750" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="PlayMode" />
     </properties>
-    <test-suite type="Assembly" id="1105" name="GuateGeeks.AwsVr.PlayTests.dll" fullname="C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Library/ScriptAssemblies/GuateGeeks.AwsVr.PlayTests.dll" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.898064" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1109" name="GuateGeeks.AwsVr.PlayTests.dll" fullname="C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Library/ScriptAssemblies/GuateGeeks.AwsVr.PlayTests.dll" runstate="Runnable" testcasecount="46" result="Passed" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.265879" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="61704" />
+        <property name="_PID" value="76488" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="PlayMode" />
         <property name="EditorOnly" value="False" />
       </properties>
-      <test-suite type="TestSuite" id="1106" name="GuateGeeks" fullname="GuateGeeks" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.894814" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1110" name="GuateGeeks" fullname="GuateGeeks" runstate="Runnable" testcasecount="46" result="Passed" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.264706" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1107" name="AwsVr" fullname="GuateGeeks.AwsVr" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.892194" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1111" name="AwsVr" fullname="GuateGeeks.AwsVr" runstate="Runnable" testcasecount="46" result="Passed" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.263896" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1108" name="Tests" fullname="GuateGeeks.AwsVr.Tests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.889809" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1112" name="Tests" fullname="GuateGeeks.AwsVr.Tests" runstate="Runnable" testcasecount="46" result="Passed" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.263206" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1097" name="RealtimeLiveTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" classname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.886255" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1101" name="RealtimeLiveTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" classname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.261667" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1098" name="NativeWebRtcCompletesToolAndAudioResponse" fullname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests.NativeWebRtcCompletesToolAndAudioResponse" methodname="NativeWebRtcCompletesToolAndAudioResponse" classname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" runstate="Explicit" seed="1909670189" result="Passed" start-time="2026-10-04 09:07:59Z" end-time="2026-10-04 09:09:16Z" duration="76.865973" asserts="0">
+              <test-case id="1102" name="NativeWebRtcCompletesToolAndAudioResponse" fullname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests.NativeWebRtcCompletesToolAndAudioResponse" methodname="NativeWebRtcCompletesToolAndAudioResponse" classname="GuateGeeks.AwsVr.Tests.RealtimeLiveTests" runstate="Explicit" seed="1532173959" result="Passed" start-time="2026-10-04 17:27:22Z" end-time="2026-10-04 17:28:39Z" duration="77.244349" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                   <property name="Category" value="LiveOpenAI" />
@@ -28,12 +28,11 @@
                   <property name="repeatIteration" value="0" />
                 </properties>
                 <output><![CDATA[ATLAS audio: automatic speech turn accepted
-ATLAS latency: mode=server commit_to_audio_ms=950
+ATLAS latency: mode=server commit_to_audio_ms=671
 ATLAS audio: automatic speech turn accepted
-ATLAS latency: mode=semantic commit_to_audio_ms=649
+ATLAS latency: mode=semantic commit_to_audio_ms=728
 ATLAS audio: automatic speech turn accepted
-ATLAS audio: automatic speech turn accepted
-ATLAS latency: mode=semantic commit_to_audio_ms=783
+ATLAS latency: mode=semantic commit_to_audio_ms=719
 Saving results to: C:/Users/adawolfs/AppData/LocalLow/GuateGeeks/GuateGeeks AWS Architect Lab\TestResults.xml
 ]]></output>
               </test-case>

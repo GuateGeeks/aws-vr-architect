@@ -6,6 +6,6 @@
 {"eventId": "test-id", "nodeId": "lambda1", "stage": "processed", "level": "INFO", "requestId": "", "processed": true}
 {"eventId": "original-event", "nodeId": "lambda1", "stage": "received", "level": "INFO", "requestId": ""}
 {"eventId": "original-event", "nodeId": "lambda1", "stage": "processed", "level": "INFO", "requestId": "", "processed": true}
-Ran 69 tests in 0.097s
+Ran 74 tests in 0.119s
 
 OK

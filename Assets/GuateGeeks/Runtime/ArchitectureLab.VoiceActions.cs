@@ -127,6 +127,7 @@ namespace GuateGeeks.AwsVr
         }
         public bool SetComponentScale(float scale)
         {
+            if(RoomReadOnly)return false;
             if(float.IsNaN(scale) || float.IsInfinity(scale) || scale<.5f || scale>1.25f || views.Values.Any(v=>v.Grabbed))return false;
             Remember();ComponentScale=scale;
             foreach(var node in Graph.nodes)node.viewScale=0;

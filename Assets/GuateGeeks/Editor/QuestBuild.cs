@@ -39,8 +39,10 @@ namespace GuateGeeks.AwsVr.Editor
             for (int i = 0; i < devices.arraySize; i++)
             {
                 var device = devices.GetArrayElementAtIndex(i);
-                bool quest3 = device.FindPropertyRelative("manifestName").stringValue == "eureka";
-                device.FindPropertyRelative("enabled").boolValue = quest3; found |= quest3;
+                string manifestName = device.FindPropertyRelative("manifestName").stringValue;
+                bool quest3 = manifestName == "eureka";
+                device.FindPropertyRelative("enabled").boolValue = quest3 || manifestName == "quest2";
+                found |= quest3;
             }
             if (!found) throw new BuildFailedException("Meta Quest 3 target is missing from the OpenXR package.");
             meta.FindProperty("forceRemoveInternetPermission").boolValue = false;
@@ -81,6 +83,8 @@ namespace GuateGeeks.AwsVr.Editor
             int maxSdk = Directory.Exists(platforms) ? Directory.GetDirectories(platforms).Select(p => int.TryParse(Path.GetFileName(p).Replace("android-", ""), out int sdk) ? sdk : 0).DefaultIfEmpty(0).Max() : 0;
             Require(maxSdk >= 34, "Installed Android platform API >= 34; highest=" + maxSdk);
             Require(PlayerSettings.GetScriptingBackend(NamedBuildTarget.Android) == ScriptingImplementation.IL2CPP && PlayerSettings.Android.targetArchitectures == AndroidArchitecture.ARM64, "IL2CPP / ARM64 only");
+            Require(PlayerSettings.Android.targetSdkVersion == AndroidSdkVersions.AndroidApiLevel34, "Meta immersive distribution target SDK 34");
+            Require(PlayerSettings.Android.preferredInstallLocation == AndroidPreferredInstallLocation.Auto, "Meta distribution install location Auto");
             Require(PlayerSettings.GetGraphicsAPIs(BuildTarget.Android).SequenceEqual(new[] { GraphicsDeviceType.Vulkan }), "Vulkan");
             var general = XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(BuildTargetGroup.Android);
             Require(general && general.InitManagerOnStart && general.Manager.activeLoaders.Any(l => l is OpenXRLoader), "OpenXR initializes on Android startup");

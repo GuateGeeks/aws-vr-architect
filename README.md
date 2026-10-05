@@ -1,5 +1,64 @@
 # GuateGeeks · AWS Architect Lab
 
+**0.22.0 — Networked four-person pilot:** *Ajustes → Sala compartida → Crear sala real / Unirme con código* now uses API Gateway WebSocket, Lambda and DynamoDB to share one authoritative graph. Each participant gets a separate temporary identity, reserved station and private ATLAS session. Requires the updated backend and the same rebuilt app on every headset.
+
+- Selecting remains private and allows inspecting a teammate's object. Moving waits for a server lease; edits wait for a receipt. Conflicts, expired leases and stale proposals cannot overwrite accepted state.
+- Undo reverses a user's own operation without restoring an old whole-room snapshot. Disconnection switches to read-only; reconnect fetches current state. Rooms/tokens expire after two hours.
+- ATLAS audio/transcripts and proposals stay personal. In a real room, hold right-controller A or desktop Space to talk; the hands-mode **Hablar / Silenciar mic** button toggles capture. The shared reactor does not expose private speech activity.
+- Only the facilitator confirms AWS deployment, deletion and code publication. A reserved slot also rejects writes using the shared event credential. Guests can read shared deployment progress.
+- Pilot configuration targets one active four-person room; validate transport, audio isolation, alignment and performance on real headsets before increasing concurrent rooms. Automated tests: **102 backend, 81 EditMode and 57 PlayMode passed**. SAM lint and packaging passed; no live room resources were deployed.
+
+Activation and limits: [implementation guide (Spanish)](Documentation/Evaluacion-UX-Sala-Compartida.md#9-implementación-del-piloto-de-cuatro-usuarios-5-de-octubre-de-2026).
+
+
+**0.21.0 — Shared room for up to 4 people, smoother frames:** *Ajustes → Sala compartida* places up to four people around the table on numbered, coloured floor stations. **Alinear a mi estación** maps each headset onto its station for same-room co-location; snap turn is off while the room is shared.
+
+- **Personal console:** each person's panels turn to their station and compact to arm's reach inside a ±40° sector. Text gets 1.2–3.4× larger in visual angle, and nothing reaches into a neighbour's space.
+- **Zone guard:** warns when you leave your circle.
+- **Presence and locks:** teammates appear as visors wearing the GuateGeeks eyes, with name tags, station colours and pointer beams. Objects another person is editing show "EN USO · NOMBRE" and cannot be selected or moved.
+- **Rehearsal:** *Simular 4 usuarios* adds three deterministic teammates. All of this runs through `ICollabSession`, ready for the networked session (API Gateway WebSocket + Lambda + DynamoDB locks) in the next phase.
+- **Smoothness:**
+  - Material lookups no longer allocate every frame.
+  - Connection curves are rebuilt only when they move.
+  - Fixed foveated rendering is enabled on Quest.
+  - Aim assist forgives 2.5 cm near-misses.
+
+See the [UX evaluation (Spanish)](Documentation/Evaluacion-UX-Sala-Compartida.md). Renders: `Validation/44`–`47-*.png`.
+
+**Lab architecture refresh (source update):**
+- **Pillars and roof:** slim graphite pillars with lit seams and alternating quetzal-teal and leaf-green accents at their feet. Lit arches rise from each pillar to a crown ring over the table.
+- **Back wall:** a narrower reactor bulkhead with a lit frame, panel seams and chevrons, so the volcano horizon shows on both sides. The free-standing racks carry animated activity columns.
+- **Projection table:** a bevelled dark-metal top with teal, cyan and leaf edge lights and "AWS COMMUNITY DAY · GUATEMALA / GUATEGEEKS" etched in the glass. Power traces run from the table core to each object.
+- **Floor:** a fine 25 cm grid near the table, a 1 m grid further out, and twelve spokes with pulses running toward the table.
+- **Object stands:** each has a titanium rim and a light ring and glow in the service's official colour.
+- **Status bar:** slimmer, sitting below the reactor hub.
+
+All motion is decorative and follows reduced motion. Render: `Validation/41-table-and-stands.png`.
+
+**Community Day identity, horizon and armour (source update):** the title window now shows the AWS Community Day Guatemala logo (`Resources/Branding`, alpha-bled for clean mipmaps) with a teal backlight and registration brackets. The room gains:
+- a procedural 360° horizon (night sky, logo-coloured aurora, holographic Agua/Acatenango/Fuego volcanoes with Fuego's glowing summit) seen between the ribs;
+- a teal light pool and two tapered floor ribbons echoing the logo swooshes;
+- finer motes in the event palette.
+
+Tracked hands are now two-tone plated gauntlets: phalanx plates, graphite under-suit, quetzal-teal wrist seal and luminous knuckle nodes, still in one mesh and one draw call. Controllers become titanium emitters with an aperture ring and a fading energy-beam ray. All new motion follows reduced motion, and the horizon and floor light hide with the virtual room (hidden background and passthrough). Render: `Validation/40-volcano-horizon.png`.
+
+**0.18.0 — 3D AWS service emblems:** tabletop objects are solid, bevelled emblems generated from the official AWS icon SVG geometry. Each has the category-colour tile with the white symbol in relief on both faces, readable from any side of the table, at one shared mesh and one draw call per object. Regenerate with `python3 Tools/Generate-AwsIconGeometry.py`. See [AWS icons](Documentation/AWS-Icons.md).
+
+**0.18.0 — Holographic workshop UI:** translucent light-glass panels with emitted rims and corner brackets, a context ring that blooms around the selected hologram (CONECTAR · RELACIONES · FICHA · CÓDIGO · DIAGNÓSTICO · QUITAR), energy-beam connections, panels that materialise instead of popping, table confirmation pulses, a synthesised glass sound palette, and the back-wall reactor acting as ATLAS's presence (it tints, spins up and breathes with voice). Secondary actions are quiet ghost buttons; grip bars replace the repeated MOVER PANEL labels. Existing labels, confirmations, undo and reduced motion are unchanged. See [evaluation and redesign](Documentation/Experience-Holographic-Workshop.md); before/after renders are in `Validation/BeforeStark/` and `Validation/`.
+
+**0.17.0 — AWS service icons:** the supplied official SVGs now identify all seven services in the catalog, object inspector, placement preview, tabletop badges and library thumbnails. Badges face the viewer; the original service volumes, port controls and state indicators remain available. See [icon rendering and validation](Documentation/AWS-Icons.md).
+
+**Voice object access (source update):** automatic tool continuation recovery, paginated DynamoDB/log reads independent of the last event, slot status/cleanup review, and custom event JSON using the default architecture entrypoint when no target is specified. Existing local preview/undo and manual AWS confirmations remain enforced. See [voice capabilities and limits](Documentation/Voice-Object-Access.md). Requires a backend update and rebuilt app.
+
+**0.15.0 — VR editing and integration context:** Lambda studio adds Python highlighting, aligned comparisons, reusable test cases with expected JSON outputs, connected-source event examples, and local code export. The component inspector adds undoable local removal and saved creation defaults. ATLAS retrieves compiler-backed examples for the actual graph and keeps spoken explanations brief. See [editing controls and limits](Documentation/Lambda-VR-Editing.md).
+
+**0.14.0 — Lower-cost voice and visible actions:** The deployed broker uses full Realtime 2.1 after Mini failed the Spanish correction smoke test. Mini remains an opt-in candidate. Routine confirmations stay short; recent conversation input is bounded to 8,000 tokens with 80% retention, while full code tool output remains available. Live diagnostics update locally and enter the AI conversation only through an explicit status request. The compact ATLAS panel shows an estimated USD total for this app execution, including cached input and transcription usage; it survives reconnects, resets when the app restarts, and is not an invoice or spending cap. Unknown/missing usage is marked partial. Rates are dated October 4, 2026.
+
+Voice edits show named targets, orange target rings, proposed movement/connection lines, destination outlines and a 3.5-second countdown before execution. Use **Aplicar ahora** to skip the remaining countdown, **Cancelar acción**, B/Escape, or speak again to cancel; **Deshacer** restores an applied edit. The proposed destination stays fixed while pointing moves. Manual design changes invalidate the pending action. Complete architecture/code proposals retain their existing review, and AWS publication/deployment still needs its manual confirmation. Hands-free voice remains active until disabled.
+
+The backend `OpenAIRealtimeModel` parameter can select `gpt-realtime-2.1` as a quality fallback; there is no automatic model escalation in this version. Compare Spanish comprehension, targeting and code quality before relying on Mini for complex tasks. Pricing references: [Realtime models](https://developers.openai.com/api/docs/pricing), [transcription](https://developers.openai.com/api/docs/models/gpt-4o-mini-transcribe), [context and caching](https://developers.openai.com/api/docs/guides/voice-latency-cost?voice-api=realtime).
+
+
 **0.13.0 — Reviewed workflows, diagnostics and Lambda code:** stage architecture/layout plans with one undo, monitor current event evidence automatically, and draft/edit/validate/test Python Lambda code. Active code publication and version restoration require a manual review button and matching AWS revision. See [controls, constraints and validation](Documentation/Experience-0.13.0.md).
 
 **0.12.1 — Voice destination fix:** “muévelo aquí” now uses the visible tabletop, with an AQUÍ marker and brief retention during speech processing. Downward rays from normal hand/controller height and floating menu buttons no longer prevent destination detection. See [0.12.1 details](Documentation/Experience-0.12.1.md).

@@ -1,0 +1,12 @@
+[
+  {
+    "expectedOutput": "{\"total\":42}",
+    "passed": true,
+    "expectedChecked": true
+  },
+  {
+    "expectedOutput": "{\"total\":43}",
+    "passed": false,
+    "expectedChecked": true
+  }
+]

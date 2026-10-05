@@ -77,9 +77,9 @@ class InspectionTests(unittest.TestCase):
     def test_routes_require_existing_auth_and_source_controls(self):
         event = {'httpMethod': 'GET', 'path': '/v1/deployments/1/items', 'queryStringParameters': self.query}
         self.service.scan.return_value = {'Items': []}
-        with patch.object(app, 'authorize_source') as source, patch.object(app, 'authenticate') as auth:
+        with patch.object(app, 'authenticate') as auth:
             code, page = app.route(event, None)
-            source.assert_called_once(); auth.assert_called_once(); self.assertEqual(200, code)
+            auth.assert_called_once(); self.assertEqual(200, code)
             self.assertEqual('confirmed-stack', page['stackId'])
 
 

@@ -7,14 +7,18 @@ namespace GuateGeeks.AwsVr
     {
         [Serializable] public sealed class Event
         {
-            public string type,delta,transcript,call_id,name,arguments,response_id;
+            public string type,delta,transcript,call_id,name,arguments,response_id,item_id;
+            public Usage usage;
             public Response response;
             public Error error;
         }
         [Serializable] public sealed class Error {public string code,message;}
-        [Serializable] public sealed class Response {public string id,status;public Usage usage;public StatusDetails status_details;}
+        [Serializable] public sealed class Response {public string id,status;public Usage usage;public StatusDetails status_details;public OutputItem[] output;}
+        [Serializable] public sealed class OutputItem {public string type,call_id,name,arguments;}
         [Serializable] public sealed class StatusDetails {public Error error;}
-        [Serializable] public sealed class Usage {public int input_tokens,output_tokens,total_tokens;}
+        [Serializable] public sealed class Usage {public int input_tokens,output_tokens,total_tokens;public TokenDetails input_token_details,output_token_details;}
+        [Serializable] public sealed class TokenDetails {public int text_tokens,audio_tokens,image_tokens,cached_tokens;public CachedTokenDetails cached_tokens_details;}
+        [Serializable] public sealed class CachedTokenDetails {public int text_tokens,audio_tokens,image_tokens;}
         [Serializable] sealed class Command {public string type;}
         [Serializable] sealed class TextCommand {public string type="conversation.item.create";public TextItem item;}
         [Serializable] sealed class ToolCommand {public string type="conversation.item.create";public ToolItem item;}
@@ -29,6 +33,7 @@ namespace GuateGeeks.AwsVr
             return result;
         }
         public static string CommandJson(string type)=>JsonUtility.ToJson(new Command{type=type});
+        public static string AnswerContinuationJson()=>"{\"type\":\"response.create\",\"response\":{\"tool_choice\":\"none\",\"instructions\":\"Answer the original user request aloud using the completed tool results. Explain any incomplete evidence or blocked action briefly in the user's language. Do not claim an action succeeded without evidence.\"}}";
         public static string TurnDetectionJson(bool natural)=>"{\"type\":\"session.update\",\"session\":{\"type\":\"realtime\",\"audio\":{\"input\":{\"turn_detection\":"+
             (natural?"{\"type\":\"semantic_vad\",\"eagerness\":\"low\",\"create_response\":false,\"interrupt_response\":false}":"{\"type\":\"server_vad\",\"threshold\":0.5,\"prefix_padding_ms\":300,\"silence_duration_ms\":650,\"create_response\":false,\"interrupt_response\":false}")+"}}}}";
         public static string UserText(string text)=>JsonUtility.ToJson(new TextCommand {item=new TextItem{content=new[]{new Content{text=text}}}});

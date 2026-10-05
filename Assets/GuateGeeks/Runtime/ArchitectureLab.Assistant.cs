@@ -26,21 +26,22 @@ namespace GuateGeeks.AwsVr
         [Serializable] sealed class AssistantCall {public string id,name,args;}
         [Serializable] sealed class AssistantNodeRequest {public string nodeId;}
         [Serializable] sealed class AssistantResult {public string status,message;}
-        [Serializable] sealed class AssistantSetting {public int kind;public string name;public string[] settings;}
+        [Serializable] sealed class AssistantSetting {public int kind;public string name;public string[] settings;public string behavior;public int creationDefault;}
         [Serializable] sealed class AssistantContext {
-            public int revision;public Architecture architecture;public string selectedNodeId,mode,stackId,lastEventId;
+            public IntegrationKnowledge.Entry[] integrationExamples;public string scope="VR local creation, editing and deletion; AWS lifecycle requires manual confirmation.";
+            public int revision;public Architecture architecture;public string selectedNodeId,mode,stackId,lastEventId,slot,defaultEventNodeId;
             public SpatialVoiceContext.Snapshot pointing;public string[] lastReferencedNodeIds;
             public bool deployed,pendingProposal,canEdit,diagnosticsActive;public string lambdaCodeSupport;public float componentScale;public string[] availableActions;public string[] validation;public AssistantSetting[] catalog;
         }
         public bool AssistantHasProposal=>assistantProposalGraph!=null;
         public int ArchitectureRevision=>revision;
-        bool AssistantCanEdit=>!Busy && !codeBusy && !EditingText && !ConfiguringConnection && !Placing && !HasPendingDefinition && !views.Values.Any(v=>v.Grabbed);
-        bool AssistantCanUndo=>assistantAppliedRevision==revision && history.Count>0 && ReferenceEquals(history.Peek(),assistantUndoEntry) && JsonUtility.ToJson(Graph)==assistantAppliedSnapshot;
+        bool AssistantCanEdit=>!RoomReadOnly && !Busy && !codeBusy && !EditingText && !ConfiguringConnection && !Placing && !HasPendingDefinition && !views.Values.Any(v=>v.Grabbed);
+        bool AssistantCanUndo=>NetworkRoom != null ? NetworkRoom.CanWrite && !RoomEditPending : assistantAppliedRevision==revision && history.Count>0 && ReferenceEquals(history.Peek(),assistantUndoEntry) && JsonUtility.ToJson(Graph)==assistantAppliedSnapshot;
         static string AssistantReply(string status,string message)=>JsonUtility.ToJson(new AssistantResult{status=status,message=message});
         public string AssistantContextJson()=>JsonUtility.ToJson(new AssistantContext {
             revision=revision,architecture=Graph.Copy(),pointing=ReadVoicePointing(),lastReferencedNodeIds=assistantLastNodes.Where(id=>Graph.Find(id)!=null).ToArray(),canEdit=AssistantCanEdit,componentScale=ComponentScale,availableActions=AvailableVoiceActions(),selectedNodeId=selected?selected.Model.id:"",mode=IsCloud?"AWS":"SIMULATION",
-            deployed=Deployed,stackId=Cloud?.StackId??"",lastEventId=Cloud?.LastEventId??"",pendingProposal=AssistantHasProposal,diagnosticsActive=DiagnosticsActive,lambdaCodeSupport="Python 3.13 index.py <=8 KiB. Draft, syntax validation, isolated tests. Publish/restore require a physical UI click and loaded AWS revision.",
-            validation=Graph.Validate().ToArray(),catalog=ServiceCatalog.All.Select(d=>new AssistantSetting{kind=(int)d.Kind,name=d.Name,settings=d.Settings.Take(DesignSemantics.OptionCount(d.Kind)).ToArray()}).ToArray()
+            deployed=Deployed,stackId=Cloud?.StackId??"",slot=Cloud?.Slot??"",defaultEventNodeId=AwsCloudApi.DefaultEventSource(Graph)?.id??"",lastEventId=Cloud?.LastEventId??"",pendingProposal=AssistantHasProposal,diagnosticsActive=DiagnosticsActive,lambdaCodeSupport="Python 3.13 index.py <=8 KiB. Draft, syntax validation, isolated tests. Publish/restore require a physical UI click and loaded AWS revision.",
+            integrationExamples=IntegrationKnowledge.Retrieve(Graph,selected?selected.Model.id:""),validation=Graph.Validate().ToArray(),catalog=ServiceCatalog.All.Select(d=>new AssistantSetting{kind=(int)d.Kind,name=d.Name,behavior=DesignSemantics.Help(d.Kind),creationDefault=Mathf.Clamp(PlayerPrefs.GetInt("GuateGeeks.ComponentDefault."+(int)d.Kind,0),0,DesignSemantics.OptionCount(d.Kind)-1),settings=d.Settings.Take(DesignSemantics.OptionCount(d.Kind)).ToArray()}).ToArray()
         });
         public void OpenAssistant()
         {
@@ -51,7 +52,7 @@ namespace GuateGeeks.AwsVr
         void BuildAssistant()
         {
             BuildAssistantPresence();
-            assistantPanel=Panel(world,"ATLAS assistant",new Vector3(0,2.05f,1.1f),new Vector2(1060,1080));assistantPanel.localScale=Vector3.one*.0013f;
+            assistantPanel=Focus(Panel(PersonalRoot,"ATLAS assistant",new Vector3(0,2.05f,1.1f),new Vector2(1060,1080)));assistantPanel.localScale=Vector3.one*.0013f;
             Text(assistantPanel,"A T L A S  /  ASISTENTE DE ARQUITECTURA",new Vector2(0,475),new Vector2(990,60),29,Cyan);
             assistantState=Text(assistantPanel,"Activa ATLAS una vez. Escuchará hasta que lo desactives.",new Vector2(0,415),new Vector2(980,55),22,Green);
             assistantMicrophone=Text(assistantPanel,"MICRÓFONO APAGADO",new Vector2(0,373),new Vector2(980,28),19,Muted);
@@ -131,12 +132,13 @@ namespace GuateGeeks.AwsVr
             if(!assistantPanel)return;
             bool connected=assistantVoice && assistantVoice.Connected;
             assistantConnect.SetAvailable(true);assistantConnect.Label.text=AssistantEnabled?"Desactivar ATLAS":"Activar ATLAS";
-            if(assistantDock){assistantDock.Label.text=AssistantEnabled?"ATLAS · ACTIVO":"ATLAS IA";assistantDock.Surface.Accent=AssistantEnabled?Green:Cyan;}
+            if(assistantDock){string dockLabel=AssistantEnabled?"ATLAS · ACTIVO":"ATLAS IA";if(assistantDock.Label.text!=dockLabel){assistantDock.Label.text=dockLabel;Retrack(assistantDock.Label);}assistantDock.Surface.Accent=AssistantEnabled?Green:Ice;}
             if(assistantVoice?.Listening==true) {
                 float level=assistantVoice.MicrophoneLevel;int bars=Mathf.Clamp(Mathf.CeilToInt(Mathf.Sqrt(level)*24),0,10);
                 assistantMicrophone.text="MIC ["+new string('|',bars)+new string('·',10-bars)+"] · "+(level>.00005f?"SEÑAL DETECTADA":"HABLA PARA COMPROBAR LA SEÑAL")+" · "+assistantVoice.RecordedSeconds.ToString("0.0")+" s";
                 assistantMicrophone.color=bars>0?Green:Orange;
             } else {assistantMicrophone.text=assistantVoice?.PreparingMicrophone==true?"PREPARANDO MICRÓFONO…":"MICRÓFONO APAGADO";assistantMicrophone.color=Muted;}
+            if(assistantVoice)assistantMicrophone.text+=" · "+assistantVoice.UsageCost.Summary;
             assistantApply.SetAvailable(AssistantHasProposal && AssistantCanEdit);
             assistantUndo.SetAvailable(AssistantCanUndo && AssistantCanEdit);
             UpdatePresenceButtons();
@@ -150,7 +152,7 @@ namespace GuateGeeks.AwsVr
                 if(proposal==null)throw new ArgumentException("Propuesta inválida.");
                 var graph=proposal.Build(Graph,revision);DiscardAssistantProposal();
                 assistantProposalGraph=graph;assistantBaseRevision=revision;assistantBaseSnapshot=JsonUtility.ToJson(Graph);
-                assistantDifference=AssistantProposal.Difference(Graph,graph);ShowAssistantDifference(0);
+                assistantDifference=AssistantProposal.Difference(Graph,graph);ShowAssistantDifference(0);OpenAssistant();
                 return AssistantReply("pending_user_review",assistantDifference+"\nEl usuario debe aplicar la propuesta con el botón o pedir explícitamente que se aplique. Aún no se cambió el diseño ni AWS.");
             }catch(ArgumentException error){return AssistantReply("invalid_proposal",error.Message);}
         }
@@ -164,12 +166,13 @@ namespace GuateGeeks.AwsVr
         {
             if(!AssistantCanEdit || assistantProposalGraph==null)return;
             if(revision!=assistantBaseRevision || JsonUtility.ToJson(Graph)!=assistantBaseSnapshot){DiscardAssistantProposal();SetStatus("Propuesta vencida: el diseño cambió.");return;}
-            var graph=assistantProposalGraph;bool showReview=workflowReview;Remember();ApplyWorkflowLayout(graph);DiscardAssistantProposal();SetGraph(graph);
+            var graph=assistantProposalGraph;bool showReview=workflowReview;roomGlobal=NetworkRoom!=null;Remember();ApplyWorkflowLayout(graph);DiscardAssistantProposal();SetGraph(graph);
             assistantAppliedRevision=revision;
             assistantAppliedSnapshot=JsonUtility.ToJson(Graph);
             assistantUndoEntry=history.Peek();
             if(assistantChanges)assistantChanges.text="Propuesta aplicada al diseño. Puedes deshacer. AWS aún no se modificó.";
-            assistantVoice?.ApplicationNotice("User applied the proposal. Graph revision is now "+revision+". No AWS deployment occurred.");
+            if(NetworkRoom==null)assistantVoice?.ApplicationNotice("User applied the proposal. Graph revision is now "+revision+". No AWS deployment occurred.");
+            else { if(assistantChanges)assistantChanges.text="Propuesta enviada a la sala; espera confirmación."; assistantVoice?.ApplicationNotice("Proposal awaits room confirmation. Do not report it as applied. Get fresh context after acknowledgment."); }
             if(showReview)ShowReview();
         }
         void DiscardAssistantProposal(){assistantProposalGraph=null;assistantBaseSnapshot=null;assistantDifference=null;workflowScale=0;workflowArrange=workflowReview=false;if(assistantChanges)assistantChanges.text="Sin propuesta pendiente.";if(assistantPageLabel)assistantPageLabel.text="";}
@@ -186,14 +189,17 @@ namespace GuateGeeks.AwsVr
             string output;
             string snapshot=JsonUtility.ToJson(Graph);float size=ComponentScale;
             if(PreviewVoiceCall(call.name,call.args)) {
-                float until=Time.unscaledTime+.7f;
-                while(Time.unscaledTime<until && assistantVoice && assistantVoice.ToolPending(call.id) && voicePreviewActive)yield return null;
+                float until=voicePreviewUntil;
+                while(Time.unscaledTime<until && assistantVoice && assistantVoice.ToolPending(call.id) && voicePreviewActive && !voicePreviewApproved && snapshot==JsonUtility.ToJson(Graph) && size==ComponentScale)yield return null;
                 bool valid=voicePreviewActive && assistantVoice && assistantVoice.ToolPending(call.id);
                 CancelVoicePreview();
-                if(!valid){assistantToolRoutine=null;yield break;}
+                if(!valid){if(assistantVoice && assistantVoice.ToolPending(call.id))assistantVoice.CompleteTool(call.id,AssistantReply("cancelled","Acción cancelada antes de ejecutarse. No reintentes sin otra solicitud."));assistantToolRoutine=null;yield break;}
                 if(snapshot!=JsonUtility.ToJson(Graph) || size!=ComponentScale){assistantVoice.CompleteTool(call.id,AssistantReply("stale","El diseño cambió durante la previsualización. Obtén contexto de nuevo."));assistantToolRoutine=null;yield break;}
             }
             if(call.name=="get_context")output=AssistantContextJson();
+            else if(call.name=="read_component" || call.name=="slot_action" || call.name=="send_event" || (call.name=="ui_action" && LegacyAssistantEvent(call.args))){
+                output=null;yield return ExecuteAssistantCloudTool(call.name=="ui_action"?"send_event":call.name,call.args,call.id,result=>output=result);
+            }
             else if(call.name=="spatial_action" || call.name=="component_action" || call.name=="connection_action" || call.name=="set_component_size" || call.name=="ui_action")output=ExecuteVoiceAction(call.name,call.args);
             else if(call.name=="propose_architecture")output=ProposeAssistantArchitecture(call.args);
             else if(call.name=="propose_workflow")output=ProposeAssistantWorkflow(call.args);
@@ -215,6 +221,11 @@ namespace GuateGeeks.AwsVr
                     output=null;yield return InspectForAssistant(node,call.id,result=>output=result);
                 }
             }else output=AssistantReply("unsupported","Acción no permitida por esta versión del laboratorio.");
+            if(NetworkRoom != null && (RoomEditPending || snapshot!=JsonUtility.ToJson(Graph))) {
+                yield return null; // LateUpdate stages the edit before it can be rendered as committed.
+                while(RoomEditPending && NetworkRoom != null && NetworkRoom.Connected)yield return null;
+                output=AssistantReply(roomResult=="applied"?"applied":"rejected",roomResult=="applied"?"Cambio confirmado por la sala. Obtén contexto actualizado.":"La sala no confirmó el cambio. Obtén contexto y no reintentes automáticamente.");
+            }
             if(assistantVoice && assistantVoice.ToolPending(call.id))assistantVoice.CompleteTool(call.id,output??AssistantReply("cancelled","Consulta cancelada."));
             assistantToolRoutine=null;
         }

@@ -1,0 +1,25 @@
+PASS deployed assistant/authoring/inspection/compiler/workload source matches release
+{
+  "timestamp": "2026-10-04T18:47:40.418734+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "deployedSourceMatches": true,
+  "slots": [
+    {
+      "slot": "1",
+      "status": "ABSENT"
+    },
+    {
+      "slot": "2",
+      "status": "ABSENT"
+    },
+    {
+      "slot": "3",
+      "status": "ABSENT"
+    }
+  ],
+  "inspectionChecks": []
+}
+No workload was created, invoked, changed or deleted.
+PASS isolated assertion match
+PASS isolated assertion mismatch rejection
+No workload slot was created, modified, invoked or deleted.

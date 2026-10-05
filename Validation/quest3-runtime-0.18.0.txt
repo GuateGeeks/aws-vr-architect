@@ -1,0 +1,7 @@
+Verified: installed APK SHA-256 equals the current-design build.
+SHA-256: 88991e10cae9d8e6a02735af9c84b43336932d51f75ce8c44c777419e941dba9
+Source fingerprint unchanged during build.
+    versionCode=20 minSdk=32 targetSdk=36
+    versionName=0.18.0
+Running app PID: 8732
+  mWakefulness=Asleep

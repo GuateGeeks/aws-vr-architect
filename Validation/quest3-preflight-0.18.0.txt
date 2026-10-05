@@ -1,0 +1,32 @@
+Quest 3 preflight | 2026-10-05T04:09:19.5132625Z
+Unity 6000.6.3f1
+Active target: Android; selected group: Android
+PASS Android Build Support installed (restart Unity after installing modules)
+PASS Bundled Android SDK / adb
+PASS Bundled Android NDK
+PASS Bundled OpenJDK
+PASS Installed Android platform API >= 34; highest=36
+PASS IL2CPP / ARM64 only
+PASS Vulkan
+PASS OpenXR initializes on Android startup
+PASS Single-pass stereo rendering
+PASS MetaQuestFeature
+PASS MetaQuestTouchPlusControllerProfile
+PASS OculusTouchControllerProfile
+PASS ARCameraFeature
+PASS ARSessionFeature
+PASS OpenXRCompositionLayersFeature
+PASS HandTracking
+PASS MetaHandTrackingAim
+PASS Quest 3 manifest target (eureka)
+PASS Cloud integration: Internet permission retained
+PASS Mobile URP asset assigned
+PASS Mobile MSAA 4x / HDR off
+PASS AWSArchitectLab scene
+NOTICE [Optional] Switch to use InputSystem.XR.PoseControl instead of OpenXR.Input.PoseControl, which will be deprecated in a future release.
+NOTICE [Optional] Switch to use StickControl thumbsticks instead of Vector2Control, but may break existing projects that have code dependencies to the Vector2Control type. StickControl allows more input options for thumbstick-based control, such as acting as both a combined 2D vector, two independent axes or a four-way Dpad with 4 independent buttons.
+NOTICE Using the Screen Space Ambient Occlusion render feature results in significant performance overhead when the application is running natively on device. Disabling or removing that render feature is recommended.
+NOTICE [Optional] Latency Optimization is recommended to be set to <b>Prioritize Input Polling</b> when Meta Quest support is enabled.
+App ID: com.guategeeks.awsarchitectlab
+APK: Builds/Quest3/GuateGeeksAWSVR-Quest3.apk (local demo signing; not a store release)
+READY TO BUILD. Headset validation still required.

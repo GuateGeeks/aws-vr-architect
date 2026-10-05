@@ -26,7 +26,7 @@ namespace GuateGeeks.AwsVr.Tests
             var report=new StringBuilder("# Live voice comparison\n\nSynthetic speech through native WebRTC; one sample per mode, not a latency benchmark.\n\n");
             voice.ToolCall=(id,name,args)=>{
                 if(name=="get_context")contextRead=true;
-                if(name=="set_component_size"){edits++;appliedScale=JsonUtility.FromJson<SizeRequest>(args).scale;File.AppendAllText("Validation/voice-correction-actions.txt",args+"\n");}
+                if(name=="set_component_size"){edits++;appliedScale=JsonUtility.FromJson<SizeRequest>(args).scale;File.AppendAllText("Validation/voice-correction-actions.txt","pending="+((System.Collections.Generic.HashSet<string>)typeof(RealtimeVoice).GetField("pendingTools",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(voice)).Count+"; transcript="+transcript+"; args="+args+"\n");}
                 voice.CompleteTool(id,name=="get_context"?"{\"mode\":\"SIMULATION\",\"revision\":1,\"architecture\":{\"nodes\":[{\"id\":\"lambda1\",\"name\":\"Processor\",\"kind\":1,\"setting\":0}],\"links\":[]},\"componentScale\":"+appliedScale.ToString(System.Globalization.CultureInfo.InvariantCulture)+",\"deployed\":false,\"availableActions\":[\"set_component_size\"]}":name=="set_component_size"?"{\"status\":\"applied\",\"revision\":1,\"componentScale\":"+appliedScale.ToString(System.Globalization.CultureInfo.InvariantCulture)+"}":"{\"status\":\"unsupported_in_test\"}");
             };
             try {
@@ -36,6 +36,7 @@ namespace GuateGeeks.AwsVr.Tests
                 while(!File.Exists(path) && Time.realtimeSinceStartup<deadline)yield return null;
                 Assert.IsTrue(File.Exists(path),"No fresh broker ticket arrived.");
                 var ticket=JsonUtility.FromJson<AwsCloudApi.AssistantSession>(File.ReadAllText(path));File.Delete(path);
+                report.AppendLine("Model: "+ticket.model+". Cost estimates include received usage, not an invoice.\n");
                 voice.Begin(ticket,false);deadline=Time.realtimeSinceStartup+40;
                 while(!voice.Connected && Time.realtimeSinceStartup<deadline)yield return null;
                 Assert.IsTrue(voice.Connected,"Native WebRTC connection: "+status);
@@ -71,6 +72,7 @@ namespace GuateGeeks.AwsVr.Tests
                 Assert.Greater(voice.TotalTokens,0,"Expected provider usage.");
                 Assert.IsTrue(track.Enabled,"The continuous audio track stays enabled between turns.");
                 report.AppendLine($"- {(natural?"Natural":"Fast")}, {(utterance==2?"Spanish correction":"English context")}: fixture end → commit {endToCommitMs:F0} ms; commit → first audio {voice.LastFirstAudioMs:F0} ms; passed.");
+                report.AppendLine("  Cost so far: "+voice.UsageCost.Summary+"; audio in/out="+voice.UsageCost.AudioInput+"/"+voice.UsageCost.AudioOutput+"; cached audio/text="+voice.UsageCost.CachedAudio+"/"+voice.UsageCost.CachedText+"; transcription tokens="+voice.UsageCost.TranscriptionTokens);
                 File.WriteAllText("Validation/voice-turn-comparison.md",report.ToString());
                 UnityEngine.Object.Destroy(clip);
                 }

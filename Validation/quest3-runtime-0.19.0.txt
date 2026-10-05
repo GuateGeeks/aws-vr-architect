@@ -1,0 +1,10 @@
+2026-10-05T17:14:01.8429562Z | quest-status
+> adb shell pidof com.guategeeks.awsarchitectlab
+19656
+> adb shell dumpsys package com.guategeeks.awsarchitectlab | grep versionName
+versionName=0.19.0
+> adb shell dumpsys power | grep mWakefulness
+mWakefulness=Asleep
+  mWakefulnessChanging=false
+> adb logcat -d -t 400 -s Unity
+

@@ -49,6 +49,24 @@ namespace GuateGeeks.AwsVr.Tests
             Event("{\"type\":\"input_audio_buffer.committed\"}");
             Assert.IsFalse(voice.Listening);Assert.IsFalse(voice.Responding);
         }
+        [Test] public void CompletedResponseRecoversCallsAndContinuesAfterAllResultsOnce()
+        {
+            voice.Ask("fetch items");Event("{\"type\":\"response.created\",\"response\":{\"id\":\"lookup\"}}");
+            int dispatched=0;voice.ToolCall=(id,name,args)=>dispatched++;
+            Event("{\"type\":\"response.function_call_arguments.done\",\"response_id\":\"lookup\",\"call_id\":\"one\",\"name\":\"get_context\",\"arguments\":\"{}\"}");
+            Event("{\"type\":\"response.done\",\"response\":{\"id\":\"lookup\",\"status\":\"completed\",\"output\":[{\"type\":\"function_call\",\"call_id\":\"one\",\"name\":\"get_context\",\"arguments\":\"{}\"},{\"type\":\"function_call\",\"call_id\":\"two\",\"name\":\"read_component\",\"arguments\":\"{}\"}]}}");
+            Assert.AreEqual(2,dispatched);Assert.IsFalse(voice.Responding);
+            voice.CompleteTool("one","{}");Assert.IsFalse(voice.Responding);
+            voice.CompleteTool("two","{}");Assert.IsTrue(voice.Responding);
+            Assert.AreEqual(1,Field<Queue<int>>("requestedTurns").Count);
+            voice.CompleteTool("two","{}");Assert.AreEqual(1,Field<Queue<int>>("requestedTurns").Count);
+            Event("{\"type\":\"response.created\",\"response\":{\"id\":\"silent\"}}");
+            Event("{\"type\":\"response.done\",\"response\":{\"id\":\"silent\",\"status\":\"completed\"}}");
+            Assert.IsTrue(voice.Responding,"Silent tool completion should automatically request an audible answer");
+            Event("{\"type\":\"response.created\",\"response\":{\"id\":\"recovery\"}}");
+            Event("{\"type\":\"response.done\",\"response\":{\"id\":\"recovery\",\"status\":\"completed\"}}");
+            Assert.IsFalse(voice.Responding,"Recovery must not loop indefinitely");
+        }
         [Test] public void SpeechAndPlaybackEventsExposeStateAndMeasureFirstAudioOnce()
         {
             int started=0,committed=0;voice.SpeechStarted=()=>started++;voice.InputCommitted=()=>committed++;

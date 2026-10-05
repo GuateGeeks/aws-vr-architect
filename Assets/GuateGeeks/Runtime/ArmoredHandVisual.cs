@@ -6,16 +6,20 @@ using UnityEngine.XR.Hands;
 namespace GuateGeeks.AwsVr
 {
     // One dynamic solid mesh per hand. Joint poses remain in XR tracking-origin space.
+    // Two-tone armour via vertex colours (one draw call): graphite under-suit, titanium plates on every phalanx,
+    // a quetzal-teal wrist seal and luminous knuckle nodes. Vertex alpha marks self-lit parts (LabEmblem shader).
     public sealed class ArmoredHandVisual : MonoBehaviour
     {
-        const int Sides = 10, Rings = 7, Parts = 22;
+        const int Bones = 19, Knuckles = 4, Sides = 10, Rings = 7, Parts = Bones * 2 + 3 + Knuckles;
         readonly Vector3[] vertices = new Vector3[Parts * Sides * Rings];
         readonly Vector3[] normals = new Vector3[Parts * Sides * Rings];
+        readonly Color[] colors = new Color[Parts * Sides * Rings];
+        static readonly XRHandJointID[] knuckleJoints = { XRHandJointID.IndexProximal, XRHandJointID.MiddleProximal, XRHandJointID.RingProximal, XRHandJointID.LittleProximal };
         readonly Vector3[] joints = new Vector3[26];
         readonly bool[] valid = new bool[26];
         Mesh mesh;
         MeshRenderer surface;
-        Transform beacon;
+        Transform beacon, thumbTip, indexTip;
         static readonly XRHandJointID[][] digits = {
             new[] { XRHandJointID.ThumbMetacarpal, XRHandJointID.ThumbProximal, XRHandJointID.ThumbDistal, XRHandJointID.ThumbTip },
             new[] { XRHandJointID.IndexMetacarpal, XRHandJointID.IndexProximal, XRHandJointID.IndexIntermediate, XRHandJointID.IndexDistal, XRHandJointID.IndexTip },
@@ -32,10 +36,20 @@ namespace GuateGeeks.AwsVr
                 triangles.Add(a); triangles.Add(b); triangles.Add(a+Sides);
                 triangles.Add(b); triangles.Add(b+Sides); triangles.Add(a+Sides);
             }
-            mesh.vertices=vertices; mesh.normals=normals; mesh.SetTriangles(triangles,0);
+            // Part order: bone capsules, phalanx plates, palm, dorsal armour, wrist seal, knuckle nodes.
+            Color suit=Tone("#1E2830",0), plate=Tone("#5C7383",0), palm=Tone("#26333D",0), dorsal=Tone("#6E8798",0), seal=Tone("#0E8A8C",.35f), node=Tone("#7FEFFF",1);
+            for(int p=0;p<Parts;p++) {
+                Color c=p<Bones?suit:p<Bones*2?plate:p==Bones*2?palm:p==Bones*2+1?dorsal:p==Bones*2+2?seal:node;
+                for(int v=0;v<Sides*Rings;v++) colors[p*Sides*Rings+v]=c;
+            }
+            mesh.vertices=vertices; mesh.normals=normals; mesh.colors=colors; mesh.SetTriangles(triangles,0);
             gameObject.AddComponent<MeshFilter>().sharedMesh=mesh;
             surface=gameObject.AddComponent<MeshRenderer>(); surface.shadowCastingMode=ShadowCastingMode.Off; surface.receiveShadows=false;
-            surface.sharedMaterial=LabVisuals.SpecialMaterial("LabMetal",LabVisuals.Hex("#7894A3"));
+            // Dark titanium with luminous pinch emitters: the fingertips that touch holograms carry the light.
+            surface.sharedMaterial=LabVisuals.SpecialMaterial("LabEmblem",new Color(.85f,.9f,.95f,1));
+            thumbTip=LabVisuals.Shape(transform,"Thumb emitter",PrimitiveType.Sphere,Vector3.zero,Vector3.one*.011f,LabVisuals.Ice).transform;
+            indexTip=LabVisuals.Shape(transform,"Index emitter",PrimitiveType.Sphere,Vector3.zero,Vector3.one*.011f,LabVisuals.Ice).transform;
+            thumbTip.gameObject.SetActive(false); indexTip.gameObject.SetActive(false);
             beacon=LabVisuals.Shape(transform,"Glove dorsal emitter",PrimitiveType.Sphere,Vector3.zero,new Vector3(.021f,.006f,.021f),left?LabVisuals.Cyan:LabVisuals.Orange).transform;
             surface.enabled=false; beacon.gameObject.SetActive(false);
         }
@@ -51,15 +65,32 @@ namespace GuateGeeks.AwsVr
         {
             int wrist=XRHandJointID.Wrist.ToIndex(), middle=XRHandJointID.MiddleProximal.ToIndex();
             bool visible=tracked[wrist] && tracked[middle] && tracked[XRHandJointID.Palm.ToIndex()];
-            surface.enabled=visible; beacon.gameObject.SetActive(visible); if(!visible) return;
+            surface.enabled=visible; beacon.gameObject.SetActive(visible);
+            int thumb=XRHandJointID.ThumbTip.ToIndex(), index=XRHandJointID.IndexTip.ToIndex();
+            thumbTip.gameObject.SetActive(visible && tracked[thumb]); indexTip.gameObject.SetActive(visible && tracked[index]);
+            if(!visible) return;
+            if(tracked[thumb]) thumbTip.localPosition=positions[thumb];
+            if(tracked[index]) indexTip.localPosition=positions[index];
             int part=0;
+            Vector3 dorsalUp=rotation*Vector3.up;
             for(int f=0;f<digits.Length;f++) for(int j=1;j<digits[f].Length;j++) {
                 int a=digits[f][j-1].ToIndex(), b=digits[f][j].ToIndex();
                 float radius=(f==0?.0105f:f==4?.0075f:.009f)*(1-j*.08f);
                 Vector3 from=positions[a], to=positions[b];
-                if(!tracked[a] || !tracked[b]) { from=to=positions[wrist]; radius=0; }
-                Capsule(part++,from,to,radius);
+                bool ok=tracked[a] && tracked[b];
+                if(!ok) { from=to=positions[wrist]; radius=0; }
+                Capsule(part,from,to,radius*.86f);
+                // Articulated plate riding on the back of each phalanx, with a small gap at every joint.
+                Vector3 axis=to-from; float span=axis.magnitude;
+                if(ok && span>.002f) {
+                    axis/=span; var up=dorsalUp-axis*Vector3.Dot(dorsalUp,axis);
+                    if(up.sqrMagnitude<1e-6f) up=Vector3.Cross(axis,Vector3.right);
+                    up.Normalize();
+                    Ellipsoid(Bones+part,(from+to)*.5f+up*radius*.62f,Quaternion.LookRotation(axis,up),new Vector3(radius*1.12f,radius*.5f,span*.44f));
+                } else Ellipsoid(Bones+part,positions[wrist],Quaternion.identity,Vector3.one*1e-5f);
+                part++;
             }
+            part=Bones*2;
             Vector3 center=Vector3.Lerp(positions[wrist],positions[middle],.5f);
             float length=Mathf.Clamp(Vector3.Distance(positions[wrist],positions[middle]),.05f,.12f);
             float width=tracked[XRHandJointID.IndexProximal.ToIndex()] && tracked[XRHandJointID.LittleProximal.ToIndex()]
@@ -68,9 +99,15 @@ namespace GuateGeeks.AwsVr
             // Raised dorsal armor and a substantial wrist seal define the silhouette.
             Ellipsoid(part++,center+rotation*new Vector3(0,.013f,0),rotation,new Vector3(width*.44f,.010f,length*.40f));
             Ellipsoid(part++,positions[wrist],rotation,new Vector3(width*.46f,.019f,.018f));
+            for(int k=0;k<Knuckles;k++) {
+                int joint=knuckleJoints[k].ToIndex();
+                if(tracked[joint]) Ellipsoid(part++,positions[joint]+dorsalUp*.0105f,rotation,new Vector3(.0042f,.0026f,.0042f));
+                else Ellipsoid(part++,positions[wrist],rotation,Vector3.one*1e-5f);
+            }
             beacon.SetLocalPositionAndRotation(center+rotation*new Vector3(0,.024f,0),rotation);
             mesh.vertices=vertices; mesh.normals=normals; mesh.RecalculateBounds();
         }
+        static Color Tone(string hex,float glow) { var c=LabVisuals.Hex(hex); if(QualitySettings.activeColorSpace==ColorSpace.Linear) c=c.linear; c.a=glow; return c; }
         void Capsule(int part, Vector3 a, Vector3 b, float radius)
         {
             Vector3 axis=b-a; float length=axis.magnitude;

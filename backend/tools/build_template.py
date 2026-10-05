@@ -68,8 +68,7 @@ def build():
         'ControlApi': {'Type': 'AWS::Serverless::Api', 'Properties': {
             'StageName': 'demo', 'EndpointConfiguration': 'REGIONAL', 'AlwaysDeploy': True,
             'Policy': {'Version': '2012-10-17', 'Statement': [
-                {'Effect': 'Allow', 'Principal': '*', 'Action': 'execute-api:Invoke', 'Resource': 'execute-api:/*'},
-                {'Effect': 'Deny', 'Principal': '*', 'Action': 'execute-api:Invoke', 'Resource': 'execute-api:/*', 'Condition': {'NotIpAddress': {'aws:SourceIp': ref('AllowedCidr')}}}
+                {'Effect': 'Allow', 'Principal': '*', 'Action': 'execute-api:Invoke', 'Resource': 'execute-api:/*'}
             ]},
             'MethodSettings': [{'ResourcePath': '/*', 'HttpMethod': '*', 'ThrottlingBurstLimit': 10, 'ThrottlingRateLimit': 5, 'MetricsEnabled': True, 'DataTraceEnabled': False, 'LoggingLevel': 'OFF'}]
         }},
@@ -88,7 +87,6 @@ def build():
     }
     # Explicit API name keeps CloudWatch dimensions deterministic.
     resources['ControlApi']['Properties']['Name'] = ref('AWS::StackName')
-    resources['ControlFunction']['Properties']['Environment']['Variables']['ALLOWED_CIDR'] = ref('AllowedCidr')
     resources['AiQuota'] = {'Type': 'AWS::DynamoDB::Table', 'Properties': {'BillingMode': 'PAY_PER_REQUEST',
         'AttributeDefinitions': [{'AttributeName': 'id', 'AttributeType': 'S'}], 'KeySchema': [{'AttributeName': 'id', 'KeyType': 'HASH'}],
         'TimeToLiveSpecification': {'AttributeName': 'expiresAt', 'Enabled': True}, 'SSESpecification': {'SSEEnabled': True}}}
@@ -98,19 +96,21 @@ def build():
     resources['ControlFunction']['Properties']['Environment']['Variables'].update(OPENAI_SECRET_ARN=ref('OpenAISecretArn'), OPENAI_REALTIME_MODEL=ref('OpenAIRealtimeModel'), AI_QUOTA_TABLE=ref('AiQuota'))
     from configure_authoring_template import configure
     configure(resources)
+    from configure_collaboration_template import configure as configure_collaboration
+    configure_collaboration(resources)
     return {
         'AWSTemplateFormatVersion': '2010-09-09', 'Transform': 'AWS::Serverless-2016-10-31', 'Description': 'GuateGeeks AWS Day VR control plane',
         'Parameters': {
             'OpenAISecretArn': {'Type': 'String', 'Default': '', 'Description': 'Optional existing Secrets Manager secret containing OPENAI_API_KEY; never put the key in a parameter'},
-            'OpenAIRealtimeModel': {'Type': 'String', 'Default': 'gpt-realtime-2.1', 'AllowedValues': ['gpt-realtime-2.1', 'gpt-realtime-2.1-mini']},
+            'OpenAIRealtimeModel': {'Type': 'String', 'Default': 'gpt-realtime-2.1-mini', 'AllowedValues': ['gpt-realtime-2.1', 'gpt-realtime-2.1-mini']},
             'DemoPrefix': {'Type': 'String', 'Default': 'ggawsday', 'AllowedPattern': '[a-z][a-z0-9]{2,11}', 'Description': 'Unique prefix in this AWS account/region; do not change after deployment'},
-            'AllowedCidr': {'Type': 'String', 'AllowedPattern': r'(\d{1,3}\.){3}\d{1,3}/(3[0-2]|[12][0-9]|[1-9])', 'Description': 'Public IPv4 CIDR of event egress, ideally x.x.x.x/32; /0 is forbidden'},
             'BudgetEmail': {'Type': 'String', 'Default': '', 'Description': 'Optional email for a monthly account-wide budget alert'},
             'MonthlyBudgetUsd': {'Type': 'Number', 'Default': 10, 'MinValue': 1, 'Description': 'Alert threshold only, not a hard spending limit or cost estimate'}
         },
         'Conditions': {'EnableBudget': {'Fn::Not': [{'Fn::Equals': [ref('BudgetEmail'), '']}] }, 'EnableOpenAI': {'Fn::Not': [{'Fn::Equals': [ref('OpenAISecretArn'), '']}] }},
         'Resources': resources,
         'Outputs': {'ApiUrl': {'Value': sub('https://${ControlApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/demo')},
+                    'CollabWebSocketUrl': {'Value': sub('wss://${CollabApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/rooms')},
                     'AuthSecretArn': {'Value': ref('AuthSecret')}, 'DemoPrefix': {'Value': ref('DemoPrefix')},
                     'WorkloadRoleArn': {'Value': att('WorkloadRole')}, 'ProvisionerRoleArn': {'Value': att('ProvisionerRole')}}
     }

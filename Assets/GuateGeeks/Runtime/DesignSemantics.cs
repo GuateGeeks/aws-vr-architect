@@ -22,7 +22,7 @@ namespace GuateGeeks.AwsVr
             switch (kind)
             {
                 case ServiceKind.ApiGateway: return "HTTP API con POST /demo y etapa $default. Esta plataforma conecta una Lambda. No admite REST API.";
-                case ServiceKind.Lambda: return "Memoria predeterminada: 128 MB. Código de demo fijo, Python 3.13 y timeout de 10 s. Los enlaces definen sus destinos.";
+                case ServiceKind.Lambda: return "Memoria predeterminada: 128 MB. Código Python editable en Lambda studio, Python 3.13 y timeout de 10 s. Los enlaces definen sus destinos.";
                 case ServiceKind.DynamoDB: return "Predeterminado: bajo demanda. Aprovisionada: 1 RCU y 1 WCU. Clave de partición fija: id (texto). Tabla cifrada.";
                 case ServiceKind.S3: return "Predeterminado: versionado activo. Bucket privado y cifrado; expiración de objetos a 1 día. Un destino de notificación en esta plataforma.";
                 case ServiceKind.SQS: return "Predeterminado: estándar. Visibilidad: 60 s; retención: 1 día. FIFO usa deduplicación. Un consumidor Lambda en esta plataforma.";

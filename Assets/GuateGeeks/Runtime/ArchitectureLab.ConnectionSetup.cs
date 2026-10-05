@@ -25,7 +25,7 @@ namespace GuateGeeks.AwsVr
         void BuildConnectionForm()
         {
             profile = CloudProfile.Read(ProfilePath);
-            connectionForm = Panel(world, "Configuración de conexión", new Vector3(0, 1.9f, 1.2f), new Vector2(1000, 940));
+            connectionForm = Focus(Panel(PersonalRoot, "Configuración de conexión", new Vector3(0, 1.9f, 1.2f), new Vector2(1000, 940)));
             Text(connectionForm, "CONEXIÓN AWS / WI-FI", new Vector2(0, 425), new Vector2(920, 45), 28, Cyan);
             endpointField = FormField("API HTTPS", 350, 0);
             usernameField = FormField("CUENTA DE SERVICIO", 270, 1);

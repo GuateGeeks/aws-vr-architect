@@ -1,0 +1,198 @@
+Building codeuri: /mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/src runtime: python3.13 architecture: x86_64 functions: ControlFunction, CodeTestFunction
+ Running PythonPipBuilder:ResolveDependencies
+ Running PythonPipBuilder:CopySource
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Validate SAM template: sam validate
+[*] Invoke Function: sam local invoke
+[*] Test Function in the Cloud: sam sync --stack-name {{stack-name}} --watch
+[*] Deploy: sam deploy --guided
+
+Usage: sam deploy [OPTIONS]
+Try 'sam deploy -h' for help.
+
+Error: Invalid value for '--parameter-overrides': BudgetEmail= is not a valid format. It must look something like 'ParameterKey=KeyPairName,ParameterValue=MyKey ParameterKey=InstanceType,ParameterValue=t1.micro', 'KeyPairName=MyKey InstanceType=t1.micro', or 'file://MyParams.yaml'
+Traceback (most recent call last):
+  File "/mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/deployment/deploy-vr-editing.py", line 17, in <module>
+    subprocess.run(['sam', 'deploy', '--template-file', '.aws-sam/build/template.yaml',
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--stack-name', 'guategeeks-aws2026', '--profile', 'awsday', '--region', 'us-east-1',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--s3-bucket', 'guategeeks-aws2026-artifacts-590183968738-us-east-1',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--parameter-overrides', *params], check=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adawolfs/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['sam', 'deploy', '--template-file', '.aws-sam/build/template.yaml', '--stack-name', 'guategeeks-aws2026', '--profile', 'awsday', '--region', 'us-east-1', '--s3-bucket', 'guategeeks-aws2026-artifacts-590183968738-us-east-1', '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset', '--parameter-overrides', 'AllowedCidr=186.151.64.244/32', 'OpenAIRealtimeModel=gpt-realtime-2.1', 'MonthlyBudgetUsd=10', 'BudgetEmail=', 'DemoPrefix=ggawsday', 'OpenAISecretArn=arn:aws:secretsmanager:us-east-1:590183968738:secret:ggawsday-openai-realtime-j0Qehj']' returned non-zero exit status 2.
+Building codeuri: /mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/src runtime: python3.13 architecture: x86_64 functions: ControlFunction, CodeTestFunction
+ Running PythonPipBuilder:ResolveDependencies
+Error: Failed to package template: /mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/.aws-sam/build/template.yaml. 
+ [Errno 2] No such file or directory: '/mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/.aws-sam/build/template.yaml'
+Traceback (most recent call last):
+  File "/mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/deployment/deploy-vr-editing.py", line 26, in <module>
+    subprocess.run(['sam', 'deploy', '--template-file', '.aws-sam/build/template.yaml',
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--stack-name', 'guategeeks-aws2026', '--profile', 'awsday', '--region', 'us-east-1',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--s3-bucket', 'guategeeks-aws2026-artifacts-590183968738-us-east-1',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--parameter-overrides', *params], check=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adawolfs/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['sam', 'deploy', '--template-file', '.aws-sam/build/template.yaml', '--stack-name', 'guategeeks-aws2026', '--profile', 'awsday', '--region', 'us-east-1', '--s3-bucket', 'guategeeks-aws2026-artifacts-590183968738-us-east-1', '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset', '--parameter-overrides', 'AllowedCidr=186.151.64.244/32', 'OpenAIRealtimeModel=gpt-realtime-2.1', 'MonthlyBudgetUsd=10', 'DemoPrefix=ggawsday', 'OpenAISecretArn=arn:aws:secretsmanager:us-east-1:590183968738:secret:ggawsday-openai-realtime-j0Qehj']' returned non-zero exit status 1.
+ Running PythonPipBuilder:CopySource
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Validate SAM template: sam validate
+[*] Invoke Function: sam local invoke
+[*] Test Function in the Cloud: sam sync --stack-name {{stack-name}} --watch
+[*] Deploy: sam deploy --guided
+
+Usage: sam deploy [OPTIONS]
+Try 'sam deploy -h' for help.
+
+Error: Invalid value for '--parameter-overrides': BudgetEmail= is not a valid format. It must look something like 'ParameterKey=KeyPairName,ParameterValue=MyKey ParameterKey=InstanceType,ParameterValue=t1.micro', 'KeyPairName=MyKey InstanceType=t1.micro', or 'file://MyParams.yaml'
+Traceback (most recent call last):
+  File "/mnt/c/Users/adawolfs/Unity/GuateGeeksAWSVR/backend/deployment/deploy-vr-editing.py", line 17, in <module>
+    template = json.loads(Path('template.json').read_text())
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    # SAM rejects Key= with an empty value. Unspecified existing parameters use previous values;
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adawolfs/.local/share/uv/python/cpython-3.13.13-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['sam', 'deploy', '--template-file', '.aws-sam/build/template.yaml', '--stack-name', 'guategeeks-aws2026', '--profile', 'awsday', '--region', 'us-east-1', '--s3-bucket', 'guategeeks-aws2026-artifacts-590183968738-us-east-1', '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset', '--parameter-overrides', 'AllowedCidr=186.151.64.244/32', 'OpenAIRealtimeModel=gpt-realtime-2.1', 'MonthlyBudgetUsd=10', 'BudgetEmail=', 'DemoPrefix=ggawsday', 'OpenAISecretArn=arn:aws:secretsmanager:us-east-1:590183968738:secret:ggawsday-openai-realtime-j0Qehj']' returned non-zero exit status 2.
+	Uploading to 742a3dc487d41873bc75c9f04c472052  1048576 / 14810479  (7.08%)	Uploading to 742a3dc487d41873bc75c9f04c472052  2097152 / 14810479  (14.16%)	Uploading to 742a3dc487d41873bc75c9f04c472052  3145728 / 14810479  (21.24%)	Uploading to 742a3dc487d41873bc75c9f04c472052  4194304 / 14810479  (28.32%)	Uploading to 742a3dc487d41873bc75c9f04c472052  5242880 / 14810479  (35.40%)	Uploading to 742a3dc487d41873bc75c9f04c472052  6291456 / 14810479  (42.48%)	Uploading to 742a3dc487d41873bc75c9f04c472052  7340032 / 14810479  (49.56%)	Uploading to 742a3dc487d41873bc75c9f04c472052  7470447 / 14810479  (50.44%)	Uploading to 742a3dc487d41873bc75c9f04c472052  8519023 / 14810479  (57.52%)	Uploading to 742a3dc487d41873bc75c9f04c472052  9567599 / 14810479  (64.60%)	Uploading to 742a3dc487d41873bc75c9f04c472052  10616175 / 14810479  (71.68%)	Uploading to 742a3dc487d41873bc75c9f04c472052  11664751 / 14810479  (78.76%)	Uploading to 742a3dc487d41873bc75c9f04c472052  12713327 / 14810479  (85.84%)	Uploading to 742a3dc487d41873bc75c9f04c472052  13761903 / 14810479  (92.92%)	Uploading to 742a3dc487d41873bc75c9f04c472052  14810479 / 14810479  (100.00%)
+
+	File with same data already exists at 742a3dc487d41873bc75c9f04c472052, skipping upload
+
+	Deploying with following values
+	===============================
+	Stack name                   : guategeeks-aws2026
+	Region                       : us-east-1
+	Confirm changeset            : False
+	Disable rollback             : False
+	Deployment s3 bucket         : guategeeks-aws2026-artifacts-590183968738-us-east-1
+	Capabilities                 : ["CAPABILITY_IAM"]
+	Parameter overrides          : {"AllowedCidr": "186.151.64.244/32", "OpenAIRealtimeModel": "gpt-realtime-2.1", "MonthlyBudgetUsd": "10", "DemoPrefix": "ggawsday", "OpenAISecretArn": "arn:aws:secretsmanager:us-east-1:590183968738:secret:ggawsday-openai-realtime-j0Qehj"}
+	Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+	Uploading to a76f456b7f573c5b2e22e1396f174903.template  19388 / 19388  (100.00%)
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+-------------------------------------------------------------------------------------------------
+Operation                LogicalResourceId        ResourceType             Replacement            
+-------------------------------------------------------------------------------------------------
++ Add                    ControlApiDeploymentf3   AWS::ApiGateway::Deplo   N/A                    
+                         9f3271fd                 yment                                           
+* Modify                 CodeTestFunction         AWS::Lambda::Function    False                  
+* Modify                 ControlApidemoStage      AWS::ApiGateway::Stage   False                  
+* Modify                 ControlApi               AWS::ApiGateway::RestA   False                  
+                                                  pi                                              
+* Modify                 ControlFunction          AWS::Lambda::Function    False                  
+* Modify                 ControlRole              AWS::IAM::Role           False                  
+- Delete                 ControlApiDeployment4a   AWS::ApiGateway::Deplo   N/A                    
+                         e31c7f82                 yment                                           
+-------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:590183968738:changeSet/samcli-deploy1791139564/6ee36cba-2caf-4173-9fef-b94906df95fb
+
+
+2026-10-04 12:46:22 - Waiting for stack create/update to complete
+
+CloudFormation events from stack operations (refresh every 5.0 seconds)
+-------------------------------------------------------------------------------------------------
+ResourceStatus           ResourceType             LogicalResourceId        ResourceStatusReason   
+-------------------------------------------------------------------------------------------------
+UPDATE_IN_PROGRESS       AWS::CloudFormation::S   guategeeks-aws2026       User Initiated         
+                         tack                                                                     
+UPDATE_IN_PROGRESS       AWS::Lambda::Function    CodeTestFunction         -                      
+UPDATE_IN_PROGRESS -     AWS::Lambda::Function    CodeTestFunction         Eventual consistency   
+CONFIGURATION_COMPLETE                                                     check initiated        
+UPDATE_COMPLETE          AWS::Lambda::Function    CodeTestFunction         -                      
+UPDATE_IN_PROGRESS       AWS::Lambda::Function    ControlFunction          -                      
+UPDATE_IN_PROGRESS -     AWS::Lambda::Function    ControlFunction          Eventual consistency   
+CONFIGURATION_COMPLETE                                                     check initiated        
+UPDATE_COMPLETE          AWS::Lambda::Function    ControlFunction          -                      
+CREATE_IN_PROGRESS       AWS::ApiGateway::Deplo   ControlApiDeploymentf3   -                      
+                         yment                    9f3271fd                                        
+CREATE_IN_PROGRESS       AWS::ApiGateway::Deplo   ControlApiDeploymentf3   Resource creation      
+                         yment                    9f3271fd                 Initiated              
+CREATE_IN_PROGRESS -     AWS::ApiGateway::Deplo   ControlApiDeploymentf3   Eventual consistency   
+CONFIGURATION_COMPLETE   yment                    9f3271fd                 check initiated        
+CREATE_COMPLETE          AWS::ApiGateway::Deplo   ControlApiDeploymentf3   -                      
+                         yment                    9f3271fd                                        
+UPDATE_IN_PROGRESS       AWS::ApiGateway::Stage   ControlApidemoStage      -                      
+UPDATE_IN_PROGRESS -     AWS::ApiGateway::Stage   ControlApidemoStage      Eventual consistency   
+CONFIGURATION_COMPLETE                                                     check initiated        
+UPDATE_COMPLETE          AWS::ApiGateway::Stage   ControlApidemoStage      -                      
+UPDATE_COMPLETE_CLEANU   AWS::CloudFormation::S   guategeeks-aws2026       -                      
+P_IN_PROGRESS            tack                                                                     
+DELETE_IN_PROGRESS       AWS::ApiGateway::Deplo   ControlApiDeployment4a   -                      
+                         yment                    e31c7f82                                        
+DELETE_IN_PROGRESS -     AWS::ApiGateway::Deplo   ControlApiDeployment4a   Eventual consistency   
+CONFIGURATION_COMPLETE   yment                    e31c7f82                 check initiated        
+DELETE_COMPLETE          AWS::ApiGateway::Deplo   ControlApiDeployment4a   -                      
+                         yment                    e31c7f82                                        
+UPDATE_COMPLETE          AWS::CloudFormation::S   guategeeks-aws2026       -                      
+                         tack                                                                     
+-------------------------------------------------------------------------------------------------
+
+CloudFormation outputs from deployed stack
+-------------------------------------------------------------------------------------------------
+Outputs                                                                                         
+-------------------------------------------------------------------------------------------------
+Key                 ProvisionerRoleArn                                                          
+Description         -                                                                           
+Value               arn:aws:iam::590183968738:role/guategeeks-aws2026-ProvisionerRole-          
+GBHcabryrR0X                                                                                    
+
+Key                 ApiUrl                                                                      
+Description         -                                                                           
+Value               https://9bc46tb7d6.execute-api.us-east-1.amazonaws.com/demo                 
+
+Key                 WorkloadRoleArn                                                             
+Description         -                                                                           
+Value               arn:aws:iam::590183968738:role/guategeeks-aws2026-WorkloadRole-W4sCy05PwNsz 
+
+Key                 DemoPrefix                                                                  
+Description         -                                                                           
+Value               ggawsday                                                                    
+
+Key                 AuthSecretArn                                                               
+Description         -                                                                           
+Value               arn:aws:secretsmanager:us-                                                  
+east-1:590183968738:secret:AuthSecret-7hdXJL0AIHne-t63V4N                                       
+-------------------------------------------------------------------------------------------------
+
+
+Successfully created/updated stack - guategeeks-aws2026 in us-east-1
+

@@ -1,0 +1,10 @@
+Collaboration pilot 0.22.0 / Android versionCode 24
+Backend: 102 passed (Python unittest, no live AWS/OpenAI calls).
+Unity EditMode: 81 passed.
+Unity PlayMode: 57 passed; collaboration transport simulated in integration test.
+SAM validate --lint: valid.
+SAM build: succeeded; final Python files refreshed in packaged functions and SHA-256 matched.
+Quest ARM64 APK: succeeded, 0 errors, 10 build warnings (see quest3-build.txt).
+UI: inspected Validation/44-shared-room-settings.png; room controls fit.
+No AWS deployment, headset installation, multi-headset run, live WebSocket, or four-user AI audio test performed.
+APK SHA256: e7943effb36789149f6151dbc6a996a8c9203f286a081f341089b9e78468047a

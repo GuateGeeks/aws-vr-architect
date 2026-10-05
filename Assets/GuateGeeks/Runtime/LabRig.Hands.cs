@@ -108,8 +108,8 @@ namespace GuateGeeks.AwsVr
             state.Pinch.Step(!touch, strength);
             hand.Reticle.localScale=Vector3.one*Mathf.Lerp(.014f,.028f,strength);
             hand.Reticle.GetComponent<Renderer>().sharedMaterial=LabVisuals.Material(state.Pinch.Pressed?LabVisuals.Green:LabVisuals.White);
-            hand.Ray.widthMultiplier=state.Pinch.Pressed?.005f:.0025f;
-            if (state.Pinch.Started)
+            hand.Ray.widthMultiplier=state.Pinch.Pressed?.012f:.007f; // soft beam: the visible core is about half its width
+            if (state.Pinch.Started || (lab.NetworkRoom != null && state.Pinch.Pressed && !hand.Held && !hand.HeldMenu && target && target.Node))
             {
                 state.PressTarget = target; state.PlaceOnRelease = hasAim && lab.Placing && !target && !pointerBlocked;
                 if (target && target.Menu && target.Menu.TryGrab(hand, ray, distance, hand.Visual.rotation)) hand.HeldMenu = target.Menu;

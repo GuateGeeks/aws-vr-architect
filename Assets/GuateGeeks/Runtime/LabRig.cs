@@ -44,6 +44,8 @@ namespace GuateGeeks.AwsVr
         bool wasReset;
         public bool IsXR => xr;
         public Camera ViewCamera => cam;
+        public bool AssistantTalkHeld => xr ? right != null && right.Reset.IsPressed() && !(left != null && left.Reset.IsPressed()) : Keyboard.current != null && Keyboard.current.spaceKey.isPressed;
+        public Vector3 PresenceHand => xr && right != null && right.Visual ? right.Visual.position : cam.transform.position + cam.transform.forward * .25f - Vector3.up * .35f;
 
         public void Initialize(ArchitectureLab owner)
         {
@@ -95,8 +97,18 @@ namespace GuateGeeks.AwsVr
             h.Cancel = Action(usage + " cancel", path + "secondaryButton", InputActionType.Button);
             h.Reset = Action(usage + " recover menus", path + "primaryButton", InputActionType.Button);
             h.Visual = new GameObject(usage + " controller").transform; h.Visual.SetParent(headOffset, false);
-            LabVisuals.Shape(h.Visual, "Controller", PrimitiveType.Capsule, Vector3.zero, new Vector3(.035f, .065f, .035f), color);
-            h.Ray = LabVisuals.Line(h.Visual, "Selection ray", new[] { Vector3.zero, Vector3.forward * 5 }, color, .003f);
+            // Controller as a titanium emitter: graphite grip, a glowing aperture ring and core at the front,
+            // and an energy-beam ray (travelling dashes, fading with distance) in the hand's colour.
+            LabVisuals.Metal(h.Visual, "Controller", PrimitiveType.Capsule, new Vector3(0, -.012f, -.01f), new Vector3(.032f, .056f, .032f), LabVisuals.Hex("#2B3944"));
+            LabVisuals.Metal(h.Visual, "Controller collar", PrimitiveType.Cylinder, new Vector3(0, 0, .022f), new Vector3(.03f, .006f, .03f), LabVisuals.Hex("#8AA2B1")).transform.localRotation = Quaternion.Euler(90, 0, 0);
+            var aperture = new GameObject("Emitter aperture").transform; aperture.SetParent(h.Visual, false);
+            aperture.localPosition = new Vector3(0, 0, .027f); aperture.localRotation = Quaternion.Euler(90, 0, 0);
+            var ring = LabVisuals.Ring(aperture, Vector3.zero, .017f, color, .006f, 32); ring.sharedMaterial = LabVisuals.Beam(color, false); ring.textureMode = LineTextureMode.Stretch;
+            LabVisuals.Shape(h.Visual, "Emitter core", PrimitiveType.Sphere, new Vector3(0, 0, .028f), Vector3.one * .009f, LabVisuals.Ice);
+            h.Ray = LabVisuals.Line(h.Visual, "Selection ray", new[] { Vector3.zero, Vector3.forward * 5 }, color, .008f);
+            h.Ray.sharedMaterial = LabVisuals.Beam(color); h.Ray.textureMode = LineTextureMode.Stretch; h.Ray.numCapVertices = 0;
+            h.Ray.colorGradient = new Gradient { alphaKeys = new[] { new GradientAlphaKey(1, 0), new GradientAlphaKey(.85f, .5f), new GradientAlphaKey(.25f, 1) },
+                colorKeys = new[] { new GradientColorKey(Color.white, 0), new GradientColorKey(Color.white, 1) } };
             h.Reticle=LabVisuals.Shape(h.Visual,"Target marker",PrimitiveType.Sphere,Vector3.zero,Vector3.one*.014f,color).transform;
             h.Visual.gameObject.SetActive(false); return h;
         }
@@ -109,7 +121,9 @@ namespace GuateGeeks.AwsVr
                 xr = running; ReleaseHands();
                 if (xr)
                 {
-                    origin.position = new Vector3(0, 0, -.5f);
+                    origin.position = StandPosition; origin.rotation = StandRotation;
+                    // Fixed foveation: the periphery renders at lower resolution (Quest 3 has no eye tracking).
+                    foreach (var display in displays) if (display.running) display.foveatedRenderingLevel = 1;
                     SubsystemManager.GetSubsystems(inputs);
                     foreach (var system in inputs) system.TrySetTrackingOriginMode(TrackingOriginModeFlags.Floor);
                     UpdateHead(); Recenter();
@@ -159,7 +173,7 @@ namespace GuateGeeks.AwsVr
             }
             if (hand.Trigger.WasReleasedThisFrame() && hand.DrawingPort) { if (target && target.Port == 1) { target.Activate(); Pulse(hand, .35f); } hand.DrawingPort = false; }
             bool grip = hand.Grip.IsPressed();
-            if (grip && !hand.WasGrip)
+            if (grip && (!hand.WasGrip || (lab.NetworkRoom != null && !hand.Held && !hand.HeldMenu)))
             {
                 var menu = target ? target.Menu : null;
                 if (menu && menu.TryGrab(hand, ray, distance, hasAim ? headOffset.rotation * aimRotation : hand.Visual.rotation))
@@ -183,7 +197,8 @@ namespace GuateGeeks.AwsVr
             hand.WasGrip = grip;
             if (hand.Cancel.WasPressedThisFrame()) { ReleaseHands(); lab.CancelInteraction(); }
             float turn = hand.Stick.ReadValue<Vector2>().x;
-            if (!hand.Held && !hand.HeldMenu && Mathf.Abs(turn) > .75f && Time.unscaledTime > nextTurn)
+            // Snap turn would break co-location in a shared room, so it is only available alone.
+            if (!SharedSpace.SharedRoomActive && !hand.Held && !hand.HeldMenu && Mathf.Abs(turn) > .75f && Time.unscaledTime > nextTurn)
             { origin.RotateAround(cam.transform.position, Vector3.up, Mathf.Sign(turn) * 30); nextTurn = Time.unscaledTime + .45f; }
         }
         void Pulse(Hand hand, float amount)
@@ -196,6 +211,13 @@ namespace GuateGeeks.AwsVr
             pointerBlocked = false;
             if (Physics.Raycast(ray, out var hit, 12, ~0, QueryTriggerInteraction.Collide))
             { distance = hit.distance; var target = hit.collider.GetComponentInParent<LabTarget>(); pointerBlocked = target && !lab.CanInteract(target); return pointerBlocked ? null : target; }
+            // Aim assist: a near miss (within 2.5 cm of the ray) still lands on an available target, so small
+            // buttons and ports forgive hand tremor at arm's length.
+            if (Physics.SphereCast(ray, AimAssistRadius, out hit, 12, ~0, QueryTriggerInteraction.Collide))
+            {
+                var target = hit.collider.GetComponentInParent<LabTarget>();
+                if (target && target.Available && lab.CanInteract(target)) { distance = hit.distance; return target; }
+            }
             distance = 8; return null;
         }
         void Hover(ref LabTarget previous, LabTarget next)
@@ -222,6 +244,8 @@ namespace GuateGeeks.AwsVr
                     if (!mouseMenu && !lab.ConnectingMode && target && target.Port == 0 && target.Node && lab.BeginGrab(target.Node))
                     { mouseHeld = target.Node; mouseDistance = distance; mouseOffset = mouseHeld.transform.position - ray.GetPoint(distance); }
                 }
+                if(lab.NetworkRoom != null && mouse.leftButton.isPressed && !mouseHeld && !mouseMenu && !lab.ConnectingMode && target && target.Node && target.Port==0 && lab.BeginGrab(target.Node))
+                { mouseHeld=target.Node;mouseDistance=distance;mouseOffset=mouseHeld.transform.position-ray.GetPoint(distance); }
                 if (mouseMenu)
                 {
                     mouseMenu.Move(this, ray, cam.transform.rotation, mouse.scroll.ReadValue().y * .002f);
@@ -241,7 +265,7 @@ namespace GuateGeeks.AwsVr
             var move = new Vector3((keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0),
                 (keyboard.eKey.isPressed ? 1 : 0) - (keyboard.qKey.isPressed ? 1 : 0), (keyboard.wKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed ? 1 : 0));
             cam.transform.position += Quaternion.Euler(0, yaw, 0) * move * Time.unscaledDeltaTime * 1.3f;
-            var pos = cam.transform.position; cam.transform.position = new Vector3(Mathf.Clamp(pos.x, -4, 4), Mathf.Clamp(pos.y, .6f, 3.5f), Mathf.Clamp(pos.z, -5, 4));
+            var pos = cam.transform.position; cam.transform.position = new Vector3(Mathf.Clamp(pos.x, -6.5f, 6.5f), Mathf.Clamp(pos.y, .6f, 3.5f), Mathf.Clamp(pos.z, -5, 7));
             if (keyboard.cKey.wasPressedThisFrame && !lab.Busy) lab.ToggleConnect();
             if (keyboard.escapeKey.wasPressedThisFrame) { ReleaseHands(); lab.CancelInteraction(); }
             if (keyboard.rKey.wasPressedThisFrame) { if (keyboard.shiftKey.isPressed) ResetMenus(); else Recenter(); }
@@ -258,19 +282,31 @@ namespace GuateGeeks.AwsVr
             if (mouseMenu) mouseMenu.Release(this); mouseMenu = null;
             if(mouseReticle) mouseReticle.gameObject.SetActive(false);
         }
+        public const float AimAssistRadius = .025f;
+        // Where the local person stands: in front of the table alone, or on their numbered station in a shared room.
+        Vector3 StandPosition { get { var space = lab ? lab.Space : null; return space ? space.StandPosition : new Vector3(0, 0, -.5f); } }
+        Quaternion StandRotation => lab && lab.Space ? lab.Space.Rotation : Quaternion.identity;
         public void Recenter()
         {
             ReleaseHands();
+            var stand = StandPosition; var facing = StandRotation;
             if (xr)
             {
-                // Align the current physical head pose to the table without requiring runtime recenter support.
-                origin.rotation = Quaternion.Euler(0, -cam.transform.localEulerAngles.y, 0);
+                // Align the current physical head pose to the station (facing the table centre) without requiring
+                // runtime recenter support. In a shared room this is the co-location step for each headset.
+                origin.rotation = facing * Quaternion.Euler(0, -cam.transform.localEulerAngles.y, 0);
                 Vector3 physical = origin.rotation * cam.transform.localPosition;
-                origin.position = new Vector3(-physical.x, 0, -.5f - physical.z);
+                origin.position = new Vector3(stand.x - physical.x, 0, stand.z - physical.z);
                 // Seated mode explicitly lifts the workspace viewpoint to a comfortable standing height.
                 headOffset.localPosition = new Vector3(0, seated ? 1.65f - cam.transform.localPosition.y : 0, 0);
             }
-            else { yaw = 0; pitch = 9; cam.transform.localPosition = new Vector3(0, seated ? 1.65f : 1.94f, -1.5f); cam.transform.localRotation = Quaternion.Euler(pitch, yaw, 0); }
+            else
+            {
+                // Desktop rehearsal: one metre behind the station, looking at the table.
+                yaw = facing.eulerAngles.y; pitch = 9;
+                var eye = stand + facing * Vector3.back; eye.y = seated ? 1.65f : 1.94f;
+                cam.transform.localPosition = eye; cam.transform.localRotation = Quaternion.Euler(pitch, yaw, 0);
+            }
         }
         public void ResetMenus()
         {

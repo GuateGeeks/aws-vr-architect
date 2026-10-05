@@ -25,6 +25,8 @@ namespace GuateGeeks.AwsVr.Tests
         bool hadBackgroundPreference;
         bool hadComponentScale;
         float savedComponentScale;
+        bool hadSharedRoom, hadStation;
+        int sharedRoom, station;
         static readonly string[] MenuNames = { "Lab identity", "Mission status", "01 · Service catalog", "03 · Inspector", "02 · Architecture controls", "Controls reference", "Comfort controls", "04 · Environment settings", "05 · Cloud connection", "Settings console", "Workspace reader" };
         string SavePath => Path.Combine(Application.persistentDataPath, "aws-day-architecture.json");
         [UnitySetUp]
@@ -35,10 +37,14 @@ namespace GuateGeeks.AwsVr.Tests
             hadSave = File.Exists(SavePath); originalSave = hadSave ? File.ReadAllText(SavePath) : null;
             hadCheckpoint = File.Exists(CheckpointPath); originalCheckpoint = hadCheckpoint ? File.ReadAllText(CheckpointPath) : null;
             menuPreferences.Clear();
-            foreach (var name in MenuNames) {
-                string key = LabMenu.PreferencePrefix + name;
+            foreach (var name in MenuNames) foreach (var layout in new[] { "", "shared." }) {
+                string key = LabMenu.PreferencePrefix + layout + name;
                 menuPreferences[key] = PlayerPrefs.HasKey(key) ? PlayerPrefs.GetString(key) : null; PlayerPrefs.DeleteKey(key);
             }
+            // Every test starts alone at the front of the table; the shared-room tests opt in.
+            hadSharedRoom = PlayerPrefs.HasKey(SharedSpace.SharedPreference); sharedRoom = PlayerPrefs.GetInt(SharedSpace.SharedPreference);
+            hadStation = PlayerPrefs.HasKey(SharedSpace.StationPreference); station = PlayerPrefs.GetInt(SharedSpace.StationPreference);
+            PlayerPrefs.DeleteKey(SharedSpace.SharedPreference); PlayerPrefs.DeleteKey(SharedSpace.StationPreference);
             hadBackgroundPreference = PlayerPrefs.HasKey(LabEnvironmentSettings.PreferenceKey);
             backgroundPreference = PlayerPrefs.GetInt(LabEnvironmentSettings.PreferenceKey);
             PlayerPrefs.DeleteKey(LabEnvironmentSettings.PreferenceKey);
@@ -62,6 +68,8 @@ namespace GuateGeeks.AwsVr.Tests
             foreach (var pair in menuPreferences) { if (pair.Value == null) PlayerPrefs.DeleteKey(pair.Key); else PlayerPrefs.SetString(pair.Key, pair.Value); }
             if (hadBackgroundPreference) PlayerPrefs.SetInt(LabEnvironmentSettings.PreferenceKey, backgroundPreference); else PlayerPrefs.DeleteKey(LabEnvironmentSettings.PreferenceKey);
             if(hadComponentScale)PlayerPrefs.SetFloat(ArchitectureLab.ComponentScalePreference,savedComponentScale);else PlayerPrefs.DeleteKey(ArchitectureLab.ComponentScalePreference);
+            if (hadSharedRoom) PlayerPrefs.SetInt(SharedSpace.SharedPreference, sharedRoom); else PlayerPrefs.DeleteKey(SharedSpace.SharedPreference);
+            if (hadStation) PlayerPrefs.SetInt(SharedSpace.StationPreference, station); else PlayerPrefs.DeleteKey(SharedSpace.StationPreference);
             PlayerPrefs.Save();
         }
         IEnumerator WaitIdle()
@@ -79,12 +87,108 @@ namespace GuateGeeks.AwsVr.Tests
         }
         void Capture(string name)
         {
+            HoloReveal.CompleteAll(); // Panels materialise over ~0.3 s; screenshots show the settled state.
             var camera = Camera.main; var previous = camera.targetTexture;
             var rt = new RenderTexture(1920, 1080, 24) { antiAliasing = 4 }; camera.targetTexture = rt; camera.Render();
             var active = RenderTexture.active; RenderTexture.active = rt;
             var texture = new Texture2D(1920, 1080, TextureFormat.RGB24, false); texture.ReadPixels(new Rect(0, 0, 1920, 1080), 0, 0); texture.Apply();
             Directory.CreateDirectory("Validation"); File.WriteAllBytes("Validation/" + name + ".png", texture.EncodeToPNG());
             RenderTexture.active = active; camera.targetTexture = previous; Object.Destroy(rt); Object.Destroy(texture);
+        }
+        [UnityTest] public IEnumerator OfficialAwsIconsRemainReadableAndDoNotInterceptInteractions()
+        {
+            lab.Rig.enabled = false;
+            var graph = new Architecture();
+            for (int i = 0; i < ServiceCatalog.All.Length; i++)
+                graph.Add(ServiceCatalog.All[i].Kind, new Vector3((i % 4 - 1.5f) * .65f, 1.45f, 1.9f + (i / 4) * .65f));
+            lab.SetGraph(graph);
+            yield return null;
+            yield return null;
+            foreach (var definition in ServiceCatalog.All)
+            {
+                var texture = AwsServiceIcons.Texture(definition.Kind);
+                Assert.IsNotNull(texture, definition.Name);
+                Assert.AreEqual(512, texture.width);
+                Assert.IsTrue(texture.mipmapCount > 1, "Distance filtering: " + definition.Name);
+                Assert.IsTrue(Object.FindObjectsByType<UnityEngine.UI.RawImage>().Any(r => r.texture == texture), "Catalog keeps the official flat icon: " + definition.Name);
+                var view = Object.FindObjectsByType<NodeView>().Single(n => n.Model.kind == definition.Kind);
+                var emblem = view.Emblem;
+                Assert.IsNotNull(emblem, definition.Name); Assert.AreEqual(definition.Kind, emblem.Kind);
+                var mesh = emblem.GetComponent<MeshFilter>().sharedMesh;
+                Assert.AreSame(AwsIconGeometry.Mesh(definition.Kind), mesh, "One shared mesh per service");
+                Assert.Greater(mesh.vertexCount, 300, definition.Name);
+                Assert.AreEqual(AwsIconGeometry.Size, mesh.bounds.size.x, .002f); Assert.AreEqual(AwsIconGeometry.Size, mesh.bounds.size.y, .002f);
+                Assert.IsEmpty(emblem.GetComponentsInChildren<Collider>(), "The node owns interaction");
+                Assert.IsEmpty(view.GetComponentsInChildren<UnityEngine.UI.RawImage>(), "No flat sticker on the tabletop object");
+                var direction = emblem.transform.position - Camera.main.transform.position;
+                direction.y = 0;
+                Assert.Greater(Vector3.Dot(emblem.transform.forward, direction.normalized), .95f, "Symbol faces the viewer: " + definition.Name);
+            }
+            Click("Lambda");
+            yield return null;
+            Assert.IsTrue(lab.Placing);
+            var ghost = GameObject.Find("Placement preview");
+            var ghostEmblem = ghost.GetComponentInChildren<AwsServiceEmblem>();
+            Assert.IsNotNull(ghostEmblem); Assert.AreEqual(ServiceKind.Lambda, ghostEmblem.Kind);
+            Assert.AreEqual(AwsIconGeometry.Size * .92f * lab.ComponentScale, ghostEmblem.transform.lossyScale.x * AwsIconGeometry.Size, .01f, "Placement shows the real-size emblem");
+            Click("Cancelar colocación");
+            yield return null;
+            Assert.IsFalse(lab.Placing);
+            Assert.AreEqual(7, lab.Graph.nodes.Count);
+            // Capture the normal starting architecture after checking the complete catalog.
+            lab.SetGraph(Architecture.Preset(0));
+            yield return null;
+            var lambda = Object.FindObjectsByType<NodeView>().Single(n => n.Model.kind == ServiceKind.Lambda);
+            lab.Select(lambda);
+            yield return null;
+            Capture("36-aws-icons-overview");
+            var camera = Camera.main;
+            var position = camera.transform.position; var rotation = camera.transform.rotation;
+            camera.transform.position = new Vector3(-.3f, 1.85f, .75f);
+            camera.transform.LookAt(new Vector3(-.1f, 1.45f, 2.2f));
+            yield return null;
+            Capture("37-aws-icons-tabletop");
+            // Move to the other side: the emblem turns so the official symbol stays front-facing and readable.
+            camera.transform.position = new Vector3(0, 1.8f, 3.5f);
+            camera.transform.LookAt(lambda.transform.position);
+            yield return new WaitForSecondsRealtime(1.5f);
+            var away = lambda.Emblem.transform.position - camera.transform.position; away.y = 0;
+            Assert.Greater(Vector3.Dot(lambda.Emblem.transform.forward, away.normalized), .9f);
+            Capture("39-aws-emblem-back");
+            camera.transform.SetPositionAndRotation(position, rotation);
+        }
+        [UnityTest] public IEnumerator VoicePreviewCanCancelApplyAndUndoWithoutAnEarlyMutation()
+        {
+            lab.SetGraph(Architecture.Preset(0));lab.SetAssistantEnabled(true);
+            var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            var voice=lab.gameObject.AddComponent<RealtimeVoice>();
+            typeof(RealtimeVoice).GetProperty("Connected").SetValue(voice,true);
+            typeof(ArchitectureLab).GetField("assistantVoice",flags).SetValue(lab,voice);
+            var pending=(HashSet<string>)typeof(RealtimeVoice).GetField("pendingTools",flags).GetValue(voice);
+            string id=lab.Graph.nodes[0].id;string before=JsonUtility.ToJson(lab.Graph);
+            void Begin(string callId) {
+                pending.Add(callId);
+                var type=typeof(ArchitectureLab).GetNestedType("AssistantCall",System.Reflection.BindingFlags.NonPublic);
+                var call=System.Activator.CreateInstance(type);
+                type.GetField("id").SetValue(call,callId);type.GetField("name").SetValue(call,"spatial_action");
+                type.GetField("args").SetValue(call,"{\"baseRevision\":"+lab.ArchitectureRevision+",\"action\":\"resize\",\"nodeIds\":[\""+id+"\"],\"scale\":0.75}");
+                lab.StartCoroutine((IEnumerator)typeof(ArchitectureLab).GetMethod("ExecuteAssistantTool",flags).Invoke(lab,new[]{call}));
+            }
+            Begin("cancel");yield return null;yield return null;
+            Assert.IsTrue(lab.VoicePreviewActive);Assert.AreEqual(before,JsonUtility.ToJson(lab.Graph));
+            Assert.IsNotNull(GameObject.Find("ATLAS proposed action"));Capture("35-voice-action-preview");
+            Assert.That(((TMPro.TMP_Text)typeof(ArchitectureLab).GetField("presenceTarget",flags).GetValue(lab)).text,Does.Contain("75%"));
+            lab.CancelInteraction();yield return null;yield return null;
+            Assert.IsFalse(lab.VoicePreviewActive);Assert.AreEqual(before,JsonUtility.ToJson(lab.Graph));Assert.IsFalse(pending.Contains("cancel"));
+            Begin("apply");yield return null;yield return null;
+            lab.ApplyVoicePreviewNow();yield return null;yield return null;
+            Assert.AreEqual(.75f,lab.Graph.Find(id).viewScale);Assert.IsFalse(lab.VoicePreviewActive);
+            lab.ExecuteVoiceAction("ui_action","{\"baseRevision\":"+lab.ArchitectureRevision+",\"action\":\"undo\"}");
+            Assert.AreEqual(before,JsonUtility.ToJson(lab.Graph));
+            Begin("stale");yield return null;yield return null;
+            lab.Graph.Find(id).name="Manually changed";lab.ApplyVoicePreviewNow();yield return null;yield return null;
+            Assert.AreEqual("Manually changed",lab.Graph.Find(id).name);Assert.AreNotEqual(.75f,lab.Graph.Find(id).viewScale);
+            lab.SetAssistantEnabled(false);
         }
         [UnityTest] public IEnumerator VoiceCommandsEditComponentsConnectionsAndUndoThroughTheLab()
         {
@@ -234,6 +338,28 @@ namespace GuateGeeks.AwsVr.Tests
                 yield return null;Capture("33-code-editor");
             }finally{if(Directory.Exists(directory))Directory.Delete(directory,true);}
         }
+        [UnityTest] public IEnumerator SupportedCreationDefaultsAndLocalRemovalAreUndoable()
+        {
+            const string key="GuateGeeks.ComponentDefault.1";bool existed=PlayerPrefs.HasKey(key);int previous=PlayerPrefs.GetInt(key);
+            try {
+                lab.Rig.enabled=false;PlayerPrefs.SetInt(key,2);lab.AddResource(ServiceKind.Lambda);
+                var node=lab.Graph.nodes.Last();Assert.AreEqual(2,node.setting);string before=JsonUtility.ToJson(lab.Graph);
+                Click("Quitar objeto");Assert.IsNull(lab.Graph.Find(node.id));
+                Click("Deshacer");Assert.AreEqual(before,JsonUtility.ToJson(lab.Graph));
+                yield return null;
+            }finally{if(existed)PlayerPrefs.SetInt(key,previous);else PlayerPrefs.DeleteKey(key);}
+        }
+        [UnityTest] public IEnumerator LambdaExamplesAndReusableCasesStayLocal()
+        {
+            lab.Rig.enabled=false;var node=lab.Graph.nodes.First(n=>n.kind==ServiceKind.Lambda);lab.OpenLambdaEditor(node.id);
+            Click("Evento ejemplo");Click("Guardar caso");Click("Guardar texto");
+            var file=Directory.GetFiles(codeTestDirectory,"*.json").Single();
+            var draft=JsonUtility.FromJson<LambdaCodeDraft>(File.ReadAllText(file));
+            Assert.AreEqual(1,draft.testCases.Length);Assert.That(draft.testCases[0].eventJson,Does.Contain("body"));
+            Click("Elegir caso");Click("Borrar caso");
+            draft=JsonUtility.FromJson<LambdaCodeDraft>(File.ReadAllText(file));Assert.IsEmpty(draft.testCases);
+            Assert.IsFalse(lab.Deployed);yield return null;
+        }
         [UnityTest] public IEnumerator CodeReviewCannotSilentlySwitchRollbackVersionOrConfirmFromVoice()
         {
             lab.Rig.enabled=false;var transport=new OfflineCloudTransport();var fixture=JsonUtility.FromJson<CloudFixture>(File.ReadAllText(Path.Combine(Application.dataPath,"GuateGeeks/Tests/Editor/Fixtures/backend-contract.json")));
@@ -247,6 +373,21 @@ namespace GuateGeeks.AwsVr.Tests
             Click("Revisar restauración");var confirm=lab.GetComponentsInChildren<LabTarget>().Single(t=>t.Label && t.Label.text=="Confirmar código en AWS");Assert.IsTrue(confirm.Available);
             Click("Elegir versión");Assert.IsFalse(confirm.Available);Assert.IsFalse(transport.Requests.Any(r=>r.StartsWith("POST")));
             Click("Revisar restauración");typeof(AwsCloudApi).GetProperty("StackId").SetValue(cloud,"replacement");yield return null;Assert.IsFalse(confirm.Available);
+        }
+        [UnityTest] public IEnumerator ExpectedOutputCannotPassAgainstAnOlderBackend()
+        {
+            lab.Rig.enabled=false;var transport=new OfflineCloudTransport();var fixture=JsonUtility.FromJson<CloudFixture>(File.ReadAllText(Path.Combine(Application.dataPath,"GuateGeeks/Tests/Editor/Fixtures/backend-contract.json")));
+            transport.Responses.Enqueue(fixture.session);transport.Responses.Enqueue(fixture.catalog);
+            lab.ConfigureCloud(new CloudConnection{endpoint="https://example.invalid/prod",username="test",password="Test42",deploymentId="1"},transport,_=>null);yield return WaitIdle();
+            var node=lab.Graph.nodes.First(n=>n.kind==ServiceKind.Lambda);lab.OpenLambdaEditor(node.id);
+            var draft=(LambdaCodeDraft)typeof(ArchitectureLab).GetField("codeDraft",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).GetValue(lab);
+            draft.expectedOutput="42";
+            transport.Responses.Enqueue(new CloudReply{Code=200,Json="{\"valid\":true,\"passed\":true,\"output\":\"42\"}"});
+            Click("Probar borrador");float until=Time.realtimeSinceStartup+5;while(lab.CodeBusy && Time.realtimeSinceStartup<until)yield return null;
+            Assert.IsFalse(lab.CodeBusy);Assert.IsFalse(draft.Tested);
+            transport.Responses.Enqueue(new CloudReply{Code=200,Json="{\"valid\":true,\"passed\":true,\"expectedChecked\":true,\"output\":\"42\"}"});
+            Click("Probar borrador");until=Time.realtimeSinceStartup+5;while(lab.CodeBusy && Time.realtimeSinceStartup<until)yield return null;
+            Assert.IsFalse(lab.CodeBusy);Assert.IsTrue(draft.Tested);
         }
         [UnityTest] public IEnumerator ReviewedCodePublicationStaysLockedThroughAwsPolling()
         {
@@ -525,6 +666,30 @@ namespace GuateGeeks.AwsVr.Tests
             lab.Feedback.ToggleMotion(); yield return null; before=reactor.localRotation;
             yield return new WaitForSecondsRealtime(.15f); Assert.AreEqual(before,reactor.localRotation);
             Capture("21-reactor-lab");
+            {
+                // The horizon band and floor light belong to the virtual room (hidden with the background / passthrough).
+                var horizon = lab.Environment.VirtualRoom.GetComponentsInChildren<Transform>().Single(t => t.name == "Guatemala volcano horizon");
+                Assert.IsTrue(horizon.GetComponent<MeshRenderer>().enabled);
+                Assert.IsNotNull(lab.Environment.VirtualRoom.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "Teal floor ribbon"));
+                var cam = Camera.main; var p0 = cam.transform.position; var r0 = cam.transform.rotation;
+                cam.transform.SetPositionAndRotation(new Vector3(0, 1.6f, .2f), Quaternion.Euler(-8, 58, 0)); yield return null; Capture("40-volcano-horizon");
+                cam.transform.position = new Vector3(.9f, 2.55f, .95f); cam.transform.LookAt(new Vector3(0, .9f, 2.55f)); yield return null; Capture("41-table-and-stands");
+                Assert.IsTrue(lab.GetComponentsInChildren<LineRenderer>().Count(l => l.name == "Table power trace" && l.enabled) >= 2, "Each object has a table trace");
+                // No back wall or racks; GuateGeeks signs with live eyes and the digital quetzal are present.
+                var names = lab.Environment.VirtualRoom.GetComponentsInChildren<Transform>(true).Select(t => t.name).ToList();
+                Assert.IsFalse(names.Contains("Reactor containment wall")); Assert.IsFalse(names.Contains("Compute bay"));
+                Assert.AreEqual(2, names.Count(n => n.StartsWith("GuateGeeks sign")));
+                Assert.GreaterOrEqual(lab.GetComponentsInChildren<GeekEyes>().Length, 3, "Eyes mark on both signs and in the reactor core");
+                var quetzal = lab.GetComponentInChildren<DigitalQuetzal>(true); Assert.IsNotNull(quetzal);
+                quetzal.Preview(.33f); yield return null;
+                Assert.IsFalse(quetzal.Flying, "Reduced motion keeps the quetzal grounded");
+                lab.Feedback.ToggleMotion(); quetzal.Preview(.33f); yield return null; yield return null;
+                Assert.IsTrue(quetzal.Flying); Assert.IsTrue(quetzal.Bird.gameObject.activeInHierarchy);
+                cam.transform.position = new Vector3(0, 1.7f, .1f); cam.transform.LookAt(quetzal.Bird.position); yield return new WaitForSecondsRealtime(.25f);
+                cam.transform.LookAt(quetzal.Bird.position); yield return null; Capture("42-digital-quetzal");
+                cam.transform.position = new Vector3(0, 1.75f, .3f); cam.transform.LookAt(new Vector3(0, 2.7f, 8)); yield return null; Capture("43-guategeeks-signs");
+                cam.transform.SetPositionAndRotation(p0, r0);
+            }
             var poses=new Vector3[26]; var valid=Enumerable.Repeat(true,26).ToArray();
             // Synthetic open pose for deterministic rendering; this is not headset evidence.
             poses[0]=new Vector3(0,0,.04f); poses[1]=Vector3.zero;
@@ -666,6 +831,33 @@ namespace GuateGeeks.AwsVr.Tests
             Assert.IsFalse(lab.IsCloud); Assert.IsFalse(lab.Deployed); Assert.IsTrue(lab.SessionReady);
             Assert.IsFalse(transport.Requests.Any(r => r.StartsWith("DELETE")));
         }
+        [UnityTest] public IEnumerator AssistantReadsTableWithoutEventAndCleanupRequiresPhysicalConfirmation()
+        {
+            lab.Rig.enabled=false;
+            var fixture=JsonUtility.FromJson<CloudFixture>(File.ReadAllText(Path.Combine(Application.dataPath,"GuateGeeks/Tests/Editor/Fixtures/backend-contract.json")));
+            var transport=new OfflineCloudTransport();transport.Responses.Enqueue(fixture.session);transport.Responses.Enqueue(fixture.catalog);
+            lab.SetGraph(fixture.graph);
+            lab.ConfigureCloud(new CloudConnection{endpoint="https://example.invalid/prod",username="contract",password="Test42",deploymentId="1"},transport,_=>null);
+            yield return WaitIdle();Click("Desplegar / retomar AWS");
+            transport.Responses.Enqueue(fixture.validation);transport.Responses.Enqueue(fixture.created);transport.Responses.Enqueue(fixture.ready);
+            Click("Confirmar creación AWS");yield return WaitIdle();
+            var voice=lab.gameObject.AddComponent<RealtimeVoice>();typeof(RealtimeVoice).GetProperty("Connected").SetValue(voice,true);Inject("assistantVoice",voice);
+            var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            var pending=(HashSet<string>)typeof(RealtimeVoice).GetField("pendingTools",flags).GetValue(voice);pending.Add("read");
+            var table=lab.Graph.nodes.First(n=>n.kind==ServiceKind.DynamoDB);
+            transport.Responses.Enqueue(new CloudReply{Code=200,Json=JsonUtility.ToJson(new AwsCloudApi.InspectionPage{
+                stackId=JsonUtility.FromJson<AwsCloudApi.DeploymentStatus>(fixture.ready.Json).stackId,resourceId=table.id,cursor="next-page",entries=new[]{new AwsCloudApi.InspectionEntry{text="{\"secret\":\"private\",\"amount\":42}"}}
+            })});
+            string result=null;
+            var method=typeof(ArchitectureLab).GetMethod("ExecuteAssistantCloudTool",flags);
+            yield return (IEnumerator)method.Invoke(lab,new object[]{"read_component","{\"nodeId\":\""+table.id+"\",\"cursor\":\"\"}","read",new System.Action<string>(value=>result=value)});
+            Assert.That(result,Does.Contain("next-page"));Assert.That(result,Does.Contain("REDACTED"));Assert.That(result,Does.Not.Contain("private"));
+            Assert.That(transport.Requests.Last(),Does.Contain("eventId="));Assert.AreEqual(0,lab.EventCount);
+            pending.Add("cleanup");transport.Responses.Enqueue(fixture.ready);
+            yield return (IEnumerator)method.Invoke(lab,new object[]{"slot_action","{\"slot\":\"1\",\"action\":\"review_cleanup\"}","cleanup",new System.Action<string>(value=>result=value)});
+            Assert.That(result,Does.Contain("pending_manual_confirmation"));Assert.IsFalse(transport.Requests.Any(r=>r.StartsWith("DELETE")));
+            Click("Cancelar");Assert.IsTrue(lab.Deployed);
+        }
         [UnityTest]
         public IEnumerator FailedCloudConnectionStaysExplicitlyOfflineUntilDemoIsSelected()
         {
@@ -675,6 +867,44 @@ namespace GuateGeeks.AwsVr.Tests
             Assert.IsFalse(lab.Deployed);
             Assert.IsFalse(Object.FindObjectsByType<LabTarget>().Single(t => t.Label && t.Label.text.StartsWith("Desplegar / retomar AWS")).Available);
             Click("Ajustes"); Click("Volver a demo"); yield return WaitIdle(); Assert.IsTrue(lab.SessionReady); Assert.IsFalse(lab.IsCloud);
+        }
+        [UnityTest]
+        public IEnumerator FocusPanelsSettleOpaqueAfterTheirReveal()
+        {
+            Click("Ajustes"); yield return new WaitForSecondsRealtime(.6f);
+            var settings = lab.GetComponentsInChildren<LabMenu>().Single(m => m.name == "Settings console");
+            var glass = settings.GetComponent<HoloPanelGraphic>(); var group = settings.GetComponent<CanvasGroup>();
+            // Linear colour space makes any partial coverage very visible; reading panels must settle fully opaque and on top.
+            Assert.AreEqual(1, glass.Reveal, .001f); Assert.AreEqual(1, group.alpha, .001f); Assert.AreEqual(1, glass.color.a, .001f);
+            Assert.AreEqual(LabVisuals.FocusSortingOrder, settings.GetComponent<Canvas>().sortingOrder);
+        }
+        [UnityTest]
+        public IEnumerator ContextRingActsOnTheSelectedHologram()
+        {
+            lab.Rig.enabled = false;
+            Assert.IsFalse(lab.ContextRingVisible, "No selection, no ring");
+            var fn = lab.Views.Values.First(v => v.Model.kind == ServiceKind.Lambda);
+            lab.Select(fn); yield return null;
+            Assert.IsTrue(lab.ContextRingVisible);
+            var ring = GameObject.Find("Object context ring");
+            Assert.Less(Vector3.Distance(ring.transform.position, fn.transform.position), .5f, "The ring blooms at the object");
+            var actions = ring.GetComponentsInChildren<LabTarget>().Where(t => t.isActiveAndEnabled).Select(t => t.Label.text).ToArray();
+            CollectionAssert.IsSubsetOf(new[] { "CONECTAR", "RELACIONES", "FICHA", "CÓDIGO", "QUITAR" }, actions);
+            CollectionAssert.DoesNotContain(actions, "DIAGNÓSTICO", "Diagnostics are AWS-only");
+            foreach (var label in ring.GetComponentsInChildren<TMPro.TMP_Text>()) { label.ForceMeshUpdate(); Assert.IsFalse(label.isTextTruncated, "Clipped ring label: " + label.text); }
+            Assert.IsFalse(ring.GetComponentsInChildren<LabTarget>().Any(t => t.GetComponentInParent<LabMenu>()), "The ring is not a movable menu");
+            yield return new WaitForSecondsRealtime(.3f); Capture("38-context-ring");
+            Click("CONECTAR"); Assert.IsTrue(lab.ConnectingMode); Assert.AreEqual(1, fn.ConnectionHint);
+            yield return null; Assert.IsFalse(lab.ContextRingVisible, "Connecting hides the ring");
+            lab.CancelInteraction(); lab.Select(fn); yield return null; Assert.IsTrue(lab.ContextRingVisible);
+            int nodes = lab.Graph.nodes.Count, links = lab.Graph.links.Count;
+            Click("QUITAR"); Assert.AreEqual(nodes - 1, lab.Graph.nodes.Count);
+            yield return null; Assert.IsFalse(lab.ContextRingVisible, "Removed object has no ring");
+            Click("Deshacer"); Assert.AreEqual(nodes, lab.Graph.nodes.Count); Assert.AreEqual(links, lab.Graph.links.Count);
+            var db = lab.Views.Values.First(v => v.Model.kind == ServiceKind.DynamoDB);
+            lab.Select(db); yield return null; Assert.IsTrue(lab.ContextRingVisible);
+            Assert.IsFalse(ring.GetComponentsInChildren<LabTarget>().Any(t => t.isActiveAndEnabled && t.Label.text == "CÓDIGO"), "Code is Lambda-only");
+            Assert.IsTrue(lab.BeginGrab(db)); yield return null; Assert.IsFalse(lab.ContextRingVisible, "Holding an object hides the ring"); lab.EndGrab(db);
         }
         [UnityTest]
         public IEnumerator BuildInspectConnectDeployAndTestFromWorldControls()
@@ -807,6 +1037,151 @@ namespace GuateGeeks.AwsVr.Tests
             File.WriteAllText(SavePath, "{ invalid"); Click("Cargar"); Assert.AreEqual(3, lab.Graph.nodes.Count);
             Click("Limpiar"); Click("Sí, limpiar"); Assert.AreEqual(0, lab.Graph.nodes.Count);
             Click("Deshacer"); Assert.AreEqual(3, lab.Graph.nodes.Count);
+        }
+    
+        static Vector3 Flat(Vector3 v) { v.y = 0; return v; }
+        [UnityTest]
+        public IEnumerator SharedRoomCompactsAndTurnsThePersonalConsoleToEachStation()
+        {
+            lab.Rig.enabled = false;
+            var space = lab.Space; Assert.IsFalse(space.SharedRoom, "Solo by default");
+            Assert.AreEqual(Vector3.zero, space.Console.localPosition); Assert.AreEqual(Quaternion.identity, space.Console.localRotation);
+            var dock = GameObject.Find("02 · Architecture controls").transform; var soloDock = dock.position;
+            Assert.IsFalse(GameObject.Find("Shared room stations"), "Floor stations only appear in a shared room");
+            Click("Ajustes"); Click("Sala compartida"); Click("Distribución para 4:");
+            Assert.IsTrue(space.SharedRoom); yield return null; yield return null;
+            Assert.AreEqual(4, space.MarkerCount); Assert.IsTrue(GameObject.Find("Shared room stations"));
+            var personal = new[] { "02 · Architecture controls", "01 · Service catalog", "03 · Inspector", "Mission status", "Settings console" };
+            void AssertInSector(int s)
+            {
+                var stand = SharedSpace.StationPosition(s); var forward = Quaternion.Euler(0, SharedSpace.StationYaw(s), 0) * Vector3.forward;
+                foreach (var name in personal)
+                {
+                    var flat = Flat(GameObject.Find(name).transform.position - stand);
+                    Assert.LessOrEqual(Vector3.Angle(forward, flat), 55, name + " stays inside the station's sector");
+                    Assert.LessOrEqual(flat.magnitude, 1.4f, name + " stays within reach");
+                    // Never closer to a neighbour's station than to your own.
+                    for (int other = 0; other < SharedSpace.MaxStations; other++) if (other != s)
+                        Assert.Greater(Flat(GameObject.Find(name).transform.position - SharedSpace.StationPosition(other)).magnitude, flat.magnitude + .6f, name + " intrudes on station " + (other + 1));
+                }
+            }
+            AssertInSector(0);
+            foreach (var label in lab.GetComponentsInChildren<TMPro.TMP_Text>()) { label.ForceMeshUpdate(); Assert.IsFalse(label.isTextTruncated, "Clipped label: " + label.text); }
+            Capture("44-shared-room-settings");
+            Click("Cerrar ajustes"); yield return null; Capture("45-shared-room-console");
+            Click("Ajustes"); Click("Sala compartida"); Click("Estación 3"); yield return null; yield return null;
+            Assert.AreEqual(2, space.Station); AssertInSector(2);
+            var camera = lab.Rig.ViewCamera.transform;
+            Assert.Greater(Vector3.Dot(Flat(camera.forward).normalized, Flat(SharedSpace.Center - camera.position).normalized), .95f, "Station view faces the table");
+            Click("Cerrar ajustes");
+            // Shared identity turns to each viewer.
+            var identity = GameObject.Find("Lab identity").transform;
+            Assert.Greater(Vector3.Dot(identity.forward, Flat(identity.position - camera.position).normalized), .95f);
+            // Zone guard: the desktop eye sits a metre behind the station, i.e. outside its circle.
+            space.EvaluateZoneWithoutXR = true; yield return null;
+            Assert.IsTrue(space.OutsideZone); Assert.IsTrue(GameObject.Find("Station guard"));
+            camera.position = SharedSpace.StationPosition(2) + Vector3.up * 1.6f; yield return null;
+            Assert.IsFalse(space.OutsideZone); space.EvaluateZoneWithoutXR = false;
+            lab.SetSharedRoom(false); yield return null;
+            Assert.AreEqual(Quaternion.identity, space.Console.localRotation);
+            Assert.Less(Vector3.Distance(soloDock, dock.position), .001f, "Solo layout is restored exactly");
+        }
+        [UnityTest]
+        public IEnumerator SimulatedTeammatesShowPresenceAndTheirLocksBlockEditing()
+        {
+            lab.Rig.enabled = false; lab.SetStation(1); lab.SetSimulatedPeers(true);
+            Assert.IsTrue(lab.Space.SharedRoom, "Simulating a team opens the shared room"); Assert.IsTrue(lab.SimulatingPeers);
+            for (int i = 0; i < 4; i++) yield return null;
+            Assert.AreEqual(3, lab.Peers.Count);
+            CollectionAssert.AreEquivalent(new[] { 0, 2, 3 }, lab.Collab.Peers.Select(p => p.Station).ToArray(), "Teammates take the other stations");
+            var team = GameObject.Find("02 · Architecture controls").GetComponentsInChildren<TMPro.TMP_Text>().First(t => t.text.StartsWith("EQUIPO"));
+            StringAssert.Contains("TÚ", team.text); StringAssert.Contains("ANA", team.text);
+            var sim = (SimulatedCollabSession)lab.Collab;
+            var views = lab.Views.Values.ToArray(); var mine = views[0]; var theirs = views[1];
+            lab.Select(mine); Assert.IsNull(lab.Collab.LocalHold, "Inspection never claims an editing lease");
+            Assert.IsTrue(lab.BeginGrab(mine));
+            Assert.IsFalse(sim.ForceLock(0, mine.Model.id), "Nobody can take what you hold");
+            lab.EndGrab(mine); Assert.IsNull(lab.Collab.LocalHold);
+            Assert.IsTrue(sim.ForceLock(0, theirs.Model.id)); yield return null;
+            Assert.AreSame(sim.Peers[0], theirs.LockedBy);
+            lab.Select(theirs); Assert.AreSame(theirs, lab.SelectedView, "A teammate's object may be inspected privately");
+            Assert.IsFalse(lab.BeginGrab(theirs), "A teammate's object cannot be moved");
+            lab.ToggleConnect(); lab.Select(mine); lab.Select(theirs);
+            StringAssert.DoesNotContain("está editando", lab.StatusMessage, "Connecting may still reference a held object"); lab.CancelInteraction();
+            yield return new WaitForSecondsRealtime(1.5f);
+            Capture("46-simulated-teammates");
+            var view = lab.Rig.ViewCamera.transform; var eye = SharedSpace.Center + new Vector3(-3.2f, 4.1f, -3.2f);
+            view.SetPositionAndRotation(eye, Quaternion.LookRotation(SharedSpace.Center + Vector3.up * .9f - eye)); yield return null;
+            Capture("47-shared-room-overview");
+            lab.SetSimulatedPeers(false); yield return null;
+            Assert.AreEqual(0, lab.Peers.Count); Assert.IsNull(theirs.LockedBy);
+            lab.SetSharedRoom(false);
+        }
+        [UnityTest]
+        public IEnumerator AimAssistForgivesNearMissesAndBeamsDoNotAllocate()
+        {
+            lab.Rig.enabled = false; yield return null; Physics.SyncTransforms();
+            // The deploy button ends the primary row: nothing else sits just to its right.
+            var button = Object.FindObjectsByType<LabTarget>().First(t => t.isActiveAndEnabled && t.Label && t.Label.text.StartsWith("Desplegar demo"));
+            var box = button.GetComponent<BoxCollider>();
+            var edge = button.transform.TransformPoint(new Vector3(box.size.x / 2, 0, 0));
+            var origin = lab.Rig.ViewCamera.transform.position;
+            var near = edge + button.transform.right * .015f; // 1.5 cm past the edge: a miss for a thin ray
+            var ray = new Ray(origin, (near - origin).normalized);
+            Assert.IsFalse(Physics.Raycast(ray, out var direct, 12) && direct.collider == box, "The thin ray misses");
+            var pick = typeof(LabRig).GetMethod("Pick", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            var args = new object[] { ray, 0f };
+            Assert.AreSame(button, pick.Invoke(lab.Rig, args), "Aim assist lands on the nearby button");
+            var far = edge + button.transform.right * .12f;
+            args = new object[] { new Ray(origin, (far - origin).normalized), 0f };
+            Assert.AreNotSame(button, pick.Invoke(lab.Rig, args), "A clear miss stays a miss");
+            var color = new Color(.2f, .4f, .6f, 1); LabVisuals.Beam(color); LabVisuals.Beam(color, false); LabVisuals.SpecialMaterial("LabGlow", color); // warm the caches
+            Assert.AreSame(LabVisuals.Beam(color), LabVisuals.Beam(color));
+            TestDelegate lookups = () => { LabVisuals.Beam(color); LabVisuals.Beam(color, false); LabVisuals.SpecialMaterial("LabGlow", color); };
+            for (int i = 0; i < 3; i++) lookups(); // JIT and comparer creation happen on the first calls
+            Assert.That(lookups, UnityEngine.TestTools.Constraints.ConstraintExtensions.AllocatingGCMemory(Is.Not));
+        }
+        NetworkCollabSession AttachTestRoom()
+        {
+            var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            var room = new NetworkCollabSession(new RoomGrant { userId="me", roomId="ABCDEF12", station=0, websocketUrl="wss://test.example/rooms" });
+            typeof(NetworkCollabSession).GetField("connected", flags).SetValue(room, true);
+            typeof(ArchitectureLab).GetProperty("Collab").SetValue(lab, room);
+            var receive = typeof(ArchitectureLab).GetMethod("ReceiveRoomSnapshot", flags);
+            room.Snapshot += (System.Action<RoomMessage>)receive.CreateDelegate(typeof(System.Action<RoomMessage>), lab);
+            DeliverRoom(room, lab.Graph.Copy(), 0, "");
+            return room;
+        }
+        void DeliverRoom(NetworkCollabSession room, Architecture graph, int revision, string receipt)
+        {
+            var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            var queue=(System.Collections.Concurrent.ConcurrentQueue<string>)typeof(NetworkCollabSession).GetField("received", flags).GetValue(room);
+            queue.Enqueue(JsonUtility.ToJson(new RoomMessage { type="snapshot", roomId=room.Grant.roomId, revision=revision, roomVersion=revision+1,
+                hostId="me", graph=graph, requestId=receipt, accepted=true,
+                members=new[]{new RoomMember{userId="me",name="ME",role="facilitator",station=0}}, locks=new RoomLease[0] }));
+            room.Pump();
+        }
+        [UnityTest]
+        public IEnumerator SharedEditWaitsForAuthoritativeReceiptAndDisconnectBlocksWrites()
+        {
+            lab.Rig.enabled=false;
+            var room=AttachTestRoom();
+            var previous=JsonUtility.ToJson(lab.Graph);
+            lab.AddResource(ServiceKind.CloudWatch);
+            var candidate=lab.Graph.Copy(); Assert.AreNotEqual(previous,JsonUtility.ToJson(candidate));
+            yield return null; yield return null;
+            Assert.IsTrue(lab.RoomEditPending);
+            Assert.AreEqual(previous,JsonUtility.ToJson(lab.Graph),"Unconfirmed candidates must not become shared state");
+            var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            var queue=(System.Collections.Concurrent.ConcurrentQueue<string>)typeof(NetworkCollabSession).GetField("outgoing",flags).GetValue(room);
+            RoomCommand op=null;
+            while(queue.TryDequeue(out var json)) {var command=JsonUtility.FromJson<RoomCommand>(json);if(command.action=="op")op=command;}
+            Assert.IsNotNull(op); Assert.AreEqual(0,op.baseRevision);
+            DeliverRoom(room,candidate,1,op.requestId);
+            Assert.IsFalse(lab.RoomEditPending); Assert.AreEqual(candidate.nodes.Count,lab.Graph.nodes.Count);
+            room.Dispose(); Assert.IsTrue(lab.RoomReadOnly);
+            int count=lab.Graph.nodes.Count; lab.AddResource(ServiceKind.S3);
+            Assert.AreEqual(count,lab.Graph.nodes.Count,"Disconnected rooms cannot silently edit a local fork");
         }
     }
 }

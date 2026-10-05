@@ -1,0 +1,11 @@
+2026-10-05T20:28:19.4333787Z | quest-status
+> adb shell pidof com.guategeeks.awsarchitectlab
+26394
+> adb shell dumpsys package com.guategeeks.awsarchitectlab | grep versionName
+versionName=0.20.0
+> adb shell dumpsys power | grep mWakefulness
+mWakefulness=Asleep
+  mWakefulnessChanging=false
+> adb logcat -d -t 400 -s Unity
+--------- beginning of main
+10-05 14:26:47.992 26394 26421 I Unity   : Handle cmd APP_CMD_WINDOW_INSETS_CHANGED(17)

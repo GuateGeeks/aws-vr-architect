@@ -62,63 +62,75 @@ namespace GuateGeeks.AwsVr
             Feedback = gameObject.AddComponent<LabFeedback>();
             world = new GameObject("AWS Day · Holographic lab").transform; world.SetParent(transform, false);
             var environment = new GameObject("Virtual room"); environment.transform.SetParent(world, false);
-            HoloEnvironment.Build(environment.transform); BuildInterface();
-            connectionPreview = Line(world,"Pending connection",previewPoints,Orange,.007f); connectionPreview.enabled=false;
+            HoloEnvironment.Build(environment.transform); BuildSharedSpace(); BuildInterface();
+            connectionPreview = Line(world,"Pending connection",previewPoints,Orange,.022f); connectionPreview.sharedMaterial=Beam(Orange); connectionPreview.textureMode=LineTextureMode.Stretch; connectionPreview.enabled=false;
             connectionHintPanel = Panel(world, "Connection explanation", Vector3.zero, new Vector2(550, 115), movable: false);
             connectionMeaning = Text(connectionHintPanel, "", Vector2.zero, new Vector2(520, 105), 20, White, TextAnchor.MiddleCenter);
             connectionHintPanel.gameObject.SetActive(false);
             Rig = gameObject.AddComponent<LabRig>(); Rig.Initialize(this);
             Environment = gameObject.AddComponent<LabEnvironmentSettings>(); Environment.Initialize(this, environment);
-            BuildCloudPanel(); BuildUnifiedSettings();
+            BuildCloudPanel(); BuildUnifiedSettings(); BuildContextRing(); BuildCollaboration();
             SetGraph(Architecture.Preset(0));
             ShowInspector();
             operation = StartCoroutine(StartConnection());
             Debug.Log("AWS Architect Lab ready: holographic environment, interface, rig and " + views.Count + " resources created. API: local mock.");
         }
-        void OnDestroy() { StopAssistant(); StopLiveInspection();AbortCodeOperation(); StopAllCoroutines(); api?.Disconnect(); Release(); }
+        void OnDestroy() { NetworkRoom?.Dispose(); roomBroker?.Disconnect(); StopAssistant(); StopLiveInspection();AbortCodeOperation(); StopAllCoroutines(); api?.Disconnect(); Release(); }
 
         LabTarget EditButton(Transform parent, string label, Vector2 pos, Vector2 size, Action action, Color? color = null)
         {
-            var b = Button(parent, label, pos, size, () => { if (!Busy && !codeBusy) { confirming = false; resetting = false; action(); } }, color);
+            var b = Button(parent, label, pos, size, () => { if (!Busy && !codeBusy && !RoomReadOnly) { confirming = false; resetting = false; action(); } }, color);
             editingButtons.Add(b); return b;
         }
         void BuildInterface()
         {
-            var header = Panel(world, "Lab identity", new Vector3(0, 3.08f, 4.0f), new Vector2(1600, 250), background: false);
-            header.localScale = Vector3.one * .0026f;
-            Text(header, "G U A T E G E E K S     /     A W S   D A Y", new Vector2(0, 90), new Vector2(1550, 45), 22, Cyan, TextAnchor.MiddleCenter);
-            Text(header, "AWS ARCHITECT LAB", new Vector2(0, 19), new Vector2(1600, 98), 72, White, TextAnchor.MiddleCenter);
-            Text(header, "Imagina. Conecta. Construye.", new Vector2(0, -62), new Vector2(1500, 45), 29, Muted, TextAnchor.MiddleCenter);
-            var banner = Panel(world, "Mission status", new Vector3(0, 2.43f, 3.95f), new Vector2(1380, 118));
-            Block(banner, new Vector2(-687, 0), new Vector2(5, 118), Cyan);
-            statusText = Text(banner, "Preparando sesión local…", new Vector2(0, 12), new Vector2(1320, 75), 25, White, TextAnchor.MiddleCenter);
-            countsText = Text(banner, "", new Vector2(0, -35), new Vector2(1300, 26), 17, Muted, TextAnchor.MiddleCenter);
+            // Event identity: the AWS Community Day Guatemala logo, projected with a soft backlight and registration brackets.
+            var header = Panel(world, "Lab identity", new Vector3(0, 3.36f, 4.0f), new Vector2(1600, 850), background: false);
+            header.localScale = Vector3.one * .0014f;
+            EventBranding.Build(header, new Vector2(1600, 850));
+            Space.RegisterIdentity(header);
+            // Slim status bar below the reactor hub: one message line plus a quiet counts line.
+            var banner = Panel(PersonalRoot, "Mission status", new Vector3(0, 2.3f, 3.95f), new Vector2(1100, 86));
+            banner.localScale = Vector3.one * .0017f;
+            Block(banner, new Vector2(-548, 0), new Vector2(4, 86), Cyan);
+            statusText = Text(banner, "Preparando sesión local…", new Vector2(0, 10), new Vector2(1050, 52), 24, White, TextAnchor.MiddleCenter);
+            statusText.enableAutoSizing = true; statusText.fontSizeMin = 15; statusText.fontSizeMax = 24;
+            countsText = Text(banner, "", new Vector2(0, -26), new Vector2(1050, 22), 15, Muted, TextAnchor.MiddleCenter);
+            countsText.enableAutoSizing = true; countsText.fontSizeMin = 11; countsText.fontSizeMax = 15;
 
-            var catalog = catalogPanel = Panel(world, "01 · Service catalog", new Vector3(-2.03f, 1.83f, 2.25f), new Vector2(540, 865), -29);
+            var catalog = catalogPanel = Panel(PersonalRoot, "01 · Service catalog", new Vector3(-2.03f, 1.83f, 2.25f), new Vector2(540, 865), -29);
             Text(catalog, "01  /  COMPONENTES", new Vector2(0, 385), new Vector2(476, 45), 25, Cyan);
             Text(catalog, "Agrega servicios a tu espacio", new Vector2(0, 339), new Vector2(476, 40), 21, Muted);
             Block(catalog, new Vector2(0, 303), new Vector2(476, 1), LineColor);
             for (int i = 0; i < ServiceCatalog.All.Length; i++)
             {
                 var def = ServiceCatalog.All[i];
-                EditButton(catalog, def.Name + "  <size=15> / " + def.Category + "</size>", new Vector2(0, 253 - i * 78), new Vector2(476, 64), () => StartPlacement(def.Kind), def.Color);
+                var serviceButton = EditButton(catalog, def.Name + "  <size=15> / " + def.Category + "</size>", new Vector2(0, 253 - i * 78), new Vector2(476, 64), () => StartPlacement(def.Kind), def.Color);
+                AwsServiceIcons.Add(serviceButton.transform, def.Kind, new Vector2(-200, 0), 48);
+                serviceButton.Label.rectTransform.anchoredPosition = new Vector2(34, 0);
+                serviceButton.Label.rectTransform.sizeDelta = new Vector2(376, 60);
+                serviceButton.Label.alignment = TMPro.TextAlignmentOptions.MidlineLeft;
             }
-            EditButton(catalog, "Plegar catálogo", new Vector2(0, -332), new Vector2(476, 58), () => catalogPanel.gameObject.SetActive(false));
+            Ghost(EditButton(catalog, "Plegar catálogo", new Vector2(0, -332), new Vector2(476, 58), () => { catalogPanel.gameObject.SetActive(false); Feedback.Play(LabFeedback.Close); }));
             modeText = Text(catalog, "100% LOCAL  ·  SIN COSTOS AWS", new Vector2(0, -401), new Vector2(476, 34), 17, Green);
 
-            objectInspector = Panel(world, "03 · Inspector", new Vector3(2.03f, 1.83f, 2.25f), new Vector2(570, 865), 29);
+            objectInspector = Panel(PersonalRoot, "03 · Inspector", new Vector3(2.03f, 1.83f, 2.25f), new Vector2(570, 865), 29);
             objectInspector.GetComponent<LabMenu>().Moved = () => inspectorPinned = true;
-            workspaceInspector = inspector = Panel(world, "Workspace reader", new Vector3(0, 2.05f, .8f), new Vector2(570, 865));
+            workspaceInspector = inspector = Panel(PersonalRoot, "Workspace reader", new Vector3(0, 2.05f, .8f), new Vector2(570, 865));
             workspaceInspector.localScale = Vector3.one * .0014f;
             workspaceInspector.GetComponent<HoloPanelGraphic>().color = new Color(.035f, .085f, .12f, 1);
             workspaceInspector.gameObject.SetActive(false);
-            var dock = Panel(world, "02 · Architecture controls", new Vector3(0, 1.16f, 1.2f), new Vector2(1250, 435));
+            var dock = Panel(PersonalRoot, "02 · Architecture controls", new Vector3(0, 1.16f, 1.2f), new Vector2(1250, 435));
             dock.localScale = Vector3.one * .0017f;
             dock.localRotation = Quaternion.Euler(25, 0, 0);
             Text(dock, "02  /  MESA DE ARQUITECTURA", new Vector2(-300, 127), new Vector2(590, 32), 19, Cyan);
+            // Team strip: who stands at each station and who is editing (shared room only).
+            teamText = Text(dock, "", new Vector2(0, 178), new Vector2(1190, 30), 17, White, TextAnchor.MiddleCenter);
+            teamText.enableAutoSizing = true; teamText.fontSizeMin = 11; teamText.fontSizeMax = 17; teamText.gameObject.SetActive(false);
             sessionText = Text(dock, "CONECTANDO…", new Vector2(390, 127), new Vector2(440, 32), 17, Green, TextAnchor.MiddleRight);
             string[] presets = { "API serverless", "Eventos + cola", "Procesar archivos" };
-            for (int i = 0; i < 3; i++) { int p = i; EditButton(dock, presets[i], new Vector2((i - 1) * 400, 77), new Vector2(382, 48), () => LoadPreset(p)); }
+            // Hierarchy: templates and file/tool rows are quiet ghost actions; the build flow is the lit primary row.
+            for (int i = 0; i < 3; i++) { int p = i; Ghost(EditButton(dock, presets[i], new Vector2((i - 1) * 400, 77), new Vector2(382, 48), () => LoadPreset(p))); }
             EditButton(dock, "Crear", new Vector2(-480, 10), new Vector2(223, 63), () => catalogPanel.gameObject.SetActive(true));
             EditButton(dock, "Definir", new Vector2(-240, 10), new Vector2(223, 63), ShowInspector);
             connectButton = EditButton(dock, "Conectar nodos", new Vector2(0, 10), new Vector2(223, 63), ToggleConnect);
@@ -126,7 +138,7 @@ namespace GuateGeeks.AwsVr
             deployButton = EditButton(dock, "Desplegar demo  →", new Vector2(480, 10), new Vector2(223, 63), RequestDeployment, Orange);
             string[] labels = { "Deshacer", "Guardar", "Cargar", "Limpiar", "Guía" };
             Action[] acts = { Undo, Save, Load, ConfirmReset, OpenGuidedDemo };
-            for (int i = 0; i < labels.Length; i++) EditButton(dock, labels[i], new Vector2((i - 2) * 240, -65), new Vector2(223, 48), acts[i]);
+            for (int i = 0; i < labels.Length; i++) Ghost(EditButton(dock, labels[i], new Vector2((i - 2) * 240, -65), new Vector2(223, 48), acts[i]));
             BuildStudioTools(dock);
             apiText = Text(dock, "MOCK API  /  Ningún recurso se crea en AWS", new Vector2(0, -207), new Vector2(1190, 30), 17, Muted, TextAnchor.MiddleCenter);
         }
@@ -186,18 +198,21 @@ namespace GuateGeeks.AwsVr
                 var view = go.AddComponent<LinkView>(); view.Initialize(views[edge.from], views[edge.to], this); linkViews.Add(view);
             }
         }
+        Vector3 NextResourcePosition()
+        {
+            for(int i=0;i<12;i++) {
+                var candidate=TablePosition(i);
+                if(Graph.nodes.All(n=>Vector3.Distance(n.position,candidate)>.5f*ComponentScale))return candidate;
+            }
+            return new Vector3(0,1.4f,2.1f);
+        }
         public void AddResource(ServiceKind kind)
         {
-            if (Busy) return;
+            if (Busy || RoomReadOnly) return;
             if (Graph.nodes.Count >= Architecture.MaxNodes) { SetStatus("Mesa llena: elimina un recurso para agregar otro. Máximo 12."); return; }
             Remember();
-            Vector3 spot = new Vector3(0, 1.4f, 2.1f);
-            for (int i = 0; i < 12; i++)
-            {
-                var candidate = TablePosition(i);
-                if (Graph.nodes.All(n => Vector3.Distance(n.position, candidate) > .5f*ComponentScale)) { spot = candidate; break; }
-            }
-            var node = Graph.Add(kind, spot); CreateView(node); Changed(); selected = views[node.id]; RefreshSelection(); ShowInspector();
+            Vector3 spot = NextResourcePosition();
+            var node = Graph.Add(kind, spot); node.setting=Mathf.Clamp(PlayerPrefs.GetInt("GuateGeeks.ComponentDefault."+(int)kind,0),0,DesignSemantics.OptionCount(kind)-1); CreateView(node); Changed(); selected = views[node.id]; RefreshSelection(); ShowInspector();
             SetStatus(node.name + " agregado. Usa «Conectar nodos» para incorporarlo al flujo.");
         }
         public void Select(NodeView view)
@@ -227,7 +242,7 @@ namespace GuateGeeks.AwsVr
                 v.SetConnectionHint(hint);
             }
             foreach (var link in linkViews) link.SetHighlighted(selected && (link.FromId == selected.Model.id || link.ToId == selected.Model.id));
-            HideConnectionPreview();
+            HideConnectionPreview(); ClaimSelection();
         }
         public void HideConnectionPreview() { if (connectionPreview) connectionPreview.enabled = false; if (connectionHintPanel) connectionHintPanel.gameObject.SetActive(false); }
         public void PreviewConnection(NodeView destination, Vector3 aim)
@@ -242,7 +257,7 @@ namespace GuateGeeks.AwsVr
             connectionMeaning.richText = false;
             connectionHintPanel.position = b + new Vector3(0, .65f, -.12f);
             if (Rig && Rig.ViewCamera) connectionHintPanel.rotation = Quaternion.LookRotation(connectionHintPanel.position - Rig.ViewCamera.transform.position);
-            connectionPreview.sharedMaterial=Material(valid?Green:destination?Hex("#FF8290"):Orange);
+            connectionPreview.sharedMaterial=Beam(valid?Green:destination?Alert:Orange);
             for(int i=0;i<previewPoints.Length;i++) {float t=(float)i/(previewPoints.Length-1); previewPoints[i]=world.InverseTransformPoint(Vector3.Lerp(a,b,t)+Vector3.up*Mathf.Sin(t*Mathf.PI)*.15f);}
             connectionPreview.SetPositions(previewPoints);
         }
@@ -255,6 +270,7 @@ namespace GuateGeeks.AwsVr
         }
         public void CancelInteraction()
         {
+            if(voicePreviewActive){CancelPendingVoiceAction();return;}
             if (credentialBusy) return;
             if (EditingText) { CloseDesignKeyboard(); return; }
             if (Placing) { CancelPlacement(); CloseWorkspace(); SetStatus("Colocación cancelada."); return; }
@@ -266,7 +282,9 @@ namespace GuateGeeks.AwsVr
         }
         public bool BeginGrab(NodeView node)
         {
-            if (Busy || ConfiguringConnection || EditingText || Placing || node.Grabbed) return false;
+            if (Busy || RoomReadOnly || ConfiguringConnection || EditingText || Placing || node.Grabbed || NetworkRoom != null && views.Values.Any(v => v.Grabbed)) return false;
+            if (RejectLocked(node)) return false;
+            if (!Collab.Claim(node.Model.id)) { SetStatus("Reservando objeto… mantén el agarre hasta la confirmación."); return false; }
             confirming = false; Remember(); node.Grabbed = true; selected = node; RefreshSelection(); ShowInspector(); return true;
         }
         public void EndGrab(NodeView node)
@@ -274,12 +292,16 @@ namespace GuateGeeks.AwsVr
             if (!node) return;
             if (GridSnap) { var p=node.transform.localPosition; node.transform.localPosition=ClampWorkspace(new Vector3(Mathf.Round(p.x*10)/10,Mathf.Round(p.y*10)/10,Mathf.Round(p.z*10)/10)); }
             node.Grabbed = false; node.Model.position = node.transform.localPosition;
+            if (NetworkRoom != null) roomPendingRelease = node.Model.id;
+            else Collab.Claim(null);
             // Layout edits preserve a successful deployment because they do not alter the architecture.
             UpdateCounts();
         }
         public static Vector3 ClampWorkspace(Vector3 position) => new Vector3(Mathf.Clamp(position.x, -1.6f, 1.6f), Mathf.Clamp(position.y, 1.02f, 2.1f), Mathf.Clamp(position.z, 1.65f, 3.65f));
-        void LoadPreset(int index) { Remember(); SetGraph(Architecture.Preset(index)); SetStatus("Plantilla cargada. Puedes deshacer para recuperar el diseño anterior."); }
-        void Undo() { if (history.Count == 0) { SetStatus("Todavía no hay cambios para deshacer."); return; } var previous=history.Pop();if(historyScales.TryGetValue(previous,out float scale))RestoreViewScale(scale);historyScales.Remove(previous);SetGraph(previous);SetStatus("Cambio deshecho."); }
+        // The projection table sits at (0, 0.74, 2.65) in lab space; pulses travel across its surface.
+        void TablePulse(Color color, float delay = 0) => HoloPulse.Spawn(world, new Vector3(0, .755f, 2.65f), .35f, 1.85f, color, .04f, delay);
+        void LoadPreset(int index) { roomGlobal = NetworkRoom != null; Remember(); SetGraph(Architecture.Preset(index)); TablePulse(Cyan); SetStatus("Plantilla cargada. Puedes deshacer para recuperar el diseño anterior."); }
+        void Undo() { if (UndoRoomOperation()) return; if (history.Count == 0) { SetStatus("Todavía no hay cambios para deshacer."); return; } var previous=history.Pop();if(historyScales.TryGetValue(previous,out float scale))RestoreViewScale(scale);historyScales.Remove(previous);SetGraph(previous);SetStatus("Cambio deshecho."); }
         void ValidateGraph()
         {
             if (IsCloud) { if (!Busy) operation = StartCoroutine(ValidateCloud()); return; }
@@ -296,7 +318,7 @@ namespace GuateGeeks.AwsVr
                 SetReaderSize(new Vector2(570, 865));
             }
             var menu = inspector.GetComponent<LabMenu>();
-            foreach (Transform child in inspector) { if (menu && child == menu.Handle) continue; child.gameObject.SetActive(false); Destroy(child.gameObject); }
+            foreach (Transform child in inspector) { if ((menu && child == menu.Handle) || child.name == EventBranding.WatermarkName) continue; child.gameObject.SetActive(false); Destroy(child.gameObject); }
             // Destroyed inspector buttons are removed so session updates only touch live controls.
             editingButtons.RemoveAll(b => !b || b.transform.IsChildOf(inspector));
         }
@@ -335,11 +357,12 @@ namespace GuateGeeks.AwsVr
             resetting = true; ClearInspector();
             Text(inspector, "¿Limpiar la mesa?", new Vector2(0, 220), new Vector2(506, 80), 37, White);
             Text(inspector, "Empezarás con un espacio vacío. Puedes recuperar el diseño con Deshacer.", new Vector2(0, 100), new Vector2(506, 130), 25, Muted);
-            Button(inspector, "Sí, limpiar", new Vector2(0, -40), new Vector2(506, 70), () => { if (resetting && !Busy) { Remember(); SetGraph(new Architecture()); resetting = false; SetStatus("Mesa vacía. Agrega tu primer servicio."); } }, Orange);
+            Button(inspector, "Sí, limpiar", new Vector2(0, -40), new Vector2(506, 70), () => { if (resetting && !Busy) { roomGlobal=NetworkRoom!=null; Remember(); SetGraph(new Architecture()); resetting = false; SetStatus("Mesa vacía. Agrega tu primer servicio."); } }, Orange);
             Button(inspector, "Volver", new Vector2(0, -140), new Vector2(506, 62), CancelInteraction);
         }
         void RequestDeployment()
         {
+            if(NetworkRoom != null && (RoomReadOnly || !NetworkRoom.IsFacilitator)) {SetStatus("Solo el facilitador despliega la revisión confirmada de la sala.");return;}
             if (HasPendingDefinition) { ShowInspector(); SetStatus("Aplica o cancela la edición pendiente antes de desplegar."); return; }
             StopFlowPreview();
             if (!SessionReady) { SetStatus("La sesión todavía no está lista."); return; }
@@ -358,6 +381,7 @@ namespace GuateGeeks.AwsVr
         }
         public void BeginDeployment()
         {
+            if(NetworkRoom != null && (RoomReadOnly || !NetworkRoom.IsFacilitator))return;
             if (!confirming || Busy || !SessionReady) return;
             if (!SaveCloudCheckpoint(true)) return;
             confirming = false; Busy = true; Deployed = false; EventCount = 0; Graph.ResetStates(); UpdateButtons();
@@ -383,7 +407,7 @@ namespace GuateGeeks.AwsVr
                 if (IsCloud && Cloud.StackId != checkpoint?.stackId) SaveCloudCheckpoint(false);
             });
             Busy = false; Deployed = succeeded; operation = null;
-            if (succeeded) definitionModified = false;
+            if (succeeded) { definitionModified = false; TablePulse(Green); TablePulse(Green, .18f); }
             SyncCloudSession();
             Feedback.Play(succeeded?1:2);
             foreach (var link in linkViews) link.Flowing = false;
@@ -437,7 +461,7 @@ namespace GuateGeeks.AwsVr
                 // Incomplete but editable graphs are allowed; structural corruption is not.
                 if (!DesignLibrary.Readable(next)) throw new FormatException();
                 foreach (var node in next.nodes) node.position = ClampWorkspace(node.position);
-                Remember(); SetGraph(next); SetStatus("Diseño recuperado. Valida y despliega cuando estés listo.");
+                roomGlobal=NetworkRoom!=null; Remember(); SetGraph(next); SetStatus("Diseño recuperado. Valida y despliega cuando estés listo.");
             }
             catch (Exception e) when (e is IOException || e is UnauthorizedAccessException || e is ArgumentException || e is FormatException)
             { SetStatus("No se pudo cargar el archivo. Tu diseño actual sigue intacto."); }

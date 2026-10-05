@@ -51,7 +51,7 @@ namespace GuateGeeks.AwsVr
         [Serializable] class Service { public int kind; }
         [Serializable] class Validation { public bool valid; public string graphHash; }
         [Serializable] class Create { public string deploymentId; public Architecture architecture; }
-        [Serializable] class EventRequest { public string resourceId; }
+        [Serializable] class EventRequest { public string resourceId,stackId,eventJson; }
         [Serializable] class EventResponse { public bool accepted; public string eventId, message; }
         [Serializable] class Error { public string message, requestId; }
         [Serializable] public class NodeStatus { public string resourceId, status, message, name, physicalId; public int kind; }
@@ -67,7 +67,7 @@ namespace GuateGeeks.AwsVr
         string authorization, expectedHash;
         Architecture deployedGraph;
         public string Region { get; private set; }
-        public string Slot { get; }
+        public string Slot { get; private set; }
         public string StackId { get; private set; }
         public string EventResourceId { get; set; }
         public string LastEventId { get; private set; }
@@ -84,6 +84,7 @@ namespace GuateGeeks.AwsVr
         public AwsCloudApi CreateInspectionReader() => new AwsCloudApi(this);
         AwsCloudApi(AwsCloudApi source)
         {
+            RoomToken = source.RoomToken;
             endpoint = source.endpoint; Slot = source.Slot; authorization = source.authorization;
             Region = source.Region; Connected = source.Connected; delay = source.delay;
             transport = source.transport is UnityCloudTransport ? new UnityCloudTransport() : source.transport;
@@ -106,7 +107,8 @@ namespace GuateGeeks.AwsVr
             CloudReply reply = null;
             for (int attempt = 0; attempt < (retry ? 5 : 1); attempt++)
             {
-                yield return transport.Send(method, endpoint + path, authorization, json, value => reply = value);
+                string auth = !string.IsNullOrEmpty(RoomToken) && !path.StartsWith("/v1/collab/") ? "Bearer " + RoomToken : authorization;
+                yield return transport.Send(method, endpoint + path, auth, json, value => reply = value);
                 reply = reply ?? new CloudReply();
                 if (!reply.Transient || !retry || attempt == 4) break;
                 yield return delay(Mathf.Min(30, 3 * Mathf.Pow(2, attempt)) + UnityEngine.Random.value);
@@ -205,11 +207,14 @@ namespace GuateGeeks.AwsVr
             state != null && (state.Contains("FAILED") || state.Contains("ROLLBACK") || state.StartsWith("DELETE_", StringComparison.Ordinal)) ? ResourceState.Failed : ResourceState.Provisioning;
         static void Fail(Action<DeploymentEvent> progress, string message) => progress(new DeploymentEvent { Finished = true, Success = false, Message = message });
         public IEnumerator Invoke(Action<bool, string> completed)
+        { return InvokeEvent(EventResourceId,"",completed); }
+        public static ResourceNode DefaultEventSource(Architecture graph)=>graph?.nodes.FirstOrDefault(n=>SupportedSource(n.kind) && !graph.links.Any(l=>l.to==n.id && graph.Find(l.from)?.kind!=ServiceKind.CloudWatch));
+        public IEnumerator InvokeEvent(string nodeId,string eventJson,Action<bool,string> completed,Func<bool> stillAuthorized=null)
         {
             LastEventId = null;
             if (!Connected || deployedGraph == null || string.IsNullOrEmpty(StackId)) { completed(false, "Despliega o retoma tu diseño antes de enviar eventos."); yield break; }
-            var source = EventResourceId == null ? deployedGraph.nodes.FirstOrDefault(n => SupportedSource(n.kind) &&
-                !deployedGraph.links.Any(l => l.to == n.id)) : deployedGraph.Find(EventResourceId);
+            if(System.Text.Encoding.UTF8.GetByteCount(eventJson??"")>4096){completed(false,"Evento JSON de hasta 4 KiB requerido.");yield break;}
+            var source = string.IsNullOrEmpty(nodeId) ? DefaultEventSource(deployedGraph) : deployedGraph.Find(nodeId);
             if (source == null || !SupportedSource(source.kind)) { completed(false, "Selecciona API Gateway, Lambda, S3, SQS o EventBridge como origen."); yield break; }
             // Check identity again: slots are shared with other frontends/operators.
             CloudReply reply = null;
@@ -217,7 +222,8 @@ namespace GuateGeeks.AwsVr
             var state = Parse<DeploymentStatus>(reply);
             if (!reply.Ok || state == null || state.stackId != StackId || state.graphHash != expectedHash || !state.success || state.status != "CREATE_COMPLETE")
             { completed(false, reply.Ok ? "El despliegue cambió o no está listo. Retoma el mismo diseño antes de enviar eventos." : Describe(reply)); yield break; }
-            yield return Request("POST", "/v1/deployments/" + Slot + "/events", JsonUtility.ToJson(new EventRequest { resourceId = source.id }), false, r => reply = r);
+            if(stillAuthorized!=null && !stillAuthorized()){completed(false,"Envío cancelado antes de modificar AWS.");yield break;}
+            yield return Request("POST", "/v1/deployments/" + Slot + "/events", JsonUtility.ToJson(new EventRequest { resourceId = source.id,stackId=StackId,eventJson=eventJson??"" }), false, r => reply = r);
             var result = Parse<EventResponse>(reply);
             bool accepted = reply.Ok && result != null && result.accepted;
             if (accepted) LastEventId = result.eventId;

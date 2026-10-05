@@ -2,7 +2,6 @@
 import base64
 import binascii
 import hmac
-import ipaddress
 import json
 import logging
 import os
@@ -13,6 +12,7 @@ import sys
 import inspection
 import assistant
 import authoring
+import collaboration
 import urllib.request
 import boto3
 from botocore.auth import SigV4Auth
@@ -57,18 +57,6 @@ def authenticate(headers):
     password_ok = hmac.compare_digest(password.encode(), credentials['password'].encode())
     if not (user_ok & password_ok):
         raise ApiError(401, 'unauthorized', 'Credenciales inválidas.')
-
-
-def authorize_source(event):
-    # Only the REST API proxy context is trusted; never use client-supplied headers.
-    try:
-        source = ipaddress.ip_address(event['requestContext']['identity']['sourceIp'])
-        network = ipaddress.ip_network(os.environ['ALLOWED_CIDR'], strict=False)
-        allowed = network.version == 4 and network.prefixlen > 0 and source in network
-    except (KeyError, TypeError, ValueError):
-        allowed = False
-    if not allowed:
-        raise ApiError(403, 'source_ip_denied', 'La IP de origen no está permitida.')
 
 
 def body(event):
@@ -209,17 +197,32 @@ def invoke(cfn, name, data):
         raise ApiError(404, 'not_found', 'No existe este despliegue.')
     if stack['StackStatus'] != 'CREATE_COMPLETE':
         raise ApiError(409, 'not_ready', 'El despliegue debe estar CREATE_COMPLETE.')
-    definition = template(cfn, name)
+    if data.get('stackId') and data['stackId'] != stack['StackId']:
+        raise ApiError(409, 'stack_changed', 'El slot cambió. Actualiza su estado.')
+    event_data = {'message': 'AWS Day test'}
+    if 'eventJson' in data and data['eventJson'] != '':
+        raw = data['eventJson']
+        if not isinstance(raw, str) or len(raw.encode('utf-8')) > 4096:
+            raise ApiError(400, 'invalid_event', 'Evento JSON de hasta 4 KiB requerido.')
+        try:
+            event_data = json.loads(raw, parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
+        except (ValueError, TypeError, RecursionError):
+            raise ApiError(400, 'invalid_event', 'Evento JSON inválido.') from None
+        if not isinstance(event_data, dict):
+            raise ApiError(400, 'invalid_event', 'El evento debe ser un objeto JSON.')
+    definition = template(cfn, stack['StackId'])
     candidates = {key: value for key, value in definition['Resources'].items() if value.get('Metadata', {}).get('NodeId') == data.get('resourceId')}
     if len(candidates) != 1:
         raise ApiError(400, 'invalid_resource', 'resourceId no pertenece al despliegue.')
     lid, definition = next(iter(candidates.items()))
-    physical = next((r.get('PhysicalResourceId') for r in resources(cfn, name) if r['LogicalResourceId'] == lid), None)
+    physical = next((r.get('PhysicalResourceId') for r in resources(cfn, stack['StackId']) if r['LogicalResourceId'] == lid), None)
     if not physical:
         raise ApiError(409, 'not_ready', 'Recurso sin identificador físico.')
     kind = definition['Metadata']['Kind']
     event_id = str(uuid.uuid4())
-    payload = json.dumps({'id': event_id, 'message': 'AWS Day test'})
+    # Correlation is application-owned; user payloads cannot overwrite another event.
+    event_data['id'] = event_id
+    payload = json.dumps(event_data, allow_nan=False)
     if kind == 0:
         url = f'https://{physical}.execute-api.{os.environ["AWS_REGION"]}.amazonaws.com/demo'
         session = boto3.Session()
@@ -247,15 +250,36 @@ def invoke(cfn, name, data):
 
 
 def route(event, context):
-    authorize_source(event)
-    authenticate({k.lower(): v for k, v in (event.get('headers') or {}).items()})
+    headers = {k.lower(): v for k, v in (event.get('headers') or {}).items()}
+    room_token = None
+    if headers.get('authorization', '').startswith('Bearer '):
+        room_token = headers['authorization'][7:]
+        try:
+            collaboration.authorize_http(event, room_token, sys.modules[__name__])
+        except ValueError as error:
+            raise ApiError(403, 'room_permission', str(error))
+    else:
+        authenticate(headers)
+        try:
+            collaboration.authorize_event_write(event, sys.modules[__name__])
+        except ValueError as error:
+            raise ApiError(403, 'room_permission', str(error))
     method, path = event.get('httpMethod'), event.get('path', '').rstrip('/')
+    if method == 'POST' and path in ('/v1/collab/rooms', '/v1/collab/ticket'):
+        try:
+            data = body(event)
+            if path.endswith('/rooms'):
+                return 201, collaboration.bootstrap(data, sys.modules[__name__])
+            return 200, collaboration.connection_ticket(data.get('token'), sys.modules[__name__])
+        except ValueError as error:
+            raise ApiError(409, 'collaboration_rejected', str(error))
     if method == 'GET' and path == '/v1/session':
         return 200, {'connected': True, 'region': os.environ['AWS_REGION'], 'schemaVersion': 1}
     if method == 'GET' and path == '/v1/catalog':
         return 200, {'maxNodes': 12, 'deploymentSlots': ['1', '2', '3'], 'services': [{'kind': i, 'name': n} for i, n in enumerate(KINDS)], 'limitations': ['HTTP API only', 'One S3 notification destination', 'One Lambda consumer per queue/API', 'S3 to FIFO unsupported', 'Replace designs by delete then create']}
     if method == 'POST' and path == '/v1/assistant/session':
-        return 200, assistant.create_session(sys.modules[__name__])
+        identity = collaboration.grant(collaboration.Store(sys.modules[__name__]), room_token)['userId'] if room_token else None
+        return 200, assistant.create_session(sys.modules[__name__], identity) if identity else assistant.create_session(sys.modules[__name__])
     if method == 'POST' and path == '/v1/code/validate':
         return 200, authoring.validate_source(body(event).get('source'), sys.modules[__name__])
     if method == 'POST' and path == '/v1/code/test':
@@ -272,18 +296,29 @@ def route(event, context):
         if method == 'POST' and operation in ('publish', 'rollback'):
             return 202, authoring.publish(cfn, slot, body(event), sys.modules[__name__], rollback=operation == 'rollback')
     if method == 'POST' and path == '/v1/deployments':
-        return create(cfn, body(event))
+        result = create(cfn, body(event))
+        collaboration.record_deployment(room_token, result[1], sys.modules[__name__])
+        return result
     match = re.fullmatch(r'/v1/deployments/([123])(/events|/logs|/items)?', path)
     if match:
         slot, suffix = match.groups()
         name = stack_name(slot)
         if method == 'GET' and not suffix:
-            return 200, status(cfn, name, slot)
+            try:
+                result = status(cfn, name, slot)
+            except ApiError as error:
+                if error.status == 404:
+                    collaboration.record_deployment(room_token, dict(deploymentId=slot, status='NOT_FOUND', finished=True, success=False), sys.modules[__name__])
+                raise
+            collaboration.record_deployment(room_token, result, sys.modules[__name__])
+            return 200, result
         query = event.get('queryStringParameters') or {}
         if method == 'GET' and suffix in ('/logs', '/items'):
             return 200, inspection.inspect(cfn, name, suffix[1:], query, sys.modules[__name__])
         if method == 'DELETE' and not suffix:
-            return delete(cfn, name, slot, query.get('purge') == 'true', context, query.get('stackId'))
+            result = delete(cfn, name, slot, query.get('purge') == 'true', context, query.get('stackId'))
+            collaboration.record_deployment(room_token, dict(result[1], success=False), sys.modules[__name__])
+            return result
         if method == 'POST' and suffix == '/events':
             return invoke(cfn, name, body(event))
     raise ApiError(404, 'not_found', 'Ruta no encontrada.')

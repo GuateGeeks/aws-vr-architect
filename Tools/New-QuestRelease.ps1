@@ -1,6 +1,7 @@
 param(
     [string]$Unity = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Unity.exe',
     [string]$Backend = (Join-Path $PSScriptRoot '../../GuateGeeksAWS2026'),
+    [string]$Python,
     [int]$TimeoutMinutes = 40
 )
 $ErrorActionPreference = 'Stop'
@@ -41,13 +42,13 @@ function Get-CodeFingerprint {
 }
 try {
     $sourceBefore = Get-CodeFingerprint
-    $python = Join-Path $backendRoot '.venv/Scripts/python.exe'
-    if (-not (Test-Path $python)) { throw 'Install backend requirements in its .venv first.' }
+    $backendPython = if ($Python) { (Resolve-Path -LiteralPath $Python).Path } else { Join-Path $backendRoot '.venv/Scripts/python.exe' }
+    if (-not (Test-Path $backendPython)) { throw 'Install backend requirements in its .venv first, or pass -Python with a compatible runtime.' }
     Push-Location $backendRoot
     try {
-        & $python -m unittest discover -s tests -q *> (Join-Path $validation 'backend-tests.txt')
+        & $backendPython -m unittest discover -s tests -q *> (Join-Path $validation 'backend-tests.txt')
         if ($LASTEXITCODE -ne 0) { throw 'Backend tests failed; see Validation/backend-tests.txt.' }
-        & $python tools/validate_templates.py *> (Join-Path $validation 'backend-templates.txt')
+        & $backendPython tools/validate_templates.py *> (Join-Path $validation 'backend-templates.txt')
         if ($LASTEXITCODE -ne 0) { throw 'Backend template validation failed.' }
     } finally { Pop-Location }
     Invoke-EditorCommand 'edit-tests' 'EditMode-summary.txt' '^Passed \| passed=[1-9][0-9]* failed=0'

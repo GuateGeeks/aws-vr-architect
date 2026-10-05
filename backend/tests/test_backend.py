@@ -132,7 +132,10 @@ class CompilerTests(unittest.TestCase):
         text = json.dumps(build())
         self.assertNotIn('AdministratorAccess', text)
         self.assertNotIn('iam:CreateRole', text)
-        self.assertIn('NotIpAddress', text)
+        self.assertNotIn('NotIpAddress', text)
+        self.assertNotIn('aws:SourceIp', text)
+        self.assertNotIn('AllowedCidr', text)
+        self.assertNotIn('ALLOWED_CIDR', text)
 
 
 class ApiTests(unittest.TestCase):
@@ -155,27 +158,22 @@ class ApiTests(unittest.TestCase):
             aws.assert_not_called()
             self.assertIn('WWW-Authenticate', result['headers'])
 
-    def test_source_ip_rejected_before_aws_and_auth_even_with_spoofed_headers(self):
-        event = self.event('GET', '/v1/session')
-        event['requestContext']['identity']['sourceIp'] = '198.51.100.9'
-        event['headers'].update({'X-Forwarded-For': '192.0.2.8', 'X-Real-IP': '192.0.2.8'})
-        with patch.object(app, 'client') as aws, patch.object(app, 'authenticate') as auth:
-            self.assertEqual(app.handler(event, self.context)['statusCode'], 403)
-            aws.assert_not_called()
-            auth.assert_not_called()
+    def test_any_ipv4_or_ipv6_source_can_authenticate(self):
+        for ip in ['192.0.2.8','198.51.100.9','203.0.113.7','2001:db8::1','::ffff:192.0.2.8']:
+            with self.subTest(ip=ip):
+                event=self.event('GET','/v1/session');event['requestContext']['identity']['sourceIp']=ip
+                self.assertEqual(200,app.handler(event,self.context)['statusCode'])
 
-    def test_source_context_missing_invalid_or_ipv6_fails_closed(self):
-        for context in [None, {}, {'identity': {}}, {'identity': {'sourceIp': 'invalid'}}, {'identity': {'sourceIp': '::ffff:192.0.2.8'}}]:
-            event = self.event('GET', '/v1/session'); event['requestContext'] = context
-            self.assertEqual(app.handler(event, self.context)['statusCode'], 403)
+    def test_missing_source_context_does_not_block_authenticated_clients(self):
+        for context in [None,{}, {'identity':{}}, {'identity':{'sourceIp':'invalid'}}]:
+            event=self.event('GET','/v1/session');event['requestContext']=context
+            self.assertEqual(200,app.handler(event,self.context)['statusCode'])
 
-    def test_cidr_missing_invalid_or_unrestricted_fails_closed(self):
-        for cidr in ['', 'invalid', '0.0.0.0/0', '::/0']:
-            with patch.dict(os.environ, ALLOWED_CIDR=cidr):
-                self.assertEqual(app.handler(self.event('GET', '/v1/session'), self.context)['statusCode'], 403)
-        with patch.dict(os.environ):
-            del os.environ['ALLOWED_CIDR']
-            self.assertEqual(app.handler(self.event('GET', '/v1/session'), self.context)['statusCode'], 403)
+    def test_public_access_still_rejects_unauthenticated_clients(self):
+        for ip in ['198.51.100.9','2001:db8::1']:
+            event=self.event('GET','/v1/session');event['requestContext']['identity']['sourceIp']=ip;event['headers']={}
+            with patch.object(app,'client') as aws:
+                self.assertEqual(401,app.handler(event,self.context)['statusCode']);aws.assert_not_called()
 
     def test_bad_auth_variants(self):
         for value in ['Basic !!!!', 'Bearer token', 'Basic ' + base64.b64encode(b'user:wrong').decode(), 'Basic ' + base64.b64encode(b'no-colon').decode()]:

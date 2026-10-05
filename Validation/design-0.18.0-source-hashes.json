@@ -1,0 +1,398 @@
+[
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\AwsIconImporter.cs",
+    "sha256": "8FEE58817CDC1A28F52CB8DBC88CFA631B9CB11A2C4E8E338B61DE88231007E0"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\CloudSessionWindow.cs",
+    "sha256": "DD9B0FAF2698C1FC5C2834B0441E2181CC658BF32F3FA58D56F7D4A33A921850"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\GuateGeeks.AwsVr.Editor.asmdef",
+    "sha256": "9DAD6D5940A53C4D20BC1F33E982BE755B1649C4D466C5B8E4C6A8B1A0E717A5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\LabProjectSetup.cs",
+    "sha256": "C10D1037B80F145F645F5443D8A84FCA17DF055E7C2AD2E37D6366926CD50597"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\LabValidation.cs",
+    "sha256": "2513BB01F970495D5C7CFC0F836A7D654A72FC44FDBF4C395FE653D3A90D8FAC"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestBuild.cs",
+    "sha256": "41C7A383E888FDABAB414A88DBC2DBB987FF9C7CD222A8321EBF6B9939E25946"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestRelease.cs",
+    "sha256": "62B17755228C8356246CAA3D92ACC2766B233FD763A4BB78EEB89BECEBF46E58"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\link.xml",
+    "sha256": "57D27DD193BE1AEA3FF19DC467A2304DFD15DDD67D31769FDF053569C325382A"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\ApiGateway.png",
+    "sha256": "5BF721782842D0037151AF4263401F6D2814FB938CFA00EB28683D5FA25B51CD"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\CloudWatch.png",
+    "sha256": "02D94C738B05D063BECAEC8E66FD9C1965BBA7615ACF46B8A1622D6860515F8C"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\DynamoDB.png",
+    "sha256": "CE12C6554C0F811171E012334A4A5667D1A06089A354A0F51C00C8F57F74361F"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\EventBridge.png",
+    "sha256": "5B2D47B8A79C3868FDA73F6D90222EF74B02EFB7787C9CE858F2922D395E201C"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\Lambda.png",
+    "sha256": "98151567DFCA517BD9A18400AB590EAD345459BF5DF5C43260112856E20F6FB3"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\S3.png",
+    "sha256": "1C74EF44226684C4E2EE355A59E5ABBC0ABA07ED465AD05541F5219BF5997FAD"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\SQS.png",
+    "sha256": "05AEA5CA014D3E7CD25831B7A59ECE793AEF245E73657761E5E3A1BA498FC2BD"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabEmblem.shader",
+    "sha256": "C3E7A201EC3BBD7FE805F13947294F24746AA9C7CA4A48C9788DC6FF9798CDE7"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabFlow.shader",
+    "sha256": "058D9A0E8943AE3E7FD7133C5232CB9E7052DD6C8DCCD1315E97896908487E95"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabGrid.shader",
+    "sha256": "2500AC321C6705A450D947025099D1D92FB5AC5BB060A13A7668E2211B19DCC9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabHologram.shader",
+    "sha256": "AC9DFAF6BB337427F880C6ADB55A25071A424A4AB407A86298AE0BCAC848EAAC"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabMetal.shader",
+    "sha256": "96CDDD76BE980DF9EFBD5677B4B38A170D40AE17C3B85D87C5D69957A070FB3E"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabUnlit.shader",
+    "sha256": "437FB557C178C8933F4F1B740CE9128EC44C95319A07550E05710E119FBFA1E9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\Architecture.cs",
+    "sha256": "11457770CB8594AB097908F7EE72FB1A0098C1875E76B788154AE19B79853DAB"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Assistant.cs",
+    "sha256": "35B3110B05FBCAAE28E95A8B8D33C81EC36E8F29B6FE072DCD214F172D19C21F"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.AssistantCloud.cs",
+    "sha256": "C331A267B9C0F8DD3BCDBB86F5E305C128F06DA600CA6DC34102A19755AFA9AE"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.AssistantPresence.cs",
+    "sha256": "52CF3C31E0E2B86B1BC930861107CF4E69D3E599FC11E3F496AF26A598C83CA7"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Cloud.cs",
+    "sha256": "82AB89019F57506269CCE6E0EBE45F7321669C3B5081F41F8D01A375169C78AA"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.CodeEditor.cs",
+    "sha256": "355AE6BEF06FFF86116DC867979AB4FBDC76FBA442E4756FD892356499B206D8"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.ConnectionSetup.cs",
+    "sha256": "8E275CD32D4148E582DC9774783904CFA14F02FD9D74D3C0EDBF516731B56008"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.ContextRing.cs",
+    "sha256": "A9F107383BA9B23512B4F9D398136E13FC378752BE7F7890E5B124813CF1EA33"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.cs",
+    "sha256": "6A7C3C0FE67921437F71595F5914BC2CCF23853D7832688E46B5710FDEBE227D"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Diagnostics.cs",
+    "sha256": "E606DBAAA561F59963C6C6B21FE50BCD5669A1DF34E12AA7B5D026B9766FCD1A"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Guide.cs",
+    "sha256": "DB297A8277413663F0665DCFA65ED00A9AED61EF9D728965360EC151649BF2F9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.LiveInspection.cs",
+    "sha256": "130CC13DD6C01A876B5B84A25FB757C06D04DB9FF394FA59217299EC13A03A56"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Operations.cs",
+    "sha256": "DAEE5BAED7120F31F1735FFFED8AEC47B7C175EA02546F9EE0EBCF8C62351518"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Settings.cs",
+    "sha256": "3003480C15C6E2B80D3DA4C4B4DC9ACF0ED5C05233E68899A587C01B1ADBDD50"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.SpatialVoice.cs",
+    "sha256": "845F290AAE27A403A18FB5121247DA1A45B1010ADC99BB668C57F1B90C3E406E"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Studio.cs",
+    "sha256": "61D4980BF2BC84F6CCD2EE40EE279FE1A11CA6949BF96E008AA4BBD4D4C502CD"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.VoiceActions.cs",
+    "sha256": "090484A141650BF66A0F14BD39E7CBC04747E6C464319F6805B8F1510F1A4D46"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Workflows.cs",
+    "sha256": "C712EE720A545183529554F62528ABFFC08793780FD03D906DB8538349A3C670"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArmoredHandVisual.cs",
+    "sha256": "010AB1F8616FA5D297AFF07B5D57EEFE1486E1C940BD819912C243599535E30F"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AssistantProposal.cs",
+    "sha256": "B2DCA5B88B56CF8FA026A8F15D282F7F8F478773FBA81A7954206C18CE78C5C9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Assistant.cs",
+    "sha256": "37F7D41F7DEEBE90C482159B2DC8F5E6F2708F43B22D6F986F82EB6076D22455"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Authoring.cs",
+    "sha256": "3078A2A20938D469483864A20B27E17E14A4193F90AAD9F91FB85DE98F6C4628"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.cs",
+    "sha256": "8280FAD64F1CFB524A9AB47C17A725E2C55464D7AAB67297066A7A5779FF57DA"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Operations.cs",
+    "sha256": "FB54D77575D2C54A9CF11F64F34F7D3609CABB2B7DF631C63C6EE020AA145BED"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsIconGeometry.cs",
+    "sha256": "38296C69EE22CD5B8094F83D0AECB2A6991E6B92E8272517CCDFEA4B11D4CFAD"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsIconGeometry.Data.cs",
+    "sha256": "97A147757D433F7ADB921A6E17DDED47091E7DB20B23D8BB41D551B119663931"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsServiceIcons.cs",
+    "sha256": "FD1913A486B18DB0899DA4BCF005C662D93E6CFC802A09A46F76E051566300CD"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CloudConnection.cs",
+    "sha256": "51E63A317568E8003B9E2E3E39A079C9422F2C5918ACAF604E6E14FF541766B1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CloudProfile.cs",
+    "sha256": "D4DE732D3899649F5483850DC29A84EF73C72912F828D6F74691F1DFD7295684"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CodePresentation.cs",
+    "sha256": "45079178F69A7373A38EE0F3689C55E1F8124AF90D761583C3B5AE228AE4A641"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CredentialStore.cs",
+    "sha256": "1347604C916FDDCC57F689CFCE32DA7792BF9299E2858AD536AF7E1B7C010135"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DesignLibrary.cs",
+    "sha256": "A27884FB7F354451B78F1FB2C67A9B1BAF63CCF6EE2A562EED45012293B3D3EF"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DesignSemantics.cs",
+    "sha256": "BBFC9DE2E1888FED3362474BD04CD7718E14CEBF1D517CD4EA6F8196EB42A51F"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DirectTouchState.cs",
+    "sha256": "9519106AEB516F84206738819F9B2B0C06E3F2A52A25AC5699ACD1F1A27627A4"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\EventDiagnostics.cs",
+    "sha256": "8283E932B33E47FCD09BCDEC7B142FAF8615ECA23B482080071F206E59155A51"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\GuateGeeks.AwsVr.asmdef",
+    "sha256": "83F899210F21B074C0B9D9E47D359F7E1BA292711C7BE7B763DEC01CCB88D2F0"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloEnvironment.cs",
+    "sha256": "0E2B4A1F717C75267941A937236C5128F33C265DAA6C7EAAE78D0C202B8F7933"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloGeometry.cs",
+    "sha256": "98BED6EE5DE8B93449405965C1795CF18FE83792F0F000ABD06305C3FE709572"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloPanelGraphic.cs",
+    "sha256": "5FB4C0A5E6F5A4C89D200183BCDE5900A5F99E9BE202617D780FE0D1D2713D3B"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloPulse.cs",
+    "sha256": "C491A5C9AE2819C6EC6E05CC70C3F830788955FC3C4020D1DE9BC706CCF9F32D"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloReveal.cs",
+    "sha256": "9F57464B99FF4EE786CC60E4644EB48A9030E1004C58FEC771F04DF246C3A20A"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\InspectionTools.cs",
+    "sha256": "7549C0B84DBCF4271BB481A57C6F3002738E6868C44D8F140CD3556980ECE1C2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\IntegrationKnowledge.cs",
+    "sha256": "8CF8DAD091692B38E781C2411E0F503BF95C6DB34B853810DFB93E4EECE534B5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabEnvironmentSettings.cs",
+    "sha256": "4982BBB133ADC20F2C1FE243E72136D7C7F73EBF5B481BB1FE76B87E845F80A1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabFeedback.cs",
+    "sha256": "3E5C2E8AE7CA1F225A1663937E81BE86ED66966A1640F8DE90F96910F13C3C83"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabMenu.cs",
+    "sha256": "EFE52B9B71572CEB5D75408A2967C9AD2CC450C3BCAD31163C83911D61A17EC9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.cs",
+    "sha256": "28E93D9080B7CC3E0273D7D68CFB522879E8C4A8B74C820EC8CDE1E9BADB2C7C"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.Hands.cs",
+    "sha256": "F943AF5B07A048B1E22293C5AA951AA5E469C10A679CCB7B0568474A6C64012A"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.Palm.cs",
+    "sha256": "4469BF587ACE23E8D44DFE5D67A7C8D90A98D192B6E399FBCFD0F7AF907EE7D5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabTarget.cs",
+    "sha256": "8561486587731FF320D463216C17829E3EA215291E4DB30A06AB748696A1765F"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabVisuals.cs",
+    "sha256": "74306BA34CEC1BF4F1073E33737CEE7BEDA8E886742711D0A4AC3B4BA4551D23"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LambdaCodeDraft.cs",
+    "sha256": "6CC8C9F15D9AECC60548DE0B559FAC8B12FB9DE18A95DAA6E74BF919D497E4E1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LinkView.cs",
+    "sha256": "AB7C4A23D060231B1B46480B79E4D87075FE8447FF570FAC525893352101B331"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\MockCloudApi.cs",
+    "sha256": "3A52C46E1F0A0388085F1142CDAED6ECA644BB5CB9CFB3A16AAADDF985FDBD68"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\NodeView.cs",
+    "sha256": "3CDF8E008E14367DFB11BC3E5DCBC6073C88C52028E92EE681A9A487FC6E3370"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeAudioInput.cs",
+    "sha256": "82470649D7F0988A07766853DB411F5F971BA614FDA276655E9DDC329155A650"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeCost.cs",
+    "sha256": "4F6DB88A8D161A7EE778B92B0CEB76BEF80EA34B45E2F59CC4E29D2042F76E19"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeProtocol.cs",
+    "sha256": "0392FAA061925A39F254018A40CE45C87B31DB0663888EBDD79C8C7DABD4D89D"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeVoice.cs",
+    "sha256": "FE857B324B15BD022BC23541E3163D4323AF0CB400051ACB057F8E48FA4BCF87"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\SpatialVoiceContext.cs",
+    "sha256": "193EBBBD5B6AABA1605BF66D3D2E0A88B8A92DC9E6832F7AA0D34C241B6BD950"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\ArchitectureTests.cs",
+    "sha256": "573411A9BE4B3E964D234BF4E72E33CE082B1A913ADB3E634C7959BD959FC230"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AssistantTests.cs",
+    "sha256": "DDC4E7EAADED0D03F4BBC4D886FCDE22D6F02899382677290F507006C6B719ED"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AuthoringTests.cs",
+    "sha256": "7D0EBF33A1044699CA0304A21C7BCD2006C9C71E270C1075F8A1B6A4C5223A29"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AwsCloudApiTests.cs",
+    "sha256": "9139C1D7FFFE3F725671FD374640D937C5E145A6E29CA9C970F301D35991DFFC"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AwsIconGeometryTests.cs",
+    "sha256": "5F9AB7A19E69E5BE11E4B79262A02BCB199D33B8349DB8A0B18D8E301A183CF0"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\CloudProfileTests.cs",
+    "sha256": "C810D906085BD4E32C96C3785F5E4D223A5570B4A60BCF582F4B13A49D85F58B"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\DesignStudioTests.cs",
+    "sha256": "C8C0C875A2B883523301416D6D3F6636549EEC4B1F6B7252E284313EE70D2E28"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\Fixtures\\backend-contract.json",
+    "sha256": "FC52BCF403C311F136610A8BDEE7F98F153129273D2BBA0FFDE6C0AFD93F37FB"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\GuateGeeks.AwsVr.EditTests.asmdef",
+    "sha256": "AA0F8971E95A921A9E9AF801C63F3D75F0AACFC257E13215A027FC463F958692"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\HandPinchTests.cs",
+    "sha256": "F41C19844266CA82C3BD2D91FE224D5D0CB05AE4B9E9FE1AC628368A5C77ECC1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\InspectionInteractionTests.cs",
+    "sha256": "271C73BD1AA4DD0EBB83CE42B919B91B218F0760F87A5CE16AD0D6F13372223A"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\RealtimeCostTests.cs",
+    "sha256": "66BE0B7D1DE7E996F68C340406A7D4B6C2DBC4C13ADD1914BEDA2339F76A0F21"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\SpatialVoiceTests.cs",
+    "sha256": "07405E19BE79A90C52DB4F8B928130E91E68D0CA55220BF28179438FDA13414F"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\GuateGeeks.AwsVr.PlayTests.asmdef",
+    "sha256": "70AD4F7BD0D8E9DA8519C60ED81D1ACB1A41AFC4EFA9E2C71FDBCDB2726EBE93"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\LabExperienceTests.cs",
+    "sha256": "4F693CDF985D324E214F7AA29FCE0AFDACB2C73B0F8308085FEB2519D99939E0"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeAudioInputTests.cs",
+    "sha256": "86187CF311727F71FF790C16DBF28DE808F113F661537D9486224DD9FB34FD90"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeLiveTests.cs",
+    "sha256": "8FD3959980D0F0BABC3450E064A3A344397BFA47C3541E5F02BD6595CE75D1B9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeVoiceStateTests.cs",
+    "sha256": "FA8726198DCEE24011BADFF3D6F598AF50EA96579512CCE6FDE189EF518A2F15"
+  }
+]

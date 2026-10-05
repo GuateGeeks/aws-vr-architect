@@ -1,4 +1,4 @@
-Quest 3 preflight | 2026-10-04T09:17:59.3041136Z
+Quest 3 preflight | 2026-10-05T23:13:51.2837464Z
 Unity 6000.6.3f1
 Active target: Android; selected group: Android
 PASS Android Build Support installed (restart Unity after installing modules)
@@ -7,6 +7,8 @@ PASS Bundled Android NDK
 PASS Bundled OpenJDK
 PASS Installed Android platform API >= 34; highest=36
 PASS IL2CPP / ARM64 only
+PASS Meta immersive distribution target SDK 34
+PASS Meta distribution install location Auto
 PASS Vulkan
 PASS OpenXR initializes on Android startup
 PASS Single-pass stereo rendering

@@ -1,0 +1,13 @@
+2026-10-05T04:14:56.5863835Z | Succeeded | errors=0 warnings=9
+Platform: Android
+Output: C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Builds/Quest3/GuateGeeksAWSVR-Quest3.apk
+Preprocess Player: Warning [Optional] Switch to use InputSystem.XR.PoseControl instead of OpenXR.Input.PoseControl, which will be deprecated in a future release.
+Preprocess Player: Warning [Optional] Switch to use StickControl thumbsticks instead of Vector2Control, but may break existing projects that have code dependencies to the Vector2Control type. StickControl allows more input options for thumbstick-based control, such as acting as both a combined 2D vector, two independent axes or a four-way Dpad with 4 independent buttons.
+Preprocess Player: Warning Using the Screen Space Ambient Occlusion render feature results in significant performance overhead when the application is running natively on device. Disabling or removing that render feature is recommended.
+Preprocess Player: Warning [Optional] Latency Optimization is recommended to be set to <b>Prioritize Input Polling</b> when Meta Quest support is enabled.
+Prepare For Build: Warning Diagnostics Data is enabled, and it requires Debug Symbols to be either SymbolTable or Full to resolve stacktraces in crash reports. Consider selecting Full to receive fully-detailed crash reports.
+Packaging assets - resources.assets: Warning Shader warning in 'TextMeshPro/Mobile/Distance Field': #pragma enable_d3d11_debug_symbols has been deprecated, instead please use #pragma enable_debug_symbols at line 84
+Postprocess built player: Warning C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\Bee\artifacts\Android\il2cppOutput\cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile
+Postprocess built player: Warning C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\Bee\artifacts\Android\il2cppOutput\cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile
+Postprocess built player: Warning C:\Users\adawolfs\Unity\GuateGeeksAWSVR\Library\Bee\artifacts\Android\il2cppOutput\cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile
+VERIFIED: Android APK exists (55091214 bytes).
