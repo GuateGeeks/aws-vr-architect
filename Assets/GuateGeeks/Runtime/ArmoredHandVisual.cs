@@ -19,7 +19,14 @@ namespace GuateGeeks.AwsVr
         readonly bool[] valid = new bool[26];
         Mesh mesh;
         MeshRenderer surface;
-        Transform beacon, thumbTip, indexTip;
+        Transform beacon;
+        // One luminous emitter per fingertip: every finger can press, so every finger carries the light.
+        static readonly XRHandJointID[] tipJoints = { XRHandJointID.ThumbTip, XRHandJointID.IndexTip, XRHandJointID.MiddleTip, XRHandJointID.RingTip, XRHandJointID.LittleTip };
+        static readonly string[] tipNames = { "Thumb emitter", "Index emitter", "Middle emitter", "Ring emitter", "Little emitter" };
+        readonly Transform[] tips = new Transform[5];
+        readonly float[] tipGlow = new float[5];
+        readonly bool[] tipPressing = new bool[5];
+        public int EmitterCount => tips.Length;
         static readonly XRHandJointID[][] digits = {
             new[] { XRHandJointID.ThumbMetacarpal, XRHandJointID.ThumbProximal, XRHandJointID.ThumbDistal, XRHandJointID.ThumbTip },
             new[] { XRHandJointID.IndexMetacarpal, XRHandJointID.IndexProximal, XRHandJointID.IndexIntermediate, XRHandJointID.IndexDistal, XRHandJointID.IndexTip },
@@ -47,9 +54,10 @@ namespace GuateGeeks.AwsVr
             surface=gameObject.AddComponent<MeshRenderer>(); surface.shadowCastingMode=ShadowCastingMode.Off; surface.receiveShadows=false;
             // Dark titanium with luminous pinch emitters: the fingertips that touch holograms carry the light.
             surface.sharedMaterial=LabVisuals.SpecialMaterial("LabEmblem",new Color(.85f,.9f,.95f,1));
-            thumbTip=LabVisuals.Shape(transform,"Thumb emitter",PrimitiveType.Sphere,Vector3.zero,Vector3.one*.011f,LabVisuals.Ice).transform;
-            indexTip=LabVisuals.Shape(transform,"Index emitter",PrimitiveType.Sphere,Vector3.zero,Vector3.one*.011f,LabVisuals.Ice).transform;
-            thumbTip.gameObject.SetActive(false); indexTip.gameObject.SetActive(false);
+            for(int f=0;f<tips.Length;f++) {
+                tips[f]=LabVisuals.Shape(transform,tipNames[f],PrimitiveType.Sphere,Vector3.zero,Vector3.one*TipSize(f),LabVisuals.Ice).transform;
+                tips[f].gameObject.SetActive(false);
+            }
             beacon=LabVisuals.Shape(transform,"Glove dorsal emitter",PrimitiveType.Sphere,Vector3.zero,new Vector3(.021f,.006f,.021f),left?LabVisuals.Cyan:LabVisuals.Orange).transform;
             surface.enabled=false; beacon.gameObject.SetActive(false);
         }
@@ -60,17 +68,29 @@ namespace GuateGeeks.AwsVr
             bool palmValid=hand.GetJoint(XRHandJointID.Palm).TryGetPose(out var palm);
             ApplyPoses(joints,valid,palmValid?palm.rotation:Quaternion.identity);
         }
+        static float TipSize(int finger) => finger==0 || finger==1 ? .011f : finger==4 ? .0085f : .0095f;
+        // Proximity feedback: a fingertip near a touchable surface swells and brightens; contact turns it green.
+        public void SetTouch(int finger, float proximity, bool pressing)
+        {
+            if(finger<0 || finger>=tips.Length || !tips[finger]) return;
+            proximity=Mathf.Clamp01(proximity);
+            if(Mathf.Approximately(tipGlow[finger],proximity) && tipPressing[finger]==pressing) return;
+            tipGlow[finger]=proximity; tipPressing[finger]=pressing;
+            tips[finger].localScale=Vector3.one*TipSize(finger)*(1+.55f*proximity);
+            tips[finger].GetComponent<Renderer>().sharedMaterial=LabVisuals.Material(pressing?LabVisuals.Green:proximity>0?LabVisuals.White:LabVisuals.Ice);
+        }
         // Also used by deterministic visual/geometry validation without a headset.
         public void ApplyPoses(Vector3[] positions, bool[] tracked, Quaternion rotation)
         {
             int wrist=XRHandJointID.Wrist.ToIndex(), middle=XRHandJointID.MiddleProximal.ToIndex();
             bool visible=tracked[wrist] && tracked[middle] && tracked[XRHandJointID.Palm.ToIndex()];
             surface.enabled=visible; beacon.gameObject.SetActive(visible);
-            int thumb=XRHandJointID.ThumbTip.ToIndex(), index=XRHandJointID.IndexTip.ToIndex();
-            thumbTip.gameObject.SetActive(visible && tracked[thumb]); indexTip.gameObject.SetActive(visible && tracked[index]);
+            for(int f=0;f<tips.Length;f++) {
+                int tip=tipJoints[f].ToIndex();
+                tips[f].gameObject.SetActive(visible && tracked[tip]);
+                if(visible && tracked[tip]) tips[f].localPosition=positions[tip];
+            }
             if(!visible) return;
-            if(tracked[thumb]) thumbTip.localPosition=positions[thumb];
-            if(tracked[index]) indexTip.localPosition=positions[index];
             int part=0;
             Vector3 dorsalUp=rotation*Vector3.up;
             for(int f=0;f<digits.Length;f++) for(int j=1;j<digits[f].Length;j++) {

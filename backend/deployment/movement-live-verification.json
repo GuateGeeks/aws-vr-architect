@@ -1,0 +1,8 @@
+{
+  "duplicateClaimKeepsToken": true,
+  "previewReachesThreePeersWithoutCommit": true,
+  "concurrentDropsConvergeOnFourClients": true,
+  "releasedObjectCanBeGrabbedAndOldOwnerIsFenced": true,
+  "participants": 4,
+  "verifiedAtUtc": "2026-10-06T01:51:17Z"
+}

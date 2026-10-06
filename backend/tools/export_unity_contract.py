@@ -28,7 +28,7 @@ def export():
     cfn.describe_stacks.side_effect = ClientError({'Error': {'Code': 'ValidationError', 'Message': 'Stack does not exist'}}, 'DescribeStacks')
     outputs = {'graph': graph}
     env = dict(AWS_REGION='us-east-1', ACCOUNT_ID='123456789012', DEMO_PREFIX='ggawsday',
-        WORKLOAD_ROLE_ARN='arn:aws:iam::123456789012:role/workload', PROVISIONER_ROLE_ARN='arn:aws:iam::123456789012:role/provisioner', ALLOWED_CIDR='192.0.2.1/32')
+        WORKLOAD_ROLE_ARN='arn:aws:iam::123456789012:role/workload', PROVISIONER_ROLE_ARN='arn:aws:iam::123456789012:role/provisioner')
     def call(name, method, path, body=None):
         response = app.handler({'httpMethod': method, 'path': path,
             'requestContext': {'identity': {'sourceIp': '192.0.2.1'}},

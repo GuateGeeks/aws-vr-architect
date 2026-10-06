@@ -29,15 +29,16 @@ namespace GuateGeeks.AwsVr
             DockSettingsContent("Comfort controls", 1, new Vector2(0, -40), .76f);
             DockSettingsContent("Controls reference", 2, new Vector2(0, 205), .74f);
             DockSettingsTransform(connectionForm, settingsPanel, new Vector2(0, -40), .9f);
-            Text(settingsPages[1].transform, "Elige fondo, passthrough y comodidad en este panel.\nLa opción de fondo se guarda en este visor.", new Vector2(0, -220), new Vector2(980, 110), 25, White);
+            BuildTableSettings(settingsPages[1].transform);
             componentSizeText=Text(settingsPages[1].transform,"",new Vector2(0,-295),new Vector2(980,35),22,Cyan);
             float[] sizes={.5f,.75f,1f,1.25f};string[] sizeNames={"Compacto 50%","Medio 75%","Normal 100%","Grande 125%"};
             for(int i=0;i<sizes.Length;i++){float scale=sizes[i];Button(settingsPages[1].transform,sizeNames[i],new Vector2((i-1.5f)*250,-350),new Vector2(235,58),()=>SetComponentScale(scale));}
             Button(settingsPages[1].transform,"Distribuir en la mesa",new Vector2(0,-422),new Vector2(980,54),ArrangeDesign);
             RefreshComponentSize();
-            Text(settingsPages[2].transform, "MANOS\nApunta y junta pulgar e índice para seleccionar.\nMantén la pinza sobre un objeto o asa para moverlo.\nSuelta para dejarlo. Usa los botones para cancelar.\n\nCONTROLES\nGatillo: seleccionar · Grip: mover · Stick: distancia\nB / Y: cancelar · A + X: recuperar paneles", new Vector2(0, -90), new Vector2(970, 380), 26, White);
+            Text(settingsPages[2].transform, "MANOS\nGira la muñeca hacia ti: menú de muñeca.\nToca botones y teclas con cualquier dedo de la otra mano.\nLejos: apunta y junta pulgar e índice; mantén para mover.\n\nCONTROLES\nGatillo: seleccionar · Grip: mover · Stick: distancia\nMenú (izq.): muñeca · B / Y: cancelar · A + X: recuperar", new Vector2(0, -90), new Vector2(970, 380), 26, White);
             Button(settingsPages[2].transform, "Restaurar paneles", new Vector2(-250, -343), new Vector2(460, 62), Rig.ResetMenus);
             Button(settingsPages[2].transform, "Centrar vista", new Vector2(250, -343), new Vector2(460, 62), Rig.Recenter);
+            BuildComfortSettings(settingsPages[2].transform);
             Button(settingsPanel, "Cerrar ajustes", new Vector2(0, -491), new Vector2(1030, 62), () => { if (!ConfiguringConnection && !credentialBusy) SetSettingsVisible(false); });
             regionSetting = EditButton(settingsPages[0].transform, "Región del diseño", new Vector2(-250, -395), new Vector2(460, 58), () => {
                 if (IsCloud) { SetStatus("La región la determina la API."); return; }
@@ -72,6 +73,7 @@ namespace GuateGeeks.AwsVr
             if (ConfiguringConnection || credentialBusy) return;
 
             for (int i = 0; i < settingsPages.Length; i++) settingsPages[i].SetActive(i == page);
+            RefreshComfortSettings();
         }
         void ToggleUnifiedSettings()
         {

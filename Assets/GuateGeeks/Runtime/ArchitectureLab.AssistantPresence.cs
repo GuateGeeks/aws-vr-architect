@@ -179,14 +179,14 @@ namespace GuateGeeks.AwsVr
         void BuildVoiceActionGeometry(VoiceAction request)
         {
             if(voicePreviewGeometry)Destroy(voicePreviewGeometry);
-            voicePreviewGeometry=new GameObject("ATLAS proposed action");voicePreviewGeometry.transform.SetParent(world,false);
-            var root=voicePreviewGeometry.transform;
+            voicePreviewGeometry=new GameObject("ATLAS proposed action");voicePreviewGeometry.transform.SetParent(workspace,false); // design space
+            var root=voicePreviewGeometry.transform;float rise=.45f+.128f*(Table.LabelScale-1);
             Vector3 center=previewNodes.Length==0?Vector3.zero:previewNodes.Aggregate(Vector3.zero,(sum,id)=>sum+Graph.Find(id).position)/previewNodes.Length;
             foreach(string id in previewNodes) {
                 var node=Graph.Find(id);float scale=EffectiveScale(node);
                 Ring(root,node.position+Vector3.down*.25f,.31f*scale,Orange,.006f,32);
-                var label=Panel(root,"Action target "+id,node.position+Vector3.up*.45f,new Vector2(410,54),movable:false);
-                label.localScale=Vector3.one*.0013f;
+                var label=Panel(root,"Action target "+id,node.position+Vector3.up*rise,new Vector2(410,54),movable:false);
+                label.localScale=Vector3.one*.0013f*Table.LabelScale;
                 Text(label,node.name,Vector2.zero,new Vector2(395,50),23,Orange,TextAnchor.MiddleCenter).richText=false;
                 if(Camera.main)label.rotation=Quaternion.LookRotation(label.position-Camera.main.transform.position);
                 if(voicePreviewDestination.HasValue) {
@@ -198,8 +198,8 @@ namespace GuateGeeks.AwsVr
             }
             if(request.action=="add" && voicePreviewDestination.HasValue) {
                 Ring(root,voicePreviewDestination.Value,.30f*ComponentScale,Cyan,.006f,40);
-                var label=Panel(root,"New component preview",voicePreviewDestination.Value+Vector3.up*.45f,new Vector2(420,54),movable:false);
-                label.localScale=Vector3.one*.0013f;
+                var label=Panel(root,"New component preview",voicePreviewDestination.Value+Vector3.up*rise,new Vector2(420,54),movable:false);
+                label.localScale=Vector3.one*.0013f*Table.LabelScale;
                 Text(label,"Agregar: "+request.name,Vector2.zero,new Vector2(405,50),23,Cyan,TextAnchor.MiddleCenter).richText=false;
                 if(Camera.main)label.rotation=Quaternion.LookRotation(label.position-Camera.main.transform.position);
             }
@@ -207,6 +207,7 @@ namespace GuateGeeks.AwsVr
                 var from=Graph.Find(request.from);var to=Graph.Find(request.to);
                 if(from!=null && to!=null)Line(root,"Proposed connection",new[]{from.position,to.position},request.action=="connect"?Green:Orange,.009f);
             }
+            foreach(var line in root.GetComponentsInChildren<LineRenderer>())line.widthMultiplier*=Table.Stroke;
         }
         void ShowVoiceActionResult(string status,string message,string[] affected)
         {

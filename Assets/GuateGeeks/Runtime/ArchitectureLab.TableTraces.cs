@@ -14,18 +14,18 @@ namespace GuateGeeks.AwsVr
         static readonly Color TraceIdle = Hex("#3FB8CC"), TraceLit = Color.Lerp(Cyan, Ice, .4f);
         void TickTableTraces()
         {
-            if (!world) return;
+            if (!workspace) return;
             int used = 0;
             foreach (var view in views.Values)
             {
                 if (!view) continue;
                 if (used == tableTraces.Count)
                 {
-                    var created = Line(world, "Table power trace", new Vector3[2], Cyan, .018f);
+                    var created = Line(workspace, "Table power trace", new Vector3[2], Cyan, .018f);
                     created.textureMode = LineTextureMode.Stretch; created.numCapVertices = 0; tableTraces.Add(created);
                 }
                 var line = tableTraces[used++];
-                var under = world.InverseTransformPoint(view.transform.position); under.y = TableSurface;
+                var under = DesignPoint(view.transform.position); under.y = TableSurface; // design space: the traces scale with the table
                 var flat = under - TableCenter; float length = flat.magnitude;
                 bool show = length > .75f && !view.Grabbed;
                 line.enabled = show; if (!show) continue;
@@ -35,7 +35,7 @@ namespace GuateGeeks.AwsVr
                 bool lit = view == selected || view.Model.state == ResourceState.Ready;
                 var material = Beam(lit ? TraceLit : TraceIdle);
                 if (line.sharedMaterial != material) line.sharedMaterial = material;
-                line.widthMultiplier = lit ? .03f : .022f;
+                line.widthMultiplier = (lit ? .03f : .022f) * Table.Stroke;
             }
             for (int i = used; i < tableTraces.Count; i++) if (tableTraces[i]) tableTraces[i].enabled = false;
         }

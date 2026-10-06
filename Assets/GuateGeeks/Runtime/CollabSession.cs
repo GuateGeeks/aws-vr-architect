@@ -109,7 +109,7 @@ namespace GuateGeeks.AwsVr
                 if (now >= bot.next) Choose(bot, now, objects);
                 var stand = SharedSpace.StationPosition(peer.Station);
                 peer.Head = stand + new Vector3(Mathf.Sin(now * .6f + bot.phase) * .07f, 1.62f + Mathf.Sin(now * .9f + bot.phase) * .012f, Mathf.Cos(now * .45f + bot.phase) * .05f);
-                var target = peer.FocusId != null ? objects[peer.FocusId] : SharedSpace.Center + new Vector3(Mathf.Sin(now * .2f + bot.phase) * .6f, 1.25f, 0);
+                var target = peer.FocusId != null ? objects[peer.FocusId] : SharedSpace.ActiveTable.ToRoom(new Vector3(Mathf.Sin(now * .2f + bot.phase) * .6f, 1.25f, SharedSpace.Center.z));
                 var look = target - peer.Head;
                 peer.HeadRotation = Quaternion.Slerp(peer.HeadRotation, Quaternion.LookRotation(look.sqrMagnitude > .01f ? look : Vector3.forward), .08f);
                 var body = Quaternion.Euler(0, peer.HeadRotation.eulerAngles.y, 0);

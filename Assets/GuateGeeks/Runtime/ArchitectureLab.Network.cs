@@ -13,6 +13,9 @@ namespace GuateGeeks.AwsVr
         public bool RoomReadOnly => roomConnecting || NetworkRoom != null && (!NetworkRoom.CanWrite || RoomEditPending || RoomDeploymentBusy);
         public bool RoomDeploymentBusy => NetworkRoom?.LastSnapshot?.deployment != null && !NetworkRoom.LastSnapshot.deployment.finished && NetworkRoom.LastSnapshot.deployment.expiresAt > DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         Architecture roomAccepted;
+        Architecture roomPendingGraph;
+        string roomPendingMove;
+        int roomMoveSequence;
         string roomPending, roomPendingRelease, roomResult;
         float roomSentAt, roomNextPresence, roomNextHeartbeat, roomNextLeaseCleanup, roomIdleSince, roomNextAwsStatus;
         bool roomApplying, roomConnecting, roomGlobal, roomReadingStatus;
@@ -22,10 +25,24 @@ namespace GuateGeeks.AwsVr
         TMPro.TMP_Text roomCodeText;
         LabTarget roomCreate, roomJoin, roomReconnect, roomLeave;
 
-        static string RoomGraphJson(Architecture graph)
+        static bool RoomGraphsEqual(Architecture a, Architecture b)
         {
-            if (graph == null) return "";
-            var clean = graph.Copy(); clean.ResetStates(); clean.nodes = clean.nodes.OrderBy(n => n.id).ToList(); clean.links = clean.links.OrderBy(l => l.from).ThenBy(l => l.to).ToList(); return JsonUtility.ToJson(clean);
+            if (a == null || b == null) return a == b;
+            if (a.schemaVersion != b.schemaVersion || a.region != b.region || a.nodes.Count != b.nodes.Count || a.links.Count != b.links.Count) return false;
+            foreach (var node in a.nodes)
+            {
+                ResourceNode other = null;
+                foreach (var candidate in b.nodes) if (candidate.id == node.id) { other = candidate; break; }
+                if (other == null || node.kind != other.kind || node.name != other.name || node.setting != other.setting ||
+                    !node.position.Equals(other.position) || node.viewScale != other.viewScale) return false;
+            }
+            foreach (var edge in a.links)
+            {
+                bool found = false;
+                foreach (var other in b.links) if (edge.from == other.from && edge.to == other.to) { found = true; break; }
+                if (!found) return false;
+            }
+            return true;
         }
         void BuildNetworkRoomControls(Transform page)
         {
@@ -54,7 +71,8 @@ namespace GuateGeeks.AwsVr
             roomConnecting = true; RefreshNetworkRoomControls();
             roomBroker = Cloud.CreateInspectionReader();
             RoomGrant grant = null; string error = null;
-            yield return roomBroker.CreateRoom(code, name, Graph.Copy(), (value, message) => { grant = value; error = message; });
+            // A new room starts with this headset's table; joining takes the room's.
+            yield return roomBroker.CreateRoom(code, name, Graph.Copy(), Table.Size, (value, message) => { grant = value; error = message; });
             roomConnecting = false;
             if (grant == null) { roomConnection = null; SetStatus(error ?? "No se pudo crear la sala."); RefreshNetworkRoomControls(); yield break; }
             yield return ConnectRoom(grant);
@@ -63,6 +81,7 @@ namespace GuateGeeks.AwsVr
         {
             roomConnecting = true; RefreshNetworkRoomControls();
             NetworkRoom?.Dispose();
+            roomPending = roomPendingRelease = roomPendingMove = null; roomPendingGraph = null;
             roomBroker?.Disconnect(); roomBroker = Cloud?.CreateInspectionReader();
             if (roomBroker == null) { roomConnecting = false; roomConnection = null; RefreshNetworkRoomControls(); yield break; }
             AwsCloudApi.RoomTicket ticket = null; string error = null;
@@ -104,9 +123,10 @@ namespace GuateGeeks.AwsVr
             roomTalkLatched = false;
             Rig?.ReleaseForConfiguration(); NetworkRoom?.Dispose(); roomBroker?.Disconnect(); roomBroker = null;
             Collab = new LocalCollabSession(); roomAccepted = null; roomPending = null; roomPendingRelease = null;
+            roomPendingGraph = null; roomPendingMove = null;
             if (Cloud != null) Cloud.RoomToken = null;
-            history.Clear(); historyScales.Clear(); teamVersion = -1; RefreshNetworkRoomControls(); RefreshRoomSettings();
-            SetStatus("Fuera de la sala · conservas una copia local del diseño.");
+            history.Clear(); historyScales.Clear(); teamVersion = -1; RestoreLocalTable(); RefreshNetworkRoomControls(); RefreshRoomSettings();
+            SetStatus("Fuera de la sala · conservas una copia local del diseño" + (Table.Size == TableSize.Large ? "." : " y tu mesa " + Table.Label + "."));
         }
         void RefreshNetworkRoomControls()
         {
@@ -118,24 +138,34 @@ namespace GuateGeeks.AwsVr
             roomReconnect?.SetAvailable(room != null && !room.Connected && !roomConnecting);
             roomLeave?.SetAvailable(room != null && !roomConnecting);
             foreach (var button in stationButtons) button?.SetAvailable(room == null && !roomConnecting);
+            RefreshTableSettings();
         }
         void ReceiveRoomSnapshot(RoomMessage message)
         {
             var room = NetworkRoom;
             if (room == null) return;
-            bool changed = roomAccepted == null || RoomGraphJson(roomAccepted) != RoomGraphJson(message.graph);
             roomAccepted = message.graph.Copy();
-            if (message.requestId == roomPending)
+            if (RoomEditPending && message.requestId == roomPending)
             {
                 roomResult = message.accepted ? "applied" : "rejected";
-                roomPending = null;
+                roomPending = null; roomPendingGraph = null; roomPendingMove = null;
                 if (roomPendingRelease != null) { room.Release(roomPendingRelease); roomPendingRelease = null; }
                 SetStatus(message.accepted ? "Cambio confirmado por la sala · revisión " + message.revision : message.message);
             }
-            if (changed) RestoreRoomGraph();
+            // Membership/heartbeat snapshots must never cancel a grab. Apply
+            // graph changes in place and keep our candidate visible until receipt.
+            if (views.Values.Any(v => v.Grabbed && !room.HasLease(v.Model.id)))
+            {
+                Rig?.ReleaseForConfiguration();
+                foreach (var view in views.Values) view.Grabbed = false;
+                roomPendingRelease = null;
+                SetStatus("La reserva del objeto venció. Vuelve a agarrarlo para moverlo.");
+            }
+            ReconcileRoomGraph();
             revision = message.revision;
             Space.SetSharedRoom(true);
             if (Space.Station != room.Grant.station) Space.SetStation(room.Grant.station);
+            ReceiveRoomTable(message);
             RefreshNetworkRoomControls();
             if(message.deployment != null && message.deployment.finished && !message.deployment.success) Deployed = false;
             if(message.deployment != null && message.deployment.success) {
@@ -151,31 +181,89 @@ namespace GuateGeeks.AwsVr
         void RestoreRoomGraph()
         {
             if (roomAccepted == null) return;
+            Rig?.ReleaseForConfiguration();
+            foreach (var view in views.Values) view.Grabbed = false;
+            roomPendingGraph = null; roomPendingMove = null; roomPendingRelease = null;
+            ReconcileRoomGraph();
+        }
+        void ReconcileRoomGraph()
+        {
+            if (roomAccepted == null || RoomEditPending && roomPendingMove == null) return;
             roomApplying = true;
-            var selectedId = selected ? selected.Model.id : null;
-            try { Rig?.ReleaseForConfiguration(); SetGraph(roomAccepted.Copy());
-                if (selectedId != null && views.TryGetValue(selectedId, out var view)) { selected = view; RefreshSelection(); }
-                revision = NetworkRoom?.Revision ?? revision; history.Clear(); historyScales.Clear(); }
+            try
+            {
+                var next = roomAccepted.Copy();
+                var localMove = roomPendingMove ?? roomPendingRelease;
+                if (localMove != null)
+                {
+                    var pending = RoomEditPending ? roomPendingGraph?.Find(localMove) : Graph?.Find(localMove);
+                    var node = next.Find(localMove);
+                    if (pending != null && node != null) node.position = pending.position;
+                }
+                bool definitionChanged = Graph == null || DesignSemantics.Definition(Graph) != DesignSemantics.Definition(next);
+                bool linksChanged = Graph == null || Graph.links.Count != next.links.Count ||
+                    Graph.links.Any(e => !next.links.Any(n => n.from == e.from && n.to == e.to));
+                foreach (var key in views.Keys.ToArray())
+                {
+                    var node = next.Find(key);
+                    if (node != null && node.kind == views[key].Model.kind) continue;
+                    var old = views[key]; if (selected == old) selected = null;
+                    if (connectionSource == key) { connectionSource = null; ConnectingMode = false; HideConnectionPreview(); }
+                    old.gameObject.SetActive(false); Destroy(old.gameObject); views.Remove(key); linksChanged = true;
+                }
+                for (int i = 0; i < next.nodes.Count; i++)
+                {
+                    var node = next.nodes[i];
+                    if (!views.TryGetValue(node.id, out var view)) { CreateView(node); linksChanged = true; continue; }
+                    var model = view.Model;
+                    node.state = model.state;
+                    model.name = node.name; model.setting = node.setting; model.position = node.position; model.viewScale = node.viewScale;
+                    next.nodes[i] = model;
+                    view.transform.localScale = Vector3.one * EffectiveScale(model);
+                }
+                Graph = next;
+                if (linksChanged) RebuildLinks();
+                if (definitionChanged) { Deployed = false; Graph.ResetStates(); UpdateButtons(); RefreshSelection(); ShowInspector(); }
+                revision = NetworkRoom?.Revision ?? revision; history.Clear(); historyScales.Clear(); UpdateCounts();
+            }
             finally { roomApplying = false; }
         }
-        // Existing local editing paths generate a candidate. Before rendering the next frame,
-        // restore committed state and submit it once. Only a server snapshot commits the change.
+        // Render the candidate immediately. The authoritative graph is kept separately;
+        // only rejection or uncertain delivery reconciles back to committed state.
         void LateUpdate()
         {
             var room = NetworkRoom;
             if (room == null || roomApplying || roomAccepted == null) return;
-            if (!views.Values.Any(v => v.Grabbed) && RoomGraphJson(Graph) != RoomGraphJson(roomAccepted))
+            if (!RoomEditPending && !views.Values.Any(v => v.Grabbed) && !RoomGraphsEqual(Graph, roomAccepted))
             {
                 var candidate = Graph.Copy();
                 if (room.CanWrite && !RoomEditPending)
                 {
                     roomPending = Guid.NewGuid().ToString("N"); roomResult = "pending"; roomSentAt = Time.unscaledTime;
-                    room.Send(new RoomCommand { action = "op", requestId = roomPending, baseRevision = room.Revision, graph = candidate, leases = room.OwnLeases(), global = roomGlobal });
+                    roomPendingGraph = candidate;
+                    var command = new RoomCommand { action = "op", requestId = roomPending, baseRevision = room.Revision, graph = candidate, leases = room.OwnLeases(), global = roomGlobal };
+                    if (roomPendingRelease != null && !roomGlobal)
+                    {
+                        var moved = candidate.Find(roomPendingRelease);
+                        var expected = roomAccepted.Copy(); var before = expected.Find(roomPendingRelease);
+                        var lease = room.OwnLeases().FirstOrDefault(l => l.objectId == roomPendingRelease);
+                        if (moved != null && before != null && lease != null)
+                        {
+                            before.position = moved.position;
+                            if (RoomGraphsEqual(expected, candidate))
+                            {
+                                roomPendingMove = moved.id;
+                                command.action = "move"; command.objectId = moved.id; command.position = moved.position; command.leaseToken = lease.token; command.graph = null;
+                            }
+                        }
+                    }
+                    room.Send(command);
                 }
-                roomGlobal = false; RestoreRoomGraph();
+                roomGlobal = false;
+                if (!RoomEditPending) RestoreRoomGraph();
                 SetStatus(RoomEditPending ? "Esperando confirmación de la sala…" : "Sala en lectura · reconecta antes de editar.");
             }
-            if (!RoomEditPending && RoomGraphJson(Graph) == RoomGraphJson(roomAccepted)) roomGlobal = false;
+            if (!RoomEditPending && RoomGraphsEqual(Graph, roomAccepted)) roomGlobal = false;
             if (RoomEditPending && Time.unscaledTime - roomSentAt > 10)
             {
                 // Delivery is uncertain: reconnect/sync instead of retrying the edit.
@@ -198,7 +286,7 @@ namespace GuateGeeks.AwsVr
                 roomNextAwsStatus = now + 5; StartCoroutine(RefreshSharedAwsStatus(deployment.deploymentId));
             }
             // A claim may arrive after the grip was released. Do not keep that unused lease alive.
-            if (!RoomEditPending && roomPendingRelease == null && RoomGraphJson(Graph) == RoomGraphJson(roomAccepted) && !views.Values.Any(v => v.Grabbed))
+            if (!RoomEditPending && roomPendingRelease == null && !(Rig && Rig.AwaitingObjectGrab) && RoomGraphsEqual(Graph, roomAccepted) && !views.Values.Any(v => v.Grabbed))
             {
                 if (roomIdleSince == 0) roomIdleSince = now;
                 if (now - roomIdleSince > 2 && now >= roomNextLeaseCleanup)
@@ -214,9 +302,17 @@ namespace GuateGeeks.AwsVr
                 roomNextPresence = now + .1f;
                 var camera = Rig.ViewCamera.transform;
                 // World coordinates match the station alignment; no private speech/selection is sent.
-                room.Send(new RoomCommand { action = "presence", pose = new RoomPose {
+                var pose = new RoomPose {
                     head = camera.position, rotation = camera.rotation, hand = Rig.PresenceHand,
-                    pointAt = SharedSpace.Center, pointing = false, focusId = "" } });
+                    pointAt = SharedSpace.Center, pointing = false, focusId = "" };
+                var held = views.Values.FirstOrDefault(v => v.Grabbed);
+                var lease = held ? room.OwnLeases().FirstOrDefault(l => l.objectId == held.Model.id) : null;
+                if (held && lease != null)
+                {
+                    pose.objectId = held.Model.id; pose.leaseToken = lease.token;
+                    pose.objectPosition = held.transform.localPosition; pose.revision = room.Revision; pose.moveSequence = ++roomMoveSequence;
+                }
+                room.Send(new RoomCommand { action = "presence", pose = pose });
             }
         }
         IEnumerator RefreshSharedAwsStatus(string slot)

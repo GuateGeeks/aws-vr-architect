@@ -1,0 +1,16 @@
+{
+  "version": "0.23.0",
+  "androidVersionCode": 25,
+  "backendTests": 108,
+  "unityEditModeTests": 86,
+  "unityPlayModeTests": 59,
+  "backendDeployed": true,
+  "liveWebSocketParticipants": 4,
+  "buildResult": "Succeeded",
+  "buildErrors": 0,
+  "buildWarnings": 10,
+  "apk": "Builds/Quest3/GuateGeeksAWSVR-Quest3-0.23.0.apk",
+  "apkSha256": "20963875f676766ab8a98204033bfa244937633c0ea20f786fa065bf4fe9d2a7",
+  "headsetInstalled": false,
+  "physicalMultiuserValidation": false
+}

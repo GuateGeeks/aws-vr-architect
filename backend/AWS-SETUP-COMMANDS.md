@@ -176,25 +176,22 @@ Creating a Python 3.12 virtual environment does not supply the 3.13 runtime to S
 
 For the backend already deployed on this workstation, use [the current deployment record](deployment/current-backend.md). The shared SAM artifact-bucket reference is stale here; the active installation uses the dedicated private bucket `guategeeks-aws2026-artifacts-590183968738-us-east-1`. Its `deployment/deploy-current-backend.sh` uses `--s3-bucket` explicitly. The generic `--resolve-s3` example below applies to environments with working SAM-managed storage.
 
-Run the IP check from the network that will call the API. It reports this computer's current public egress IP, including VPN routing. The Quest and test computer must use the allowed egress IP. At the event, rerun the IP check and deployment using the same stack and prefix to update the restriction.
+The API accepts authenticated clients from any source IP. Different headset networks do not require a source-IP parameter or another deployment.
 
 ```bash
-DEMO_PUBLIC_IP=$(curl -4fsS https://checkip.amazonaws.com | tr -d '\r\n')
-python -c 'import ipaddress,sys; ipaddress.IPv4Address(sys.argv[1])' "$DEMO_PUBLIC_IP"
-DEMO_ALLOWED_CIDR="$DEMO_PUBLIC_IP/32"
-printf 'Account: %s\nRegion: %s\nAllowed source: %s\n' "$DEMO_ACTUAL_ACCOUNT" "$DEMO_REGION" "$DEMO_ALLOWED_CIDR"
+printf 'Account: %s\nRegion: %s\n' "$DEMO_ACTUAL_ACCOUNT" "$DEMO_REGION"
 read -rp 'Budget alert email (empty to skip): ' DEMO_BUDGET_EMAIL
 
 sam validate --lint --template-file template.json --region "$DEMO_REGION" --profile "$DEMO_PROFILE"
 DEMO_BUILD_DIR="$HOME/.cache/guategeeks-aws2026/build"
 sam build --template-file template.json --build-dir "$DEMO_BUILD_DIR"
 
-DEMO_PARAMETERS=("DemoPrefix=$DEMO_PREFIX" "AllowedCidr=$DEMO_ALLOWED_CIDR" "MonthlyBudgetUsd=10")
+DEMO_PARAMETERS=("DemoPrefix=$DEMO_PREFIX" "MonthlyBudgetUsd=10")
 if [[ -n "$DEMO_BUDGET_EMAIL" ]]; then
   DEMO_PARAMETERS+=("BudgetEmail=$DEMO_BUDGET_EMAIL")
 fi
 
-# Creates billable AWS resources. Review the account and IP printed above first.
+# Creates billable AWS resources. Review the account printed above first.
 sam deploy \
   --template-file "$DEMO_BUILD_DIR/template.yaml" \
   --stack-name "$DEMO_STACK" \

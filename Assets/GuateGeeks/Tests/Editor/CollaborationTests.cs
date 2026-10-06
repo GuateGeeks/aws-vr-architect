@@ -36,6 +36,44 @@ namespace GuateGeeks.AwsVr.Tests
             Deliver(State(2,3));Assert.AreEqual("other",session.LockOwner("node1").Id);
             Deliver(State(1,5));Assert.AreEqual(2,session.Revision);
         }
+        [Test] public void UnrelatedSnapshotDoesNotResendPendingClaim() {
+            Deliver(State()); Assert.IsFalse(session.Claim("node1"));
+            Deliver(State(0,2)); Assert.IsFalse(session.Claim("node1"));
+            var queue=(ConcurrentQueue<string>)typeof(NetworkCollabSession).GetField("outgoing",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(session);
+            Assert.AreEqual(1,queue.Count,"A heartbeat must not create a duplicate ownership request");
+        }
+        [Test] public void MissingClaimResponseRetriesSameRequestAfterBoundedWait() {
+            Deliver(State());session.Claim("node1");
+            var flags=BindingFlags.Instance|BindingFlags.NonPublic;
+            var sent=(System.Collections.Generic.Dictionary<string,float>)typeof(NetworkCollabSession).GetField("claimSentAt",flags).GetValue(session);
+            sent["node1"]=Time.unscaledTime-2;session.Claim("node1");
+            var queue=(ConcurrentQueue<string>)typeof(NetworkCollabSession).GetField("outgoing",flags).GetValue(session);
+            Assert.IsTrue(queue.TryDequeue(out var first));Assert.IsTrue(queue.TryDequeue(out var retry));
+            Assert.AreEqual(JsonUtility.FromJson<RoomCommand>(first).requestId,JsonUtility.FromJson<RoomCommand>(retry).requestId);
+        }
+        [Test] public void ReleaseCannotReuseLeaseBeforeServerConfirmsRelease() {
+            var state=State(); state.locks=new[]{new RoomLease{objectId="node1",owner="me",token="grant",expiresAt=DateTimeOffset.UtcNow.ToUnixTimeSeconds()+20}};
+            Deliver(state);session.Release("node1");Assert.IsFalse(session.Claim("node1"));
+            state.roomVersion++;Deliver(state);Assert.IsFalse(session.Claim("node1"),"An unrelated snapshot still contains the lease being released");
+            Deliver(State(0,3));Assert.IsFalse(session.Claim("node1"),"A new grab requests a fresh lease");
+        }
+        [Test] public void MovementPreviewRequiresOwnerAndIncreasingSequenceAndCannotRevertCommit() {
+            var state=State();state.locks=new[]{new RoomLease{objectId="node1",owner="other",token="grant",expiresAt=DateTimeOffset.UtcNow.ToUnixTimeSeconds()+20}};Deliver(state);
+            RoomMessage Preview(int sequence,string token="grant")=>new RoomMessage{type="presence",userId="other",pose=new RoomPose{objectId="node1",leaseToken=token,revision=0,moveSequence=sequence,objectPosition=new Vector3(sequence*.1f,1.3f,2.4f)}};
+            Deliver(Preview(2));Assert.IsTrue(session.TryGetObjectPosition("node1",out var position));Assert.AreEqual(.2f,position.x);
+            Deliver(Preview(1));Deliver(Preview(3,"wrong"));session.TryGetObjectPosition("node1",out position);Assert.AreEqual(.2f,position.x);
+            state.revision=1;state.roomVersion=2;Deliver(state);Deliver(Preview(4));Assert.IsFalse(session.TryGetObjectPosition("node1",out position));
+        }
+        [Test] public void UnrelatedCommitKeepsRemoteDragPreviewUntilItsOwnDrop() {
+            var state=State();var id=state.graph.nodes[0].id;
+            state.locks=new[]{new RoomLease{objectId=id,owner="other",token="grant",expiresAt=DateTimeOffset.UtcNow.ToUnixTimeSeconds()+20}};Deliver(state);
+            var position=state.graph.nodes[0].position+new Vector3(.2f,0,0);
+            Deliver(new RoomMessage{type="presence",userId="other",pose=new RoomPose{objectId=id,leaseToken="grant",revision=0,moveSequence=1,objectPosition=position}});
+            state.revision=1;state.roomVersion=2;state.graph.nodes[1].name="Unrelated edit";Deliver(state);
+            Assert.IsTrue(session.TryGetObjectPosition(id,out var preview));Assert.AreEqual(position,preview);
+            state.revision=2;state.roomVersion=3;state.graph.nodes[0].position=position;Deliver(state);
+            Assert.IsFalse(session.TryGetObjectPosition(id,out preview),"The committed drop replaces its preview");
+        }
         [Test] public void PresenceDoesNotChangeTheGraphOrPersonalConversation() {
             Deliver(State());var graph=JsonUtility.ToJson(session.Graph);
             Deliver(new RoomMessage{type="presence",userId="other",pointing=true,focusId="node1",pose=new RoomPose{head=new Vector3(1,1.6f,2),hand=new Vector3(1,1,2),rotation=Quaternion.identity,pointAt=Vector3.one}});
@@ -75,6 +113,21 @@ namespace GuateGeeks.AwsVr.Tests
                 input.SetTransmissionEnabled(true);input.ReadAvailable(960);
                 Assert.That(frames[1],Is.All.EqualTo(.25f),"Push to talk must preserve speech while held");
             } finally {UnityEngine.Object.DestroyImmediate(owner);UnityEngine.Object.DestroyImmediate(clip);}
+        }
+        [Test] public void TeammateAndroidArmKeepsBoneLengthsAndReachesTheHand() {
+            const float upper=TeammateAndroid.UpperArm,lower=TeammateAndroid.Forearm;
+            var shoulder=new Vector3(.185f,1.45f,0);var pole=new Vector3(.55f,-1,-.45f);
+            var hand=shoulder+new Vector3(.02f,-.13f,.37f);
+            var elbow=TeammateAndroid.SolveElbow(shoulder,hand,pole,upper,lower,out var wrist);
+            Assert.Less(Vector3.Distance(wrist,hand),1e-4f,"A hand within reach is reached exactly");
+            Assert.AreEqual(upper,Vector3.Distance(shoulder,elbow),1e-4f);Assert.AreEqual(lower,Vector3.Distance(elbow,wrist),1e-4f);
+            Assert.Greater(Vector3.Dot(elbow-(shoulder+wrist)*.5f,pole),0,"The elbow bends toward the pole (down and out)");
+            var far=shoulder+new Vector3(0,0,2);
+            elbow=TeammateAndroid.SolveElbow(shoulder,far,pole,upper,lower,out wrist);
+            Assert.AreEqual(upper,Vector3.Distance(shoulder,elbow),1e-3f);Assert.AreEqual(lower,Vector3.Distance(elbow,wrist),1e-3f);
+            Assert.Greater(Vector3.Dot((wrist-shoulder).normalized,Vector3.forward),.999f,"Out of reach, the arm stretches toward the hand");
+            elbow=TeammateAndroid.SolveElbow(shoulder,shoulder,pole,upper,lower,out wrist);
+            Assert.IsFalse(float.IsNaN(elbow.x)||float.IsNaN(wrist.x),"A hand at the shoulder never produces NaN");
         }
     }
 }

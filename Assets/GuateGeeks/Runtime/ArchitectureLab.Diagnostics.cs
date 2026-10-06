@@ -19,7 +19,8 @@ namespace GuateGeeks.AwsVr
         public string DiagnosticsContextJson()=>JsonUtility.ToJson(new DiagnosticsSnapshot{active=DiagnosticsActive,eventId=diagnosticsEvent,message=diagnosticsMessage,evidence=diagnosticsEvidence.Values.ToArray()});
         void BuildDiagnostics()
         {
-            diagnosticsPanel=Panel(PersonalRoot,"Live event diagnostics",new Vector3(-.6f,2.1f,1.35f),new Vector2(1040,900));diagnosticsPanel.localScale=Vector3.one*.0013f;
+            // Live evidence follows the head in the left slot, beside the code studio and the inspection reader.
+            diagnosticsPanel=Panel(NearRoot,"Live event diagnostics",new Vector3(-.6f,2.1f,1.35f),new Vector2(1040,900));Follow(diagnosticsPanel,-25,2,EvidenceScale);
             diagnosticsPanel.GetComponent<HoloPanelGraphic>().color=new Color(.02f,.045f,.07f,1);
             Text(diagnosticsPanel,"ATLAS / EVIDENCIA EN VIVO",new Vector2(0,380),new Vector2(960,55),30,Cyan);
             diagnosticsText=Text(diagnosticsPanel,"",new Vector2(0,40),new Vector2(960,590),26,White);diagnosticsText.richText=false;diagnosticsText.enableAutoSizing=true;diagnosticsText.fontSizeMin=18;diagnosticsText.fontSizeMax=26;diagnosticsText.alignment=TMPro.TextAlignmentOptions.TopLeft;

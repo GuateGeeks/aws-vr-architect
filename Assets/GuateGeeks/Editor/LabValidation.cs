@@ -48,6 +48,7 @@ namespace GuateGeeks.AwsVr.Editor
                     case "quest-status": QuestInstall.Status(); break;
                     case "edit-tests": Run(TestMode.EditMode); break;
                     case "play-tests": Run(TestMode.PlayMode); break;
+                    case "table-tests": Run(TestMode.PlayMode, groups: new[] { "^GuateGeeks\\.AwsVr\\.Tests\\.TableSizeTests\\." }, report: "TableSize"); break;
                     case "assistant-live-test": Run(TestMode.PlayMode,true); break;
                     case "build-desktop":
                         Directory.CreateDirectory("Builds");
@@ -66,12 +67,12 @@ namespace GuateGeeks.AwsVr.Editor
             }
             catch (Exception ex) { File.WriteAllText("Validation/command-error.txt", ex.ToString()); Debug.LogException(ex); }
         }
-        public static void Run(TestMode mode,bool live=false)
+        public static void Run(TestMode mode,bool live=false,string[] groups=null,string report=null)
         {
-            SessionState.SetString("GuateGeeks.Validation.Report",live?"RealtimeLive":mode.ToString());
+            SessionState.SetString("GuateGeeks.Validation.Report",report??(live?"RealtimeLive":mode.ToString()));
             if (runner) UnityEngine.Object.DestroyImmediate(runner);
             runner = ScriptableObject.CreateInstance<TestRunnerApi>(); runner.RegisterCallbacks(new Results());
-            runner.Execute(new ExecutionSettings(new Filter { testMode = mode, categoryNames=live?null:new[]{"!LiveOpenAI"}, testNames=live?new[]{"GuateGeeks.AwsVr.Tests.RealtimeLiveTests.NativeWebRtcCompletesToolAndAudioResponse"}:null, assemblyNames = new[] { mode == TestMode.EditMode ? "GuateGeeks.AwsVr.EditTests" : "GuateGeeks.AwsVr.PlayTests" } }));
+            runner.Execute(new ExecutionSettings(new Filter { testMode = mode, categoryNames=live?null:new[]{"!LiveOpenAI"}, testNames=live?new[]{"GuateGeeks.AwsVr.Tests.RealtimeLiveTests.NativeWebRtcCompletesToolAndAudioResponse"}:null, groupNames=groups, assemblyNames = new[] { mode == TestMode.EditMode ? "GuateGeeks.AwsVr.EditTests" : "GuateGeeks.AwsVr.PlayTests" } }));
         }
         sealed class Results : ICallbacks
         {

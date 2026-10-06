@@ -1,0 +1,47 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 59352)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 79316)
+VBCSCompiler prewarm took 18.17 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.3f1 (45d8eee7de74) revision 4577518'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-adawolfs" at "2026-10-06T01:33:25.0463396Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'en' Physical Memory: 32673 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-06T01:33:25Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 33772, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              5a9c76f46cd347419861234cc038b6fe
+  Correlation Id:          0e7cccdef079c541bc30904a51710806
+  External correlation Id: 5879190532166279300
+  Machine Id:              u3ln1R3H6dO0AvGtRo33k7+r6Io=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-adawolfs" (connect: 0.00s, validation: 0.00s, handshake: 0.11s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-adawolfs-notifications" at "2026-10-06T01:33:25.1622535Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4673115652041-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Module] Licensing Background thread has ended after 0.12s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.3f1\Editor\Unity.exe
+-batchmode
+-nographics
+-projectPath
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR
+-runTests
+-testPlatform
+EditMode
+-testResults
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Validation/multiuser-edit-results.xml
+-logFile
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Validation/multiuser-edit.log
+Successfully changed project path to: C:/Users/adawolfs/Unity/GuateGeeksAWSVR
+C:/Users/adawolfs/Unity/GuateGeeksAWSVR
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 1

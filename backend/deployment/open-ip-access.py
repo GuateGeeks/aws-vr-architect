@@ -72,6 +72,9 @@ def main():
     inspection={'stack':STACK,'status':stack['StackStatus'],'apiId':api_id,'ipRestrictionPresent':'aws:SourceIp' in json.dumps(policy),'guardedFunctions':function_ids}
     print(json.dumps(inspection),flush=True)
     if not (opts.apply or opts.prepare):return
+    if not inspection['ipRestrictionPresent'] and not function_ids:
+        print(json.dumps({'alreadyUnrestricted':True,'cloudModified':False}),flush=True)
+        return
     WORK.mkdir(parents=True,exist_ok=True)
     (WORK/'original-template.json').write_text(json.dumps(template,indent=2),encoding='utf-8')
     for key,value in template['Resources'].items():
@@ -132,7 +135,7 @@ def main():
         except urllib.error.HTTPError as error:return error.code,json.loads(error.read())
     valid,data=check({'Authorization':auth});invalid,_=check({})
     assert valid==200 and data['connected'] and invalid==401
-    report=dict(inspection,stackStatus=after['StackStatus'],sourceRestrictionRemoved=True,authenticationRequired=True,authenticatedStatus=valid,unauthenticatedStatus=invalid,parametersPreserved=True,functions=expected,changes=summary)
+    report=dict(initialState=inspection,stack=STACK,apiId=api_id,ipRestrictionPresent=False,stackStatus=after['StackStatus'],sourceRestrictionRemoved=True,authenticationRequired=True,authenticatedStatus=valid,unauthenticatedStatus=invalid,parametersPreserved=True,functions=expected,changes=summary)
     REPORT.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'stackStatus':after['StackStatus'],'authenticatedStatus':valid,'unauthenticatedStatus':invalid,'sourceRestrictionRemoved':True}),flush=True)
 

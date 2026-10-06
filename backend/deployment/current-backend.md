@@ -1,4 +1,8 @@
-# Current backend — updated October 4, 2026
+# Current backend — updated October 5, 2026
+
+**October 5, 18:08 Guatemala — room route fixed:** the previous backend lacked `/v1/collab/rooms`, producing the Create room 404. Published current sources and the DynamoDB room table, WebSocket API and room Lambda; stack `UPDATE_COMPLETE`. Live checks passed: room creation 201, four independent identities/stations and sockets, shared edit received by all four, fifth participant rejected 409, stale edit and lock conflict rejected. Authentication remains 200/401 and both IP restrictions remain removed. Existing voice model `gpt-realtime-2.1` and stack parameters retained. Downloaded deployed Python sources match local source. No APK change is needed for this backend fix. This validates real AWS transport with scripted clients; physical multi-headset acceptance remains pending. The account has a shared Lambda concurrency quota of 10, so the room function does not reserve concurrency. See [live verification](room-backend-verification.json).
+
+**October 5 — source-IP restriction removed in AWS:** after explicit authorization for both API Gateway and Lambda, the control stack reached `UPDATE_COMPLETE`. The deployed gateway policy has no source-IP condition; `ggawsday-control` no longer checks IP and no longer has `ALLOWED_CIDR`. Authenticated session returned 200 and unauthenticated session returned 401. All remaining stack parameters and authentication were preserved. Only the API/stage and existing control function were updated; new room resources were not published. See [verification](public-ip-access-verification.json). Local source and SAM template also remove the future WebSocket IP guard. Rebuild current source before a future full SAM deployment; the prior built artifact contains its earlier configuration.
 
 **October 4, 13:43 Guatemala — VR 0.16.0:** control stack `UPDATE_COMPLETE`; deployed source verified against the release, all six existing parameters preserved, authenticated API healthy, and a fresh ephemeral voice session confirmed with `gpt-realtime-2.1`. Adds paginated AI logs/items reads, slot status/cleanup review, and custom event JSON with stack identity and default-entrypoint routing. All three workload slots remained `ABSENT`; no workload was created, invoked or deleted. Quest APK versionCode 18 built with zero errors, signature verified, installed over the existing app and launched on the connected Quest 3. Physical voice acceptance remains separate. See [verification report](release-0.16.0-verification.json).
 
@@ -23,7 +27,7 @@ CloudFormation completed successfully in `us-east-1`. Live API checks passed aft
 | API URL | `https://9bc46tb7d6.execute-api.us-east-1.amazonaws.com/demo` |
 | Region | `us-east-1` |
 | Demo prefix | `ggawsday` |
-| Allowed public source | `186.151.64.244/32` |
+| Allowed public source | Any IP; authentication required |
 | Operator CLI profile | `awsday` in Ubuntu WSL |
 | Browser login profile | `awsday-login` |
 | Artifact bucket | `guategeeks-aws2026-artifacts-590183968738-us-east-1` |
@@ -35,11 +39,11 @@ Live checks verified authenticated session access, rejection of unauthenticated 
 
 The renewed browser session authenticated as the existing account's root identity. `awsday` uses a credential process pointing to `awsday-login`; no permanent access keys or new operator IAM identity were created. The backend itself uses its generated IAM service roles. Do not confuse this CLI profile with the Quest's Basic Auth service account.
 
-SAM's shared artifact-bucket reference was stale. Deployment succeeded using the dedicated bucket above with public access blocked, AES256 encryption, and bucket-owner-enforced ownership. The unrelated shared SAM stack/reference was left unchanged. Reuse `deployment/deploy-current-backend.sh` for this account/profile; it verifies the account and updates the allowed source to the current public IPv4. Build current sources first if they change. This script intentionally targets this specific installation.
+SAM's shared artifact-bucket reference was stale. Deployment succeeded using the dedicated bucket above with public access blocked, AES256 encryption, and bucket-owner-enforced ownership. The unrelated shared SAM stack/reference was left unchanged. Reuse `deployment/deploy-current-backend.sh` for this account/profile; it verifies the account and deploys authenticated access from any IP. Build current sources first if they change. This script intentionally targets this specific installation.
 
 ## Connect the Quest
 
-Use **Ajustes → Configurar conexión** in Quest and enter the six-character service password from AuthSecret. Optionally enable **Recordar y reconectar**. The headset must use the allowed public egress IP. No USB, connect script or running PC is required for normal authentication or slot operations.
+Use **Ajustes → Configurar conexión** in Quest and enter the six-character service password from AuthSecret. Optionally enable **Recordar y reconectar**. The headset can connect from any network with the service credentials. No USB, connect script or running PC is required for normal authentication or slot operations.
 
 USB is used only to install the development APK. See [the VR integration guide](../../GuateGeeksAWSVR/Documentation/Cloud-Integration.md) for wireless authentication, protected credential storage, slot cleanup and read-only logs/items inspection.
 

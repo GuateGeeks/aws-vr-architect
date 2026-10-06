@@ -1,0 +1,56 @@
+{
+  "stackStatus": "UPDATE_COMPLETE",
+  "sourceRestrictionRemoved": true,
+  "authenticationRequired": true,
+  "authenticatedStatus": 200,
+  "unauthenticatedStatus": 401,
+  "parametersPreserved": true,
+  "functions": {
+    "ggawsday-control": {
+      "codeSha256": "S+KD/B5RMAMmf2UFOPBTfNNQ+cHfRJR0bm50q6Jyaxo=",
+      "changedModules": [
+        "app.py"
+      ]
+    }
+  },
+  "changes": [
+    {
+      "logicalId": "ControlApiDeployment0ac22ae03b",
+      "action": "Add",
+      "replacement": null
+    },
+    {
+      "logicalId": "ControlApiDeploymentad5ee03f5f",
+      "action": "Remove",
+      "replacement": null
+    },
+    {
+      "logicalId": "ControlApidemoStage",
+      "action": "Modify",
+      "replacement": "False"
+    },
+    {
+      "logicalId": "ControlApi",
+      "action": "Modify",
+      "replacement": "False"
+    },
+    {
+      "logicalId": "ControlFunction",
+      "action": "Modify",
+      "replacement": "False"
+    }
+  ],
+  "initialState": {
+    "stack": "guategeeks-aws2026",
+    "status": "UPDATE_COMPLETE",
+    "apiId": "9bc46tb7d6",
+    "ipRestrictionPresent": true,
+    "guardedFunctions": [
+      "ControlFunction"
+    ]
+  },
+  "stack": "guategeeks-aws2026",
+  "apiId": "9bc46tb7d6",
+  "ipRestrictionPresent": false,
+  "checkedAt": "2026-10-05T23:49:50.190329+00:00"
+}

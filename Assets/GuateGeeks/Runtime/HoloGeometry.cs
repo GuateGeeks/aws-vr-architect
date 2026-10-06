@@ -38,10 +38,12 @@ namespace GuateGeeks.AwsVr
         }
         public static void Path(List<Vector3> pairs, params Vector3[] path)
         { for (int i = 1; i < path.Length; i++) { pairs.Add(path[i - 1]); pairs.Add(path[i]); } }
-        public static void CombineMetal(Transform root)
+        public static void CombineMetal(Transform root, params Transform[] exclude)
         {
             var groups = new Dictionary<Material, List<CombineInstance>>();
             foreach(var filter in root.GetComponentsInChildren<MeshFilter>()) {
+                bool excluded=false; foreach(var branch in exclude) if(branch && filter.transform.IsChildOf(branch)) excluded=true;
+                if(excluded) continue;
                 var renderer=filter.GetComponent<MeshRenderer>();
                 if(!renderer || !renderer.enabled || renderer.sharedMaterial.shader.name!="GuateGeeks/LabMetal") continue;
                 if(!groups.TryGetValue(renderer.sharedMaterial,out var parts)) groups[renderer.sharedMaterial]=parts=new List<CombineInstance>();

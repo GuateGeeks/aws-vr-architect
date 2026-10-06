@@ -1,0 +1,20 @@
+{
+  "applied": true,
+  "sourceSha256": "bc59bbaa56aa56857fc21a43999b23f90a2a668ff42c9047d057f5162d757d5a",
+  "functions": [
+    {
+      "name": "ggawsday-control",
+      "previousSourceSha256": "4507e1b3fd9ca89ac1b7ef54197a455aabc5277c790751023ed439860fafc942",
+      "changedFiles": [
+        "collaboration.py"
+      ]
+    },
+    {
+      "name": "ggawsday-rooms",
+      "previousSourceSha256": "4507e1b3fd9ca89ac1b7ef54197a455aabc5277c790751023ed439860fafc942",
+      "changedFiles": [
+        "collaboration.py"
+      ]
+    }
+  ]
+}

@@ -151,7 +151,7 @@ Para un evento de AWS, la opción coherente es mostrar AWS en acción:
 ## 7. Pendiente y riesgos
 
 1. **Red real:** implementar `ICollabSession` sobre WebSocket (§5). Hoy cada visor está solo o con compañeros simulados.
-2. **Tamaño del stand:** la huella de unos 6.7 m depende del radio de la mesa (1.93 m). Para stands de 4–5 m se propone una opción de *mesa compacta* (escala de mesa y espacio de trabajo de 0.7, con estaciones a 1.9 m).
+2. **Tamaño del stand:** la huella de unos 6.7 m depende del radio de la mesa (1.93 m). **Implementado en §12:** mesa de 1 m, 3 m o 3.9 m, con estaciones a 1.17 m, 2.17 m o 2.6 m del centro.
 3. **ATLAS en sala compartida:** presionar para hablar, un indicador de quién habla y voz espacial desde el avatar.
 4. **Modo individual:** adoptar la consola compacta como opción por defecto en la siguiente versión, después de validarla en el visor (E1).
 5. **Accesibilidad:** probar la combinación de colores con simulación de daltonismo. El número ya acompaña al color siempre.
@@ -226,12 +226,12 @@ El proyecto incorpora el cliente `NetworkCollabSession`, integración de sala en
 ### Activación y comprobación del piloto
 
 1. Regenerar `backend/template.json` con `python backend/tools/build_template.py`, ejecutar la suite Python, y ejecutar `sam build --template-file template.json` desde `backend`.
-2. Revisar y desplegar el cambio SAM existente en la misma cuenta/región/prefijo. Añade tabla DynamoDB con TTL, API Gateway WebSocket, Lambda de salas, permisos restringidos y logs de siete días. La configuración inicial limita la API a 60 solicitudes/segundo y la Lambda a diez ejecuciones concurrentes: validar una sala activa de cuatro personas antes de aumentar salas simultáneas. La salida `CollabWebSocketUrl` se entrega al cliente automáticamente durante entrada; no requiere copiar otra URL al visor.
-3. Mantener `AllowedCidr` restringido al egreso IPv4 del taller. Para usuarios remotos, configurar explícitamente su red permitida o ampliar el mecanismo de autenticación; el piloto no elimina la restricción IP existente. Conservar el secreto de OpenAI en Secrets Manager y el modelo ya validado en la configuración del despliegue.
+2. Revisar y desplegar el cambio SAM existente en la misma cuenta/región/prefijo. Añade tabla DynamoDB con TTL, API Gateway WebSocket, Lambda de salas, permisos restringidos y logs de siete días. La configuración inicial limita la API a 60 solicitudes/segundo. La cuenta tiene una cuota compartida de diez ejecuciones Lambda concurrentes; la función de salas no reserva concurrencia. Validar una sala activa de cuatro personas antes de aumentar salas simultáneas. La salida `CollabWebSocketUrl` se entrega al cliente automáticamente durante entrada; no requiere copiar otra URL al visor.
+3. La plantilla actual elimina la restricción por IP: distintas redes pueden conectarse usando las credenciales del evento y la identidad de sala. Conservar el secreto de OpenAI en Secrets Manager y el modelo ya validado en la configuración del despliegue.
 4. Construir el APK Quest e instalar la misma versión en dos visores. Conectar ambos al mismo backend del evento; crear sala en uno, ingresar el código en el otro y alinear cada estación. Comprobar edición, competencia por objeto, propuesta vencida, deshacer, pérdida/reconexión de red y estado AWS.
 5. Repetir con cuatro visores y ATLAS simultáneo. Medir latencia, fluidez, costo real, 72 Hz y alineación física antes de aprobar uso público. Las pruebas automáticas de transición y cliente no sustituyen esta validación.
 
-No se ha realizado un despliegue de estos recursos AWS ni una prueba de sala con varios visores durante esta implementación. La arquitectura serverless del apartado 8.5 sigue siendo el presupuesto aplicable; no requiere alquilar un servidor dedicado para este piloto.
+La implementación inicial dejó pendiente el despliegue AWS. El 5 de octubre se publicaron estos recursos para corregir el 404 de «Crear sala». Las pruebas con varios visores físicos siguen pendientes. La arquitectura serverless del apartado 8.5 sigue siendo el presupuesto aplicable; no requiere alquilar un servidor dedicado para este piloto.
 
 ### Validación automática realizada
 
@@ -242,3 +242,43 @@ No se ha realizado un despliegue de estos recursos AWS ni una prueba de sala con
 - Revisión visual de la captura 44: crear, ingresar código, reconectar y salir caben en la consola existente. La legibilidad física, audio simultáneo, transporte real y rendimiento de cuatro Quest siguen pendientes del piloto.
 
 - APK final 0.22.0 (versionCode 24), ARM64: compilación Android exitosa, cero errores y diez avisos de compilación. No se instaló en el visor durante esta implementación. Evidencia: `Validation/collaboration-validation.txt`, `Validation/collaboration-source-hashes.json` y `Validation/quest3-build.txt`.
+
+## 10. Acceso desde cualquier IP (5 de octubre de 2026)
+
+A solicitud del usuario se eliminaron la condición `NotIpAddress` de API Gateway, la función `authorize_source` de la API HTTP y su llamada durante `$connect` de WebSocket. La plantilla ya no requiere `AllowedCidr` ni configura `ALLOWED_CIDR`. Los scripts de despliegue y comprobación de red siguen el mismo contrato. La autenticación Basic del evento, tokens individuales, tickets de un uso, roles, cuotas y reservas de slots permanecen vigentes.
+
+Las pruebas de backend verifican acceso autenticado independiente del origen, incluyendo contextos IPv4/IPv6, y rechazo 401 sin credenciales. Se preparó un cambio limitado para la instalación AWS existente: política de API, paquete de `ggawsday-control` y su variable de entorno. No publica automáticamente las funciones de sala nuevas. El usuario confirmó explícitamente retirar ambos controles después del bloqueo de revisión automática. El cambio se aplicó en AWS: stack `UPDATE_COMPLETE`, política sin `aws:SourceIp`, Lambda sin comprobación ni variable `ALLOWED_CIDR`, sesión autenticada 200 y sin credenciales 401. Los demás parámetros se conservaron. La suite actual registra 104 pruebas aprobadas y la plantilla pasa `sam validate --lint`. Evidencia: `backend/deployment/public-ip-access-verification.json`.
+
+## 11. Corrección de «Crear sala» (5 de octubre de 2026)
+
+El cliente usaba la ruta correcta, pero AWS conservaba el backend anterior, que no incluía `/v1/collab/rooms`. Se publicó el backend actualizado con DynamoDB y WebSocket, conservando la URL, autenticación, parámetros del evento, modelo de voz y acceso desde cualquier IP. CloudFormation terminó en `UPDATE_COMPLETE` y el código descargado de Lambda coincide con el código local.
+
+La comprobación en AWS creó una sala (201), conectó cuatro clientes con identidades y estaciones independientes, recibió la misma edición en los cuatro y rechazó el quinto participante (409), una edición con revisión obsoleta y un conflicto de bloqueo. Los clientes de prueba se desconectaron; los registros temporales vencen mediante TTL. No se crearon arquitecturas de demostración ni sesiones de voz. Evidencia: `backend/deployment/room-backend-verification.json`. El APK existente puede usar la corrección; siguen pendientes alineación, rendimiento y audio simultáneo en visores físicos.
+
+## 12. Tamaño de mesa: 1 m, 3 m y 3.9 m (5 de octubre de 2026)
+
+En *Ajustes → Espacio → Tamaño de mesa* se elige **Pequeña · 1 m**, **Mediana · 3 m** o **Grande · 3.9 m** (la mesa original), tanto en modo individual como en sala compartida.
+
+| Mesa | Escala | Estaciones desde el centro | Huella con zona de 0.75 m | Consola compacta |
+|---|---|---|---|---|
+| Pequeña · 1 m | 0.256 | 1.17 m | ≈3.8 m | 62 % alrededor del ojo; controles bajo los hologramas y estado encima |
+| Mediana · 3 m | 0.769 | 2.17 m | ≈5.8 m | igual que la sala de 3.9 m, desplazada hacia la mesa |
+| Grande · 3.9 m | 1 | 2.6 m | ≈6.7 m | sin cambios |
+
+- **Un solo marco escalado:** la mesa, los hologramas, conexiones, trazas, pulsos, vista previa de colocación y marcadores de ATLAS usan una escala uniforme alrededor del centro del cristal. La altura de 0.74 m no cambia. El diseño conserva sus coordenadas de mesa completa, así que guardar, deshacer, las ediciones de sala y la validación de posiciones del backend no cambian.
+- **Legibilidad:** etiquetas, puertos y anillo contextual conservan su ángulo visual desde la estación. Las letras de los objetos miden unos 1.2° en los tres tamaños. Los trazos se adelgazan con la raíz de la escala.
+- **Modo individual:** con mesa de 1 m o 3 m la persona se ubica en el lugar de la estación 1 con la consola compacta, conservando el giro con stick. En la mesa de 1 m los hologramas quedan entre 25° y 35° bajo la vista, así que los controles bajan a la altura de las manos y la barra de estado queda encima. Las posiciones guardadas de paneles se separan con la clave `shared.small.`.
+- **Sala compartida:** al cambiar el tamaño, cada persona camina a su nuevo círculo; los visores no se recentran, para no romper la alineación entre visores. Con 1 m los paneles laterales quedan a unos 0.65 m: siguen más cerca de tu estación que de la vecina (margen de 0.3 m en lugar de 0.6 m).
+- **Sala real:**
+  - El tamaño es estado de la sala (`tableSize` en cada instantánea) y solo el facilitador lo cambia con la acción `table`. No crea revisión ni operación de deshacer.
+  - Una sala nueva toma la mesa de quien la crea. Al salir, cada visor recupera su propia mesa.
+  - Un backend anterior no envía tamaño y se interpreta como mesa completa.
+  - Requiere desplegar `backend/src/collaboration.py`.
+- **Validación (editor Unity 6000.6.3f1):**
+  - EditMode 89/89 y PlayMode 62/62. Las pruebas nuevas son `TableLayoutTests` y `TableSizeTests`: modo individual, sala local con compañeros simulados y sala de red con facilitador y editor.
+  - Pruebas de sala del backend: 33/33, con un sustituto de botocore porque PyPI no era accesible desde la máquina de prueba.
+  - Capturas: `Validation/57-table-size-settings.png` y `58`–`64-table-*.png`. Métricas: `Validation/table-size-metrics-*.txt`.
+- **Pendiente:**
+  - Compilar el APK y probar en el visor la lectura a 0.6–0.8 m.
+  - Comprobar la comodidad de los controles a la altura de las manos en la mesa de 1 m.
+  - Hacer un ensayo físico de cuatro personas alrededor de la mesa pequeña.

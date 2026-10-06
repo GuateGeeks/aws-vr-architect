@@ -1008,7 +1008,6 @@
         "CodeUri": "src/",
         "MemorySize": 256,
         "Timeout": 10,
-        "ReservedConcurrentExecutions": 10,
         "Role": {
           "Fn::GetAtt": [
             "CollabRole",

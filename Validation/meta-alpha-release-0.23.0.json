@@ -1,0 +1,26 @@
+{
+  "version": "0.23.0",
+  "versionCode": 25,
+  "package": "com.guategeeks.awsarchitectlab",
+  "metaAppId": "1362979760233030",
+  "channel": "ALPHA",
+  "channelId": "4606582262919770",
+  "apk": "Builds/Quest3/GuateGeeksAWSVR-Quest3-0.23.0-meta.apk",
+  "sha256": "1c5982aa0ee2888e268f3aaa484eb0b241514193864ea59ee2e69dd6d63bf623",
+  "distributionCertificateSha256": "770b39c27d4252c0974cb1f4c7e9a4e7857f065c967d2a971e3de486284287ba",
+  "previousCertificateMatches": true,
+  "metaApkValidation": "passed",
+  "deploymentStatus": "published; verified as current ALPHA build",
+  "validation": {
+    "backendTestsPassed": 108,
+    "editModeTestsPassed": 86,
+    "playModeTestsPassed": 59,
+    "buildErrors": 0,
+    "buildWarnings": 10
+  },
+  "physicalMultiuserAcceptance": "pending",
+  "metaBuildId": "1363201860210820",
+  "dashboardUrl": "https://developers.meta.com/horizon/manage/applications/1362979760233030/release-channels/4606582262919770/current-build/",
+  "metaTestStatus": "Malware and security vulnerability scans running",
+  "storeReviewAgeGroupConfirmation": "Pending; current audience is teens and adults; no public store submission performed"
+}

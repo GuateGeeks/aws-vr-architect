@@ -16,14 +16,24 @@ namespace GuateGeeks.AwsVr
         public bool VoiceDestinationVisible=>voiceDestinationMarker && voiceDestinationMarker.activeSelf;
         void BuildVoiceDestinationMarker()
         {
-            voiceDestinationMarker=new GameObject("ATLAS tabletop destination");var root=voiceDestinationMarker.transform;root.SetParent(world,false);
-            LabVisuals.Ring(root,Vector3.zero,.10f,LabVisuals.Cyan,.006f,32);
-            LabVisuals.Ring(root,new Vector3(0,1.5f-VoiceTableHeight,0),.13f,LabVisuals.Cyan,.005f,32);
-            LabVisuals.Line(root,"Destination height",new[]{Vector3.zero,new Vector3(0,1.5f-VoiceTableHeight,0)},LabVisuals.Cyan,.003f);
+            // Design space: the marker sits on the table and reaches the hologram height at any table size.
+            voiceDestinationMarker=new GameObject("ATLAS tabletop destination");var root=voiceDestinationMarker.transform;root.SetParent(workspace,false);
+            voiceMarkerLines=new[]{LabVisuals.Ring(root,Vector3.zero,.10f,LabVisuals.Cyan,.006f,32),
+                LabVisuals.Ring(root,new Vector3(0,1.5f-VoiceTableHeight,0),.13f,LabVisuals.Cyan,.005f,32),
+                LabVisuals.Line(root,"Destination height",new[]{Vector3.zero,new Vector3(0,1.5f-VoiceTableHeight,0)},LabVisuals.Cyan,.003f)};
             voiceDestinationLabel=LabVisuals.Panel(root,"Voice destination label",new Vector3(0,2.02f-VoiceTableHeight,0),new Vector2(420,64),background:true,movable:false);
             voiceDestinationLabel.localScale=Vector3.one*.0015f;
             LabVisuals.Text(voiceDestinationLabel,"AQUÍ · DESTINO DE VOZ",Vector2.zero,new Vector2(400,54),28,LabVisuals.Cyan,TextAnchor.MiddleCenter);
             voiceDestinationMarker.SetActive(false);
+            ApplyVoiceMarkerTable();
+        }
+        LineRenderer[] voiceMarkerLines;
+        static readonly float[] VoiceMarkerWidths={.006f,.005f,.003f};
+        void ApplyVoiceMarkerTable()
+        {
+            if(!voiceDestinationMarker)return;
+            for(int i=0;i<voiceMarkerLines.Length;i++)voiceMarkerLines[i].widthMultiplier=VoiceMarkerWidths[i]*Table.Stroke;
+            voiceDestinationLabel.localScale=Vector3.one*.0015f*Table.LabelScale;
         }
         void UpdateVoiceDestinationMarker(SpatialVoiceContext.Snapshot context)
         {
@@ -51,7 +61,7 @@ namespace GuateGeeks.AwsVr
             Vector3? location=null;
             // Floating buttons keep their normal click target, but must not hide the table
             // from an explicit voice move. Nodes and menu grab handles retain priority.
-            if((!target || (!target.Node && !target.Menu)) && TryVoiceTableDestination(world,ray,out var point))location=point;
+            if((!target || (!target.Node && !target.Menu)) && TryVoiceTableDestination(workspace,ray,out var point))location=point;
             spatialVoice.Observe(source,target && target.Node?target.Node.Model.id:null,location,Time.unscaledTime);
         }
         public void BeginVoicePointing(){voiceResultUntil=0;spatialVoice.BeginSpeech(Time.unscaledTime);}

@@ -16,6 +16,10 @@ namespace GuateGeeks.AwsVr
             public LineRenderer Ray;
             public LabTarget Hover;
             public NodeView Held;
+            public NodeView PendingGrab;
+            public float PendingDistance;
+            public Vector3 PendingOffset;
+            public bool PendingNear;
             public bool DrawingPort;
             public LabMenu HeldMenu;
             public float Distance;
@@ -29,11 +33,12 @@ namespace GuateGeeks.AwsVr
         readonly List<XRDisplaySubsystem> displays = new List<XRDisplaySubsystem>();
         readonly List<XRInputSubsystem> inputs = new List<XRInputSubsystem>();
         Hand left, right;
-        InputAction headPosition, headRotation;
+        InputAction headPosition, headRotation, wristButton;
         bool xr, seated, paused, focused = true;
         float yaw, pitch = 9;
         LabTarget mouseHover;
         NodeView mouseHeld;
+        NodeView mousePendingGrab;
         LabMenu mouseMenu;
         Transform mouseReticle;
         bool previewHasTarget, pointerBlocked;
@@ -44,6 +49,7 @@ namespace GuateGeeks.AwsVr
         bool wasReset;
         public bool IsXR => xr;
         public Camera ViewCamera => cam;
+        public bool AwaitingObjectGrab => mousePendingGrab || left != null && left.PendingGrab || right != null && right.PendingGrab;
         public bool AssistantTalkHeld => xr ? right != null && right.Reset.IsPressed() && !(left != null && left.Reset.IsPressed()) : Keyboard.current != null && Keyboard.current.spaceKey.isPressed;
         public Vector3 PresenceHand => xr && right != null && right.Visual ? right.Visual.position : cam.transform.position + cam.transform.forward * .25f - Vector3.up * .35f;
 
@@ -77,7 +83,9 @@ namespace GuateGeeks.AwsVr
             var snap=LabVisuals.Button(comfort,"Ajuste: libre",new Vector2(540,0),new Vector2(255,50),null);
             snap.Action=()=>{lab.ToggleGridSnap(); snap.Label.text=lab.GridSnap?"Ajuste: 10 cm":"Ajuste: libre";};
             Application.onBeforeRender += BeforeRender;
-            BuildPalmMenu();
+            // The left controller's menu button toggles the wrist menu (the right one belongs to the system).
+            wristButton = Action("Wrist menu", "<XRController>{LeftHand}/{MenuButton}", InputActionType.Button);
+            BuildWristMenu();
         }
         InputAction Action(string name, string binding, InputActionType type)
         {
@@ -119,6 +127,10 @@ namespace GuateGeeks.AwsVr
             if (running != xr)
             {
                 xr = running; ReleaseHands();
+                // Headset on: alone at the full table the console becomes the near-field cockpit (unless panoramic was
+                // chosen), which also moves the stand; headset off: desktop rehearsal goes back to panoramic.
+                if (lab.Space) lab.Space.Refresh();
+                HeadFollow.Recenter(); wristLatched = false;
                 if (xr)
                 {
                     origin.position = StandPosition; origin.rotation = StandRotation;
@@ -130,9 +142,10 @@ namespace GuateGeeks.AwsVr
                 }
                 else { origin.SetPositionAndRotation(Vector3.zero, Quaternion.identity); headOffset.localPosition = Vector3.zero; cam.transform.localPosition = new Vector3(0, 1.94f, -1.5f); cam.transform.localRotation = Quaternion.Euler(9, 0, 0); }
             }
-            hint.text = xr ? "GATILLO  seleccionar / GRIP  mover recurso o asa de panel / STICK  distancia / B o Y  soltar\nBotón A + X: recuperar menús / Gira la muñeca para orientar un panel"
-                : "CLIC  seleccionar    /    ARRASTRAR  mover    /    RUEDA  distancia    /    CLIC DERECHO  mirar\nWASD  explorar    ·    Q / E  altura    ·    C  conectar    ·    Esc  cancelar    ·    R  centrar / Shift+R  menús";
+            hint.text = xr ? "MUÑECA  gírala hacia ti: menú / TOCA  con cualquier dedo / GATILLO o PINZA  lejos / GRIP  mover / B o Y  soltar\nBotón menú (izq.): muñeca con controles · A + X: recuperar paneles"
+                : "CLIC  seleccionar    /    ARRASTRAR  mover    /    RUEDA  distancia    /    CLIC DERECHO  mirar\nWASD  explorar  ·  Q / E  altura  ·  C  conectar  ·  M  muñeca  ·  Esc  cancelar  ·  R  centrar / Shift+R  menús";
             if (xr) {
+                if (wristButton.WasPressedThisFrame()) ToggleWristMenu();
                 bool reset = left.Tracked.IsPressed() && right.Tracked.IsPressed() && left.Reset.IsPressed() && right.Reset.IsPressed();
                 if (reset && !wasReset) ResetMenus(); wasReset = reset;
                 previewHasTarget=false; lab.HideConnectionPreview(); mouseReticle.gameObject.SetActive(false); UpdateHead(); UpdateHand(left); UpdateHand(right);
@@ -149,7 +162,7 @@ namespace GuateGeeks.AwsVr
         {
             bool tracked = hand.Tracked.IsPressed();
             if (!tracked) { UpdateTrackedHand(hand, hand == left); return; }
-            StopTrackedHand(hand); hand.Visual.gameObject.SetActive(true);
+            StopTrackedHand(hand); hand.Visual.gameObject.SetActive(true); UpdateWristFromController(hand);
             if (!tracked) { EndHandGrab(hand); hand.WasGrip = hand.Grip.IsPressed(); Hover(ref hand.Hover, null); return; }
             hand.Visual.localPosition = hand.Position.ReadValue<Vector3>();
             var rotation = hand.Rotation.ReadValue<Quaternion>(); if (Quaternion.Dot(rotation, rotation) > .5f) hand.Visual.localRotation = rotation;
@@ -158,13 +171,13 @@ namespace GuateGeeks.AwsVr
             var ray = hasAim ? new Ray(headOffset.TransformPoint(hand.AimPosition.ReadValue<Vector3>()), headOffset.rotation * aimRotation * Vector3.forward)
                 : new Ray(hand.Visual.position, hand.Visual.forward);
             var target = Pick(ray, out float distance);
-            if (lab.Placing && !target && !pointerBlocked) lab.PreviewPlacement(ray.GetPoint(3));
+            if (lab.Placing && !target && !pointerBlocked) lab.PreviewPlacement(ray.GetPoint(lab.PointerReach(3)));
             Hover(ref hand.Hover, target);
             lab.ObserveVoicePointer(hand==left?"left":"right",target,ray,pointerBlocked);
             hand.Reticle.gameObject.SetActive(target && target.Available);
             hand.Reticle.position=ray.GetPoint(Mathf.Max(.01f,distance-.02f));
             if (target && target.Node) {lab.PreviewConnection(target.Node,ray.GetPoint(distance));previewHasTarget=true;}
-            else if(!previewHasTarget) lab.PreviewConnection(null,ray.GetPoint(3));
+            else if(!previewHasTarget) lab.PreviewConnection(null,ray.GetPoint(lab.PointerReach(3)));
             hand.Ray.SetPosition(0, hand.Visual.InverseTransformPoint(ray.origin));
             hand.Ray.SetPosition(1, hand.Visual.InverseTransformPoint(ray.GetPoint(Mathf.Min(distance, 8))));
             if (hand.Trigger.WasPressedThisFrame() && !hand.Held && !hand.HeldMenu) {
@@ -175,20 +188,34 @@ namespace GuateGeeks.AwsVr
             bool grip = hand.Grip.IsPressed();
             if (grip && (!hand.WasGrip || (lab.NetworkRoom != null && !hand.Held && !hand.HeldMenu)))
             {
-                var menu = target ? target.Menu : null;
+                if (!hand.WasGrip) hand.PendingGrab = null;
+                var menu = !hand.WasGrip && target ? target.Menu : null;
                 if (menu && menu.TryGrab(hand, ray, distance, hasAim ? headOffset.rotation * aimRotation : hand.Visual.rotation))
                 { hand.HeldMenu = menu; Pulse(hand, .35f); }
                 // Near grabbing uses the same object ownership lock as distance grabbing.
-                NodeView near = null; float nearest = .22f;
+                NodeView near = null; float nearest = .22f * lab.Table.Stroke; // smaller holograms on a smaller table
                 foreach (var view in lab.Views.Values) { float d = Vector3.Distance(hand.Visual.position, view.transform.position); if (d < nearest) { near = view; nearest = d; } }
                 var node = near ? near : target ? target.Node : null;
+                if (lab.NetworkRoom != null && !menu)
+                {
+                    if (!hand.WasGrip && node)
+                    {
+                        hand.PendingGrab = node; hand.PendingDistance = near ? .13f : distance;
+                        hand.PendingOffset = node.transform.position - ray.GetPoint(hand.PendingDistance);
+                    }
+                    node = hand.PendingGrab;
+                }
                 if (!menu && node && lab.BeginGrab(node))
-                { hand.Held = node; hand.Distance = near ? .13f : distance; hand.Offset = node.transform.position - ray.GetPoint(hand.Distance); Pulse(hand, .35f); }
+                {
+                    hand.Held = node; hand.Distance = lab.NetworkRoom != null ? hand.PendingDistance : near ? .13f : distance;
+                    hand.Offset = lab.NetworkRoom != null ? hand.PendingOffset : node.transform.position - ray.GetPoint(hand.Distance);
+                    hand.PendingGrab = null; Pulse(hand, .35f);
+                }
             }
             if (hand.Held)
             {
                 hand.Distance = Mathf.Clamp(hand.Distance + hand.Stick.ReadValue<Vector2>().y * Time.unscaledDeltaTime * 1.4f, .13f, 5);
-                hand.Held.transform.position = ArchitectureLab.ClampWorkspace(ray.GetPoint(hand.Distance) + hand.Offset);
+                hand.Held.transform.position = lab.ClampToTable(ray.GetPoint(hand.Distance) + hand.Offset);
             }
             if (hand.HeldMenu)
                 hand.HeldMenu.Move(hand, ray, hasAim ? headOffset.rotation * aimRotation : hand.Visual.rotation,
@@ -233,19 +260,24 @@ namespace GuateGeeks.AwsVr
                 var ray = cam.ScreenPointToRay(mouse.position.ReadValue());
                 var target = Pick(ray, out float distance); Hover(ref mouseHover, target);
                 lab.ObserveVoicePointer("mouse",target,ray,pointerBlocked);
-                if (lab.Placing && !target && !pointerBlocked) lab.PreviewPlacement(ray.GetPoint(3));
+                if (lab.Placing && !target && !pointerBlocked) lab.PreviewPlacement(ray.GetPoint(lab.PointerReach(3)));
                 mouseReticle.gameObject.SetActive(target && target.Available);
                 mouseReticle.position=ray.GetPoint(Mathf.Max(.01f,distance-.02f));
-                lab.PreviewConnection(target?target.Node:null,ray.GetPoint(target?distance:4));
+                lab.PreviewConnection(target?target.Node:null,ray.GetPoint(target?distance:lab.PointerReach(4)));
                 if (mouse.leftButton.wasPressedThisFrame)
                 {
+                    mousePendingGrab = null;
                     if (target && target.Menu && target.Menu.TryGrab(this, ray, distance, cam.transform.rotation)) mouseMenu = target.Menu;
                     else if (lab.Placing && !target && !pointerBlocked) lab.ConfirmPlacement(); else target?.Activate();
-                    if (!mouseMenu && !lab.ConnectingMode && target && target.Port == 0 && target.Node && lab.BeginGrab(target.Node))
-                    { mouseHeld = target.Node; mouseDistance = distance; mouseOffset = mouseHeld.transform.position - ray.GetPoint(distance); }
+                    if (!mouseMenu && !lab.ConnectingMode && target && target.Port == 0 && target.Node)
+                    {
+                        mousePendingGrab = target.Node; mouseDistance = distance; mouseOffset = target.Node.transform.position - ray.GetPoint(distance);
+                        if (lab.BeginGrab(target.Node)) { mouseHeld = target.Node; mousePendingGrab = null; }
+                    }
                 }
-                if(lab.NetworkRoom != null && mouse.leftButton.isPressed && !mouseHeld && !mouseMenu && !lab.ConnectingMode && target && target.Node && target.Port==0 && lab.BeginGrab(target.Node))
-                { mouseHeld=target.Node;mouseDistance=distance;mouseOffset=mouseHeld.transform.position-ray.GetPoint(distance); }
+                if(lab.NetworkRoom != null && mouse.leftButton.isPressed && !mouseHeld && !mouseMenu && !lab.ConnectingMode && mousePendingGrab && lab.BeginGrab(mousePendingGrab))
+                { mouseHeld=mousePendingGrab; mousePendingGrab=null; }
+                if (mouse.leftButton.wasReleasedThisFrame) mousePendingGrab = null;
                 if (mouseMenu)
                 {
                     mouseMenu.Move(this, ray, cam.transform.rotation, mouse.scroll.ReadValue().y * .002f);
@@ -254,14 +286,16 @@ namespace GuateGeeks.AwsVr
                 if (mouseHeld)
                 {
                     mouseDistance = Mathf.Clamp(mouseDistance + mouse.scroll.ReadValue().y * .002f, .5f, 7);
-                    mouseHeld.transform.position = ArchitectureLab.ClampWorkspace(ray.GetPoint(mouseDistance) + mouseOffset);
+                    mouseHeld.transform.position = lab.ClampToTable(ray.GetPoint(mouseDistance) + mouseOffset);
                     if (mouse.leftButton.wasReleasedThisFrame) { lab.EndGrab(mouseHeld); mouseHeld = null; }
                 }
                 if (mouse.rightButton.isPressed)
                 { var delta = mouse.delta.ReadValue(); yaw += delta.x * .12f; pitch = Mathf.Clamp(pitch - delta.y * .12f, -65, 65); cam.transform.localRotation = Quaternion.Euler(pitch, yaw, 0); }
             }
-            if (keyboard == null) return;
-            if (lab.ConfiguringConnection || lab.EditingText) { if (keyboard.escapeKey.wasPressedThisFrame) lab.CancelInteraction(); return; }
+            if (keyboard == null) { UpdateWristDesktop(); return; }
+            if (lab.ConfiguringConnection || lab.EditingText) { HideWrist(); if (keyboard.escapeKey.wasPressedThisFrame) lab.CancelInteraction(); return; }
+            if (keyboard.mKey.wasPressedThisFrame) ToggleWristMenu();
+            UpdateWristDesktop();
             var move = new Vector3((keyboard.dKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed ? 1 : 0),
                 (keyboard.eKey.isPressed ? 1 : 0) - (keyboard.qKey.isPressed ? 1 : 0), (keyboard.wKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed ? 1 : 0));
             cam.transform.position += Quaternion.Euler(0, yaw, 0) * move * Time.unscaledDeltaTime * 1.3f;
@@ -270,15 +304,15 @@ namespace GuateGeeks.AwsVr
             if (keyboard.escapeKey.wasPressedThisFrame) { ReleaseHands(); lab.CancelInteraction(); }
             if (keyboard.rKey.wasPressedThisFrame) { if (keyboard.shiftKey.isPressed) ResetMenus(); else Recenter(); }
         }
-        void EndHandGrab(Hand hand) { hand.DrawingPort = false; if (hand.Held) lab.EndGrab(hand.Held); if (hand.HeldMenu) hand.HeldMenu.Release(hand); hand.Held = null; hand.HeldMenu = null; hand.WasGrip = false; }
+        void EndHandGrab(Hand hand) { hand.DrawingPort = false; if (hand.Held) lab.EndGrab(hand.Held); if (hand.HeldMenu) hand.HeldMenu.Release(hand); hand.Held = null; hand.PendingGrab = null; hand.HeldMenu = null; hand.WasGrip = false; }
         public void ReleaseForConfiguration() => ReleaseHands();
         void ReleaseHands()
         {
-            HidePalm();
+            HideWrist();
             if (lab) { lab.HideConnectionPreview(); lab.StopFlowPreview(); }
             if (left != null) { StopTrackedHand(left); EndHandGrab(left); left.WasGrip = left.Grip.IsPressed(); left.Visual.gameObject.SetActive(false); Hover(ref left.Hover, null); }
             if (right != null) { StopTrackedHand(right); EndHandGrab(right); right.WasGrip = right.Grip.IsPressed(); right.Visual.gameObject.SetActive(false); Hover(ref right.Hover, null); }
-            if (mouseHeld) lab.EndGrab(mouseHeld); mouseHeld = null; Hover(ref mouseHover, null);
+            if (mouseHeld) lab.EndGrab(mouseHeld); mouseHeld = null; mousePendingGrab = null; Hover(ref mouseHover, null);
             if (mouseMenu) mouseMenu.Release(this); mouseMenu = null;
             if(mouseReticle) mouseReticle.gameObject.SetActive(false);
         }
@@ -289,6 +323,9 @@ namespace GuateGeeks.AwsVr
         public void Recenter()
         {
             ReleaseHands();
+            // The console returns to the station (undoing «Traer aquí») and reading panels re-follow the new view.
+            if (lab && lab.Space) lab.Space.ResetAnchor();
+            HeadFollow.Recenter();
             var stand = StandPosition; var facing = StandRotation;
             if (xr)
             {
@@ -311,7 +348,9 @@ namespace GuateGeeks.AwsVr
         public void ResetMenus()
         {
             ReleaseHands();
+            if (lab.Space) lab.Space.ResetAnchor();
             foreach (var menu in lab.GetComponentsInChildren<LabMenu>(true)) menu.ResetPose();
+            HeadFollow.Recenter();
             lab.SetStatus("Menús restaurados a su posición inicial.");
         }
         void OnApplicationFocus(bool hasFocus) { focused = hasFocus; if (!hasFocus) ReleaseHands(); }
@@ -320,7 +359,7 @@ namespace GuateGeeks.AwsVr
         {
             Application.onBeforeRender -= BeforeRender;
             foreach (var hand in new[] { left, right }) if (hand != null) foreach (var a in hand.Actions) a?.Dispose();
-            headPosition?.Dispose(); headRotation?.Dispose();
+            headPosition?.Dispose(); headRotation?.Dispose(); wristButton?.Dispose();
         }
     }
 }

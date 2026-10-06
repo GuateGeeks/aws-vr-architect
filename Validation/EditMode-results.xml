@@ -1,547 +1,625 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="81" result="Passed" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 23:13:29Z" end-time="2026-10-05 23:13:31Z" duration="1.9338957">
-  <test-suite type="TestSuite" id="1000" name="GuateGeeks AWS Architect Lab" fullname="GuateGeeks AWS Architect Lab" runstate="Runnable" testcasecount="81" result="Passed" start-time="2026-10-05 23:13:29Z" end-time="2026-10-05 23:13:31Z" duration="1.933896" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="93" result="Passed" total="93" passed="93" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:53Z" duration="2.3185917">
+  <test-suite type="TestSuite" id="1000" name="GuateGeeks AWS Architect Lab" fullname="GuateGeeks AWS Architect Lab" runstate="Runnable" testcasecount="93" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:53Z" duration="2.318592" total="93" passed="93" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1098" name="GuateGeeks.AwsVr.EditTests.dll" fullname="C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Library/ScriptAssemblies/GuateGeeks.AwsVr.EditTests.dll" runstate="Runnable" testcasecount="81" result="Passed" start-time="2026-10-05 23:13:29Z" end-time="2026-10-05 23:13:31Z" duration="1.833935" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1112" name="GuateGeeks.AwsVr.EditTests.dll" fullname="C:/Users/adawolfs/Unity/GuateGeeksAWSVR/Library/ScriptAssemblies/GuateGeeks.AwsVr.EditTests.dll" runstate="Runnable" testcasecount="93" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:53Z" duration="2.204462" total="93" passed="93" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="32048" />
+        <property name="_PID" value="35932" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1099" name="GuateGeeks" fullname="GuateGeeks" runstate="Runnable" testcasecount="81" result="Passed" start-time="2026-10-05 23:13:29Z" end-time="2026-10-05 23:13:31Z" duration="1.740935" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1113" name="GuateGeeks" fullname="GuateGeeks" runstate="Runnable" testcasecount="93" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:53Z" duration="2.104944" total="93" passed="93" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1100" name="AwsVr" fullname="GuateGeeks.AwsVr" runstate="Runnable" testcasecount="81" result="Passed" start-time="2026-10-05 23:13:29Z" end-time="2026-10-05 23:13:31Z" duration="1.640769" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1114" name="AwsVr" fullname="GuateGeeks.AwsVr" runstate="Runnable" testcasecount="93" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:53Z" duration="1.995781" total="93" passed="93" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1101" name="Tests" fullname="GuateGeeks.AwsVr.Tests" runstate="Runnable" testcasecount="81" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:31Z" duration="1.540970" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1115" name="Tests" fullname="GuateGeeks.AwsVr.Tests" runstate="Runnable" testcasecount="93" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:53Z" duration="1.884916" total="93" passed="93" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1002" name="ArchitectureTests" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.206222" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1002" name="ArchitectureTests" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:52Z" duration="0.225832" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1012" name="CorruptSavedGraphIsRejected" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.CorruptSavedGraphIsRejected" methodname="CorruptSavedGraphIsRejected" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="886704941" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.028277" asserts="0">
+              <test-case id="1012" name="CorruptSavedGraphIsRejected" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.CorruptSavedGraphIsRejected" methodname="CorruptSavedGraphIsRejected" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="506282129" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:51Z" duration="0.029689" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1010" name="DeleteRemovesIncidentEdgesAndFindsDisconnectedResources" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.DeleteRemovesIncidentEdgesAndFindsDisconnectedResources" methodname="DeleteRemovesIncidentEdgesAndFindsDisconnectedResources" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="573197264" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.007591" asserts="0">
+              <test-case id="1010" name="DeleteRemovesIncidentEdgesAndFindsDisconnectedResources" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.DeleteRemovesIncidentEdgesAndFindsDisconnectedResources" methodname="DeleteRemovesIncidentEdgesAndFindsDisconnectedResources" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1579554404" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:51Z" duration="0.005866" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1011" name="JsonRoundTripAndSnapshotsPreserveConfigurationIndependently" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.JsonRoundTripAndSnapshotsPreserveConfigurationIndependently" methodname="JsonRoundTripAndSnapshotsPreserveConfigurationIndependently" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1584809942" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.002381" asserts="0">
+              <test-case id="1011" name="JsonRoundTripAndSnapshotsPreserveConfigurationIndependently" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.JsonRoundTripAndSnapshotsPreserveConfigurationIndependently" methodname="JsonRoundTripAndSnapshotsPreserveConfigurationIndependently" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="323205889" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:51Z" duration="0.003257" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1015" name="MockDeploymentRequiresSessionAndDoesNotMutateGraph" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.MockDeploymentRequiresSessionAndDoesNotMutateGraph" methodname="MockDeploymentRequiresSessionAndDoesNotMutateGraph" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1568523680" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.004308" asserts="0">
+              <test-case id="1015" name="MockDeploymentRequiresSessionAndDoesNotMutateGraph" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.MockDeploymentRequiresSessionAndDoesNotMutateGraph" methodname="MockDeploymentRequiresSessionAndDoesNotMutateGraph" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="425487364" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:51Z" duration="0.005457" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1016" name="MockFailureCanBeRetriedSuccessfully" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.MockFailureCanBeRetriedSuccessfully" methodname="MockFailureCanBeRetriedSuccessfully" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="160233285" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000598" asserts="0">
+              <test-case id="1016" name="MockFailureCanBeRetriedSuccessfully" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.MockFailureCanBeRetriedSuccessfully" methodname="MockFailureCanBeRetriedSuccessfully" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="767723222" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:51Z" duration="0.000843" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-suite type="ParameterizedMethod" id="1006" name="PresetsAreDeployable" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.048744" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <test-suite type="ParameterizedMethod" id="1006" name="PresetsAreDeployable" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-06 04:18:51Z" end-time="2026-10-06 04:18:52Z" duration="0.058055" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
                 <properties />
-                <test-case id="1003" name="PresetsAreDeployable(0)" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable(0)" methodname="PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1291138974" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000466" asserts="0">
+                <test-case id="1003" name="PresetsAreDeployable(0)" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable(0)" methodname="PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="465215640" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001150" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1004" name="PresetsAreDeployable(1)" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable(1)" methodname="PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="957877093" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000085" asserts="0">
+                <test-case id="1004" name="PresetsAreDeployable(1)" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable(1)" methodname="PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="38778322" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000140" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1005" name="PresetsAreDeployable(2)" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable(2)" methodname="PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1895498618" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000189" asserts="0">
+                <test-case id="1005" name="PresetsAreDeployable(2)" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PresetsAreDeployable(2)" methodname="PresetsAreDeployable" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="791519761" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000261" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
               </test-suite>
-              <test-case id="1009" name="PreventsValidServicePairsFromMakingCycles" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PreventsValidServicePairsFromMakingCycles" methodname="PreventsValidServicePairsFromMakingCycles" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1507340308" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000258" asserts="0">
+              <test-case id="1009" name="PreventsValidServicePairsFromMakingCycles" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PreventsValidServicePairsFromMakingCycles" methodname="PreventsValidServicePairsFromMakingCycles" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="855090617" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000306" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1007" name="PreviewChecksDoNotMutateTheGraph" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PreviewChecksDoNotMutateTheGraph" methodname="PreviewChecksDoNotMutateTheGraph" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1783713320" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000335" asserts="0">
+              <test-case id="1007" name="PreviewChecksDoNotMutateTheGraph" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.PreviewChecksDoNotMutateTheGraph" methodname="PreviewChecksDoNotMutateTheGraph" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="2144972026" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000401" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1017" name="ProvisioningFollowsEdgesEvenWithReversedCreationOrder" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.ProvisioningFollowsEdgesEvenWithReversedCreationOrder" methodname="ProvisioningFollowsEdgesEvenWithReversedCreationOrder" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1654241006" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000669" asserts="0">
+              <test-case id="1017" name="ProvisioningFollowsEdgesEvenWithReversedCreationOrder" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.ProvisioningFollowsEdgesEvenWithReversedCreationOrder" methodname="ProvisioningFollowsEdgesEvenWithReversedCreationOrder" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="2135458968" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000718" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1013" name="ReaddingDeletedServiceKeepsDisplayNamesUnique" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.ReaddingDeletedServiceKeepsDisplayNamesUnique" methodname="ReaddingDeletedServiceKeepsDisplayNamesUnique" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1188180510" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000577" asserts="0">
+              <test-case id="1013" name="ReaddingDeletedServiceKeepsDisplayNamesUnique" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.ReaddingDeletedServiceKeepsDisplayNamesUnique" methodname="ReaddingDeletedServiceKeepsDisplayNamesUnique" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="218800929" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000394" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1008" name="RejectsSelfDuplicateAndUnsupportedLinks" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.RejectsSelfDuplicateAndUnsupportedLinks" methodname="RejectsSelfDuplicateAndUnsupportedLinks" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="1597230479" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000370" asserts="0">
+              <test-case id="1008" name="RejectsSelfDuplicateAndUnsupportedLinks" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.RejectsSelfDuplicateAndUnsupportedLinks" methodname="RejectsSelfDuplicateAndUnsupportedLinks" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="734368433" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000289" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1014" name="ResourceLimitIsEnforced" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.ResourceLimitIsEnforced" methodname="ResourceLimitIsEnforced" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="822686424" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000840" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1018" name="AssistantTests" fullname="GuateGeeks.AwsVr.Tests.AssistantTests" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.115043" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1020" name="ProposalCopiesDataPreservesExistingLayoutAndProducesConcreteDiff" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProposalCopiesDataPreservesExistingLayoutAndProducesConcreteDiff" methodname="ProposalCopiesDataPreservesExistingLayoutAndProducesConcreteDiff" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="496302619" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.007689" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1021" name="ProposalNeverUsesModelCoordinatesAndRejectsRichTextNames" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProposalNeverUsesModelCoordinatesAndRejectsRichTextNames" methodname="ProposalNeverUsesModelCoordinatesAndRejectsRichTextNames" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="1417335511" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.003582" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1019" name="ProposalRejectsStaleRevisionAndInvalidGraphWithoutChangingSource" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProposalRejectsStaleRevisionAndInvalidGraphWithoutChangingSource" methodname="ProposalRejectsStaleRevisionAndInvalidGraphWithoutChangingSource" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="1007114025" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001635" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1022" name="ProviderMessagesAreEscapedAndDoNotIncludeInapplicableFields" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProviderMessagesAreEscapedAndDoNotIncludeInapplicableFields" methodname="ProviderMessagesAreEscapedAndDoNotIncludeInapplicableFields" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="20913025" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001696" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1023" name="SecretsAreRedactedBeforeInspectionDataReachesTheAssistant" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.SecretsAreRedactedBeforeInspectionDataReachesTheAssistant" methodname="SecretsAreRedactedBeforeInspectionDataReachesTheAssistant" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="1224278641" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.006826" asserts="0">
+              <test-case id="1014" name="ResourceLimitIsEnforced" fullname="GuateGeeks.AwsVr.Tests.ArchitectureTests.ResourceLimitIsEnforced" methodname="ResourceLimitIsEnforced" classname="GuateGeeks.AwsVr.Tests.ArchitectureTests" runstate="Runnable" seed="224548709" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000931" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1024" name="AuthoringTests" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.117646" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1018" name="AssistantTests" fullname="GuateGeeks.AwsVr.Tests.AssistantTests" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.123048" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1031" name="DiagnosticsCorrelateOnlyRequestedEventAndRedactBoundedEvidence" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.DiagnosticsCorrelateOnlyRequestedEventAndRedactBoundedEvidence" methodname="DiagnosticsCorrelateOnlyRequestedEventAndRedactBoundedEvidence" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1953531888" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.007731" asserts="0">
+              <test-case id="1020" name="ProposalCopiesDataPreservesExistingLayoutAndProducesConcreteDiff" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProposalCopiesDataPreservesExistingLayoutAndProducesConcreteDiff" methodname="ProposalCopiesDataPreservesExistingLayoutAndProducesConcreteDiff" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="2066382" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.008044" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1029" name="DraftValidationAndTestingBindToExactSourceAndEvent" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.DraftValidationAndTestingBindToExactSourceAndEvent" methodname="DraftValidationAndTestingBindToExactSourceAndEvent" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="896649522" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.005605" asserts="0">
+              <test-case id="1021" name="ProposalNeverUsesModelCoordinatesAndRejectsRichTextNames" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProposalNeverUsesModelCoordinatesAndRejectsRichTextNames" methodname="ProposalNeverUsesModelCoordinatesAndRejectsRichTextNames" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="1708112139" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.004328" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1032" name="EmptyEvidenceNeverClaimsFailureOrSuccess" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.EmptyEvidenceNeverClaimsFailureOrSuccess" methodname="EmptyEvidenceNeverClaimsFailureOrSuccess" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1924433921" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000696" asserts="0">
+              <test-case id="1019" name="ProposalRejectsStaleRevisionAndInvalidGraphWithoutChangingSource" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProposalRejectsStaleRevisionAndInvalidGraphWithoutChangingSource" methodname="ProposalRejectsStaleRevisionAndInvalidGraphWithoutChangingSource" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="1346394868" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001942" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1027" name="ExpectedOutputInvalidatesTestTrustAndCasesSurviveSave" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.ExpectedOutputInvalidatesTestTrustAndCasesSurviveSave" methodname="ExpectedOutputInvalidatesTestTrustAndCasesSurviveSave" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="313903285" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.009022" asserts="0">
+              <test-case id="1022" name="ProviderMessagesAreEscapedAndDoNotIncludeInapplicableFields" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.ProviderMessagesAreEscapedAndDoNotIncludeInapplicableFields" methodname="ProviderMessagesAreEscapedAndDoNotIncludeInapplicableFields" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="1588325753" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001749" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1026" name="HighlightEscapesMarkupAndColorsPython" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.HighlightEscapesMarkupAndColorsPython" methodname="HighlightEscapesMarkupAndColorsPython" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="11252635" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001887" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1025" name="InsertedLineDoesNotMarkUnchangedCodeAsReplaced" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.InsertedLineDoesNotMarkUnchangedCodeAsReplaced" methodname="InsertedLineDoesNotMarkUnchangedCodeAsReplaced" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1629778870" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000291" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1028" name="RetrievalUsesCurrentLinksAndDropsDeletedComponents" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.RetrievalUsesCurrentLinksAndDropsDeletedComponents" methodname="RetrievalUsesCurrentLinksAndDropsDeletedComponents" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1233904835" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.006167" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1030" name="SavedDraftRestoresExactWhitespaceButNeverRestoresValidationTrust" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.SavedDraftRestoresExactWhitespaceButNeverRestoresValidationTrust" methodname="SavedDraftRestoresExactWhitespaceButNeverRestoresValidationTrust" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="721755144" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.008048" asserts="0">
+              <test-case id="1023" name="SecretsAreRedactedBeforeInspectionDataReachesTheAssistant" fullname="GuateGeeks.AwsVr.Tests.AssistantTests.SecretsAreRedactedBeforeInspectionDataReachesTheAssistant" methodname="SecretsAreRedactedBeforeInspectionDataReachesTheAssistant" classname="GuateGeeks.AwsVr.Tests.AssistantTests" runstate="Runnable" seed="622620121" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.006987" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1033" name="AwsCloudApiTests" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.171698" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1024" name="AuthoringTests" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.119749" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1036" name="AmbiguousCreationReadsSameSlotWithoutRepeatingPost" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.AmbiguousCreationReadsSameSlotWithoutRepeatingPost" methodname="AmbiguousCreationReadsSameSlotWithoutRepeatingPost" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="2058042034" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.021065" asserts="0">
+              <test-case id="1031" name="DiagnosticsCorrelateOnlyRequestedEventAndRedactBoundedEvidence" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.DiagnosticsCorrelateOnlyRequestedEventAndRedactBoundedEvidence" methodname="DiagnosticsCorrelateOnlyRequestedEventAndRedactBoundedEvidence" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="2093274865" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.005641" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1039" name="AnotherDesignInSharedSlotIsNeverMarkedReady" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.AnotherDesignInSharedSlotIsNeverMarkedReady" methodname="AnotherDesignInSharedSlotIsNeverMarkedReady" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1868869796" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001003" asserts="0">
+              <test-case id="1029" name="DraftValidationAndTestingBindToExactSourceAndEvent" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.DraftValidationAndTestingBindToExactSourceAndEvent" methodname="DraftValidationAndTestingBindToExactSourceAndEvent" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1774325219" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.004614" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1043" name="BootstrapIsConsumedEvenWhenExpiredAndRejectsCleartextEndpoint" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.BootstrapIsConsumedEvenWhenExpiredAndRejectsCleartextEndpoint" methodname="BootstrapIsConsumedEvenWhenExpiredAndRejectsCleartextEndpoint" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1386612642" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.014681" asserts="0">
+              <test-case id="1032" name="EmptyEvidenceNeverClaimsFailureOrSuccess" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.EmptyEvidenceNeverClaimsFailureOrSuccess" methodname="EmptyEvidenceNeverClaimsFailureOrSuccess" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1599349478" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000499" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1038" name="CancelledVoiceEventDoesNotSendAfterPreflight" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CancelledVoiceEventDoesNotSendAfterPreflight" methodname="CancelledVoiceEventDoesNotSendAfterPreflight" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="839349213" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.002859" asserts="0">
+              <test-case id="1027" name="ExpectedOutputInvalidatesTestTrustAndCasesSurviveSave" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.ExpectedOutputInvalidatesTestTrustAndCasesSurviveSave" methodname="ExpectedOutputInvalidatesTestTrustAndCasesSurviveSave" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1897968457" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.008986" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1051" name="CleanupBindsConfirmedIdentityAndDoesNotRepeatAmbiguousDelete" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CleanupBindsConfirmedIdentityAndDoesNotRepeatAmbiguousDelete" methodname="CleanupBindsConfirmedIdentityAndDoesNotRepeatAmbiguousDelete" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1708829263" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.003181" asserts="0">
+              <test-case id="1026" name="HighlightEscapesMarkupAndColorsPython" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.HighlightEscapesMarkupAndColorsPython" methodname="HighlightEscapesMarkupAndColorsPython" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1982222325" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.002110" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1052" name="CleanupNeverDeletesReplacementAndClearsCompletedDeploymentIdentity" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CleanupNeverDeletesReplacementAndClearsCompletedDeploymentIdentity" methodname="CleanupNeverDeletesReplacementAndClearsCompletedDeploymentIdentity" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="339528092" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001252" asserts="0">
+              <test-case id="1025" name="InsertedLineDoesNotMarkUnchangedCodeAsReplaced" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.InsertedLineDoesNotMarkUnchangedCodeAsReplaced" methodname="InsertedLineDoesNotMarkUnchangedCodeAsReplaced" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="178591220" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000320" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1034" name="CodeWritesNeverRetryAfterAmbiguousResponse" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CodeWritesNeverRetryAfterAmbiguousResponse" methodname="CodeWritesNeverRetryAfterAmbiguousResponse" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1286720228" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001585" asserts="0">
+              <test-case id="1028" name="RetrievalUsesCurrentLinksAndDropsDeletedComponents" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.RetrievalUsesCurrentLinksAndDropsDeletedComponents" methodname="RetrievalUsesCurrentLinksAndDropsDeletedComponents" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="1158380993" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.005391" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1037" name="CustomEventUsesDefaultEntrypointAndPreservesPayloadAndStackGuard" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CustomEventUsesDefaultEntrypointAndPreservesPayloadAndStackGuard" methodname="CustomEventUsesDefaultEntrypointAndPreservesPayloadAndStackGuard" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1925352350" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001119" asserts="0">
+              <test-case id="1030" name="SavedDraftRestoresExactWhitespaceButNeverRestoresValidationTrust" fullname="GuateGeeks.AwsVr.Tests.AuthoringTests.SavedDraftRestoresExactWhitespaceButNeverRestoresValidationTrust" methodname="SavedDraftRestoresExactWhitespaceButNeverRestoresValidationTrust" classname="GuateGeeks.AwsVr.Tests.AuthoringTests" runstate="Runnable" seed="52222347" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.007800" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1053" name="InspectionChecksReturnedResourceIdentityAndEscapesQuery" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.InspectionChecksReturnedResourceIdentityAndEscapesQuery" methodname="InspectionChecksReturnedResourceIdentityAndEscapesQuery" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1604445833" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001453" asserts="0">
+            </test-suite>
+            <test-suite type="TestFixture" id="1033" name="AwsCloudApiTests" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.192443" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1036" name="AmbiguousCreationReadsSameSlotWithoutRepeatingPost" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.AmbiguousCreationReadsSameSlotWithoutRepeatingPost" methodname="AmbiguousCreationReadsSameSlotWithoutRepeatingPost" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1220743226" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.016359" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1054" name="InspectionPagesKeepLongAndMultilineDataReadable" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.InspectionPagesKeepLongAndMultilineDataReadable" methodname="InspectionPagesKeepLongAndMultilineDataReadable" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1495826695" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.002760" asserts="0">
+              <test-case id="1039" name="AnotherDesignInSharedSlotIsNeverMarkedReady" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.AnotherDesignInSharedSlotIsNeverMarkedReady" methodname="AnotherDesignInSharedSlotIsNeverMarkedReady" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1095773130" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001512" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-suite type="ParameterizedMethod" id="1050" name="MapsActualResourceStates" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.053493" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <test-case id="1043" name="BootstrapIsConsumedEvenWhenExpiredAndRejectsCleartextEndpoint" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.BootstrapIsConsumedEvenWhenExpiredAndRejectsCleartextEndpoint" methodname="BootstrapIsConsumedEvenWhenExpiredAndRejectsCleartextEndpoint" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1393405076" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.015153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1038" name="CancelledVoiceEventDoesNotSendAfterPreflight" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CancelledVoiceEventDoesNotSendAfterPreflight" methodname="CancelledVoiceEventDoesNotSendAfterPreflight" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1772377328" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.003412" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1051" name="CleanupBindsConfirmedIdentityAndDoesNotRepeatAmbiguousDelete" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CleanupBindsConfirmedIdentityAndDoesNotRepeatAmbiguousDelete" methodname="CleanupBindsConfirmedIdentityAndDoesNotRepeatAmbiguousDelete" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1406805695" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.004115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1052" name="CleanupNeverDeletesReplacementAndClearsCompletedDeploymentIdentity" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CleanupNeverDeletesReplacementAndClearsCompletedDeploymentIdentity" methodname="CleanupNeverDeletesReplacementAndClearsCompletedDeploymentIdentity" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1612080309" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1034" name="CodeWritesNeverRetryAfterAmbiguousResponse" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CodeWritesNeverRetryAfterAmbiguousResponse" methodname="CodeWritesNeverRetryAfterAmbiguousResponse" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="2042544527" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001928" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1037" name="CustomEventUsesDefaultEntrypointAndPreservesPayloadAndStackGuard" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.CustomEventUsesDefaultEntrypointAndPreservesPayloadAndStackGuard" methodname="CustomEventUsesDefaultEntrypointAndPreservesPayloadAndStackGuard" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="628994500" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1053" name="InspectionChecksReturnedResourceIdentityAndEscapesQuery" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.InspectionChecksReturnedResourceIdentityAndEscapesQuery" methodname="InspectionChecksReturnedResourceIdentityAndEscapesQuery" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1181162675" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.002074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1054" name="InspectionPagesKeepLongAndMultilineDataReadable" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.InspectionPagesKeepLongAndMultilineDataReadable" methodname="InspectionPagesKeepLongAndMultilineDataReadable" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="894854712" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.002118" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1050" name="MapsActualResourceStates" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.059866" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
                 <properties />
-                <test-case id="1045" name="MapsActualResourceStates(&quot;CREATE_COMPLETE&quot;,Ready)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;CREATE_COMPLETE&quot;,Ready)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1430892661" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001038" asserts="0">
+                <test-case id="1045" name="MapsActualResourceStates(&quot;CREATE_COMPLETE&quot;,Ready)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;CREATE_COMPLETE&quot;,Ready)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="966533369" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000817" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1046" name="MapsActualResourceStates(&quot;ROLLBACK_COMPLETE&quot;,Failed)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;ROLLBACK_COMPLETE&quot;,Failed)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1212806858" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000409" asserts="0">
+                <test-case id="1046" name="MapsActualResourceStates(&quot;ROLLBACK_COMPLETE&quot;,Failed)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;ROLLBACK_COMPLETE&quot;,Failed)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1025742218" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000442" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1047" name="MapsActualResourceStates(&quot;CREATE_FAILED&quot;,Failed)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;CREATE_FAILED&quot;,Failed)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="899259668" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.003803" asserts="0">
+                <test-case id="1047" name="MapsActualResourceStates(&quot;CREATE_FAILED&quot;,Failed)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;CREATE_FAILED&quot;,Failed)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1419616713" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000482" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1048" name="MapsActualResourceStates(&quot;DELETE_IN_PROGRESS&quot;,Failed)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;DELETE_IN_PROGRESS&quot;,Failed)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="86889179" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000501" asserts="0">
+                <test-case id="1048" name="MapsActualResourceStates(&quot;DELETE_IN_PROGRESS&quot;,Failed)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(&quot;DELETE_IN_PROGRESS&quot;,Failed)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1034124952" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000464" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1049" name="MapsActualResourceStates(null,Provisioning)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(null,Provisioning)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1154125585" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000318" asserts="0">
+                <test-case id="1049" name="MapsActualResourceStates(null,Provisioning)" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.MapsActualResourceStates(null,Provisioning)" methodname="MapsActualResourceStates" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="390227623" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000494" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
               </test-suite>
-              <test-case id="1035" name="RealLambdaContractCreatesPollsAndInvokesWithoutFakeMetrics" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.RealLambdaContractCreatesPollsAndInvokesWithoutFakeMetrics" methodname="RealLambdaContractCreatesPollsAndInvokesWithoutFakeMetrics" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="504750214" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001840" asserts="0">
+              <test-case id="1035" name="RealLambdaContractCreatesPollsAndInvokesWithoutFakeMetrics" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.RealLambdaContractCreatesPollsAndInvokesWithoutFakeMetrics" methodname="RealLambdaContractCreatesPollsAndInvokesWithoutFakeMetrics" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1451590479" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.002654" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1055" name="RefreshingEmptySlotAfterStoppedDeletionAllowsReuse" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.RefreshingEmptySlotAfterStoppedDeletionAllowsReuse" methodname="RefreshingEmptySlotAfterStoppedDeletionAllowsReuse" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="142070912" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001133" asserts="0">
+              <test-case id="1055" name="RefreshingEmptySlotAfterStoppedDeletionAllowsReuse" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.RefreshingEmptySlotAfterStoppedDeletionAllowsReuse" methodname="RefreshingEmptySlotAfterStoppedDeletionAllowsReuse" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1151667440" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001411" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1040" name="RollbackAndConflictAreFailures" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.RollbackAndConflictAreFailures" methodname="RollbackAndConflictAreFailures" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1339393910" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000826" asserts="0">
+              <test-case id="1040" name="RollbackAndConflictAreFailures" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.RollbackAndConflictAreFailures" methodname="RollbackAndConflictAreFailures" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1447647120" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001130" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1044" name="StoppingObservationOnlyAbortsLocalTransport" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.StoppingObservationOnlyAbortsLocalTransport" methodname="StoppingObservationOnlyAbortsLocalTransport" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="949632115" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000676" asserts="0">
+              <test-case id="1044" name="StoppingObservationOnlyAbortsLocalTransport" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.StoppingObservationOnlyAbortsLocalTransport" methodname="StoppingObservationOnlyAbortsLocalTransport" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="820538275" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000869" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1041" name="UnauthorizedSessionStopsAndThrottlingRetriesOnlyReads" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.UnauthorizedSessionStopsAndThrottlingRetriesOnlyReads" methodname="UnauthorizedSessionStopsAndThrottlingRetriesOnlyReads" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1841965973" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001051" asserts="0">
+              <test-case id="1041" name="UnauthorizedSessionStopsAndThrottlingRetriesOnlyReads" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.UnauthorizedSessionStopsAndThrottlingRetriesOnlyReads" methodname="UnauthorizedSessionStopsAndThrottlingRetriesOnlyReads" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="427664979" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001085" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1042" name="UnsupportedGraphNeverRequestsCreation" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.UnsupportedGraphNeverRequestsCreation" methodname="UnsupportedGraphNeverRequestsCreation" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="1019496685" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.001010" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1056" name="AwsIconGeometryTests" fullname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" classname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.120900" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1058" name="EmblemMeshesAreSolidAndUseTheOfficialCategoryColour" fullname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests.EmblemMeshesAreSolidAndUseTheOfficialCategoryColour" methodname="EmblemMeshesAreSolidAndUseTheOfficialCategoryColour" classname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" runstate="Runnable" seed="404766267" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.020234" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1057" name="EverySymbolIsCompletelyTriangulatedFromItsOfficialOutline" fullname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests.EverySymbolIsCompletelyTriangulatedFromItsOfficialOutline" methodname="EverySymbolIsCompletelyTriangulatedFromItsOfficialOutline" classname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" runstate="Runnable" seed="757269580" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.016604" asserts="0">
+              <test-case id="1042" name="UnsupportedGraphNeverRequestsCreation" fullname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests.UnsupportedGraphNeverRequestsCreation" methodname="UnsupportedGraphNeverRequestsCreation" classname="GuateGeeks.AwsVr.Tests.AwsCloudApiTests" runstate="Runnable" seed="743022378" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000822" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1059" name="CloudProfileTests" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:31Z" duration="0.167115" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1056" name="AwsIconGeometryTests" fullname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" classname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.153217" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1064" name="CredentialBindingChangesWithDestinationIdentityAndSlot" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.CredentialBindingChangesWithDestinationIdentityAndSlot" methodname="CredentialBindingChangesWithDestinationIdentityAndSlot" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="1735462542" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:30Z" duration="0.000423" asserts="0">
+              <test-case id="1058" name="EmblemMeshesAreSolidAndUseTheOfficialCategoryColour" fullname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests.EmblemMeshesAreSolidAndUseTheOfficialCategoryColour" methodname="EmblemMeshesAreSolidAndUseTheOfficialCategoryColour" classname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" runstate="Runnable" seed="155173623" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.041625" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-suite type="ParameterizedMethod" id="1062" name="InvalidPasswordLengthRejected" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.InvalidPasswordLengthRejected" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 23:13:30Z" end-time="2026-10-05 23:13:31Z" duration="0.099867" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <test-case id="1057" name="EverySymbolIsCompletelyTriangulatedFromItsOfficialOutline" fullname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests.EverySymbolIsCompletelyTriangulatedFromItsOfficialOutline" methodname="EverySymbolIsCompletelyTriangulatedFromItsOfficialOutline" classname="GuateGeeks.AwsVr.Tests.AwsIconGeometryTests" runstate="Runnable" seed="1395660612" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.015189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1059" name="CloudProfileTests" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.164725" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1064" name="CredentialBindingChangesWithDestinationIdentityAndSlot" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.CredentialBindingChangesWithDestinationIdentityAndSlot" methodname="CredentialBindingChangesWithDestinationIdentityAndSlot" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="1920709218" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1062" name="InvalidPasswordLengthRejected" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.InvalidPasswordLengthRejected" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.109272" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
                 <properties />
-                <test-case id="1060" name="InvalidPasswordLengthRejected(&quot;&quot;)" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.InvalidPasswordLengthRejected(&quot;&quot;)" methodname="InvalidPasswordLengthRejected" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="524946957" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000702" asserts="0">
+                <test-case id="1060" name="InvalidPasswordLengthRejected(&quot;&quot;)" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.InvalidPasswordLengthRejected(&quot;&quot;)" methodname="InvalidPasswordLengthRejected" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="1297221831" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000646" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
-                <test-case id="1061" name="InvalidPasswordLengthRejected(&quot;1234567&quot;)" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.InvalidPasswordLengthRejected(&quot;1234567&quot;)" methodname="InvalidPasswordLengthRejected" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="1686182598" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000058" asserts="0">
+                <test-case id="1061" name="InvalidPasswordLengthRejected(&quot;1234567&quot;)" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.InvalidPasswordLengthRejected(&quot;1234567&quot;)" methodname="InvalidPasswordLengthRejected" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="1981500448" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000055" asserts="0">
                   <properties>
                     <property name="retryIteration" value="0" />
                     <property name="repeatIteration" value="0" />
                   </properties>
                 </test-case>
               </test-suite>
-              <test-case id="1065" name="MissingAndCorruptProfileNeverAutoConnect" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.MissingAndCorruptProfileNeverAutoConnect" methodname="MissingAndCorruptProfileNeverAutoConnect" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="246620907" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.003479" asserts="0">
+              <test-case id="1065" name="MissingAndCorruptProfileNeverAutoConnect" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.MissingAndCorruptProfileNeverAutoConnect" methodname="MissingAndCorruptProfileNeverAutoConnect" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="572082348" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.003476" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1063" name="SixCharactersAcceptedAndNeverSerializedInProfile" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.SixCharactersAcceptedAndNeverSerializedInProfile" methodname="SixCharactersAcceptedAndNeverSerializedInProfile" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="1292381267" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001153" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-            </test-suite>
-            <test-suite type="TestFixture" id="1066" name="CollaborationTests" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.118739" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
-              <properties />
-              <test-case id="1067" name="ClaimWaitsForServerAndOnlyAcceptsLiveOwnLease" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.ClaimWaitsForServerAndOnlyAcceptsLiveOwnLease" methodname="ClaimWaitsForServerAndOnlyAcceptsLiveOwnLease" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="352328286" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.010763" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1072" name="DelayedOperationReceiptUsesNewestStateWithoutLosingAcknowledgment" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.DelayedOperationReceiptUsesNewestStateWithoutLosingAcknowledgment" methodname="DelayedOperationReceiptUsesNewestStateWithoutLosingAcknowledgment" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1477858781" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000908" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1070" name="DisconnectCannotFallBackToWritableLocalSession" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.DisconnectCannotFallBackToWritableLocalSession" methodname="DisconnectCannotFallBackToWritableLocalSession" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="348839986" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000383" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1068" name="ForeignLeaseAndOutOfOrderSnapshotsCannotGrantOwnership" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.ForeignLeaseAndOutOfOrderSnapshotsCannotGrantOwnership" methodname="ForeignLeaseAndOutOfOrderSnapshotsCannotGrantOwnership" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="2045843223" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000943" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1071" name="MicrophoneGateClearsQueuedFramesAndDefaultsToNormalSoloCapture" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.MicrophoneGateClearsQueuedFramesAndDefaultsToNormalSoloCapture" methodname="MicrophoneGateClearsQueuedFramesAndDefaultsToNormalSoloCapture" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="507816680" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001544" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1073" name="MutedMicrophoneQueuesSilenceAndOpeningGateRestoresCapture" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.MutedMicrophoneQueuesSilenceAndOpeningGateRestoresCapture" methodname="MutedMicrophoneQueuesSilenceAndOpeningGateRestoresCapture" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="624500208" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.007716" asserts="0">
-                <properties>
-                  <property name="retryIteration" value="0" />
-                  <property name="repeatIteration" value="0" />
-                </properties>
-              </test-case>
-              <test-case id="1069" name="PresenceDoesNotChangeTheGraphOrPersonalConversation" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.PresenceDoesNotChangeTheGraphOrPersonalConversation" methodname="PresenceDoesNotChangeTheGraphOrPersonalConversation" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1382046472" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001571" asserts="0">
+              <test-case id="1063" name="SixCharactersAcceptedAndNeverSerializedInProfile" fullname="GuateGeeks.AwsVr.Tests.CloudProfileTests.SixCharactersAcceptedAndNeverSerializedInProfile" methodname="SixCharactersAcceptedAndNeverSerializedInProfile" classname="GuateGeeks.AwsVr.Tests.CloudProfileTests" runstate="Runnable" seed="447124310" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000936" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1074" name="DesignStudioTests" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.095307" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1066" name="CollaborationTests" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.135473" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1075" name="ConnectionsRespectConfigurationAndPlatformFanout" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests.ConnectionsRespectConfigurationAndPlatformFanout" methodname="ConnectionsRespectConfigurationAndPlatformFanout" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" seed="507457510" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001329" asserts="0">
+              <test-case id="1067" name="ClaimWaitsForServerAndOnlyAcceptsLiveOwnLease" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.ClaimWaitsForServerAndOnlyAcceptsLiveOwnLease" methodname="ClaimWaitsForServerAndOnlyAcceptsLiveOwnLease" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1613396009" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.010216" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1076" name="DefinitionIdentityIgnoresLayoutOrderAndRuntimeStateOnly" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests.DefinitionIdentityIgnoresLayoutOrderAndRuntimeStateOnly" methodname="DefinitionIdentityIgnoresLayoutOrderAndRuntimeStateOnly" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" seed="1703213211" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.002051" asserts="0">
+              <test-case id="1077" name="DelayedOperationReceiptUsesNewestStateWithoutLosingAcknowledgment" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.DelayedOperationReceiptUsesNewestStateWithoutLosingAcknowledgment" methodname="DelayedOperationReceiptUsesNewestStateWithoutLosingAcknowledgment" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1009085735" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000706" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1077" name="LibraryPreservesDraftsWithoutLeakingRuntimeStateAndSkipsCorruption" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests.LibraryPreservesDraftsWithoutLeakingRuntimeStateAndSkipsCorruption" methodname="LibraryPreservesDraftsWithoutLeakingRuntimeStateAndSkipsCorruption" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" seed="144601931" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.014976" asserts="0">
+              <test-case id="1075" name="DisconnectCannotFallBackToWritableLocalSession" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.DisconnectCannotFallBackToWritableLocalSession" methodname="DisconnectCannotFallBackToWritableLocalSession" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="794849408" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1068" name="ForeignLeaseAndOutOfOrderSnapshotsCannotGrantOwnership" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.ForeignLeaseAndOutOfOrderSnapshotsCannotGrantOwnership" methodname="ForeignLeaseAndOutOfOrderSnapshotsCannotGrantOwnership" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1181113738" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1076" name="MicrophoneGateClearsQueuedFramesAndDefaultsToNormalSoloCapture" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.MicrophoneGateClearsQueuedFramesAndDefaultsToNormalSoloCapture" methodname="MicrophoneGateClearsQueuedFramesAndDefaultsToNormalSoloCapture" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1948008550" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1070" name="MissingClaimResponseRetriesSameRequestAfterBoundedWait" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.MissingClaimResponseRetriesSameRequestAfterBoundedWait" methodname="MissingClaimResponseRetriesSameRequestAfterBoundedWait" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="619759173" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1072" name="MovementPreviewRequiresOwnerAndIncreasingSequenceAndCannotRevertCommit" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.MovementPreviewRequiresOwnerAndIncreasingSequenceAndCannotRevertCommit" methodname="MovementPreviewRequiresOwnerAndIncreasingSequenceAndCannotRevertCommit" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="759257773" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1078" name="MutedMicrophoneQueuesSilenceAndOpeningGateRestoresCapture" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.MutedMicrophoneQueuesSilenceAndOpeningGateRestoresCapture" methodname="MutedMicrophoneQueuesSilenceAndOpeningGateRestoresCapture" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1861776851" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.007040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1074" name="PresenceDoesNotChangeTheGraphOrPersonalConversation" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.PresenceDoesNotChangeTheGraphOrPersonalConversation" methodname="PresenceDoesNotChangeTheGraphOrPersonalConversation" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="2006343543" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1071" name="ReleaseCannotReuseLeaseBeforeServerConfirmsRelease" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.ReleaseCannotReuseLeaseBeforeServerConfirmsRelease" methodname="ReleaseCannotReuseLeaseBeforeServerConfirmsRelease" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1028630323" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="TeammateAndroidArmKeepsBoneLengthsAndReachesTheHand" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.TeammateAndroidArmKeepsBoneLengthsAndReachesTheHand" methodname="TeammateAndroidArmKeepsBoneLengthsAndReachesTheHand" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="477712073" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.002489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="UnrelatedCommitKeepsRemoteDragPreviewUntilItsOwnDrop" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.UnrelatedCommitKeepsRemoteDragPreviewUntilItsOwnDrop" methodname="UnrelatedCommitKeepsRemoteDragPreviewUntilItsOwnDrop" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1580499840" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1069" name="UnrelatedSnapshotDoesNotResendPendingClaim" fullname="GuateGeeks.AwsVr.Tests.CollaborationTests.UnrelatedSnapshotDoesNotResendPendingClaim" methodname="UnrelatedSnapshotDoesNotResendPendingClaim" classname="GuateGeeks.AwsVr.Tests.CollaborationTests" runstate="Runnable" seed="1481144508" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.000941" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1078" name="HandPinchTests" fullname="GuateGeeks.AwsVr.Tests.HandPinchTests" classname="GuateGeeks.AwsVr.Tests.HandPinchTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.007724" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1080" name="DesignStudioTests" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:53Z" duration="0.095937" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1080" name="PinchThresholdJitterDoesNotGenerateRepeatedClicks" fullname="GuateGeeks.AwsVr.Tests.HandPinchTests.PinchThresholdJitterDoesNotGenerateRepeatedClicks" methodname="PinchThresholdJitterDoesNotGenerateRepeatedClicks" classname="GuateGeeks.AwsVr.Tests.HandPinchTests" runstate="Runnable" seed="1794454839" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000736" asserts="0">
+              <test-case id="1081" name="ConnectionsRespectConfigurationAndPlatformFanout" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests.ConnectionsRespectConfigurationAndPlatformFanout" methodname="ConnectionsRespectConfigurationAndPlatformFanout" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" seed="11495746" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001145" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1079" name="TrackingRecoveryCannotActivateUntilHandOpens" fullname="GuateGeeks.AwsVr.Tests.HandPinchTests.TrackingRecoveryCannotActivateUntilHandOpens" methodname="TrackingRecoveryCannotActivateUntilHandOpens" classname="GuateGeeks.AwsVr.Tests.HandPinchTests" runstate="Runnable" seed="73390874" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000212" asserts="0">
+              <test-case id="1082" name="DefinitionIdentityIgnoresLayoutOrderAndRuntimeStateOnly" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests.DefinitionIdentityIgnoresLayoutOrderAndRuntimeStateOnly" methodname="DefinitionIdentityIgnoresLayoutOrderAndRuntimeStateOnly" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" seed="2098086638" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:52Z" duration="0.001683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1083" name="LibraryPreservesDraftsWithoutLeakingRuntimeStateAndSkipsCorruption" fullname="GuateGeeks.AwsVr.Tests.DesignStudioTests.LibraryPreservesDraftsWithoutLeakingRuntimeStateAndSkipsCorruption" methodname="LibraryPreservesDraftsWithoutLeakingRuntimeStateAndSkipsCorruption" classname="GuateGeeks.AwsVr.Tests.DesignStudioTests" runstate="Runnable" seed="679776804" result="Passed" start-time="2026-10-06 04:18:52Z" end-time="2026-10-06 04:18:53Z" duration="0.016080" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1081" name="InspectionInteractionTests" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.107175" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1084" name="FingerTouchTests" fullname="GuateGeeks.AwsVr.Tests.FingerTouchTests" classname="GuateGeeks.AwsVr.Tests.FingerTouchTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.009265" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1082" name="IncrementalEntriesDeduplicateByIdentityNotMessageAndKeepLatestRevision" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.IncrementalEntriesDeduplicateByIdentityNotMessageAndKeepLatestRevision" methodname="IncrementalEntriesDeduplicateByIdentityNotMessageAndKeepLatestRevision" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="1199741266" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.005769" asserts="0">
+              <test-case id="1085" name="EveryFingerCanPress" fullname="GuateGeeks.AwsVr.Tests.FingerTouchTests.EveryFingerCanPress" methodname="EveryFingerCanPress" classname="GuateGeeks.AwsVr.Tests.FingerTouchTests" runstate="Runnable" seed="320165534" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000910" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1083" name="JsonFormattingPreservesEscapesLargeNumbersAndTruncatedInput" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.JsonFormattingPreservesEscapesLargeNumbersAndTruncatedInput" methodname="JsonFormattingPreservesEscapesLargeNumbersAndTruncatedInput" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="1687550524" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001510" asserts="0">
+              <test-case id="1086" name="FlatHandPressesOnlyTheDeepestFingerAndNeighboursMustWithdraw" fullname="GuateGeeks.AwsVr.Tests.FingerTouchTests.FlatHandPressesOnlyTheDeepestFingerAndNeighboursMustWithdraw" methodname="FlatHandPressesOnlyTheDeepestFingerAndNeighboursMustWithdraw" classname="GuateGeeks.AwsVr.Tests.FingerTouchTests" runstate="Runnable" seed="1871664471" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000234" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1084" name="SearchCombinesSeverityAndExactCorrelation" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.SearchCombinesSeverityAndExactCorrelation" methodname="SearchCombinesSeverityAndExactCorrelation" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="1009052058" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000409" asserts="0">
+              <test-case id="1087" name="RefractoryBlocksAnAccidentalSecondKey" fullname="GuateGeeks.AwsVr.Tests.FingerTouchTests.RefractoryBlocksAnAccidentalSecondKey" methodname="RefractoryBlocksAnAccidentalSecondKey" classname="GuateGeeks.AwsVr.Tests.FingerTouchTests" runstate="Runnable" seed="118978801" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000276" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1085" name="TouchMustApproachDwellAndWithdrawAndNeverFiresOnTrackingRecovery" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.TouchMustApproachDwellAndWithdrawAndNeverFiresOnTrackingRecovery" methodname="TouchMustApproachDwellAndWithdrawAndNeverFiresOnTrackingRecovery" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="525615172" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000530" asserts="0">
+              <test-case id="1088" name="ResetCancelsAPressInProgress" fullname="GuateGeeks.AwsVr.Tests.FingerTouchTests.ResetCancelsAPressInProgress" methodname="ResetCancelsAPressInProgress" classname="GuateGeeks.AwsVr.Tests.FingerTouchTests" runstate="Runnable" seed="724482707" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000295" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1086" name="RealtimeCostTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" classname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.093770" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1089" name="HandPinchTests" fullname="GuateGeeks.AwsVr.Tests.HandPinchTests" classname="GuateGeeks.AwsVr.Tests.HandPinchTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.112548" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1087" name="CachedAndCancelledUsageIsCountedOnceAtTheActualModelRate" fullname="GuateGeeks.AwsVr.Tests.RealtimeCostTests.CachedAndCancelledUsageIsCountedOnceAtTheActualModelRate" methodname="CachedAndCancelledUsageIsCountedOnceAtTheActualModelRate" classname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" runstate="Runnable" seed="374328288" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001569" asserts="0">
+              <test-case id="1091" name="PinchThresholdJitterDoesNotGenerateRepeatedClicks" fullname="GuateGeeks.AwsVr.Tests.HandPinchTests.PinchThresholdJitterDoesNotGenerateRepeatedClicks" methodname="PinchThresholdJitterDoesNotGenerateRepeatedClicks" classname="GuateGeeks.AwsVr.Tests.HandPinchTests" runstate="Runnable" seed="662734909" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000465" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1088" name="TranscriptionIsSeparateAndMissingUsageDoesNotPretendToBeFree" fullname="GuateGeeks.AwsVr.Tests.RealtimeCostTests.TranscriptionIsSeparateAndMissingUsageDoesNotPretendToBeFree" methodname="TranscriptionIsSeparateAndMissingUsageDoesNotPretendToBeFree" classname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" runstate="Runnable" seed="261166278" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001208" asserts="0">
+              <test-case id="1090" name="TrackingRecoveryCannotActivateUntilHandOpens" fullname="GuateGeeks.AwsVr.Tests.HandPinchTests.TrackingRecoveryCannotActivateUntilHandOpens" methodname="TrackingRecoveryCannotActivateUntilHandOpens" classname="GuateGeeks.AwsVr.Tests.HandPinchTests" runstate="Runnable" seed="747428656" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000241" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-suite type="TestFixture" id="1089" name="SpatialVoiceTests" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.116342" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1092" name="InspectionInteractionTests" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.114432" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1097" name="BothConversationModesKeepApplicationOwnedResponseAndInterruption" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.BothConversationModesKeepApplicationOwnedResponseAndInterruption" methodname="BothConversationModesKeepApplicationOwnedResponseAndInterruption" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="316239" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000428" asserts="0">
+              <test-case id="1093" name="IncrementalEntriesDeduplicateByIdentityNotMessageAndKeepLatestRevision" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.IncrementalEntriesDeduplicateByIdentityNotMessageAndKeepLatestRevision" methodname="IncrementalEntriesDeduplicateByIdentityNotMessageAndKeepLatestRevision" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="1937968033" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.005560" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1091" name="DestinationSurvivesLoweredHandDuringSemanticWaitButNotTheNextUtterance" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.DestinationSurvivesLoweredHandDuringSemanticWaitButNotTheNextUtterance" methodname="DestinationSurvivesLoweredHandDuringSemanticWaitButNotTheNextUtterance" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="926932687" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.008924" asserts="0">
+              <test-case id="1094" name="JsonFormattingPreservesEscapesLargeNumbersAndTruncatedInput" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.JsonFormattingPreservesEscapesLargeNumbersAndTruncatedInput" methodname="JsonFormattingPreservesEscapesLargeNumbersAndTruncatedInput" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="781529315" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.001335" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1090" name="DownwardRaysFromBelowTheHologramsHitTheVisibleTable" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.DownwardRaysFromBelowTheHologramsHitTheVisibleTable" methodname="DownwardRaysFromBelowTheHologramsHitTheVisibleTable" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1419207996" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.002332" asserts="0">
+              <test-case id="1095" name="SearchCombinesSeverityAndExactCorrelation" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.SearchCombinesSeverityAndExactCorrelation" methodname="SearchCombinesSeverityAndExactCorrelation" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="532615242" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000445" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1095" name="JitterAndConflictingHandsNeverInventASingleTargetOrDestination" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.JitterAndConflictingHandsNeverInventASingleTargetOrDestination" methodname="JitterAndConflictingHandsNeverInventASingleTargetOrDestination" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1521031889" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.004040" asserts="0">
+              <test-case id="1096" name="TouchMustApproachDwellAndWithdrawAndNeverFiresOnTrackingRecovery" fullname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests.TouchMustApproachDwellAndWithdrawAndNeverFiresOnTrackingRecovery" methodname="TouchMustApproachDwellAndWithdrawAndNeverFiresOnTrackingRecovery" classname="GuateGeeks.AwsVr.Tests.InspectionInteractionTests" runstate="Runnable" seed="673905290" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000386" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1092" name="LivePreviewDoesNotReuseThePreviousFrozenDestination" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.LivePreviewDoesNotReuseThePreviousFrozenDestination" methodname="LivePreviewDoesNotReuseThePreviousFrozenDestination" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1072461913" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000605" asserts="0">
+            </test-suite>
+            <test-suite type="TestFixture" id="1097" name="RealtimeCostTests" fullname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" classname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.103657" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1098" name="CachedAndCancelledUsageIsCountedOnceAtTheActualModelRate" fullname="GuateGeeks.AwsVr.Tests.RealtimeCostTests.CachedAndCancelledUsageIsCountedOnceAtTheActualModelRate" methodname="CachedAndCancelledUsageIsCountedOnceAtTheActualModelRate" classname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" runstate="Runnable" seed="355766378" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.001729" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1093" name="RetainedConflictingDestinationsRemainAmbiguous" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.RetainedConflictingDestinationsRemainAmbiguous" methodname="RetainedConflictingDestinationsRemainAmbiguous" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="182775046" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000362" asserts="0">
+              <test-case id="1099" name="TranscriptionIsSeparateAndMissingUsageDoesNotPretendToBeFree" fullname="GuateGeeks.AwsVr.Tests.RealtimeCostTests.TranscriptionIsSeparateAndMissingUsageDoesNotPretendToBeFree" methodname="TranscriptionIsSeparateAndMissingUsageDoesNotPretendToBeFree" classname="GuateGeeks.AwsVr.Tests.RealtimeCostTests" runstate="Runnable" seed="471669210" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000981" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1094" name="SpeechKeepsOrderedStableTargetsAfterThePointerMoves" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.SpeechKeepsOrderedStableTargetsAfterThePointerMoves" methodname="SpeechKeepsOrderedStableTargetsAfterThePointerMoves" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="645568911" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.001280" asserts="0">
+            </test-suite>
+            <test-suite type="TestFixture" id="1100" name="SpatialVoiceTests" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.126545" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1108" name="BothConversationModesKeepApplicationOwnedResponseAndInterruption" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.BothConversationModesKeepApplicationOwnedResponseAndInterruption" methodname="BothConversationModesKeepApplicationOwnedResponseAndInterruption" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1918562922" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000601" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1096" name="VisualScalePersistsButDoesNotChangeAwsDefinition" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.VisualScalePersistsButDoesNotChangeAwsDefinition" methodname="VisualScalePersistsButDoesNotChangeAwsDefinition" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="640056317" result="Passed" start-time="2026-10-05 23:13:31Z" end-time="2026-10-05 23:13:31Z" duration="0.000880" asserts="0">
+              <test-case id="1102" name="DestinationSurvivesLoweredHandDuringSemanticWaitButNotTheNextUtterance" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.DestinationSurvivesLoweredHandDuringSemanticWaitButNotTheNextUtterance" methodname="DestinationSurvivesLoweredHandDuringSemanticWaitButNotTheNextUtterance" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="612723232" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.010315" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1101" name="DownwardRaysFromBelowTheHologramsHitTheVisibleTable" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.DownwardRaysFromBelowTheHologramsHitTheVisibleTable" methodname="DownwardRaysFromBelowTheHologramsHitTheVisibleTable" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="2083689226" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.002480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1106" name="JitterAndConflictingHandsNeverInventASingleTargetOrDestination" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.JitterAndConflictingHandsNeverInventASingleTargetOrDestination" methodname="JitterAndConflictingHandsNeverInventASingleTargetOrDestination" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1515772461" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.003760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1103" name="LivePreviewDoesNotReuseThePreviousFrozenDestination" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.LivePreviewDoesNotReuseThePreviousFrozenDestination" methodname="LivePreviewDoesNotReuseThePreviousFrozenDestination" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1033491850" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000553" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1104" name="RetainedConflictingDestinationsRemainAmbiguous" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.RetainedConflictingDestinationsRemainAmbiguous" methodname="RetainedConflictingDestinationsRemainAmbiguous" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="304377051" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1105" name="SpeechKeepsOrderedStableTargetsAfterThePointerMoves" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.SpeechKeepsOrderedStableTargetsAfterThePointerMoves" methodname="SpeechKeepsOrderedStableTargetsAfterThePointerMoves" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1514873123" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.001071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1107" name="VisualScalePersistsButDoesNotChangeAwsDefinition" fullname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests.VisualScalePersistsButDoesNotChangeAwsDefinition" methodname="VisualScalePersistsButDoesNotChangeAwsDefinition" classname="GuateGeeks.AwsVr.Tests.SpatialVoiceTests" runstate="Runnable" seed="1627472974" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.000586" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1109" name="TableLayoutTests" fullname="GuateGeeks.AwsVr.Tests.TableLayoutTests" classname="GuateGeeks.AwsVr.Tests.TableLayoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.095855" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1111" name="RoomTableTravelsInSnapshotsAndCommands" fullname="GuateGeeks.AwsVr.Tests.TableLayoutTests.RoomTableTravelsInSnapshotsAndCommands" methodname="RoomTableTravelsInSnapshotsAndCommands" classname="GuateGeeks.AwsVr.Tests.TableLayoutTests" runstate="Runnable" seed="688534351" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.001130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1110" name="ThreeDiametersShareOneDesignSpace" fullname="GuateGeeks.AwsVr.Tests.TableLayoutTests.ThreeDiametersShareOneDesignSpace" methodname="ThreeDiametersShareOneDesignSpace" classname="GuateGeeks.AwsVr.Tests.TableLayoutTests" runstate="Runnable" seed="754757819" result="Passed" start-time="2026-10-06 04:18:53Z" end-time="2026-10-06 04:18:53Z" duration="0.004329" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />

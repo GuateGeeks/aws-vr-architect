@@ -21,12 +21,13 @@ namespace GuateGeeks.AwsVr.Tests
         string ProfilePath => Path.Combine(Application.persistentDataPath, "cloud-profile.json");
         string CheckpointPath => Path.Combine(Application.persistentDataPath, "aws-cloud-checkpoint.json");
         readonly Dictionary<string, string> menuPreferences = new Dictionary<string, string>();
+        readonly Dictionary<string, int?> comfortPreferences = new Dictionary<string, int?>();
         int backgroundPreference;
         bool hadBackgroundPreference;
         bool hadComponentScale;
         float savedComponentScale;
-        bool hadSharedRoom, hadStation;
-        int sharedRoom, station;
+        bool hadSharedRoom, hadStation, hadTable;
+        int sharedRoom, station, tableSize;
         static readonly string[] MenuNames = { "Lab identity", "Mission status", "01 · Service catalog", "03 · Inspector", "02 · Architecture controls", "Controls reference", "Comfort controls", "04 · Environment settings", "05 · Cloud connection", "Settings console", "Workspace reader" };
         string SavePath => Path.Combine(Application.persistentDataPath, "aws-day-architecture.json");
         [UnitySetUp]
@@ -37,7 +38,7 @@ namespace GuateGeeks.AwsVr.Tests
             hadSave = File.Exists(SavePath); originalSave = hadSave ? File.ReadAllText(SavePath) : null;
             hadCheckpoint = File.Exists(CheckpointPath); originalCheckpoint = hadCheckpoint ? File.ReadAllText(CheckpointPath) : null;
             menuPreferences.Clear();
-            foreach (var name in MenuNames) foreach (var layout in new[] { "", "shared." }) {
+            foreach (var name in MenuNames) foreach (var layout in new[] { "", "shared.", "shared.small." }) {
                 string key = LabMenu.PreferencePrefix + layout + name;
                 menuPreferences[key] = PlayerPrefs.HasKey(key) ? PlayerPrefs.GetString(key) : null; PlayerPrefs.DeleteKey(key);
             }
@@ -51,6 +52,10 @@ namespace GuateGeeks.AwsVr.Tests
             hadComponentScale=PlayerPrefs.HasKey(ArchitectureLab.ComponentScalePreference);
             savedComponentScale=PlayerPrefs.GetFloat(ArchitectureLab.ComponentScalePreference,1);
             PlayerPrefs.DeleteKey(ArchitectureLab.ComponentScalePreference);
+            // Every test starts at the full table; TableSizeTests covers the 1 m and 3 m tables.
+            hadTable = PlayerPrefs.HasKey(TableLayout.Preference); tableSize = PlayerPrefs.GetInt(TableLayout.Preference); PlayerPrefs.DeleteKey(TableLayout.Preference);
+            // …with the automatic panel layout (panoramic on desktop) and the wrist menu on the left; NearFieldInterfaceTests covers the rest.
+            foreach (var key in new[] { SharedSpace.LayoutPreference, LabRig.WristPreference }) { comfortPreferences[key] = PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key) : (int?)null; PlayerPrefs.DeleteKey(key); }
             yield return SceneManager.LoadSceneAsync("AWSArchitectLab");
             yield return null;
             lab = Object.FindAnyObjectByType<ArchitectureLab>(); Assert.IsNotNull(lab);
@@ -70,6 +75,8 @@ namespace GuateGeeks.AwsVr.Tests
             if(hadComponentScale)PlayerPrefs.SetFloat(ArchitectureLab.ComponentScalePreference,savedComponentScale);else PlayerPrefs.DeleteKey(ArchitectureLab.ComponentScalePreference);
             if (hadSharedRoom) PlayerPrefs.SetInt(SharedSpace.SharedPreference, sharedRoom); else PlayerPrefs.DeleteKey(SharedSpace.SharedPreference);
             if (hadStation) PlayerPrefs.SetInt(SharedSpace.StationPreference, station); else PlayerPrefs.DeleteKey(SharedSpace.StationPreference);
+            if (hadTable) PlayerPrefs.SetInt(TableLayout.Preference, tableSize); else PlayerPrefs.DeleteKey(TableLayout.Preference);
+            foreach (var pair in comfortPreferences) { if (pair.Value == null) PlayerPrefs.DeleteKey(pair.Key); else PlayerPrefs.SetInt(pair.Key, pair.Value.Value); }
             PlayerPrefs.Save();
         }
         IEnumerator WaitIdle()
@@ -675,19 +682,60 @@ namespace GuateGeeks.AwsVr.Tests
                 cam.transform.SetPositionAndRotation(new Vector3(0, 1.6f, .2f), Quaternion.Euler(-8, 58, 0)); yield return null; Capture("40-volcano-horizon");
                 cam.transform.position = new Vector3(.9f, 2.55f, .95f); cam.transform.LookAt(new Vector3(0, .9f, 2.55f)); yield return null; Capture("41-table-and-stands");
                 Assert.IsTrue(lab.GetComponentsInChildren<LineRenderer>().Count(l => l.name == "Table power trace" && l.enabled) >= 2, "Each object has a table trace");
-                // No back wall or racks; GuateGeeks signs with live eyes and the digital quetzal are present.
+                // No back wall, racks or floating signs: the GuateGeeks identity is the table hologram with live eyes.
                 var names = lab.Environment.VirtualRoom.GetComponentsInChildren<Transform>(true).Select(t => t.name).ToList();
                 Assert.IsFalse(names.Contains("Reactor containment wall")); Assert.IsFalse(names.Contains("Compute bay"));
-                Assert.AreEqual(2, names.Count(n => n.StartsWith("GuateGeeks sign")));
-                Assert.GreaterOrEqual(lab.GetComponentsInChildren<GeekEyes>().Length, 3, "Eyes mark on both signs and in the reactor core");
+                Assert.AreEqual(0, names.Count(n => n.StartsWith("GuateGeeks sign")), "Background signs removed");
+                Assert.GreaterOrEqual(lab.GetComponentsInChildren<GeekEyes>().Length, 2, "Eyes on the table logo and in the reactor core");
+                var environment = HoloEnvironment.Current; Assert.IsNotNull(environment.TableLogo);
+                Assert.IsTrue(names.Contains(TableEmblem.LogoName) && names.Contains(TableEmblem.EyesName) && names.Contains(TableEmblem.InscriptionName));
+                var logoRenderer = environment.TableLogo.GetComponentsInChildren<MeshRenderer>().Single(r => r.name == TableEmblem.LogoName);
+                Assert.IsNotNull(logoRenderer.sharedMaterial.GetTexture("_MainTex"), "Distance field loaded");
+                Assert.IsFalse(EventBranding.GuateGeeksSdf.isDataSRGB, "The distance field is imported as linear data");
+                Assert.Greater(logoRenderer.bounds.size.x, 2.2f, "The wordmark spans the table");
+                Assert.Less(logoRenderer.bounds.extents.magnitude, 1.75f, "...and stays inside the rim");
+                // Every direction is filled: a sky sphere that reaches the zenith, ribs all the way round, and a ceiling.
+                var sky = horizon.GetComponent<MeshFilter>().sharedMesh;
+                Assert.Greater(sky.bounds.max.y, HoloEnvironment.SkyRadius * .99f, "Sky dome closes overhead");
+                Assert.Less(sky.bounds.min.y, 0, "Sky dome reaches below the horizon");
+                Assert.AreEqual(HoloEnvironment.RibCount, names.Count(n => n.StartsWith("Titanium structural rib")));
+                Assert.IsTrue(names.Contains(HoloCeiling.CanopyName) && names.Contains(HoloCeiling.HubName) && names.Contains("Projection shaft"));
+                var gyro = lab.GetComponentsInChildren<Transform>().First(t => t.name == "Projector gyroscope ring");
+                var gyroBefore = gyro.localRotation; yield return new WaitForSecondsRealtime(.1f);
+                Assert.AreEqual(gyroBefore, gyro.localRotation, "Ceiling motion freezes with reduced motion");
                 var quetzal = lab.GetComponentInChildren<DigitalQuetzal>(true); Assert.IsNotNull(quetzal);
                 quetzal.Preview(.33f); yield return null;
                 Assert.IsFalse(quetzal.Flying, "Reduced motion keeps the quetzal grounded");
                 lab.Feedback.ToggleMotion(); quetzal.Preview(.33f); yield return null; yield return null;
                 Assert.IsTrue(quetzal.Flying); Assert.IsTrue(quetzal.Bird.gameObject.activeInHierarchy);
+                Assert.Greater(quetzal.Head.GetComponentInChildren<MeshFilter>().sharedMesh.vertexCount, 600, "Sculpted head with crest, bill and eyes");
                 cam.transform.position = new Vector3(0, 1.7f, .1f); cam.transform.LookAt(quetzal.Bird.position); yield return new WaitForSecondsRealtime(.25f);
                 cam.transform.LookAt(quetzal.Bird.position); yield return null; Capture("42-digital-quetzal");
-                cam.transform.position = new Vector3(0, 1.75f, .3f); cam.transform.LookAt(new Vector3(0, 2.7f, 8)); yield return null; Capture("43-guategeeks-signs");
+                // The hover: the quetzal faces the main station over the table and looks at the viewer.
+                cam.transform.position = new Vector3(0, 1.6f, .05f); quetzal.PreviewHover(); yield return null;
+                Assert.IsTrue(quetzal.Hovering);
+                yield return new WaitForSecondsRealtime(.6f);
+                cam.transform.LookAt(quetzal.Bird.position); yield return null;
+                var toViewer = (cam.transform.position - quetzal.Head.position).normalized;
+                Assert.Greater(Vector3.Dot(quetzal.Head.forward, toViewer), .6f, "The quetzal looks at the viewer while hovering");
+                Capture("48-quetzal-hover");
+                cam.transform.position = quetzal.Head.position + Quaternion.Euler(0, 38, 0) * toViewer * .6f + Vector3.up * .04f; cam.transform.LookAt(quetzal.Head.position); Capture("49-quetzal-head");
+                // Hover in profile: near-upright body, wings over the back, streamers hanging in S-curves (simulated chains).
+                var flank = Vector3.ProjectOnPlane(quetzal.Bird.right, Vector3.up).normalized;
+                cam.transform.position = quetzal.Bird.position + flank * 1.9f + Vector3.down * .25f; cam.transform.LookAt(quetzal.Bird.position + Vector3.down * .45f); Capture("55-quetzal-hover-profile");
+                var tail = lab.GetComponentsInChildren<MeshFilter>(true).Where(f => f.name.StartsWith("Tail streamer")).ToArray();
+                Assert.AreEqual(4, tail.Length, "Two long and two shorter streamers");
+                Assert.Less(tail[0].GetComponent<MeshRenderer>().bounds.min.y, quetzal.Bird.position.y - .6f, "In the hover the streamers hang below the bird");
+                // In flight: entering past the left of station 1 with its streamers trailing.
+                cam.transform.position = new Vector3(0, 1.6f, .05f); quetzal.Preview(.06f); yield return null; yield return new WaitForSecondsRealtime(.7f);
+                cam.transform.LookAt(quetzal.Bird.position); Capture("54-quetzal-flight");
+                var across = Vector3.Cross(Vector3.up, quetzal.Bird.forward).normalized;
+                cam.transform.position = quetzal.Bird.position - across * 1.5f + Vector3.up * .1f; cam.transform.LookAt(quetzal.Bird.position - quetzal.Bird.forward * .45f); Capture("56-quetzal-flight-profile");
+                cam.transform.position = new Vector3(0, 1.75f, .3f); cam.transform.LookAt(new Vector3(0, 2.7f, 8)); yield return null; Capture("43-open-horizon");
+                cam.transform.position = new Vector3(0, 1.6f, .3f); cam.transform.LookAt(new Vector3(0, 5.6f, 3.4f)); yield return null; Capture("50-workshop-ceiling");
+                cam.transform.position = new Vector3(0, 1.6f, 2.65f); cam.transform.rotation = Quaternion.Euler(-62, 0, 0); yield return null; Capture("51-zenith-sky");
+                cam.transform.position = new Vector3(0, 2.25f, .45f); cam.transform.LookAt(new Vector3(0, .74f, 2.55f)); yield return null; Capture("52-table-logo");
+                cam.transform.position = new Vector3(0, 1.7f, 2.65f); cam.transform.rotation = Quaternion.Euler(-4, 180, 0); yield return null; Capture("53-city-horizon");
                 cam.transform.SetPositionAndRotation(p0, r0);
             }
             var poses=new Vector3[26]; var valid=Enumerable.Repeat(true,26).ToArray();
@@ -1113,6 +1161,20 @@ namespace GuateGeeks.AwsVr.Tests
             var view = lab.Rig.ViewCamera.transform; var eye = SharedSpace.Center + new Vector3(-3.2f, 4.1f, -3.2f);
             view.SetPositionAndRotation(eye, Quaternion.LookRotation(SharedSpace.Center + Vector3.up * .9f - eye)); yield return null;
             Capture("47-shared-room-overview");
+            // Each teammate is a holographic android: the right arm reaches the tracked hand with fixed bone lengths
+            // and the pointer leaves the index fingertip.
+            var editor = sim.Peers[0]; Assert.IsTrue(editor.Pointing);
+            Assert.IsTrue(lab.Peers.TryGetAndroid(editor.Id, out var android));
+            foreach (var part in new[] { "Android head", "Android neck", "Android torso", "Android right forearm", "Android left hand" })
+                Assert.IsNotNull(android.Root.Find(part), "Missing android part: " + part);
+            Assert.AreEqual(TeammateAndroid.UpperArm, Vector3.Distance(android.RightShoulderPosition, android.RightElbow), 1e-3f);
+            Assert.AreEqual(TeammateAndroid.Forearm, Vector3.Distance(android.RightElbow, android.RightWrist), 1e-3f);
+            Assert.Less(Vector3.Distance(android.RightWrist, editor.Hand), .08f, "The arm reaches the tracked hand");
+            Assert.Greater(Vector3.Dot((editor.PointAt - android.PointerOrigin).normalized, (editor.PointAt - editor.Hand).normalized), .98f, "The beam leaves the fingertip toward the target");
+            var stand = SharedSpace.StationPosition(editor.Station); var toTable = Flat(SharedSpace.Center - stand).normalized;
+            eye = stand + toTable * 1.25f + Vector3.Cross(Vector3.up, toTable) * .45f + Vector3.up * 1.5f;
+            view.SetPositionAndRotation(eye, Quaternion.LookRotation(editor.Head + Vector3.down * .35f - eye)); yield return null;
+            Capture("57-teammate-android");
             lab.SetSimulatedPeers(false); yield return null;
             Assert.AreEqual(0, lab.Peers.Count); Assert.IsNull(theirs.LockedBy);
             lab.SetSharedRoom(false);
@@ -1152,13 +1214,13 @@ namespace GuateGeeks.AwsVr.Tests
             DeliverRoom(room, lab.Graph.Copy(), 0, "");
             return room;
         }
-        void DeliverRoom(NetworkCollabSession room, Architecture graph, int revision, string receipt)
+        void DeliverRoom(NetworkCollabSession room, Architecture graph, int revision, string receipt, RoomLease[] locks=null, bool accepted=true, int version=0)
         {
             var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
             var queue=(System.Collections.Concurrent.ConcurrentQueue<string>)typeof(NetworkCollabSession).GetField("received", flags).GetValue(room);
-            queue.Enqueue(JsonUtility.ToJson(new RoomMessage { type="snapshot", roomId=room.Grant.roomId, revision=revision, roomVersion=revision+1,
-                hostId="me", graph=graph, requestId=receipt, accepted=true,
-                members=new[]{new RoomMember{userId="me",name="ME",role="facilitator",station=0}}, locks=new RoomLease[0] }));
+            queue.Enqueue(JsonUtility.ToJson(new RoomMessage { type="snapshot", roomId=room.Grant.roomId, revision=revision, roomVersion=version==0?revision+1:version,
+                hostId="me", graph=graph, requestId=receipt, accepted=accepted,
+                members=new[]{new RoomMember{userId="me",name="ME",role="facilitator",station=0}}, locks=locks??new RoomLease[0] }));
             room.Pump();
         }
         [UnityTest]
@@ -1171,7 +1233,8 @@ namespace GuateGeeks.AwsVr.Tests
             var candidate=lab.Graph.Copy(); Assert.AreNotEqual(previous,JsonUtility.ToJson(candidate));
             yield return null; yield return null;
             Assert.IsTrue(lab.RoomEditPending);
-            Assert.AreEqual(previous,JsonUtility.ToJson(lab.Graph),"Unconfirmed candidates must not become shared state");
+            Assert.AreEqual(JsonUtility.ToJson(candidate),JsonUtility.ToJson(lab.Graph),"The local candidate stays visible while awaiting confirmation");
+            Assert.AreEqual(previous,JsonUtility.ToJson(room.Graph),"Only a server receipt changes the committed session graph");
             var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
             var queue=(System.Collections.Concurrent.ConcurrentQueue<string>)typeof(NetworkCollabSession).GetField("outgoing",flags).GetValue(room);
             RoomCommand op=null;
@@ -1182,6 +1245,41 @@ namespace GuateGeeks.AwsVr.Tests
             room.Dispose(); Assert.IsTrue(lab.RoomReadOnly);
             int count=lab.Graph.nodes.Count; lab.AddResource(ServiceKind.S3);
             Assert.AreEqual(count,lab.Graph.nodes.Count,"Disconnected rooms cannot silently edit a local fork");
+        }
+        RoomLease[] HoldLease(NodeView view)=>new[]{new RoomLease{objectId=view.Model.id,owner="me",token="hold",expiresAt=System.DateTimeOffset.UtcNow.ToUnixTimeSeconds()+20}};
+        RoomCommand TakeMove(NetworkCollabSession room)
+        {
+            var queue=(System.Collections.Concurrent.ConcurrentQueue<string>)typeof(NetworkCollabSession).GetField("outgoing",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).GetValue(room);
+            RoomCommand move=null;while(queue.TryDequeue(out var json)){var command=JsonUtility.FromJson<RoomCommand>(json);if(command.action=="move")move=command;}return move;
+        }
+        [UnityTest] public IEnumerator OtherUsersEditPreservesActiveGrabAndDropNeverSnapsBack()
+        {
+            lab.Rig.enabled=false;var room=AttachTestRoom();var held=lab.Views.Values.First();var other=lab.Views.Values.Skip(1).First();
+            var leases=HoldLease(held);var committed=lab.Graph.Copy();DeliverRoom(room,committed,0,"claim",leases,version:2);
+            Assert.IsTrue(lab.BeginGrab(held));var desired=ArchitectureLab.ClampWorkspace(held.Model.position+new Vector3(.3f,.1f,.1f));held.transform.localPosition=desired;
+            var remote=committed.Copy();remote.Find(other.Model.id).position+=new Vector3(.1f,0,0);
+            DeliverRoom(room,remote,1,"other",leases,version:3);
+            Assert.AreSame(held,lab.Views[held.Model.id]);Assert.IsTrue(held.Grabbed);Assert.AreEqual(desired,held.transform.localPosition);
+            if(lab.GridSnap)lab.ToggleGridSnap();lab.EndGrab(held);
+            // Heartbeat can arrive between releasing the grip and LateUpdate submitting it.
+            DeliverRoom(room,remote,1,"heartbeat",leases,version:4);
+            yield return null;yield return null;
+            var move=TakeMove(room);Assert.IsNotNull(move);Assert.AreEqual(desired,move.position);Assert.IsTrue(lab.RoomEditPending);
+            Assert.AreSame(held,lab.Views[held.Model.id]);Assert.AreEqual(desired,held.transform.localPosition);
+            var newer=remote.Copy();newer.Find(other.Model.id).name="Their edit";DeliverRoom(room,newer,2,"other2",leases,version:5);
+            Assert.AreEqual(desired,held.transform.localPosition);Assert.AreEqual("Their edit",lab.Graph.Find(other.Model.id).name);
+            newer.Find(held.Model.id).position=desired;DeliverRoom(room,newer,3,move.requestId,leases,version:6);
+            Assert.IsFalse(lab.RoomEditPending);Assert.AreSame(held,lab.Views[held.Model.id]);Assert.AreEqual(desired,held.transform.localPosition);
+            room.Dispose();
+        }
+        [UnityTest] public IEnumerator RejectedDropReconcilesToServerWithoutReplacingObject()
+        {
+            lab.Rig.enabled=false;var room=AttachTestRoom();var view=lab.Views.Values.First();var committed=lab.Graph.Copy();var leases=HoldLease(view);
+            DeliverRoom(room,committed,0,"claim",leases,version:2);Assert.IsTrue(lab.BeginGrab(view));if(lab.GridSnap)lab.ToggleGridSnap();
+            view.transform.localPosition+=new Vector3(.25f,0,0);lab.EndGrab(view);yield return null;yield return null;
+            var move=TakeMove(room);Assert.IsNotNull(move);DeliverRoom(room,committed,0,move.requestId,leases,accepted:false,version:3);
+            Assert.IsFalse(lab.RoomEditPending);Assert.AreSame(view,lab.Views[view.Model.id]);Assert.AreEqual(committed.Find(view.Model.id).position,view.Model.position);
+            yield return new WaitForSecondsRealtime(.6f);Assert.That(Vector3.Distance(view.transform.localPosition,view.Model.position),Is.LessThan(.002f));room.Dispose();
         }
     }
 }

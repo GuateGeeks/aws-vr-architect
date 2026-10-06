@@ -35,12 +35,17 @@ namespace GuateGeeks.AwsVr
             var floor=Shape(world,"Procedural architectural grid",PrimitiveType.Cube,new Vector3(0,-.08f,2),new Vector3(30,.12f,30),Hex("#030911"));
             floor.GetComponent<Renderer>().sharedMaterial=SpecialMaterial("LabGrid",Hex("#030911"));
             // Projection table: bevelled dark-metal top, recessed glass field and a glowing quetzal-teal edge.
-            Metal(world,"Projection console",PrimitiveType.Cylinder,new Vector3(0,.67f,2.65f),new Vector3(3.85f,.045f,3.85f),Hex("#15222C"));
-            Metal(world,"Console bevel",PrimitiveType.Cylinder,new Vector3(0,.705f,2.65f),new Vector3(3.74f,.012f,3.74f),Hex("#2C3E4B"));
-            Shape(world,"Console inset",PrimitiveType.Cylinder,new Vector3(0,.72f,2.65f),new Vector3(3.62f,.008f,3.62f),Hex("#07131D"));
-            TableLight(world,new Vector3(0,.672f,2.65f),1.94f,EventBranding.Quetzal,.05f);
-            TableLight(world,new Vector3(0,.735f,2.65f),1.82f,Cyan,.014f);
-            TableLight(world,new Vector3(0,.585f,2.65f),1.99f,EventBranding.Leaf,.02f);
+            // It is authored at full size in two frames so it can take three diameters (1 m, 3 m, 3.9 m): the top
+            // (glass, lights, etchings, emblem) scales uniformly about the centre of the glass; the pedestal narrows.
+            var top = new GameObject("Projection table").transform; top.SetParent(world, false);
+            var pedestal = new GameObject("Projection table pedestal").transform; pedestal.SetParent(world, false);
+            Metal(top,"Projection console",PrimitiveType.Cylinder,new Vector3(0,.67f,2.65f),new Vector3(3.85f,.045f,3.85f),Hex("#15222C"));
+            Metal(top,"Console bevel",PrimitiveType.Cylinder,new Vector3(0,.705f,2.65f),new Vector3(3.74f,.012f,3.74f),Hex("#2C3E4B"));
+            Shape(top,"Console inset",PrimitiveType.Cylinder,new Vector3(0,.72f,2.65f),new Vector3(3.62f,.008f,3.62f),Hex("#07131D"));
+            var lights = new List<LineRenderer> {
+                TableLight(top,new Vector3(0,.672f,2.65f),1.94f,EventBranding.Quetzal,.05f),
+                TableLight(top,new Vector3(0,.735f,2.65f),1.82f,Cyan,.014f),
+                TableLight(top,new Vector3(0,.585f,2.65f),1.99f,EventBranding.Leaf,.02f) };
             var rings=new List<Vector3>(); var accent=new List<Vector3>();
             var center=new Vector3(0,.74f,2.65f);
             HoloGeometry.Circle(rings,center,1.81f,96);
@@ -59,14 +64,16 @@ namespace GuateGeeks.AwsVr
                 var side=new Vector3(-d.z,0,d.x);
                 HoloGeometry.Path(rings,center+d*.55f,center+d*.9f,center+d*1.1f+side*.16f,center+d*1.4f+side*.16f);
             }
-            HoloGeometry.Strokes(world,"Console etched circuit mesh",rings,Hex("#1D5767"),.002f);
-            HoloGeometry.Strokes(world,"Console divisions",accent,Cyan,.0035f);
+            HoloGeometry.Strokes(top,"Console etched circuit mesh",rings,Hex("#1D5767"),.002f);
+            HoloGeometry.Strokes(top,"Console divisions",accent,Cyan,.0035f);
             var scan=new List<Vector3>();
             for(int i=0;i<3;i++) HoloGeometry.Circle(scan,Vector3.zero,1.76f,30,false,i*120,85);
-            var orbit=HoloGeometry.Strokes(world,"Rotating perimeter scanner",scan,Hex("#3699AD"),.004f);
-            orbit.transform.position=center;
+            var orbit=HoloGeometry.Strokes(top,"Rotating perimeter scanner",scan,Hex("#3699AD"),.004f);
+            orbit.transform.localPosition=center;
             var lab = world.gameObject.AddComponent<HoloEnvironment>(); lab.scanner=orbit.transform; Current = lab;
+            lab.tableTop = top; lab.tablePedestal = pedestal; lab.tableLines.AddRange(lights);
             lab.BuildArchitecture(world);
+            foreach (var line in lab.tableLines) lab.tableWidths.Add(line.widthMultiplier);
             lab.BuildHorizon(world);
             lab.BuildFloorLight(world, center);
 
@@ -92,14 +99,26 @@ namespace GuateGeeks.AwsVr
                 HoloGeometry.Path(room,d+new Vector3(0,3.7f,2.65f),d+new Vector3(0,4.1f,2.65f));
             }
             HoloGeometry.Strokes(world,"Architectural light rails",room,Hex("#1C4C5C"),.007f);
-            // Etched into the table glass, facing the user: the event and the organising community.
-            var brand=Panel(world,"Projection table marking",new Vector3(0,.746f,1.76f),new Vector2(900,96),background:false,movable:false);
-            brand.localRotation=Quaternion.Euler(90,0,0);
-            var etch=Color.Lerp(EventBranding.Quetzal,Cyan,.45f);
-            Text(brand,"A W S   C O M M U N I T Y   D A Y   ·   G U A T E M A L A",new Vector2(0,14),new Vector2(900,46),21,etch,TextAnchor.MiddleCenter);
-            var gg=LabVisuals.Rect(brand,"GuateGeeks etched logo",new Vector2(0,-62),new Vector2(150,98)).gameObject.AddComponent<UnityEngine.UI.RawImage>();
-            gg.texture=EventBranding.GuateGeeksFull; gg.color=new Color(1,1,1,.85f); gg.raycastTarget=false;
+            // The GuateGeeks wordmark fills the table glass as light, with live eyes and the event inscribed around the rim.
+            lab.TableLogo=TableEmblem.Build(top,new Vector3(0,.735f,2.65f));
         }
+        Transform tableTop, tablePedestal;
+        readonly List<LineRenderer> tableLines = new List<LineRenderer>();
+        readonly List<float> tableWidths = new List<float>();
+        public Transform TableTop => tableTop;
+        // Resize the projection table. The top keeps its proportions about the centre of the glass; the pedestal only
+        // narrows, and stretches a little so it still meets the chassis under a thinner top. The height stays 0.74 m.
+        public void ApplyTable(TableLayout layout)
+        {
+            if (!tableTop) return;
+            layout.ApplyTo(tableTop);
+            float s = layout.Scale;
+            tablePedestal.localScale = new Vector3(s, (TableLayout.Surface - .15f * s) / .59f, s);
+            tablePedestal.localPosition = new Vector3(0, 0, TableLayout.Pivot.z * (1 - s));
+            for (int i = 0; i < tableLines.Count; i++) if (tableLines[i]) tableLines[i].widthMultiplier = tableWidths[i] * layout.Stroke;
+        }
+        public TableEmblem TableLogo { get; private set; }
+        public HoloCeiling Ceiling { get; private set; }
         // A light run: the pairs list from HoloGeometry.Path is collapsed back into a polyline drawn as a moving beam.
         void MovingLight(Transform world,string name,List<Vector3> pairs,Color color,float width,float speed)
         {
@@ -122,16 +141,17 @@ namespace GuateGeeks.AwsVr
         {
             var steel = Hex("#1B2B36"); var dark = Hex("#0A131B"); var graphite = Hex("#141F28");
             // Solid architecture establishes depth; foreground interaction space stays open.
-            Metal(world,"Raised console pedestal",PrimitiveType.Cylinder,new Vector3(0,.3f,2.65f),new Vector3(2.7f,.29f,2.7f),dark);
-            Metal(world,"Console beveled chassis",PrimitiveType.Cylinder,new Vector3(0,.59f,2.65f),new Vector3(3.95f,.055f,3.95f),Hex("#1B2A35"));
-            for(int i=0;i<3;i++) Ring(world,new Vector3(0,.12f+i*.14f,2.65f),1.36f,Hex("#26778D"),.012f);
+            Metal(tablePedestal,"Raised console pedestal",PrimitiveType.Cylinder,new Vector3(0,.3f,2.65f),new Vector3(2.7f,.29f,2.7f),dark);
+            Metal(tableTop,"Console beveled chassis",PrimitiveType.Cylinder,new Vector3(0,.59f,2.65f),new Vector3(3.95f,.055f,3.95f),Hex("#1B2A35"));
+            for(int i=0;i<3;i++) tableLines.Add(Ring(tablePedestal,new Vector3(0,.12f+i*.14f,2.65f),1.36f,Hex("#26778D"),.012f));
             // Slim graphite pillars with lit seams, event-colour accents at their feet and lit arches meeting in a crown ring.
             var arches = new List<Vector3>(); var archLights = new List<Vector3>(); var seams = new List<Vector3>();
             var tealAccent = new List<Vector3>(); var leafAccent = new List<Vector3>();
             var crownCenter = new Vector3(0,5.65f,2.65f);
-            for(int i=0;i<11;i++)
+            // Sixteen ribs all the way round: every station of the shared room faces the same architecture.
+            for(int i=0;i<RibCount;i++)
             {
-                float angle=(-110+i*22)*Mathf.Deg2Rad;
+                float angle=i*360f/RibCount*Mathf.Deg2Rad;
                 Vector3 radial=new Vector3(Mathf.Sin(angle),0,Mathf.Cos(angle)), tangent=new Vector3(Mathf.Cos(angle),0,-Mathf.Sin(angle));
                 var p=radial*6.8f+new Vector3(0,0,2.65f);
                 var rotation=Quaternion.Euler(0,angle*Mathf.Rad2Deg,0);
@@ -144,9 +164,8 @@ namespace GuateGeeks.AwsVr
                 HoloGeometry.Path(accent,p+(tangent*.22f-radial*.26f)+Vector3.up*y,p+(tangent*.22f+radial*.26f)+Vector3.up*y,
                     p+(-tangent*.22f+radial*.26f)+Vector3.up*y,p+(-tangent*.22f-radial*.26f)+Vector3.up*y,p+(tangent*.22f-radial*.26f)+Vector3.up*y);
                 // Lit arch: a quadratic curve from the pillar head up and over to the crown ring.
-                Vector3 a0=p+Vector3.up*4.9f, a2=radial*2.3f+crownCenter, a1=radial*5.1f+new Vector3(0,6.35f,2.65f);
                 var arc=new Vector3[11]; var under=new Vector3[11];
-                for(int k=0;k<=10;k++){ float t=k/10f, u=1-t; arc[k]=u*u*a0+2*u*t*a1+t*t*a2; under[k]=arc[k]+Vector3.down*.05f; }
+                for(int k=0;k<=10;k++){ var q=HoloCeiling.Arch(k/10f); arc[k]=radial*q.x+new Vector3(0,q.y,2.65f); under[k]=arc[k]+Vector3.down*.05f; }
                 HoloGeometry.Path(arches,arc); HoloGeometry.Path(archLights,under);
             }
             HoloGeometry.Circle(arches,crownCenter,2.3f,64);
@@ -162,6 +181,8 @@ namespace GuateGeeks.AwsVr
             for(int i=0;i<8;i++) HoloGeometry.Circle(roof,Vector3.zero,2.3f,12,false,i*45,32);
             ceiling=HoloGeometry.Strokes(world,"Suspended ceiling halo",roof,Hex("#286B81"),.022f).transform;
             ceiling.localPosition=new Vector3(0,5.5f,2.65f);
+            // The ceiling is no longer open: a light canopy over the arches and the holo-projector rig at the crown.
+            Ceiling=HoloCeiling.Build(world,crownCenter);
             // Reactor bulkhead: narrower than the old wall so the volcano horizon shows on both sides, with lit panel seams.
             // No back wall or screen: the reactor (ATLAS) floats free in front of the open volcano horizon.
             var center=new Vector3(0,2.75f,8.95f);
@@ -182,19 +203,17 @@ namespace GuateGeeks.AwsVr
             reactorRenderer=reactor.GetComponent<Renderer>(); counterRenderer=counterRing.GetComponent<Renderer>();
             // The GuateGeeks eyes sit in the reactor core: ATLAS looks at whoever is in the lab.
             var coreEyes=GeekEyes.Create(world,1.25f,"Reactor GuateGeeks eyes"); coreEyes.transform.localPosition=center+Vector3.back*.42f;
-            // GuateGeeks signs float on both sides of the reactor, facing the lab, where the old wall used to be.
-            for(int side=-1;side<=1;side+=2) {
-                // High enough to clear the catalog and inspector panels from the standing position.
-                var at=new Vector3(side*3.9f,3.75f,7.6f);
-                EventBranding.GuateGeeksSign(world,side<0?"GuateGeeks sign left":"GuateGeeks sign right",at,2.6f,at-new Vector3(0,1.6f,0));
-            }
+            // The background stays open to the horizon: the GuateGeeks identity is inlaid in the table instead of floating signs.
             // Deliberately decorative, never presented as measured AWS activity.
             // Fine motes in the event palette (quetzal teal, leaf green, amber) drift through the room.
             Color[] motes={EventBranding.Quetzal,Cyan,EventBranding.Leaf,Cyan,Orange};
             for(int i=0;i<36;i++) energy.Add(Shape(world,"Ambient energy marker",PrimitiveType.Sphere,Vector3.zero,Vector3.one*(i%5==4?.03f:.022f),motes[i%motes.Length]).transform);
             // The event logo in the title window is the lab identity; the wall no longer carries a competing caption.
-            HoloGeometry.CombineMetal(world);
+            // The table batches on its own so it can still be resized.
+            HoloGeometry.CombineMetal(world, tableTop, tablePedestal);
+            HoloGeometry.CombineMetal(tableTop); HoloGeometry.CombineMetal(tablePedestal);
         }
+        public const int RibCount = 16;
         Transform[] ribbons;
         Transform aperture;
         DigitalQuetzal quetzal;
@@ -205,24 +224,34 @@ namespace GuateGeeks.AwsVr
             for(int i=0;i<v.Length;i++) v[i]-=pivot; mesh.vertices=v; mesh.RecalculateBounds();
         }
         Mesh horizonMesh;
-        // A 360° horizon band outside the titanium ribs: night sky with teal haze and aurora ribbons in the logo colours,
-        // above a holographic range of Guatemalan volcanoes. One inward-facing cylinder, one procedural shader.
+        // Sky dome: one inward-facing sphere around the lab (centred near eye height), so every direction is filled,
+        // including overhead and through the canopy. LabPanorama draws the sky, the volcano ranges and the city by direction.
+        public const float SkyRadius = 9.6f;
+        public static readonly Vector3 SkyCenter = new Vector3(0, 1.2f, 2.65f);
         void BuildHorizon(Transform world)
         {
-            const int segments = 96; const float radius = 8.4f, bottom = -.2f, top = 11f;
-            var vertices = new Vector3[(segments + 1) * 2]; var triangles = new int[segments * 6];
-            for (int i = 0; i <= segments; i++)
+            const int around = 96, rows = 40; const float lowest = -14;   // degrees below the dome centre; the floor hides the rest
+            var vertices = new Vector3[(around + 1) * (rows + 1)]; var triangles = new int[around * rows * 6];
+            for (int r = 0; r <= rows; r++)
             {
-                float a = i * Mathf.PI * 2 / segments; var d = new Vector3(Mathf.Sin(a), 0, Mathf.Cos(a)) * radius;
-                vertices[i * 2] = d + Vector3.up * bottom; vertices[i * 2 + 1] = d + Vector3.up * top;
-                if (i == segments) break;
-                int k = i * 6, v = i * 2;
-                triangles[k] = v; triangles[k + 1] = v + 1; triangles[k + 2] = v + 2; triangles[k + 3] = v + 2; triangles[k + 4] = v + 1; triangles[k + 5] = v + 3;
+                float elevation = Mathf.Lerp(lowest, 90, r / (float)rows) * Mathf.Deg2Rad;
+                for (int i = 0; i <= around; i++)
+                {
+                    float a = i * Mathf.PI * 2 / around;
+                    vertices[r * (around + 1) + i] = new Vector3(Mathf.Sin(a) * Mathf.Cos(elevation), Mathf.Sin(elevation), Mathf.Cos(a) * Mathf.Cos(elevation)) * SkyRadius;
+                }
             }
-            horizonMesh = new Mesh { name = "Volcano horizon", vertices = vertices, triangles = triangles };
-            horizonMesh.bounds = new Bounds(Vector3.up * 5, new Vector3(radius * 2, 12, radius * 2));
+            int n = 0;
+            for (int r = 0; r < rows; r++)
+                for (int i = 0; i < around; i++)
+                {
+                    int v = r * (around + 1) + i, w = v + around + 1;
+                    triangles[n++] = v; triangles[n++] = v + 1; triangles[n++] = w; triangles[n++] = w; triangles[n++] = v + 1; triangles[n++] = w + 1;
+                }
+            horizonMesh = new Mesh { name = "Sky dome", vertices = vertices, triangles = triangles };
+            horizonMesh.RecalculateBounds();
             var go = new GameObject("Guatemala volcano horizon", typeof(MeshFilter), typeof(MeshRenderer));
-            go.transform.SetParent(world, false); go.transform.localPosition = new Vector3(0, 0, 2.65f);
+            go.transform.SetParent(world, false); go.transform.localPosition = SkyCenter;
             go.GetComponent<MeshFilter>().sharedMesh = horizonMesh;
             var renderer = go.GetComponent<MeshRenderer>(); renderer.sharedMaterial = SpecialMaterial("LabPanorama", Color.white);
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; renderer.receiveShadows = false;

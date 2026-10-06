@@ -15,6 +15,9 @@ namespace GuateGeeks.AwsVr
         public static Texture2D GuateGeeks { get { if (!guateGeeks) guateGeeks = Resources.Load<Texture2D>("Branding/GuateGeeks"); return guateGeeks; } }
         public static Texture2D GuateGeeksFull { get { if (!guateGeeksFull) guateGeeksFull = Resources.Load<Texture2D>("Branding/GuateGeeksFull"); return guateGeeksFull; } }
         public static Texture2D EyesMark { get { if (!eyesMark) eyesMark = Resources.Load<Texture2D>("Branding/GeekEyes"); return eyesMark; } }
+        // Signed-distance field of the wordmark without the eyes (R distance, G "Geeks", B glow falloff) for the table hologram.
+        static Texture2D guateGeeksSdf;
+        public static Texture2D GuateGeeksSdf { get { if (!guateGeeksSdf) guateGeeksSdf = Resources.Load<Texture2D>("Branding/GuateGeeksSDF"); return guateGeeksSdf; } }
         public const string WatermarkName = "GuateGeeks eyes mark";
         // Small eyes mark in a panel's top-right corner, drawn behind its content.
         public static void Watermark(RectTransform panel, Vector2 size)
@@ -23,30 +26,6 @@ namespace GuateGeeks.AwsVr
             var mark = LabVisuals.Rect(panel, WatermarkName, new Vector2(size.x / 2 - 70, size.y / 2 - 28), new Vector2(70, 39)).gameObject.AddComponent<RawImage>();
             mark.texture = EyesMark; mark.color = new Color(1, 1, 1, .42f); mark.raycastTarget = false; mark.transform.SetAsFirstSibling();
         }
-        // A floating GuateGeeks sign whose eyes are live 3D GeekEyes that follow the viewer.
-        public static RectTransform GuateGeeksSign(Transform world, string name, Vector3 position, float widthMeters, Vector3 facing)
-        {
-            var size = new Vector2(1024, 669);
-            var sign = LabVisuals.Panel(world, name, position, size, background: false, movable: false);
-            sign.localScale = Vector3.one * (widthMeters / size.x); sign.localRotation = Quaternion.LookRotation(facing, Vector3.up);
-            var back = LabVisuals.Rect(sign, "Sign backlight", new Vector2(0, 0), size * 1.15f).gameObject.AddComponent<RawImage>();
-            back.texture = Glow(); back.color = new Color(.05f, .45f, .62f, .32f); back.raycastTarget = false;
-            var frame = LabVisuals.Cyan; frame.a = .5f;
-            float hx = size.x / 2 + 24, hy = size.y / 2 + 24;
-            for (int x = -1; x <= 1; x += 2) for (int y = -1; y <= 1; y += 2)
-            {
-                LabVisuals.Block(sign, new Vector2(x * (hx - 40), y * hy), new Vector2(80, 4), frame);
-                LabVisuals.Block(sign, new Vector2(x * hx, y * (hy - 40)), new Vector2(4, 80), frame);
-            }
-            var image = LabVisuals.Rect(sign, "GuateGeeks logo", Vector2.zero, size).gameObject.AddComponent<RawImage>();
-            image.texture = GuateGeeks; image.raycastTarget = false;
-            // Eyes position from Asset 41.svg: eyes.svg spans x 43.8–112.65, y 33.35–71.3 of the 145.75 × 95.21 logo.
-            float k = size.x / 145.75f;
-            var eyes = GeekEyes.Create(sign, 68.85f * k);
-            eyes.transform.localPosition = new Vector3((78.225f - 72.875f) * k, -(52.325f - 47.605f) * k, -4);
-            return sign;
-        }
-
         public static RawImage Build(RectTransform parent, Vector2 size)
         {
             var back = LabVisuals.Rect(parent, "Logo backlight", new Vector2(0, -20), new Vector2(size.x * 1.1f, size.y * 1.05f)).gameObject.AddComponent<RawImage>();

@@ -1,0 +1,1926 @@
+[
+  {
+    "path": "Assets\\_Recovery.meta",
+    "sha256": "f009ab7fe0fb13ecee8273957fcaf6fab3df8c6ffaedf285545b009e205e421e"
+  },
+  {
+    "path": "Assets\\CompositionLayers.meta",
+    "sha256": "6b1ed4d2432df6a0714180cea526df1055ed919abacdbe97682d97b7b7ccd807"
+  },
+  {
+    "path": "Assets\\GuateGeeks.meta",
+    "sha256": "00322c8f93a6b9c45ea7c115c50d735ec1fbe6ce6c65e980e9ef9b80a740ef20"
+  },
+  {
+    "path": "Assets\\InitTestScene02223ac1-b174-4ffa-9c69-93da5b64b008.unity",
+    "sha256": "ebd90a6f857f63b05d697f9892e8798d3f33d48db3a868a0a6b1b47bcd7ddae7"
+  },
+  {
+    "path": "Assets\\InitTestScene02223ac1-b174-4ffa-9c69-93da5b64b008.unity.meta",
+    "sha256": "0022adb17d3b873a860fd47be98d56800b862013bd8c8e992dfb0204711333a0"
+  },
+  {
+    "path": "Assets\\InitTestScene0e14a4bc-91ae-4817-96a7-c172fd33379c.unity",
+    "sha256": "cc9f41116b1b6a21c9a3c6868e77904b4666b86a1005846de4ee80492e0b6472"
+  },
+  {
+    "path": "Assets\\InitTestScene0e14a4bc-91ae-4817-96a7-c172fd33379c.unity.meta",
+    "sha256": "42194db26b22319f9b9dc3148425f40352ae6a292d0595fda2f24d30f8517830"
+  },
+  {
+    "path": "Assets\\InitTestScene50610e2d-1199-4aae-837c-748a363ec801.unity",
+    "sha256": "b7bce0f1915d6449bd552d0688d5896c4844e405e7c53044e716d247fb118991"
+  },
+  {
+    "path": "Assets\\InitTestScene50610e2d-1199-4aae-837c-748a363ec801.unity.meta",
+    "sha256": "826171c580ac9af388ed2400132811f418b5e8b7b23b793b9d4b511187362cc0"
+  },
+  {
+    "path": "Assets\\InitTestScene8aa84ab5-9e5c-4a0f-8f4d-bb0db5646e08.unity",
+    "sha256": "b676210f671efd9adee53715a5739883e3a6cc4149009551a1d59f5249712b1a"
+  },
+  {
+    "path": "Assets\\InitTestScene8aa84ab5-9e5c-4a0f-8f4d-bb0db5646e08.unity.meta",
+    "sha256": "be7f28b64743c4c221eea786eda3ada88674f0430c3b0cb26d796174abe633cb"
+  },
+  {
+    "path": "Assets\\InitTestSceneb0bf8cac-bd01-42e4-872c-2772e30abbe7.unity",
+    "sha256": "fba6ebe84f40d1a6c133db07fe108df2d05a66401d87b99544a9b4559a3070c6"
+  },
+  {
+    "path": "Assets\\InitTestSceneb0bf8cac-bd01-42e4-872c-2772e30abbe7.unity.meta",
+    "sha256": "93fe755394812417edca19c8c8d3afc14d108ef1e1568ce74272cb38408c80f4"
+  },
+  {
+    "path": "Assets\\InputSystem_Actions.inputactions",
+    "sha256": "1c6cbb519d65ecfe19a29231735b7f54741a20ac1a8ad4f46a18e1bfb28a3c39"
+  },
+  {
+    "path": "Assets\\InputSystem_Actions.inputactions.meta",
+    "sha256": "3b4e424a80f5b4fa76b6abd774884a24285eaa61f22ff9bb20e5ad505fd8b569"
+  },
+  {
+    "path": "Assets\\Plugins.meta",
+    "sha256": "7ec76968ef3e5de46816e51fef78d39615019c0acbf7e6c995747cd5af094c2e"
+  },
+  {
+    "path": "Assets\\Readme.asset",
+    "sha256": "4ca7614fe45a13ac0423b2c4ced1bcd13b0f889649bd9bd70bb2d2a4ceee5afa"
+  },
+  {
+    "path": "Assets\\Readme.asset.meta",
+    "sha256": "46c6b89ac1d47bd0c0d1a8b141ae3e32cd95d3e74c49381f0d9f942488c254ce"
+  },
+  {
+    "path": "Assets\\Scenes.meta",
+    "sha256": "92598ef42aeaa7813a50e780bcee1ad6c832b257592d09ffb0e6fb6116bb703f"
+  },
+  {
+    "path": "Assets\\Settings.meta",
+    "sha256": "73c8e19843240273facb0af6bdbf430d719e397aded705629594060ce25ce7ad"
+  },
+  {
+    "path": "Assets\\TextMesh Pro.meta",
+    "sha256": "8529d84d190a68aeb1a16e0a90308081bd30a738dbcc63c63b2a93c53b9a11b3"
+  },
+  {
+    "path": "Assets\\TutorialInfo.meta",
+    "sha256": "07f022e5932c833d026e020b27d73452ebd781993b616d76003494af1e140946"
+  },
+  {
+    "path": "Assets\\XR.meta",
+    "sha256": "ab61b004f898b65454aba09cc594149fa0febe308494110ab9559fd839a45f37"
+  },
+  {
+    "path": "Assets\\CompositionLayers\\UserSettings.meta",
+    "sha256": "c286663858f86155767b54fded6dacbb2cdd39608b60d9b62279531f21296739"
+  },
+  {
+    "path": "Assets\\CompositionLayers\\UserSettings\\CompositionLayersPreferences.asset",
+    "sha256": "4119f872208fc7578f7cd42a3e387e0665cd2c66b464725e867a902f70ecbde2"
+  },
+  {
+    "path": "Assets\\CompositionLayers\\UserSettings\\CompositionLayersPreferences.asset.meta",
+    "sha256": "31c5282fde3ab14e08ae0f381b349157e4e861f93c0b887e53c5e2d30e86cd3c"
+  },
+  {
+    "path": "Assets\\CompositionLayers\\UserSettings\\Resources.meta",
+    "sha256": "698d4fcba6106d834937664ad1b3ce5f369247a0e0edf7f301312bf76b3eb345"
+  },
+  {
+    "path": "Assets\\CompositionLayers\\UserSettings\\Resources\\CompositionLayersRuntimeSettings.asset",
+    "sha256": "a4cae70985bfca916d193d381cdfe6d5a960710e76b6c1f0836a19b4c62acaa8"
+  },
+  {
+    "path": "Assets\\CompositionLayers\\UserSettings\\Resources\\CompositionLayersRuntimeSettings.asset.meta",
+    "sha256": "57aa683ac0296854f6a16c4c5259e76889b679fb91a61078549f5345c8cca0b8"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor.meta",
+    "sha256": "da5655681bae22306850c0ba169d13ce88b25db5a9a1e7614fe915573ab63f57"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\link.xml",
+    "sha256": "57d27dd193be1aea3ff19dc467a2304dfd15ddd67d31769fdf053569c325382a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\link.xml.meta",
+    "sha256": "eae163803eb27b2859bfe3bc3c80df3b606e0a829dc63ce4f05d8301a59639c3"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources.meta",
+    "sha256": "ce0710593c229528d30a00a64ef0312adcc08058dca390948061ce5c11569408"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime.meta",
+    "sha256": "ab2d5ce8a59a8cfb31bc475aec6587df2849bfc4db2f93743103d096ccea9726"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests.meta",
+    "sha256": "84dab25d93dcd358d8ab9d1e55b59f33a553b28f3b407e64bbfc493502650e70"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\AwsIconImporter.cs",
+    "sha256": "ece386d916c2688c61a02168dea98afcce0c882a4ea6d7fa4302b95cac145f89"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\AwsIconImporter.cs.meta",
+    "sha256": "274e441744302de713899e689a68428363dc66a1979d8f741bb176fc565bd162"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\CloudSessionWindow.cs",
+    "sha256": "dd9b0faf2698c1fc5c2834b0441e2181cc658bf32f3fa58d56f7d4a33a921850"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\CloudSessionWindow.cs.meta",
+    "sha256": "ed86853a01fc70363d8a96f3f540695164b8b50cd74678fff259e96fe0253b5e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\GuateGeeks.AwsVr.Editor.asmdef",
+    "sha256": "9dad6d5940a53c4d20bc1f33e982be755b1649c4d466c5b8e4c6a8b1a0e717a5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\GuateGeeks.AwsVr.Editor.asmdef.meta",
+    "sha256": "70f363d83727ecb986d9ea578ecf8a4d49f9b4938ad363f19971a2772425872b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\LabProjectSetup.cs",
+    "sha256": "5d7c10a4a5964f447459d66c14ac3c8b12ab00e0b1e4a4284b72b452c9a30670"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\LabProjectSetup.cs.meta",
+    "sha256": "e4732e79e1abdf9196a720bfb196682fd0bad6dadb53462226bb5665ab841a68"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\LabValidation.cs",
+    "sha256": "6f432ac465bad277d37a3d62d5b59a725e316e696d4b197e7ba2d5cc4bbfc04b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\LabValidation.cs.meta",
+    "sha256": "e1e5310612cee95b8201424a45a1d7ae7639638185c0270f7901474f01fa556b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestBuild.cs",
+    "sha256": "d9e0197e184d226a4de7f06beae31a76c87d1a987304c0ad3579ecc1d2ccb1dc"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestBuild.cs.meta",
+    "sha256": "592e42a3697dfa4e917e847218b64bbbb21335b256d6fb863c5e1b1a8f6839b2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestDistributionManifest.cs",
+    "sha256": "c60be65b1de5dfb6475f7ac6085855cc8501f4e1d5ada11e0dc03057af23c991"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestDistributionManifest.cs.meta",
+    "sha256": "83d096fe3f3ec3ff3a2ed25cbb93f0887d45ddc7862eeadbe6561bec36b694ee"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestInstall.cs",
+    "sha256": "ee5b15e42ac87275db42ea8e652830dc1882f09f93482c76209d87a9ce83dbd5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestInstall.cs.meta",
+    "sha256": "223dfda39acbdc3b853cfe684dc57f0932ce41dea82b03c1ec535243e53cd202"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestRelease.cs",
+    "sha256": "62b17755228c8356246caa3d92acc2766b233fd763a4bb78eeb89becebf46e58"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Editor\\QuestRelease.cs.meta",
+    "sha256": "9503a384ef4e65f1c5708cd55dd7a2fa9d38434de131b28047c270b2036770cf"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons.meta",
+    "sha256": "8a09aefab1de5f425f1ec88abc9871966e1e6ba192a4af0b8c34aa7c042845d0"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding.meta",
+    "sha256": "5c2f7bb46b05564e66d043f0ff71495876e8a49edf23b6c452317af4f6bc5792"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabCanopy.shader",
+    "sha256": "d9d5dcccfd56e50dc44495380a2dfb58737bac5743bdb68de176295fe673ffe8"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabCanopy.shader.meta",
+    "sha256": "8a77dd4edb104192d8b3316f96dc3832d9988e40ff02c9e248e4a30a640f575d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabEmblem.shader",
+    "sha256": "c3e7a201ec3bbd7fe805f13947294f24746aa9c7ca4a48c9788dc6ff9798cde7"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabEmblem.shader.meta",
+    "sha256": "a8bb63907ff3f6ac21069c3217c320a54f05823d365cd54ba780fb88245158db"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabFlow.shader",
+    "sha256": "058d9a0e8943ae3e7fd7133c5232cb9e7052dd6c8dccd1315e97896908487e95"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabFlow.shader.meta",
+    "sha256": "15adb26cc6f23e4e0feac7d598116ccd277f8e29c539103fed64990539e562c6"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabGlow.shader",
+    "sha256": "ecbd79f6781439f08c058321fc7812328b1e45c2fcd29c27a46d7b625cf4fda2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabGlow.shader.meta",
+    "sha256": "e9d584ae347ecd643aeb87d95d6cb9ddd64bb1b87249b78f2f87e74404dd41b7"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabGrid.shader",
+    "sha256": "b7a97357a86beb29672480b0968e0c8620eec4bf30fabcacf262ec8b5405017b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabGrid.shader.meta",
+    "sha256": "bb33e61839bd4bfa0d930fcd1d8dc0781fc99572ba6997d863bd2cbc9f476de9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabHologram.shader",
+    "sha256": "ac9dfaf6bb337427f880c6adb55a25071a424a4ab407a86298ae0bcac848eaac"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabHologram.shader.meta",
+    "sha256": "8062ee855f51df190e1d99f98798960e182310cd9ccf9bdda6f6b6cbb1dc8cba"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabLogo.shader",
+    "sha256": "0985a24e364c48d1650ca1b882b541099b0fd8f2e2b3a3f67354ff5dcb75563e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabLogo.shader.meta",
+    "sha256": "fb2e8ac717a5850326aa9a813fc2a7d5e424f9316717cb9782d98fee9e724473"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabMetal.shader",
+    "sha256": "96cddd76be980df9efbd5677b4b38a170d40ae17c3b85d87c5d69957a070fb3e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabMetal.shader.meta",
+    "sha256": "b7d3c262503a1c587985ef23269a308543ce701989176b1bbd08d7362cbcfd1f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabPanorama.shader",
+    "sha256": "4826749027517fd0302b135910e8a4d2c80ca3ac3fc3624133a6d1588ca6e92f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabPanorama.shader.meta",
+    "sha256": "1506e0f408704687c5ed97f115665f75b1d3ec05b0c18f6cf6a07d2079e13dda"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabQuetzal.shader",
+    "sha256": "5adaf18d9d2eda8c7bc9571541a7fe72dcb2bc10180838ae2b3142966ff9018d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabQuetzal.shader.meta",
+    "sha256": "2bbc7df3382f756bbdab56d48bef07b2f6fabf2799ff068ad2e3fa9e46458497"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabShaft.shader",
+    "sha256": "6fc4cc3d3f88a3d9c3114cfe671d86ff3b12d55235f23b0a85304f2b05af82d9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabShaft.shader.meta",
+    "sha256": "d949c2360e2d7a4e9cb29d783281403b594ddcba2911fdb8d8e31100ac18c084"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabUnlit.shader",
+    "sha256": "437fb557c178c8933f4f1b740ce9128ec44c95319a07550e05710e119fbfa1e9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\LabUnlit.shader.meta",
+    "sha256": "196b5cd9c172a7d12bd125c22fa3e47ce2b2274fe4a7eebacfc4f4279f4bd0c2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\ApiGateway.png",
+    "sha256": "5bf721782842d0037151af4263401f6d2814fb938cfa00eb28683d5fa25b51cd"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\ApiGateway.png.meta",
+    "sha256": "9c035176809902945c975d234fc5815f3922693eb0aa1595f0cdeab2a3ab1ed4"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\CloudWatch.png",
+    "sha256": "02d94c738b05d063becaec8e66fd9c1965bba7615acf46b8a1622d6860515f8c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\CloudWatch.png.meta",
+    "sha256": "43b12ae2f823065503798f313a3d75f9f999782023b0233e60a2f7ded1614190"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\DynamoDB.png",
+    "sha256": "ce12c6554c0f811171e012334a4a5667d1a06089a354a0f51c00c8f57f74361f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\DynamoDB.png.meta",
+    "sha256": "543b736030affacbfa4c5a05133e22f9f64b0b441acebdb85773f3f1d753426a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\EventBridge.png",
+    "sha256": "5b2d47b8a79c3868fda73f6d90222ef74b02efb7787c9ce858f2922d395e201c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\EventBridge.png.meta",
+    "sha256": "49dd265d61ed82b74af529cd37aafd0b27c821403686e5158aa0eb500524d246"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\Lambda.png",
+    "sha256": "98151567dfca517bd9a18400ab590ead345459bf5df5c43260112856e20f6fb3"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\Lambda.png.meta",
+    "sha256": "80c90b6febe43e01acf98411a72fbbd920157b0a166e9c6f08fb435769c58319"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\S3.png",
+    "sha256": "1c74ef44226684c4e2ee355a59e5abbc0aba07ed465ad05541f5219bf5997fad"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\S3.png.meta",
+    "sha256": "85f3f55d5c4c8041b776348dbf9ffbd2aff7db9f1a3c06063ea3792491ee72f2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\SQS.png",
+    "sha256": "05aea5ca014d3e7cd25831b7a59ece793aef245e73657761e5e3a1ba498fc2bd"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\AwsIcons\\SQS.png.meta",
+    "sha256": "4ac120c3f29be40e7586855ac294c6aeee5c1a77a559c82022a945fbd7291070"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\AwsCommunityDayGuatemala.png",
+    "sha256": "39e19fa242e5b72d4dd871925679566f269b4dc49cd44635102f37971263add6"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\AwsCommunityDayGuatemala.png.meta",
+    "sha256": "263519de33b0eb55f8d4c719b3357d387d4257415acfac81f09ab2677f659844"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GeekEyes.png",
+    "sha256": "1bf6bccec7a9327cfd67d1702ec1b39b9cdba7f0b4aac4cc7daab9bc3a135b21"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GeekEyes.png.meta",
+    "sha256": "2b621d30bc039fbe598bee4b030c2329fab401d2d930ba443d6789cca4cfc7cd"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GuateGeeks.png",
+    "sha256": "44c1b6b9b7f1ab662dbd614907dfc8a2701c6e92166cd34e58a0e84f95e1868a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GuateGeeks.png.meta",
+    "sha256": "3a8ba97e8d292a0c1440ce66d73be52bb17dcc3deea72d289bb82b562e61855d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GuateGeeksFull.png",
+    "sha256": "51bee0a009454621a44dd9f003e2433e06a167270271986668f0b278011858e3"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GuateGeeksFull.png.meta",
+    "sha256": "21395442895219eca06609a6e1b1055c0a461cbbba8dc77b33fbb8f169c29f6d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GuateGeeksSDF.png",
+    "sha256": "14a83ad9c1a304747260221d87f6a6aefd8f23b9af267bb227fe596917cbbdb5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Resources\\Branding\\GuateGeeksSDF.png.meta",
+    "sha256": "7ed9c0ce1b6fa1cc1343155cb1811321179364124fc07984acce22768160899c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\Architecture.cs",
+    "sha256": "11457770cb8594ab097908f7ee72fb1a0098c1875e76b788154ae19b79853dab"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\Architecture.cs.meta",
+    "sha256": "376fc35b8ee0796c229a259cab222d4a9cca42bfb05edd50a2026fde0c57e1b1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Assistant.cs",
+    "sha256": "52f62a59713e275053a135639505fa496022d4bedaa0a37f58ce1bc016b3d028"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Assistant.cs.meta",
+    "sha256": "c2c97b9c37ddc413e01c8afd32496c93aa18b727caacf1888ee40534d5532be5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.AssistantCloud.cs",
+    "sha256": "c331a267b9c0f8dd3bcdbb86f5e305c128f06da600ca6dc34102a19755afa9ae"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.AssistantCloud.cs.meta",
+    "sha256": "10d7d6f444ebd5ebf7a5aad09d5f61d24cc9812f7ec8246e48222850b5d28a8d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.AssistantPresence.cs",
+    "sha256": "7fa6ab184dd1c68559966a91787880e96361c6747068b5dc0b5fc033ee742a97"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.AssistantPresence.cs.meta",
+    "sha256": "8cceb45a68bb9d7b83a133080e9ef3177ee799f042dec6d39984b6f059264315"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Cloud.cs",
+    "sha256": "91b368b44e424054c9c81210deebe13b0d1a6c927dadfb2456a4e785f8b591c4"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Cloud.cs.meta",
+    "sha256": "eec4857488a652a10cae6037bc5b3a1ea5a78613ba4890cf894c19a00825010c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.CodeEditor.cs",
+    "sha256": "f25f177079cb0f2639b0a27262872dc0b6251256ee9b93c7213b8201f7fafdd5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.CodeEditor.cs.meta",
+    "sha256": "17cff22b7ae0a48b1dfedffe33f064d8cba440028a9d02bf1d0dd5c755d67d21"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Collab.cs",
+    "sha256": "0901253508f7041bd18149b4a0b38081faf65f8919599b23eab4aa69e4d33e5e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Collab.cs.meta",
+    "sha256": "5c6371f7d56b400809c937d454faec1dc2c511ebdb2f4414587190ec10b692cc"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.ConnectionSetup.cs",
+    "sha256": "228d6e91b23752fd904295ecf4dc728b822c0f1bd1df7dbed50c4fcbfc19ce93"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.ConnectionSetup.cs.meta",
+    "sha256": "3ba096ee9f5e6328864a474208a4910da1fc995d589027272775be5ca338a517"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.ContextRing.cs",
+    "sha256": "46a62887413778443e8977b690adff428313e084f5f57b3b512fd8ab04464e91"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.ContextRing.cs.meta",
+    "sha256": "821d1df0cd9d572e767cdce726767171c5cc9b54e9cd67bad7d7ff9e69337968"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.cs",
+    "sha256": "41bcb55c709671f2a6c4255eabf6bc289b7a61a87d0f3ce447b74153ba04e728"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.cs.meta",
+    "sha256": "5c5d577c68f8998c85473f05102632d54792a26b4e16e016829e0e54b43957b3"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Diagnostics.cs",
+    "sha256": "4dc5aa73411e5b1ad9f32229f54dba53663c539232ca00afdb6abc5909ebe880"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Diagnostics.cs.meta",
+    "sha256": "386c054472a8aa3665ccff9fbbc5b4350afd990ac4979bcd3c3164d2013e8294"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Guide.cs",
+    "sha256": "08459e8413a46ddcda852327684d9e4b1da3d3631cdadd924f0b7c6a23bb1228"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Guide.cs.meta",
+    "sha256": "bc85ce907024aa2bf70ce7761f34ecf6b6962badbfa801cfb1495403b338c40e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.LiveInspection.cs",
+    "sha256": "130cc13dd6c01a876b5b84a25fb757c06d04db9ff394fa59217299ec13a03a56"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.LiveInspection.cs.meta",
+    "sha256": "6f3e6d837e9df6e3a2b316e941cff4df2e5371bd412fce8df36f1c9fd8431cd6"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.NearField.cs",
+    "sha256": "4c5f12a2005019b1ce60033f46a3997c579ee85497a5ff99df2d65e747e95fcf"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.NearField.cs.meta",
+    "sha256": "578979c2f83d4b45bdd54afd0dc5f1b22b6a6696c44d1eccc06e8644ad6f8578"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Network.cs",
+    "sha256": "84551472d214a54b9ee5eb8fa591b5876bb154a68effba6299a5e8ffc3e8e327"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Network.cs.meta",
+    "sha256": "0e9b57673342cdabeec71a43bce2ede503c28a032c9de9b586b299a7b7a5649c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Operations.cs",
+    "sha256": "daee5baed7120f31f1735fffed8aec47b7c175ea02546f9ee0ebcf8c62351518"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Operations.cs.meta",
+    "sha256": "2995f98a6a744b27d1bdd02e11dd14f98aa50f1caffe03e1101746a61e70c622"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Settings.cs",
+    "sha256": "f0aaa5c091ceb8362a2989032be45bf90c825a355652822f92d37e3b5c11a893"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Settings.cs.meta",
+    "sha256": "01e8011aea1a1a9be3953ae62fe75e72ef2d18d2961ad5a476104527fa8b93bf"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.SpatialVoice.cs",
+    "sha256": "87278011402a71b1dd6076529afbf33dc3ad5d5c3a9ed4386fd68163f1612acd"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.SpatialVoice.cs.meta",
+    "sha256": "b8cc9da40754084784c68bd221a5076d2e9951d5022b90729a632ea4e6c46036"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Studio.cs",
+    "sha256": "6d1baf01b23de27513de5ead88cb1759813ce8d64d3e0a6518428b3ba1138136"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Studio.cs.meta",
+    "sha256": "183e1610e0940e3fe50436e1a58235b5b345787867363157495a25ac15524265"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Table.cs",
+    "sha256": "cc7608fa0763a4d5444ca123daf77ccb13eaf45e63ba37f59ab2bbeb4bbaf423"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Table.cs.meta",
+    "sha256": "11059994b613ee093597e7309e7be2c93d58d9f186fdea09e610fbab2cb19486"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.TableTraces.cs",
+    "sha256": "6efed8a3cb46a57c82d28c1ed3543b55747315ce2eb07ba7cb1f1a249ad2c549"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.TableTraces.cs.meta",
+    "sha256": "9953bf25b1edbf73bc923fcc41d4e6e760e7fdcdee74bdf39b779c4145746e36"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.VoiceActions.cs",
+    "sha256": "7e3a9f48aeb229321e5b328f03f1e2090fd0ca72b53e1ffcf8a7991a387b0879"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.VoiceActions.cs.meta",
+    "sha256": "bfea87c914e41f8ee5d5403f966cd66a47ee16d5252131d3725eafd72c84ab1b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Workflows.cs",
+    "sha256": "c712ee720a545183529554f62528abffc08793780fd03d906db8538349a3c670"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArchitectureLab.Workflows.cs.meta",
+    "sha256": "b6eba0bfbdafd1299cb6c3b44949c7f667d8004aee100a4bd1f0d3ef38cfea5f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArmoredHandVisual.cs",
+    "sha256": "c1e6fd78a66f7ecbcb34c3fb072cf79cf329f2eefbf30b0aa657c69cd71beb51"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ArmoredHandVisual.cs.meta",
+    "sha256": "658003b62c4ed31df81325c436551af515b2c7f84533f2d829b4bff70899a67b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AssistantProposal.cs",
+    "sha256": "b2dca5b88b56cf8fa026a8f15d282f7f8f478773fba81a7954206c18ce78c5c9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AssistantProposal.cs.meta",
+    "sha256": "1b547e231a191690d60a259ddc6de944834bbc8d2298463221425f97c3c73d5a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Assistant.cs",
+    "sha256": "37f7d41f7deebe90c482159b2dc8f5e6f2708f43b22d6f986f82eb6076d22455"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Assistant.cs.meta",
+    "sha256": "b57692e038dd2b7a18ede85b94f465bac5c047d2e55ab926abb31af5dc494897"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Authoring.cs",
+    "sha256": "3078a2a20938d469483864a20b27e17e14a4193f90aad9f91fb85de98f6c4628"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Authoring.cs.meta",
+    "sha256": "eb6192a9bbc9c8d31fb80f0da90b6043b41429602a5d1956f7d2ca7a4e562515"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Collaboration.cs",
+    "sha256": "c89e69b843f8ed8d93b1ae880cbd1a1863274bafa0647ca863d7dab16c810d88"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Collaboration.cs.meta",
+    "sha256": "95e920143b2d9ceb54e8b0fede7355fe6c4fdff8506ed85b6819e4611dc18c61"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.cs",
+    "sha256": "ecec60159c510c88968fd3d05d8d07e3adf6fbfd8a45de5170d51ad6af03d53a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.cs.meta",
+    "sha256": "9262aecbeee0712d9995c024d3807740b6692b0069a003b9fd3cf82fdaea4387"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Operations.cs",
+    "sha256": "fb54d77575d2c54a9cf11f64f34f7d3609cabb2b7df631c63c6ee020aa145bed"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsCloudApi.Operations.cs.meta",
+    "sha256": "713cf456c63c81a1e8e960b15e6519410db71ad28df1e81c04dcc0a303016b9d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsIconGeometry.cs",
+    "sha256": "38296c69ee22cd5b8094f83d0aecb2a6991e6b92e8272517ccdfea4b11d4cfad"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsIconGeometry.cs.meta",
+    "sha256": "0317601f9d5b787062b06d535cd45b979effbda2c48174fc76d6bcff073b7b36"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsIconGeometry.Data.cs",
+    "sha256": "97a147757d433f7adb921a6e17dded47091e7db20b23d8bb41d551b119663931"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsIconGeometry.Data.cs.meta",
+    "sha256": "8057fed7878e95cd50fc166035c804e03cf06c59ee75b3e1047daf2fd72e783e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsServiceIcons.cs",
+    "sha256": "fd1913a486b18db0899da4bcf005c662d93e6cfc802a09a46f76e051566300cd"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\AwsServiceIcons.cs.meta",
+    "sha256": "298f060e33685a89c7a7d11a3d15bda26f519fcbc1129f3f192bcd1f106c8b05"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CloudConnection.cs",
+    "sha256": "51e63a317568e8003b9e2e3e39a079c9422f2c5918acaf604e6e14ff541766b1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CloudConnection.cs.meta",
+    "sha256": "68167c4b93932b1cab1494004bdcbc564eb2c3e052a19332714bbe7d0db41f18"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CloudProfile.cs",
+    "sha256": "d4de732d3899649f5483850dc29a84ef73c72912f828d6f74691f1dfd7295684"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CloudProfile.cs.meta",
+    "sha256": "f554680c53407f3e330da8ce287c2dde080ef38cb25f0cd4b219eb73945c1f28"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CodePresentation.cs",
+    "sha256": "45079178f69a7373a38ee0f3689c55e1f8124af90d761583c3b5ae228ae4a641"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CodePresentation.cs.meta",
+    "sha256": "adccf68bca0843f46e5ac61f4f582f40e1e149c97ec6cb6d835790f3e9cdd14d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CollabSession.cs",
+    "sha256": "824632cce06e24766ba98c12e1600b42c94d1f4aa1fbe7752a122135f69c1b1b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CollabSession.cs.meta",
+    "sha256": "c9d241022304236d55b39093da024cb264bbee876d4997be9a3b805acaebb3ae"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ComfortLayout.cs",
+    "sha256": "437809d61ac066f465c57f9437abfdff261f988138a80f83d818d4ef76aae6ba"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\ComfortLayout.cs.meta",
+    "sha256": "98d0a554f3897753eec553b4c1a15cabbf30b1e2ae90c9c35d1fab2a16ff76d3"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CredentialStore.cs",
+    "sha256": "1347604c916fddcc57f689cfce32da7792bf9299e2858ad536af7e1b7c010135"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\CredentialStore.cs.meta",
+    "sha256": "2127f04c0e2a423fee7682e715ef5fe54b9ae460d2cd3f1c29d61bb297a4e18a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DesignLibrary.cs",
+    "sha256": "a27884fb7f354451b78f1fb2c67a9b1baf63ccf6ee2a562eed45012293b3d3ef"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DesignLibrary.cs.meta",
+    "sha256": "e9c68a8d53ad17aaf5f1ba296333781faa8fa68de5b5e4e43364deef4574789d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DesignSemantics.cs",
+    "sha256": "bbfc9de2e1888fed3362474bd04cd7718e14cebf1d517cd4ea6f8196eb42a51f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DesignSemantics.cs.meta",
+    "sha256": "a6345f4d8d8a00d35df3a8179708d63c19d0d1be7867c02ed8cbf5e1b509808e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DigitalQuetzal.cs",
+    "sha256": "13efed7bafe37c3ea5069b8950e110c6b8ac9b73ba0107adbe609ccbf4364f5f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DigitalQuetzal.cs.meta",
+    "sha256": "854602b9d22d9dd778c8fa99b239038a2c287644f15127e2a5451607acc159e6"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DirectTouchState.cs",
+    "sha256": "cc454843655e6da6d8bb406d99ab1a576bb204fb111e0686bb3194184490c943"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\DirectTouchState.cs.meta",
+    "sha256": "4be029d6da4079eabfe5e64422bb28fc94e1a0f4cd03e7cc428fdf0f1a0690ff"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\EventBranding.cs",
+    "sha256": "526cb6efc385974f009995baf14b78fc6e177c7fbb0b893f9df187964da7f13b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\EventBranding.cs.meta",
+    "sha256": "365836743072eeb3ab70269c09a42175b2fb8bb1cfe1641770834c088574a6c7"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\EventDiagnostics.cs",
+    "sha256": "8283e932b33e47fcd09bcdec7b142faf8615eca23b482080071f206e59155a51"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\EventDiagnostics.cs.meta",
+    "sha256": "4e171fb636a2ed4437260d14043027db7bdc1c14d50d0908f535258ead258306"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\GeekEyes.cs",
+    "sha256": "d09312403467755ceb07cb8a5de14aff4b391b417d02da72a8ad74b0852766a4"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\GeekEyes.cs.meta",
+    "sha256": "e0f00a73ae1b012044024a294f7b78e4e8e79f6a8e11e3c1a4b140012f07ccde"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\GuateGeeks.AwsVr.asmdef",
+    "sha256": "83f899210f21b074c0b9d9e47d359f7e1ba292711c7be7b763dec01ccb88d2f0"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\GuateGeeks.AwsVr.asmdef.meta",
+    "sha256": "74e7a42c533fdcaf5256930554cab4f641b55db6a81d3afbdcd832754c3e757e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HeadFollow.cs",
+    "sha256": "b6dab76018845673c0482e4276d8bfeb377a660b956681c5635e56b95156dc57"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HeadFollow.cs.meta",
+    "sha256": "bea1a9e62684907b0092d7dfd0b0b2d45480e1798db187d3d4423a8b38a0fdf2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloCeiling.cs",
+    "sha256": "e1dd5f04356e9aa61864edcc15e1cb4b53ddae6b69ca768cc25a4d0c5ca0ae04"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloCeiling.cs.meta",
+    "sha256": "7a7b90812cde2ff1e5c25c85ce201af7c020aceb047701fa5bca8369f9f11c21"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloEnvironment.cs",
+    "sha256": "54f9fd98036ad1143b54bcd1465ac197b7e361591faa170b2a17f2f0bbad3f1a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloEnvironment.cs.meta",
+    "sha256": "7ac8f6ff5120dc1636a94a52d62ab6fae3ab73be3f9ebd43cbabeb6a3faa7077"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloGeometry.cs",
+    "sha256": "1a795a137228e760f37b8986c5e356c8881df5813bd848db88bb54a90a132504"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloGeometry.cs.meta",
+    "sha256": "98ae478f62348cb5cf42d7697033f24416418429fcdeda2f34eecdb9eda62380"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloPanelGraphic.cs",
+    "sha256": "5fb4c0a5e6f5a4c89d200183bcde5900a5f99e9be202617d780fe0d1d2713d3b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloPanelGraphic.cs.meta",
+    "sha256": "a3c86ef8139cffa171e9b911fcff0f690fb253b9ce85fd7e512fe80a49907df8"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloPulse.cs",
+    "sha256": "c491a5c9ae2819c6ec6e05cc70c3f830788955fc3c4020d1de9bc706ccf9f32d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloPulse.cs.meta",
+    "sha256": "3e6a7b979e479b48056a9e598711eaff9f4112104859f8f84854aa6e42946632"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloReveal.cs",
+    "sha256": "9f57464b99ff4ee786cc60e4644eb48a9030e1004c58fec771f04df246c3a20a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\HoloReveal.cs.meta",
+    "sha256": "fef8807e655d088ee31778b5a899337c826eee0e6e917a9d610ba6b8dcbcf10d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\InspectionTools.cs",
+    "sha256": "7549c0b84dbcf4271bb481a57c6f3002738e6868c44d8f140cd3556980ece1c2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\InspectionTools.cs.meta",
+    "sha256": "d6d2e08c6e75a2a3c562af295e673a9e8a604434491a1a2689a92a6c79b76323"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\IntegrationKnowledge.cs",
+    "sha256": "8cf8dad091692b38e781c2411e0f503bf95c6db34b853810dfb93e4eece534b5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\IntegrationKnowledge.cs.meta",
+    "sha256": "21d28283dc20b7429c53767d0f3024339180029b3c74217ed2bdd59ecac011f9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabEnvironmentSettings.cs",
+    "sha256": "4982bbb133adc20f2c1fe243e72136d7c7f73ebf5b481bb1fe76b87e845f80a1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabEnvironmentSettings.cs.meta",
+    "sha256": "e3db00db1ea9be144eb8a42046573fa85aac83a1cf450eeec4d71b433e311c73"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabFeedback.cs",
+    "sha256": "3e5c2e8ae7ca1f225a1663937e81be86ed66966a1640f8de90f96910f13c3c83"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabFeedback.cs.meta",
+    "sha256": "4e2690056de25aa6fee76a6bfd9fc4127e4c5499a640dbe893211a05e02bdb5e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabMenu.cs",
+    "sha256": "c40678ac29481ec7af0c730767f94e7e4f6eee80f71d186e33a2124b3537030e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabMenu.cs.meta",
+    "sha256": "5a6dcd2b0d4313ea212a4741ccf1766a9ae79ad7a4e453f74fd221a510ff02b8"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.cs",
+    "sha256": "e272df46ac96eb7644eb3dcd106550707ff7cb25d4bf7f32f29830f88f288d92"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.cs.meta",
+    "sha256": "8e180d889a5eb86fcca44475bcf30c9879bce26632936ce05c2786a3b2eca627"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.Hands.cs",
+    "sha256": "08178ccac324d433feece0179c88edd0090f57e88d769211549e751fc9fd5470"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.Hands.cs.meta",
+    "sha256": "bc141b1e996d46c6b201fcd3b2ef72644c3ba7cad0023c6cba406ea338e57b1f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.Wrist.cs",
+    "sha256": "c7c0830a6abb6bf9a0b5bc3745a69a0726cd0b302de5c5e1cc3dc6f485e9eef2"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabRig.Wrist.cs.meta",
+    "sha256": "49921223b437380f1129b372ae2d131957a6a69a9d7e4f40043668b35facddfc"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabTarget.cs",
+    "sha256": "557c494a076668f71ed0b7508334a23b4aa8628cbaf669771e016dc1c1a467b6"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabTarget.cs.meta",
+    "sha256": "7d823882ec8859a19980ecb3813b3c76ebaf6f40126e3672f12160810ae76ecf"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabVisuals.cs",
+    "sha256": "3291c2d83305db0337c949c173765cbc2a25e81cc83206147686fb922899297d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LabVisuals.cs.meta",
+    "sha256": "a44046ee15cb266ce9480c99060c556b337f10f57517949acffd0d5fc7cd63e1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LambdaCodeDraft.cs",
+    "sha256": "6cc8c9f15d9aecc60548de0b559fac8b12fb9de18a95daa6e74bf919d497e4e1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LambdaCodeDraft.cs.meta",
+    "sha256": "e02e1d0fad8b95c17b6e7fdee9d3f52f295f13b95c8c38f4146e4a07561ea71c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LinkView.cs",
+    "sha256": "fa305eb733176fd38c27a54f6c448e7e4796496a54d4e422dba8347b5dfbec5a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\LinkView.cs.meta",
+    "sha256": "ae596752de3a4262b149e67a0ac3a9f3799aa47e366e619793cf13fdc6aa001a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\MockCloudApi.cs",
+    "sha256": "3a52c46e1f0a0388085f1142cdaed6eca644bb5cb9cfb3a16aaaddf985fdbd68"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\MockCloudApi.cs.meta",
+    "sha256": "451edb1c8e3476ed501604d759096c960fb425b611885b6e34c9b03ead985429"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\NetworkCollabSession.cs",
+    "sha256": "cc15ba981ab5629ca665e32d0938782c7910d8446cbceffafb9180e6ac3943af"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\NetworkCollabSession.cs.meta",
+    "sha256": "62e1d6b44eee0267a08769363d905d6785eeea9f3e31d8d139afb504461e5bc5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\NodeView.cs",
+    "sha256": "b3a30564e5428f1f702dbd38be2343e8bc5b5f6637643e7d47e4a626a93e6c98"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\NodeView.cs.meta",
+    "sha256": "3ceba536571cbcd82538d7a2c309c462856f8fb9e16dc299c68cbd1ea179719c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\PeerAvatars.cs",
+    "sha256": "da6ad661c4f4b1c70b7cdfd0b2f6951b71cd82df91190c2a0f7f5eecdf4c8315"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\PeerAvatars.cs.meta",
+    "sha256": "50e107a90fe2498f2ac62d34965d201666d061dd1d9843744a82eb459a4a265f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\QuetzalMesh.cs",
+    "sha256": "9bd9e66bcb4fdc32109cc92be0082481b8f8b14fb9b520d4c9a48b25c3934e74"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\QuetzalMesh.cs.meta",
+    "sha256": "5c0856164b2aa18bedfaf35024cce2c0a11e2ac51b8cda2803b3b4047459331e"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeAudioInput.cs",
+    "sha256": "de6bd0232df16cef020a2f6eb01ded7e0f0ab169c59fcce21b74e1ff4f55a189"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeAudioInput.cs.meta",
+    "sha256": "08de37c1654edbe64c3b8420b1bbccb9b142ecec6e953ec5fe9c76f03081ff37"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeCost.cs",
+    "sha256": "4f6db88a8d161a7ee778b92b0ceb76bef80ea34b45e2f59cc4e29d2042f76e19"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeCost.cs.meta",
+    "sha256": "b09db34eac370b7afadbf4b8dadb3d6dc95b7e84939436e1a1a83cae0343c7dc"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeProtocol.cs",
+    "sha256": "0392faa061925a39f254018a40ce45c87b31db0663888ebdd79c8c7dabd4d89d"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeProtocol.cs.meta",
+    "sha256": "59e2666f87ce1ef83b230d356849f37dd5d20b142605b779b3f67a443dedbf4f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeVoice.cs",
+    "sha256": "546035679dfbe70222424ec99a36d9eea49118a4bd5062bed04b3f34d68339cd"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\RealtimeVoice.cs.meta",
+    "sha256": "0961a74e5d68ac77aa4eaea5f1111eacb59529c7f0e54f35d9976a8d93118c96"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\SharedSpace.cs",
+    "sha256": "1612238cb958c82d44eb61d31be4b37eb7494b39c3b7db68bc3322244cdd488b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\SharedSpace.cs.meta",
+    "sha256": "0eccfcdeacb14318a02f3f43033c974a6fa5323fb9267154b86a51543d356cc9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\SpatialVoiceContext.cs",
+    "sha256": "193ebbbd5b6aaba1605bf66d3d2e0a88b8a92dc9e6832f7aa0d34c241b6bd950"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\SpatialVoiceContext.cs.meta",
+    "sha256": "48a8e0507e9424cd09745200160e44861364ae135dc637cf2b4039d1b60a101f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\TableEmblem.cs",
+    "sha256": "11091f67334206f46cb999032e79a19e6d19b7dfff54bede4d0f1ad43e72591f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\TableEmblem.cs.meta",
+    "sha256": "b2b51ee3091821e32fe3d2d8aa17689ab893e103c65539eea3f3557cba4e39d7"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\TableLayout.cs",
+    "sha256": "f4e32fc3197672017b4800f9a0083b1265237f3227e9b68ce221b54f9faa54e3"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\TableLayout.cs.meta",
+    "sha256": "f68f77f2d5d0119afed2459ad62525c722c37d4683876718bca3c1db45666909"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\TeammateAndroid.cs",
+    "sha256": "49954a91f70a011e58ce6918e645fe8efc8a0b3654edf1633ec57cd901b61589"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Runtime\\TeammateAndroid.cs.meta",
+    "sha256": "d2c8ebd5a1fab3576c80fdb58af66630f24622d179a4d3ae7dd5af1c18c0e110"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor.meta",
+    "sha256": "fbf732a9ecd698fcfd4ead5c58b256e4a913b27d604f053024f7d945eeaddf21"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode.meta",
+    "sha256": "dc814351ad22403a28fb00ab6262f3c8b297549dd1cee81d96e2b0914c8347ea"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\ArchitectureTests.cs",
+    "sha256": "573411a9be4b3e964d234bf4e72e33ce082b1a913adb3e634c7959bd959fc230"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\ArchitectureTests.cs.meta",
+    "sha256": "9d3e014fd77845cfe18b9478cf8a44e26c9b46d99da7df29a4eba4741efc72fc"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AssistantTests.cs",
+    "sha256": "ddc4e7eaaded0d03f4bbc4d886fcde22d6f02899382677290f507006c6b719ed"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AssistantTests.cs.meta",
+    "sha256": "1d2d844163d08cd83158efad3002e210684ea7ad87da5a8a5553b0361652fd84"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AuthoringTests.cs",
+    "sha256": "7d0ebf33a1044699ca0304a21c7bcd2006c9c71e270c1075f8a1b6a4c5223a29"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AuthoringTests.cs.meta",
+    "sha256": "c1527a3c9b817bd18087aa7ca99252fa711f7f6895d601d544e519a89975d3f4"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AwsCloudApiTests.cs",
+    "sha256": "9139c1d7fffe3f725671fd374640d937c5e145a6e29ca9c970f301d35991dffc"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AwsCloudApiTests.cs.meta",
+    "sha256": "8815a2712f51de770a3ca39fb83b7099d6bab99d5bf539eae91eff4f0a9b4a7f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AwsIconGeometryTests.cs",
+    "sha256": "5f9ab7a19e69e5be11e4b79262a02bcb199d33b8349db8a0b18d8e301a183cf0"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\AwsIconGeometryTests.cs.meta",
+    "sha256": "ec476a9e7c0b195d8ae1e91bb22062f28b52744337fc74ec9506b837023bb6db"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\CloudProfileTests.cs",
+    "sha256": "c810d906085bd4e32c96c3785f5e4d223a5570b4a60bcf582f4b13a49d85f58b"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\CloudProfileTests.cs.meta",
+    "sha256": "efaaea42a383e82ac839bed34c562edec5a9d598e8144830ed59dcba82e4a806"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\CollaborationTests.cs",
+    "sha256": "a9c19e178802686108aa3f651ec725f706772046dce6a6fcb911c97b9e3a2af9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\CollaborationTests.cs.meta",
+    "sha256": "cdf2ac5b3920741ae6a9c08ea16c95358992fc6b9b52ffb52ed8eb87ff95fec9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\DesignStudioTests.cs",
+    "sha256": "c8c0c875a2b883523301416d6d3f6636549eec4b1f6b7252e284313ee70d2e28"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\DesignStudioTests.cs.meta",
+    "sha256": "8ecb4c498163ba2db37b3e1b7f59fa7685fbae84c6fabc57e5e04406544deec7"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\FingerTouchTests.cs",
+    "sha256": "0527e7b7079b3b626a3af4747c750593ac20d551e8cb1ab6345e3a029d0acfd9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\FingerTouchTests.cs.meta",
+    "sha256": "a6e6262538e998903acb2e4ab36f2eaff23248ac46cc58bedcc5fd4445220912"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\Fixtures.meta",
+    "sha256": "1836ecaf79d577108a59aa367b7f4cc49ce5300e92aaaba7f14dbe5b3c418bf8"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\GuateGeeks.AwsVr.EditTests.asmdef",
+    "sha256": "aa0f8971e95a921a9e9af801c63f3d75f0aacfc257e13215a027fc463f958692"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\GuateGeeks.AwsVr.EditTests.asmdef.meta",
+    "sha256": "1b66bfc42241f60ab10d3dbf32f5d5cf83e3f8c4ef995354afbf9fb1e55569e6"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\HandPinchTests.cs",
+    "sha256": "f41c19844266ca82c3bd2d91fe224d5d0cb05ae4b9e9fe1ac628368a5c77ecc1"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\HandPinchTests.cs.meta",
+    "sha256": "0dc21f5e4fe0851e8d3ca39d496e0549527c33e854006ae68aea85c7e80f3cc8"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\InspectionInteractionTests.cs",
+    "sha256": "271c73bd1aa4dd0ebb83ce42b919b91b218f0760f87a5ce16ad0d6f13372223a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\InspectionInteractionTests.cs.meta",
+    "sha256": "9f80ea0ca21f4a96860c3696cd31fd2e59c26f278e165e3974dee052031c6752"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\RealtimeCostTests.cs",
+    "sha256": "66be0b7d1de7e996f68c340406a7d4b6c2dbc4c13add1914beda2339f76a0f21"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\RealtimeCostTests.cs.meta",
+    "sha256": "0f5f15a9f50bb2c9da68d2f6199e38599e522e3d174871d835744afa744254a5"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\SpatialVoiceTests.cs",
+    "sha256": "07405e19be79a90c52db4f8b928130e91e68d0ca55220bf28179438fda13414f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\SpatialVoiceTests.cs.meta",
+    "sha256": "3addab1c787b4f1b9f0b0ffdffb297516aab34d3e5e233154654b7c276f62b1c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\TableLayoutTests.cs",
+    "sha256": "dac22692aba15cc2f87bb9ff4e0e0deb414f41c934fb6c8304d0044f01fd929c"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\TableLayoutTests.cs.meta",
+    "sha256": "4b26d431edb4b13c32644c039c19698481d22e5fe2fc5598697673b0a6735536"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\Fixtures\\backend-contract.json",
+    "sha256": "fc52bcf403c311f136610a8bdee7f98f153129273d2bba0ffde6c0afd93f37fb"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\Editor\\Fixtures\\backend-contract.json.meta",
+    "sha256": "a27d713993f941d9042a8c57e4f75a8589d9176d103d7c427c8fff4be1855f2a"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\GuateGeeks.AwsVr.PlayTests.asmdef",
+    "sha256": "70ad4f7bd0d8e9da8519c60ed81d1acb1a41afc4efa9e2c71fdbcdb2726ebe93"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\GuateGeeks.AwsVr.PlayTests.asmdef.meta",
+    "sha256": "551ab20a9e424f2e6bcdbee909492ecde45ea9f0aaa2d9088f1c73171ddd458f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\LabExperienceTests.cs",
+    "sha256": "173a655795b690d0f994a04a1a9f4edc808e7cfb644fd1f3db71a565b0b412cb"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\LabExperienceTests.cs.meta",
+    "sha256": "40ce7b7b95c4151437f16decf05af34e30c138ab95e0d70db5406ce31fbab531"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\NearFieldInterfaceTests.cs",
+    "sha256": "6f8381b6c234a2542c84b40dcaa5b98ee4e106a9b124991b27163b42f636d8ba"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\NearFieldInterfaceTests.cs.meta",
+    "sha256": "efdff68a4332a97442a4aaf2f1e171d10b3286dff9f13510c7562b21078107fa"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeAudioInputTests.cs",
+    "sha256": "86187cf311727f71ff790c16dbf28de808f113f661537d9486224dd9fb34fd90"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeAudioInputTests.cs.meta",
+    "sha256": "1e67d74fbe690506c47d8f9588c06fa99a6ccb49d69ac8c1fd6a31538dd03f37"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeLiveTests.cs",
+    "sha256": "8fd3959980d0f0babc3450e064a3a344397bfa47c3541e5f02bd6595ce75d1b9"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeLiveTests.cs.meta",
+    "sha256": "0880d990518ef1c475b626759702f1c5ac80e4fbffcad77e7770d8cfe8a19ffb"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeVoiceStateTests.cs",
+    "sha256": "fa8726198dcee24011badff3d6f598af50ea96579512cce6fde189ef518a2f15"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\RealtimeVoiceStateTests.cs.meta",
+    "sha256": "54e49e594001b1071d70e7afb0232d5b777226ff89ff09ce5f282e15197fad93"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\TableSizeTests.cs",
+    "sha256": "bc57f92322370aedfa7d1864b2cf959b93f8d7c3a95c7b2214fc99d28fa21a1f"
+  },
+  {
+    "path": "Assets\\GuateGeeks\\Tests\\PlayMode\\TableSizeTests.cs.meta",
+    "sha256": "b3c2c275acd66a3fbe429a4d6cd019a89d7e643a14f7093bdb5170bdc9788919"
+  },
+  {
+    "path": "Assets\\Plugins\\Android.meta",
+    "sha256": "08be58ca9ac1232092fe902ca9d0c825afd5bdfa5052ada1f68ba4031ecd9564"
+  },
+  {
+    "path": "Assets\\Plugins\\Android\\CredentialVault.java",
+    "sha256": "29598cf4529cec83bb0b3d7374da13c4b9a7fa03d30ce08516641398d4c3ef09"
+  },
+  {
+    "path": "Assets\\Plugins\\Android\\CredentialVault.java.meta",
+    "sha256": "d71d3a22225a8963fe4d1438a618bdb652a5b2c25be8ee1bde33d223ba48dc69"
+  },
+  {
+    "path": "Assets\\Scenes\\AWSArchitectLab.unity",
+    "sha256": "c9205f8cf648bcf1d85e2c1443671dd7681310a28500c22e24bd32b17096c611"
+  },
+  {
+    "path": "Assets\\Scenes\\AWSArchitectLab.unity.meta",
+    "sha256": "eb2afc3980cdf0edfcda7aa3db3b88b0d59ee87c83e63d74a93bdce506410c39"
+  },
+  {
+    "path": "Assets\\Scenes\\SampleScene.unity",
+    "sha256": "07fce8b04804ddccb3026db5b43d8dc41ba138e49d50d36a5c24877081eacdca"
+  },
+  {
+    "path": "Assets\\Scenes\\SampleScene.unity.meta",
+    "sha256": "b5815a6b12afaf810577bc89041c4ce46516c7cd6609693f8db616f8e5584d80"
+  },
+  {
+    "path": "Assets\\Settings\\DefaultVolumeProfile.asset",
+    "sha256": "463776c51ae49d4fef980e8fd268081b2f505610d79315003faae1acff8f4115"
+  },
+  {
+    "path": "Assets\\Settings\\DefaultVolumeProfile.asset.meta",
+    "sha256": "efbcb026cee6b8e32fdf27018c06b0515296a6ccbb43969e792fea270310700a"
+  },
+  {
+    "path": "Assets\\Settings\\Mobile_Renderer.asset",
+    "sha256": "aa93274c9521fa941170becec9e87c5fa36b8587eefd5eeb5c0eed0d1d4b1dbe"
+  },
+  {
+    "path": "Assets\\Settings\\Mobile_Renderer.asset.meta",
+    "sha256": "a148ee2b4987b05b8ff7ae5f9bf84916184f77aefddc821dceb551f5a69f8179"
+  },
+  {
+    "path": "Assets\\Settings\\Mobile_RPAsset.asset",
+    "sha256": "58dedb6d7e9350f2fce0ad3ad5d274c1f782ee27fb26909d3777b79d796f7f08"
+  },
+  {
+    "path": "Assets\\Settings\\Mobile_RPAsset.asset.meta",
+    "sha256": "53ea46647712c615fd1a3f2e0dddfa8559eeedc649e9a1dbf93ff913de28544c"
+  },
+  {
+    "path": "Assets\\Settings\\PC_Renderer.asset",
+    "sha256": "3d0b01d8ded3327263b6690be128a3de58d17c514943ae42fe743a3e084a9c79"
+  },
+  {
+    "path": "Assets\\Settings\\PC_Renderer.asset.meta",
+    "sha256": "b5df8ddb2708c6ed4c133a5ff9ee95a75cc20e4ee3ed6181366a61aedbaf31ec"
+  },
+  {
+    "path": "Assets\\Settings\\PC_RPAsset.asset",
+    "sha256": "b5ad2991e7354c30d99351f1e506265a40dcad6fe9bccd3f09925d568711e1c3"
+  },
+  {
+    "path": "Assets\\Settings\\PC_RPAsset.asset.meta",
+    "sha256": "bb469b9b6f318e9e9bed29c3b2e73e79371c04743c6f95dd6603941f1cd3e53e"
+  },
+  {
+    "path": "Assets\\Settings\\SampleSceneProfile.asset",
+    "sha256": "a8677d4bac051d24caa11cd622e39f968155ee277bfce132274f1de225692fe9"
+  },
+  {
+    "path": "Assets\\Settings\\SampleSceneProfile.asset.meta",
+    "sha256": "2e23abc214069f0adbf2b2207f1db54be7876629ec2a3681d0f4aa5b61622ef0"
+  },
+  {
+    "path": "Assets\\Settings\\UniversalRenderPipelineGlobalSettings.asset",
+    "sha256": "de16216797b7d4212762916335811c880ff5e7f6a2bd066882137b949bd13af1"
+  },
+  {
+    "path": "Assets\\Settings\\UniversalRenderPipelineGlobalSettings.asset.meta",
+    "sha256": "f61661d8bc8dbe531daf09f6211ef978c7ba145c9207c8e76524396ae0722d7c"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Fonts.meta",
+    "sha256": "11e80153fa39b86efadb8917ecde12a0402fe0729f2c88f6f8d1999f3fb04748"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources.meta",
+    "sha256": "167448559db07c9857b206a0f5a0aedcd6a6dad900d618b35b0702d636573805"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders.meta",
+    "sha256": "c109eb7e331affedb377f7051df3d4881f8529b65f9593234585713e6e94ed30"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Fonts\\LiberationSans - OFL.txt",
+    "sha256": "37f8552e9a874ec10710dc0ede6a9adf168e6609fbd02a507f35629373b85a48"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Fonts\\LiberationSans - OFL.txt.meta",
+    "sha256": "5dbec32c014c17d94674af5f1494d49b42ba00edd50397f895f088c868ccbf86"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Fonts\\LiberationSans.ttf",
+    "sha256": "e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Fonts\\LiberationSans.ttf.meta",
+    "sha256": "e2e35a015703584fb119355fa02631764d111c3e112d32519801d46bd697b596"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials.meta",
+    "sha256": "8917470a9265beb1ef55a28c6a3718eb12ec8004554499998cc345056247995f"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\LineBreaking Following Characters.txt",
+    "sha256": "3a73e5ffe2510756dd3c2e982fdc1218b4be82c6e21abde88070d6860e1bc8e6"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\LineBreaking Following Characters.txt.meta",
+    "sha256": "d5a86d8b7db6aa3ca6f4a63750eb94e0c42a64909b47d8c6c6f2565845534490"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\LineBreaking Leading Characters.txt",
+    "sha256": "62d3f4d5f64aaf885692d2d13a8313f6918e6e4c5aeb3990a43f614652bfd89c"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\LineBreaking Leading Characters.txt.meta",
+    "sha256": "6a925814d5e251a0ced6de210db2bacf2de29b4f0dc2991e85c908632e9565e4"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Style Sheets.meta",
+    "sha256": "1fdf0423552f46284fb97894f36adcd34d32e595aaf5c7cf1ce38a2349faaf89"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\TMP Settings.asset",
+    "sha256": "7be438062cdc296835a1258b68bcbeb8e9fdc4b01ea27c05a24a1074260f7424"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\TMP Settings.asset.meta",
+    "sha256": "a65193b095ec3606789a3191751a837704cf52d4f461993ae7903024c6d43f45"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF - Drop Shadow.mat",
+    "sha256": "b6b65c34e4907dd3006c2217fc8a4cef81b6da24df0a3de8e2288199eb6c5a9d"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF - Drop Shadow.mat.meta",
+    "sha256": "ef2eee63b288d47823da38109e3e8c879f4717a82dc662ac2d5e2460dacde698"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF - Fallback.asset",
+    "sha256": "fd0955637e6234688d15dd37106abc137b4e80ee7cbeda3e62171823442e2f1e"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF - Fallback.asset.meta",
+    "sha256": "d6d86504040cf6e736767fda9bdef494afb06d5304384243e2dd703eba3a4a3d"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF - Outline.mat",
+    "sha256": "25874340976d40e9f9e8abf731b7f32e5a478541dead9288140bd60c7a3287d9"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF - Outline.mat.meta",
+    "sha256": "a8cf0ee9888a163e892368b4660b9c62a7375e7f8afdb8ee02e5c91ca1cdb355"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF.asset",
+    "sha256": "c3ff50e3133d989180b187748ffc67903f1fede099a5b85b4fcbd8cb6e8be958"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Fonts & Materials\\LiberationSans SDF.asset.meta",
+    "sha256": "37233890984555987cb585551bc885069f2849a9b0d1c2191af073b9376aa10f"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Style Sheets\\Default Style Sheet.asset",
+    "sha256": "93e073cdb91b7e3d2fa31e2dd13626d7b9d2f327904ba8c3c2b97a3eecfbabac"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Resources\\Style Sheets\\Default Style Sheet.asset.meta",
+    "sha256": "b832663ca09ec7af8c8e816fd91a718b2af6c21ab4f126fa818871ad53bce763"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\SDFFunctions.hlsl",
+    "sha256": "88cf0f62e4000b71750c059d0886b19504cd1cf10f39bb61ddc11b77a882d417"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\SDFFunctions.hlsl.meta",
+    "sha256": "e1d0c5347b3c55930759f5bc0985e11611a4b2ff22eef24523eb108687bd1642"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap-Custom-Atlas.shader",
+    "sha256": "42892a52f22bdde6d482cf2da5f35e4b813063fc6fe42189eee5562080079494"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap-Custom-Atlas.shader.meta",
+    "sha256": "91be1d5618a7da33c878e20cf2be3e13b897d4976c70bde0cda7a67dbd502cd2"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap-Mobile.shader",
+    "sha256": "b50afc7edc8a710f8b4159149b2391e7238b5e4076cc0ea2119090ed29e13b4a"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap-Mobile.shader.meta",
+    "sha256": "7430f3e97ae1b46f34e1ca75508705bb7b944307c41dc568ea728011f327086d"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap.shader",
+    "sha256": "1d32f34c71276c1321aa0540a2410e15808743a38b2026923045a4dec4a79b58"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap.shader.meta",
+    "sha256": "3d462e6f8ba57f45dc5e6000020db066c36ed5a1a24f74f749727812373c2325"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF Overlay.shader",
+    "sha256": "a0d318756cba0f95a7052c387e629d0add3e9a4125c8333f1d1ed591af5f17cb"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF Overlay.shader.meta",
+    "sha256": "fb8fc84b612e19c169cdf3596195b416e68d227a8987a0eaa90d8c137fb69797"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF SpaceWarp.shader",
+    "sha256": "cdc87d1df815b00e49cb2fd3010e872fdf740f89f81c915fd1a3d974bd8a596e"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF SpaceWarp.shader.meta",
+    "sha256": "bc7460ef63f01a2b0b6751d2b884e2fd9722b47154355a8fe3deb2ae785c41b2"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF SSD SpaceWarp.shader",
+    "sha256": "40f4d9f424e2b72cb80af23439f383bc9502582780436222d84806cedbb8797b"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF SSD SpaceWarp.shader.meta",
+    "sha256": "f7d4082f4e7c62a4db152ee4c1432f41f53caaf8d364862215d1ac27db520b6a"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF SSD.shader",
+    "sha256": "2a991951b00b0c052363a1025f655450054325437b3d13c2623a987c8ec77c30"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF SSD.shader.meta",
+    "sha256": "bea74d576f181a8bb04b8cf02eedd0136540325ecb2824928a3aa52c75adcb13"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-HDRP LIT.shadergraph",
+    "sha256": "bf68062f68b38b588abd1c354f64e905f824d9a2c47f92ebdd70a32989eb2097"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-HDRP LIT.shadergraph.meta",
+    "sha256": "d1b70558e8b974d918e13c010db6d375fef815ba530bc2421ab031aa3a784ee8"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-HDRP UNLIT.shadergraph",
+    "sha256": "8a969c2d775079cce4e1c45d5eb6d3964b27d44dc884178363050c74fd5e9742"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-HDRP UNLIT.shadergraph.meta",
+    "sha256": "8cd498ce8f6ed2e7c0560d605eb912455cd6fdaf09a4d545d9743f63b3426bd0"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile Masking.shader",
+    "sha256": "41cff58473557bf760d03513a8c098f43a24e4eeb4c8ccd7d828c045a338a9ed"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile Masking.shader.meta",
+    "sha256": "3744d078f9a8b6d3c5d9bca51e43f9223544fcafaf9396e121f49ea84a0609d3"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile Overlay.shader",
+    "sha256": "fb286386d0592ce6d63eb736f180b4b0f638ec538b0855aa54767a438ebd1173"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile Overlay.shader.meta",
+    "sha256": "1eeca1536c7506f79d4d877b866a5fb88db8f402634e091b6d78aa9d21c9d18b"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile SpaceWarp.shader",
+    "sha256": "d28725953a5b116c5c2e141bd7fdb8f7fbd3c0157f9dccf5c88d96b488c969bb"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile SpaceWarp.shader.meta",
+    "sha256": "8f8955ca75950b16c9a6a23f2f37ab3ada23f3ff2e06f29d9516c617864e573e"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile SSD SpaceWarp.shader",
+    "sha256": "a9d58993803f78a3288bda17903c20b3e5eeaf947993f5f9d3c2b783458d668c"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile SSD SpaceWarp.shader.meta",
+    "sha256": "e0dcd630980b5847605e5c5ec58898bc3d9eedf17588fc42155ce2ab0d255321"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile SSD.shader",
+    "sha256": "8b30c140f6af9134392fe6ecf4c0676db73f873489ac52adfb47bbd288cb51b8"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile SSD.shader.meta",
+    "sha256": "e3412891b9306b017e60cba4ae4f6d258ee8b161d986dcde9cefb3d60345514d"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile-2-Pass.shader",
+    "sha256": "dd92066fccff4ce3c49eaa1e13c9fa1a9427e864b2fcb57e1e010c5e47459ac1"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile-2-Pass.shader.meta",
+    "sha256": "65ecbce6f1621f2d7ddc5e6004dda5e55e1f58ec6e01178f3691e1e81e01de55"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+    "sha256": "44c39aabc7e88e7e1feffc1880df754f4adf86b62e9512aa89e9d2d65171aff4"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader.meta",
+    "sha256": "f2112f50c72762d4e6731391495ea11f76975d677b698e9bcfdd38275ea18f9d"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Surface-Mobile.shader",
+    "sha256": "f9fae5906dd37d89298338953294459975de58a5421e68dd9e82a79794b95509"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Surface-Mobile.shader.meta",
+    "sha256": "95aa060f371ee503a22c0a0b018e029c0328bd82b9317feaa784432b0a787343"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Surface.shader",
+    "sha256": "5dadb68b56429547918b392626e9af8fd5173936d20bb43cfca58dfa00947257"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Surface.shader.meta",
+    "sha256": "42439f5ac7491998f562e8ede73d64c3512953eb99fb1b49e833f5d9999a7660"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-URP Lit.shadergraph",
+    "sha256": "e0148ce8e5904232a4e711376a45b7af2a007fb9690c5a69c1cb4952a696cdbf"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-URP Lit.shadergraph.meta",
+    "sha256": "4c36abf5f2611c9d2cb04e7da8c30e42077503a17cb218020e171b6d3ff664f7"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-URP Unlit.shadergraph",
+    "sha256": "dc15b6819ad87a4b34ed888ae2c274624efc0ada902d1a9e7752d87922414dcc"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-URP Unlit.shadergraph.meta",
+    "sha256": "f1ef815e2672fd770f47ee424c64f7ecdbdc642b7475828c29db032586aa10b6"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF.shader",
+    "sha256": "10efe6d4728474a09970b857faf37913793e168dc13dbd4d7316b54b37615d97"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF.shader.meta",
+    "sha256": "0897fb06d170043fffa2d28783b347bbaee87a3f09f08374ca44b2c3848697d6"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Sprite.shader",
+    "sha256": "af669bb9ae136c8099f8e0a94a6933fd2f1e1fb0a6842129939a319fab4b8dbb"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMP_Sprite.shader.meta",
+    "sha256": "9609584c5249687f3765f0018a93dfd6445c7e35d5aee4e87556f111c8852819"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro_Mobile.cginc",
+    "sha256": "d9d43ddd9810476162f21b42477d9ce2cdc4e6cc7571d354c3253aafc6673ead"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro_Mobile.cginc.meta",
+    "sha256": "2e16fa15ef884a60a402d8b696f8b09e5315cbb468ba223d256030c7fe2b0667"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro_Properties.cginc",
+    "sha256": "66db1f03e8d7a413eba79bcb6602fdb2de710b586f34a6f2584ed6f68f028e90"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro_Properties.cginc.meta",
+    "sha256": "edace33591894d86d9a4144466fb3606e538d3341030fe22f908551755120ea5"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro_Surface.cginc",
+    "sha256": "244b442520282a66363d121c8d2aeeb30bb1e72cbbadbf41ce68d9100322ade5"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro_Surface.cginc.meta",
+    "sha256": "247746f3a4e39dd24d1ad99e4fae03ae8976586307948b2846529a876dcb0a63"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro.cginc",
+    "sha256": "14edb7d7b88caf2b82cae68200abe895e5b5b3474c3fffbf0e9b4b09a4e2467e"
+  },
+  {
+    "path": "Assets\\TextMesh Pro\\Shaders\\TMPro.cginc.meta",
+    "sha256": "a9cf9d5431b809e36b8ffff4377b5ebda7d386a36d48838cd134bc09f3caec6c"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Editor.meta",
+    "sha256": "7036bdbc8af05799b5fd508484343b35c28a68b390198da4673d34357d7d667f"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Icons.meta",
+    "sha256": "546e7d7af6b4d5e17d284c8f1188d05472e681911b8359905ee9b9e20769a106"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Layout.wlt",
+    "sha256": "0a18bf035aa7ce914f19f7ce6b60a5a2d33e2371af6f492a8ea7a1bc78755b8b"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Layout.wlt.meta",
+    "sha256": "b8745a251df078ffa75dbaac0c4c6debecb61ab306b5b119a490ce6c635a11d8"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Readme.cs",
+    "sha256": "6c1d741bccb431ef270aa99bea9498abd5f17191ddb022834f82582c13aa8d64"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Readme.cs.meta",
+    "sha256": "80a3df9969fab6e656583ee9bbca884d0507e2b7de3417f6ea3118fba901cd60"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\StyleSheets.meta",
+    "sha256": "930d0c8276cea1559a3e315f8500ea6ca8b58d980eee3b44aaa1d461742c47e0"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Editor\\ReadmeEditor.cs",
+    "sha256": "4eaa92bc653d0dfa552685c9766be3ccd6d94715570fc709510e56d2ab299472"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Editor\\ReadmeEditor.cs.meta",
+    "sha256": "f59080b424c16fa13edd105bf006fdbad98c11fce0c921043e63c8877f144cd9"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Icons\\URP.png",
+    "sha256": "1d17a9ff3537859abe2c008603d29d90cf43191ae77aa386167cc65e53ba03d9"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\Icons\\URP.png.meta",
+    "sha256": "b330f1fcfc4e6ceccc95fc34a38434141603469b135633e1c4e8a03c19f9fdbc"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\StyleSheets\\ReadmeEditor.uss",
+    "sha256": "ef26f35935595d237802d5fd7ec7608df7ec1e2ebed25bde15aa4972c7cb55c9"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\StyleSheets\\ReadmeEditor.uss.meta",
+    "sha256": "0b7d3988e424498e61b8ad246996cbdef616dfceeeade3d8ebe974546f13f5ae"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\StyleSheets\\ReadmeEditorDark.uss",
+    "sha256": "55520ccb7ab7e06c25283f608a4391f25c3a62e19f4bd8ee270bb80fb50f3ff8"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\StyleSheets\\ReadmeEditorDark.uss.meta",
+    "sha256": "e42f7f9dda8a158ebe18760e1ad684eb113ef70061a046955db87592610bd8f2"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\StyleSheets\\ReadmeEditorLight.uss",
+    "sha256": "5e9ace1270007dc66b8b1c29063de8d3a6f056485ae116dfa38d2c5519334445"
+  },
+  {
+    "path": "Assets\\TutorialInfo\\StyleSheets\\ReadmeEditorLight.uss.meta",
+    "sha256": "0e4af29f8addccee1c225bd695b280d2e712e59b8801b574481a934f7f78c2ed"
+  },
+  {
+    "path": "Assets\\XR\\Loaders.meta",
+    "sha256": "a9aec52537fb21209db6e7873e3c95caedbab21aa51fc4ea2c65483fbf7bba4a"
+  },
+  {
+    "path": "Assets\\XR\\Resources.meta",
+    "sha256": "fb9b559dddb52d939b0fe328648d2e7bc28608c33ce602bb21b2371145ba53ce"
+  },
+  {
+    "path": "Assets\\XR\\Settings.meta",
+    "sha256": "e1a4171e65801f02f00ed196af12cca2c61f84e61d5580fc7063e625bff11119"
+  },
+  {
+    "path": "Assets\\XR\\UserSimulationSettings.meta",
+    "sha256": "72ecbb827bf4479afc69e05380530c1fcea57f0e6b8883622b6ff5ba9ec20944"
+  },
+  {
+    "path": "Assets\\XR\\XRGeneralSettingsPerBuildTarget.asset",
+    "sha256": "96e1530437196a4af9de49e2d529e274df8e43dd51afe1261fd66150b21cc7be"
+  },
+  {
+    "path": "Assets\\XR\\XRGeneralSettingsPerBuildTarget.asset.meta",
+    "sha256": "166fbc755003b22d84a8dd25dd7fbf93cc82a6b854bae285d27afc4ad7ebb80c"
+  },
+  {
+    "path": "Assets\\XR\\Loaders\\OpenXRLoader.asset",
+    "sha256": "3dade780ddfc9ef1e12c3275788df48569ad586f9310d96cd91105e1c5739a7a"
+  },
+  {
+    "path": "Assets\\XR\\Loaders\\OpenXRLoader.asset.meta",
+    "sha256": "e2e50981d66e80c9e593353dfd50c4dbecb8a4f12032e00247832c4d028cc23c"
+  },
+  {
+    "path": "Assets\\XR\\Loaders\\SimulationLoader.asset",
+    "sha256": "f2ba21266323a7535f0ff53d6ca6eacf13524a39d5899e924bccd18f1bd69e09"
+  },
+  {
+    "path": "Assets\\XR\\Loaders\\SimulationLoader.asset.meta",
+    "sha256": "7f8fc2eaee0924434b7f9d409e7e596b1c40291550ff48381c11d60affe99f33"
+  },
+  {
+    "path": "Assets\\XR\\Resources\\XRSimulationRuntimeSettings.asset",
+    "sha256": "b5d862588e148e5370808d52abc0f8ec584ec8549a436dddc7044fb14faea9d5"
+  },
+  {
+    "path": "Assets\\XR\\Resources\\XRSimulationRuntimeSettings.asset.meta",
+    "sha256": "dcbf908146f0dfd0b18ea11ba9c708fd4b46d4b9eb685a7bec36962a0e30a336"
+  },
+  {
+    "path": "Assets\\XR\\Settings\\OpenXR Editor Settings.asset",
+    "sha256": "4f01242b463931884c89b748c68ccf2e21f9c5f86fcde0d2daac6a17f8c92e1c"
+  },
+  {
+    "path": "Assets\\XR\\Settings\\OpenXR Editor Settings.asset.meta",
+    "sha256": "b26b2a155a080423f9648d3092a17fd4259f62f07a4e228f4a9585fe1db3cbe9"
+  },
+  {
+    "path": "Assets\\XR\\Settings\\OpenXR Package Settings.asset",
+    "sha256": "bb61b0ece489b514c799a441ca80e4be8d00ac52e711a99aba10d84e4460f5cb"
+  },
+  {
+    "path": "Assets\\XR\\Settings\\OpenXR Package Settings.asset.meta",
+    "sha256": "b32a99cf2439c0a11b8293f20892a4a36a7d4f0455910fa801a78ce9ba36e12a"
+  },
+  {
+    "path": "Assets\\XR\\UserSimulationSettings\\Resources.meta",
+    "sha256": "4963ac6b2c417de6ef15bcceb8e652728a2cdbf03aa139c393f0ec2d977b2197"
+  },
+  {
+    "path": "Assets\\XR\\UserSimulationSettings\\SimulationEnvironmentAssetsManager.asset",
+    "sha256": "8f8a2a16b400995761ace338f27be8ada34ae44f21b3010492724f3fa6ad59ae"
+  },
+  {
+    "path": "Assets\\XR\\UserSimulationSettings\\SimulationEnvironmentAssetsManager.asset.meta",
+    "sha256": "3ed361628561ac95c8ad85eddc44eadc7e113101fbbf19d2bc7ebbf11832724c"
+  },
+  {
+    "path": "Assets\\XR\\UserSimulationSettings\\Resources\\XRSimulationPreferences.asset",
+    "sha256": "d60ab84506a30e4296011af0cd34e207220b63790b76928c95ef60d3a6e5411f"
+  },
+  {
+    "path": "Assets\\XR\\UserSimulationSettings\\Resources\\XRSimulationPreferences.asset.meta",
+    "sha256": "12480348fdb639829ba3744128eaf07de44aa8741489f001691b0f32340682ef"
+  },
+  {
+    "path": "Assets\\_Recovery\\0.unity",
+    "sha256": "f184636605414530d06630394df71ad991b10aa3a05a1ff06a91c74c96eb9fe8"
+  },
+  {
+    "path": "Assets\\_Recovery\\0.unity.meta",
+    "sha256": "ea4b9a7b5bcd773ef08d549ebf7430c52b9e1db0f81316bc5d4ce3635e6a4ba9"
+  },
+  {
+    "path": "Packages\\manifest.json",
+    "sha256": "0420a4e25ab8e38191a9479ea2cb1cd93fc5ce4e07de4485b9378501484d7223"
+  },
+  {
+    "path": "Packages\\packages-lock.json",
+    "sha256": "630568c4adced27f205ad6a5e4eee6be20fac0def6a92b582a473e611c2fe813"
+  },
+  {
+    "path": "ProjectSettings\\AudioManager.asset",
+    "sha256": "aeedeb3243f07b61dbbe854aa08b5ef6f0b5274dd9852ad9f6129dde3e105a31"
+  },
+  {
+    "path": "ProjectSettings\\ClusterInputManager.asset",
+    "sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623"
+  },
+  {
+    "path": "ProjectSettings\\DynamicsManager.asset",
+    "sha256": "bf017b547bb77ce3443dd5287ddf2516a74fd167f4f2ee5d798340694f51776d"
+  },
+  {
+    "path": "ProjectSettings\\EditorBuildSettings.asset",
+    "sha256": "a32ad06275b0bd3d21e623ead3b6f40a8db8218da12acea3f0f2bac79102e528"
+  },
+  {
+    "path": "ProjectSettings\\EditorSettings.asset",
+    "sha256": "bbedcf93c32bca12eaba9ed61189ab13f064217e9f2984a66772719fa73c56b5"
+  },
+  {
+    "path": "ProjectSettings\\GraphicsSettings.asset",
+    "sha256": "1aabaa3226af3fdfdcd1bf936ff3ebf164870bf04b2fe230138634985ca62b1c"
+  },
+  {
+    "path": "ProjectSettings\\InputManager.asset",
+    "sha256": "7a1bb836a1008d26d0860d143e9d9df7ca41731d30a72901b518063819c62df2"
+  },
+  {
+    "path": "ProjectSettings\\MemorySettings.asset",
+    "sha256": "1e8379a461b10ae09f3f696911088c16875d63e87ed5f2d95df9e1892703f9fd"
+  },
+  {
+    "path": "ProjectSettings\\MultiplayerManager.asset",
+    "sha256": "aba89fd1a1ddad182727ad82727e536d27372e90328a8196da2a4560398983dd"
+  },
+  {
+    "path": "ProjectSettings\\NavMeshAreas.asset",
+    "sha256": "80106cfa7e6181a1928b142c075f3e510d527441e3d79bc83590e4ac91e7cd66"
+  },
+  {
+    "path": "ProjectSettings\\PackageManagerSettings.asset",
+    "sha256": "f281d96e785df430d30ce0a515f4fe5c625ef44467125879f4b9f4cb087e1578"
+  },
+  {
+    "path": "ProjectSettings\\Physics2DSettings.asset",
+    "sha256": "d57a0fe55659c33879e8b70bc01c5ea9cdf082069dab649905c6c5138531e6eb"
+  },
+  {
+    "path": "ProjectSettings\\PhysicsCoreProjectSettings2D.asset",
+    "sha256": "bedc5339a832c60dc3f11b84abc4f4384dbfa20b0cd9ad6c444b907e751fc35e"
+  },
+  {
+    "path": "ProjectSettings\\PresetManager.asset",
+    "sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c"
+  },
+  {
+    "path": "ProjectSettings\\ProjectAuditorSettings.asset",
+    "sha256": "9e68444b9bda981e2927a98df9edf69ea88362f0c6b7f3c81b39b9d515d2a416"
+  },
+  {
+    "path": "ProjectSettings\\ProjectSettings.asset",
+    "sha256": "9843637644273f746472290e14dac3d79605e9652ee26b473d126288dfc5ee61"
+  },
+  {
+    "path": "ProjectSettings\\ProjectVersion.txt",
+    "sha256": "87289075c168cdd875e46a5fc308d15c686987848a70c7ce47faf40196ac0e20"
+  },
+  {
+    "path": "ProjectSettings\\QualitySettings.asset",
+    "sha256": "91733261fbff8c1c1d64024f730ddf4cde0780bdfe3102b09765ce14a1c725cf"
+  },
+  {
+    "path": "ProjectSettings\\SceneTemplateSettings.json",
+    "sha256": "bb9098b3bfcde78d93e264b96f7b77b5430e64e8c57a7aad7f5a5d9c3945e16a"
+  },
+  {
+    "path": "ProjectSettings\\ShaderGraphSettings.asset",
+    "sha256": "cdba1e5d65bcf6e3269d76ed3e60b6c21f98322002996642c9d74f1eb89f6b91"
+  },
+  {
+    "path": "ProjectSettings\\TagManager.asset",
+    "sha256": "23fc56b484aa3d7edf5914cd3591f7a823ccef5e3f3496f8a51f30388ead63dc"
+  },
+  {
+    "path": "ProjectSettings\\TimeManager.asset",
+    "sha256": "1a83e54adbbda7c9f4851103a0c6ab7f6448a3343d4ea5b7620452fa08416ecd"
+  },
+  {
+    "path": "ProjectSettings\\UnityConnectSettings.asset",
+    "sha256": "c3dbb998537bc5c0357729e0ea4554ae78213e38a6e3bce52fa300e0090e81ff"
+  },
+  {
+    "path": "ProjectSettings\\URPProjectSettings.asset",
+    "sha256": "596d5c8bf4f957b03684c949bebc252ae1918f25415a1147a00684c4b086efda"
+  },
+  {
+    "path": "ProjectSettings\\VersionControlSettings.asset",
+    "sha256": "e7bda45bf7a394745fee1316e6c71fa676004d591ad1f3aa247fd3e4ceb86071"
+  },
+  {
+    "path": "ProjectSettings\\VFXManager.asset",
+    "sha256": "f066c6483919961332415ee64204f74fe52f38c02e82892eb02b7a5b2e381f0e"
+  },
+  {
+    "path": "ProjectSettings\\XRSettings.asset",
+    "sha256": "edd2beb4a2e388312b4b7da241aa51070434005d82c59363f1237dd2e567585f"
+  }
+]

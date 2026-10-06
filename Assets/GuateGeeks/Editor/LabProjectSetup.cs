@@ -34,8 +34,8 @@ namespace GuateGeeks.AwsVr.Editor
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel32;
-            PlayerSettings.bundleVersion = "0.22.0";
-            PlayerSettings.Android.bundleVersionCode = 24;
+            PlayerSettings.bundleVersion = "0.24.0";
+            PlayerSettings.Android.bundleVersionCode = 26;
             PlayerSettings.Android.forceInternetPermission = true;
             PlayerSettings.Android.optimizedFramePacing = false; // Unity WebRTC Android requirement; OpenXR controls headset pacing.
             // Immersive Meta Horizon uploads require API 34; Auto selects the newest installed SDK.

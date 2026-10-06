@@ -1,0 +1,16 @@
+[shared small · station 1] table Pequeña · 1 m stand (0.00, 0.00, 1.48)
+  API Gateway 1: emblem 30.4° below, plinth 33.0°, label 24.9°, letter 1.22° at 1.33 m
+  Lambda 1: emblem 31.1° below, plinth 33.8°, label 25.5°, letter 1.26° at 1.30 m
+  DynamoDB 1: emblem 30.4° below, plinth 33.0°, label 24.9°, letter 1.22° at 1.33 m
+  02 · Architecture controls: 41.1°..54.8° below, bearing 0.0°, 0.68 m · at (0.000, 1.100, 1.880) rot (50.0, 0.0, 0.0) scale 0.00046
+  01 · Service catalog: 9.1°..39.5° below, bearing -47.7°, 0.66 m · at (-0.440, 1.360, 1.880) rot (8.0, 312.0, 0.0) scale 0.00044
+  03 · Inspector: 9.1°..39.5° below, bearing 47.7°, 0.66 m · at (0.440, 1.360, 1.880) rot (8.0, 48.0, 0.0) scale 0.00044
+  Mission status: 7.3°..12.4° below, bearing 0.0°, 0.80 m · at (0.000, 1.484, 2.260) rot (12.0, 0.0, 0.0) scale 0.00101
+[shared medium · station 1] table Mediana · 3 m stand (0.00, 0.00, 0.48)
+  API Gateway 1: emblem 7.3° below, plinth 12.8°, label -0.4°, letter 1.11° at 2.34 m
+  Lambda 1: emblem 7.9° below, plinth 13.8°, label -0.4°, letter 1.20° at 2.17 m
+  DynamoDB 1: emblem 7.4° below, plinth 12.8°, label -0.4°, letter 1.11° at 2.34 m
+  02 · Architecture controls: 34.9°..49.6° below, bearing 0.0°, 0.65 m · at (0.000, 1.170, 0.920) rot (44.0, 0.0, 0.0) scale 0.00046
+  01 · Service catalog: 9.1°..39.5° below, bearing -47.7°, 0.66 m · at (-0.440, 1.360, 0.880) rot (8.0, 312.0, 0.0) scale 0.00044
+  03 · Inspector: 9.1°..39.5° below, bearing 47.7°, 0.66 m · at (0.440, 1.360, 0.880) rot (8.0, 48.0, 0.0) scale 0.00044
+  Mission status: -17.2°..-14.1° below, bearing 0.0°, 1.04 m · at (0.000, 1.950, 1.480) rot (346.0, 0.0, 0.0) scale 0.00070

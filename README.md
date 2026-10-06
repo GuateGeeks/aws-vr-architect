@@ -1,12 +1,64 @@
 # GuateGeeks · AWS Architect Lab
 
+**Hand-first, near-field interface (source update):** panels are compact and within arm's reach, a wrist menu gives access to everything, keyboards are sized for fingers, code and inspection follow your head, and any finger can press.
+
+- **Cockpit:** in the headset the personal console sits around your station.
+  - The controls desk is 0.65 m away, tilted toward you in front of the waist.
+  - The catalog and inspector wings are at chest height, ±48°.
+  - Settings and ATLAS pop up between them.
+  - Every surface is about 0.5 m from a shoulder and below the eye line, with finger-sized targets (2.2 cm or more) and text around 15 dmm.
+  - It replaces the shared-room compact console and keeps the same physical size at every table size.
+  - Desktop rehearsal keeps the panoramic console. *Ajustes → Controles → Paneles* overrides this (automático / al alcance / panorámicos).
+- **Wrist menu:** turn the inside of your left wrist toward your face to open a 17 × 13 cm menu beside it. It has 12 buttons of 3.6 × 2.9 cm:
+  - CREAR, MESA, FICHA, ATLAS, INSPECCIÓN, CÓDIGO, AJUSTES, GUÍA, DESHACER, CONECTAR, TRAER AQUÍ, CENTRAR;
+  - buttons light up while their panel is open;
+  - tap with any finger of the other hand;
+  - *Menú de muñeca* moves it to the right wrist; the left controller's menu button or desktop **M** toggles it.
+  - **TRAER AQUÍ** brings the console and the reading panels to where you stand and look.
+- **Keyboards** (names, code, search, ATLAS text) open at a typing pose in front of the chest: 0.55 m from the eyes, 40° down, fixed in the world. Keys are 3.6 cm apart and at least 2.2 cm tall; the code keyboard was re-laid out to meet this. The connection keyboard sits in the settings panel at chest height, with 3.2 × 2.3 cm keys.
+- **Follow panels:** the Lambda code studio (middle), the inspection/workspace reader (25° right) and live diagnostics (25° left) follow your head at 0.7 m.
+  - They follow lazily: glances, leaning in and reading never move them, but a turn or a step brings them along.
+  - Panels never overlap.
+  - Dragging one pins it; TRAER AQUÍ releases it.
+- **Every finger presses:** all five fingertips of both hands press buttons and keys (approach, touch, lift).
+  - With a flat hand only the deepest finger presses, and there is a 120 ms guard against a second key.
+  - A ring under each approaching fingertip turns green on contact, and every fingertip glows.
+- Validation: EditMode 93/93, PlayMode 66/66 (new `NearFieldInterfaceTests`, `FingerTouchTests`). Renders: `Validation/65-near-cockpit.png`, `66-wrist-menu.png`, `67-touch-keyboard.png`, `68-follow-readers.png`. Wrist gesture thresholds, five-finger typing feel and frame time still need a Quest 3 session. See [hand-first interface](Documentation/Experience-Hand-First-Interface.md).
+
+**Table sizes (source update):** *Ajustes → Espacio → Tamaño de mesa* switches the projection table between **Pequeña · 1 m**, **Mediana · 3 m** and **Grande · 3.9 m** (the original table), alone or in a shared room.
+
+- **One scaled frame:** the table, holograms, connections, table traces, pulses, placement preview and ATLAS markers are drawn through one uniform scale about the centre of the glass. The height stays 0.74 m. Designs keep their full-table coordinates, so saved designs, undo, room edits and the backend's position checks don't change.
+- **Readable at every size:** labels, ports and the context ring keep their visual angle from the station (letters about 1.2° at every size) instead of shrinking with the holograms. Line widths shrink with the square root of the scale.
+- **Stations move with the rim** (0.67 m gap): 1.17 m from the centre for the 1 m table (booth about 3.8 m across), 2.17 m for 3 m (about 5.8 m) and 2.6 m for the full table (6.7 m).
+- **Solo:** with a 1 m or 3 m table you stand at station 1's spot and use the compact console; snap turn stays available. On the 1 m table the console stays out of the neighbours' space: the near-field cockpit keeps its arm's-reach size, and any other personal panel scales to 62 % about your eye. The controls sit under the holograms like a lectern, and the status line sits above them.
+- **Shared room:** everyone walks to their new circle. Headsets are not recentred, so same-room alignment is kept. In a real room the size is room state:
+  - only the facilitator changes it (new `table` WebSocket action);
+  - a new room starts with its creator's table;
+  - leaving restores your own table.
+  
+  An older backend sends no size, which means the full table.
+- **Backend:** networked rooms need the updated `backend/src/collaboration.py`. Deploy it with `cd backend && bash deployment/build-and-deploy.sh` (`awsday` profile, WSL). Until then, rooms stay on the full table and resize requests are rejected with a message.
+- **Validation:**
+  - EditMode 89/89 and PlayMode 62/62, including the new `TableLayoutTests` and `TableSizeTests` (`table-tests` editor command).
+  - Backend room tests 33/33, run with a botocore stub because PyPI was unreachable from the test machine.
+  - Renders: `Validation/57-table-size-settings.png` and `58`–`64-table-*.png`.
+  - Not yet built, installed or tried on the Quest 3.
+
+**Stark workshop environment (source update):** the room now fills every direction and the GuateGeeks identity lives on the table.
+
+- **Sky dome:** the open 8.4 m horizon cylinder is replaced by a full inward sphere (r 9.6 m, `HoloEnvironment.BuildHorizon`), so nothing is black overhead. `LabPanorama.shader` now works by direction: Milky Way, nebulae, uniform twinkling stars, a gibbous moon, a satellite and meteors overhead; aurora and data streams at the horizon; volcano ranges all the way round drawn as terrain scans (Agua, Acatenango, Fuego with its plume, Pacaya, and the Atitlán trio); Guatemala City's skyline with lit windows and aviation lights behind station 1; valley lights below the horizon and a thin holographic horizon line.
+- **Ceiling:** `HoloCeiling.cs` adds a hexagonal light canopy over the arches (`LabCanopy.shader`: AA lattice, data-packet cells, a power wave from the hub) and the holo-projector rig at the crown: titanium hub on eight struts with energy feeds, twelve emitter apertures, a lens with downward glow, three precessing gyroscope rings and a projection shaft that fades out by mid-room (`LabShaft.shader`). The 11 ribs are now 16 at 22.5°, so every shared-room station sees the same architecture.
+- **Table identity:** the two floating GuateGeeks signs are gone. `TableEmblem.cs` inlays a 2.25 m GuateGeeks wordmark in the table glass as a signed-distance hologram (`Resources/Branding/GuateGeeksSDF.png`, `LabLogo.shader`: crisp letters, inner contour, halo and a light sweep), with the live 3D eyes lying in the glass and looking up at you, and "AWS COMMUNITY DAY · GUATEMALA · GUATEGEEKS ARCHITECTURE LAB · LAT 14.63 N · LON 90.51 W" engraved round the rim so it reads from every station.
+- **Quetzal (remodelled from reference photos):** `QuetzalMesh.cs` builds a male resplendent quetzal: a dense brush crest of several hundred fine bristles from forehead to nape that spills over a short yellow bill, a large dark eye set well forward, an iridescent emerald back and breast with a scale texture, a scarlet belly, white outer tail feathers under dark central ones, emerald scimitar wing coverts over dark flight feathers with pale grey undersides, and four lanceolate streamers (two long, two shorter). `DigitalQuetzal.cs` moves it like the real bird: undulating flight (bursts of deep wingbeats, then short bounds with the wings tucked), a wrist fold on every upstroke, a flare into an upright hover with the wings beating over the back, a head held steady in the world that turns to look at you, and streamers simulated as Verlet chains (time-corrected, substepped) that trail in flight and hang in S-curves while it hovers.
+- All new motion follows reduced motion; everything hides with the virtual room. Validation: EditMode 86/86, PlayMode 59/59. Renders: `Validation/40`–`43`, `47`, `48-quetzal-hover`, `49-quetzal-head`, `50-workshop-ceiling`, `51-zenith-sky`, `52-table-logo`, `53-city-horizon`, `54-quetzal-flight`. Headset frame timing (full-sphere sky + additive canopy) still needs measuring on Quest 3.
+
 **0.22.0 — Networked four-person pilot:** *Ajustes → Sala compartida → Crear sala real / Unirme con código* now uses API Gateway WebSocket, Lambda and DynamoDB to share one authoritative graph. Each participant gets a separate temporary identity, reserved station and private ATLAS session. Requires the updated backend and the same rebuilt app on every headset.
 
 - Selecting remains private and allows inspecting a teammate's object. Moving waits for a server lease; edits wait for a receipt. Conflicts, expired leases and stale proposals cannot overwrite accepted state.
 - Undo reverses a user's own operation without restoring an old whole-room snapshot. Disconnection switches to read-only; reconnect fetches current state. Rooms/tokens expire after two hours.
 - ATLAS audio/transcripts and proposals stay personal. In a real room, hold right-controller A or desktop Space to talk; the hands-mode **Hablar / Silenciar mic** button toggles capture. The shared reactor does not expose private speech activity.
 - Only the facilitator confirms AWS deployment, deletion and code publication. A reserved slot also rejects writes using the shared event credential. Guests can read shared deployment progress.
-- Pilot configuration targets one active four-person room; validate transport, audio isolation, alignment and performance on real headsets before increasing concurrent rooms. Automated tests: **102 backend, 81 EditMode and 57 PlayMode passed**. SAM lint and packaging passed; no live room resources were deployed.
+- Pilot configuration targets one active four-person room; validate audio isolation, alignment and performance on real headsets before increasing concurrent rooms. Automated tests: **104 backend, 81 EditMode and 57 PlayMode passed**. Room resources were deployed on October 5 to fix the Create room 404. Live AWS checks passed with four independent WebSocket clients, shared edits, capacity rejection and edit conflicts. See [verification](backend/deployment/room-backend-verification.json). Physical multi-headset acceptance remains pending.
 
 Activation and limits: [implementation guide (Spanish)](Documentation/Evaluacion-UX-Sala-Compartida.md#9-implementación-del-piloto-de-cuatro-usuarios-5-de-octubre-de-2026).
 

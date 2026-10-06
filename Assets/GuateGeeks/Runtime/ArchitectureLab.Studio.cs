@@ -48,7 +48,7 @@ namespace GuateGeeks.AwsVr
             if (Graph.nodes.Count >= Architecture.MaxNodes) { SetStatus("Mesa llena: máximo 12 objetos."); return; }
             CancelPlacement(); ConnectingMode = false; connectionSource = null; RefreshSelection(); Rig.ReleaseForConfiguration();
             placementKind = kind;
-            placementGhost = Shape(world, "Placement preview", PrimitiveType.Cube, new Vector3(0, 1.45f, 2), Vector3.one * .38f * ComponentScale, ServiceCatalog.Get(kind).Color).transform;
+            placementGhost = Shape(workspace, "Placement preview", PrimitiveType.Cube, new Vector3(0, 1.45f, 2), Vector3.one * .38f * ComponentScale, ServiceCatalog.Get(kind).Color).transform;
             placementGhost.GetComponent<Renderer>().sharedMaterial = SpecialMaterial("LabHologram", ServiceCatalog.Get(kind).Color);
             AwsServiceEmblem.Create(placementGhost, kind, .92f / .38f); // full-size emblem inside the unit-scaled ghost volume
             ClearInspector(); Text(inspector, "CREAR / " + ServiceCatalog.Get(kind).Name, new Vector2(0, 320), new Vector2(506, 80), 30, Cyan);
@@ -57,7 +57,8 @@ namespace GuateGeeks.AwsVr
             Button(inspector, "Cancelar colocación", new Vector2(0, -250), new Vector2(506, 60), () => { CancelPlacement(); CloseWorkspace(); });
             SetStatus("COLOCAR · " + ServiceCatalog.Get(kind).Name + " · confirma o cancela"); UpdateButtons();
         }
-        public void PreviewPlacement(Vector3 point) { if (placementGhost) placementGhost.localPosition = ClampWorkspace(point); }
+        // The point is in the room; the ghost lives in design space, so it lands on the table at any size.
+        public void PreviewPlacement(Vector3 point) { if (placementGhost) placementGhost.localPosition = ClampWorkspace(DesignPoint(point)); }
         public void ConfirmPlacement()
         {
             if (!Placing || Busy) return;
@@ -65,7 +66,7 @@ namespace GuateGeeks.AwsVr
             if (Graph.nodes.Any(n => Vector3.Distance(n.position, point) < .48f*ComponentScale)) { SetStatus("Elige un espacio libre: el objeto está demasiado cerca de otro."); return; }
             Remember(); var node = Graph.Add(placementKind, point); node.setting=PlayerPrefs.GetInt("GuateGeeks.ComponentDefault."+(int)node.kind,0);node.setting=Mathf.Clamp(node.setting,0,DesignSemantics.OptionCount(node.kind)-1); CancelPlacement(); CreateView(node); Changed(); selected = views[node.id]; draftId = null;
             RefreshSelection(); CloseWorkspace(); SetStatus(node.name + " creado. Define sus propiedades y conexiones."); Feedback.Play(1);
-            HoloPulse.Spawn(world, node.position + Vector3.down * .27f * EffectiveScale(node), .15f, .6f, ServiceCatalog.Get(node.kind).Color, .02f, 0, .55f);
+            HoloPulse.Spawn(workspace, node.position + Vector3.down * .27f * EffectiveScale(node), .15f, .6f, ServiceCatalog.Get(node.kind).Color, .02f * Table.Stroke, 0, .55f);
         }
         public void RemoveSelectedComponent()
         {
@@ -232,7 +233,8 @@ namespace GuateGeeks.AwsVr
             keyboardCodeMode=false;
             Rig.ReleaseForConfiguration(); ConnectingMode = false; connectionSource = null; RefreshSelection();
             if (designKeyboard) { designKeyboard.gameObject.SetActive(false); Destroy(designKeyboard.gameObject); }
-            designKeyboard = Focus(Panel(PersonalRoot, "Design keyboard", new Vector3(0, 1.9f, 1.15f), new Vector2(1000, 740)));
+            // Touch keyboard at the typing pose: 88 px pitch → 3.6 cm keys centre to centre.
+            designKeyboard = KeyboardPanel("Design keyboard", new Vector2(1000, 740), 88);
             keyboardValue = value; keyboardLimit = limit; acceptKeyboard = accept;
             Text(designKeyboard, title, new Vector2(0, 315), new Vector2(920, 60), 24, Cyan);
             keyboardText = Text(designKeyboard, value, new Vector2(0, 228), new Vector2(920, 96), 26, White); keyboardText.richText = false;

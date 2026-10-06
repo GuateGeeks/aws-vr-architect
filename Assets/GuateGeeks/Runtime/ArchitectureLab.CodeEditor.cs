@@ -48,7 +48,8 @@ namespace GuateGeeks.AwsVr
         }
         void BuildCodeEditor()
         {
-            codePanel=Focus(Panel(PersonalRoot,"Lambda code studio",new Vector3(0,2.02f,1.05f),new Vector2(1220,1420)));codePanel.localScale=Vector3.one*.00112f;
+            // The studio follows the head in the middle slot, about 0.7 m away (≈15 dmm code text).
+            codePanel=Focus(Panel(NearRoot,"Lambda code studio",new Vector3(0,2.02f,1.05f),new Vector2(1220,1420)));Follow(codePanel,0,0,CodeScale);
             codePanel.GetComponent<HoloPanelGraphic>().color=new Color(.02f,.045f,.07f,1);
             codeTitle=Text(codePanel,"LAMBDA / CÓDIGO",new Vector2(0,510),new Vector2(1150,60),30,Cyan);
             string[] tabs={"Código","Cambios","Prueba","Versiones"};for(int i=0;i<tabs.Length;i++){int tab=i;Button(codePanel,tabs[i],new Vector2(-420+i*280,445),new Vector2(260,48),()=>{codeTab=tab;codePage=0;RefreshCodeEditor();});}
@@ -153,23 +154,24 @@ namespace GuateGeeks.AwsVr
         {
             if(codeBusy || ConfiguringConnection || EditingText)return;
             Rig.ReleaseForConfiguration();if(designKeyboard)Destroy(designKeyboard.gameObject);
-            designKeyboard=Focus(Panel(PersonalRoot,"Code keyboard",new Vector3(0,1.9f,1.1f),new Vector2(1160,900)));
+            // Touch keyboard at the typing pose: 98 px pitch → 3.6 cm keys centre to centre, every key at least 2.2 cm tall.
+            designKeyboard=KeyboardPanel("Code keyboard",new Vector2(1160,900),98);
             keyboardCodeMode=true;codeCaps=false;keyboardValue=value;keyboardLimit=4096;acceptKeyboard=accept;
-            Text(designKeyboard,title,new Vector2(0,390),new Vector2(1090,55),24,Cyan);
-            keyboardText=Text(designKeyboard,value,new Vector2(0,306),new Vector2(1090,100),23,White);keyboardText.richText=false;
+            Text(designKeyboard,title,new Vector2(0,392),new Vector2(1090,50),24,Cyan);
+            keyboardText=Text(designKeyboard,value,new Vector2(0,318),new Vector2(1090,84),23,White);keyboardText.richText=false;
             string[] rows={"1234567890","qwertyuiop","asdfghjkl","zxcvbnm_","():,.'\"=[]","+-*/%<>!{}"};
             var letterKeys=new System.Collections.Generic.List<LabTarget>();
-            for(int r=0;r<rows.Length;r++)for(int c=0;c<rows[r].Length;c++){string key=rows[r][c].ToString();var button=Button(designKeyboard,key,new Vector2((c-(rows[r].Length-1)/2f)*98,209-r*62),new Vector2(90,53),()=>TypeDesignText(codeCaps?key.ToUpperInvariant():key));if(char.IsLetter(key[0]))letterKeys.Add(button);}
-            Button(designKeyboard,"Mayús / minús",new Vector2(-280,-270),new Vector2(300,44),()=>{codeCaps=!codeCaps;foreach(var key in letterKeys)key.Label.text=codeCaps?key.Label.text.ToUpperInvariant():key.Label.text.ToLowerInvariant();});
-            Button(designKeyboard,"\\",new Vector2(10,-270),new Vector2(110,44),()=>TypeDesignText("\\"));
-            Button(designKeyboard,"#",new Vector2(145,-270),new Vector2(110,44),()=>TypeDesignText("#"));
-            Button(designKeyboard,"@",new Vector2(280,-270),new Vector2(110,44),()=>TypeDesignText("@"));
-            Button(designKeyboard,"Espacio",new Vector2(-405,-215),new Vector2(245,54),()=>TypeDesignText(" "));
-            Button(designKeyboard,"Indentar 4",new Vector2(-135,-215),new Vector2(245,54),()=>TypeDesignText("    "));
-            Button(designKeyboard,"Borrar",new Vector2(135,-215),new Vector2(245,54),()=>TypeDesignText(null));
-            Button(designKeyboard,"Vaciar",new Vector2(405,-215),new Vector2(245,54),()=>{keyboardValue="";keyboardText.text="";});
-            Button(designKeyboard,"Cancelar edición",new Vector2(-265,-325),new Vector2(480,60),CloseDesignKeyboard);
-            Button(designKeyboard,"Guardar texto",new Vector2(265,-325),new Vector2(480,60),()=>{var action=acceptKeyboard;var text=keyboardValue;CloseDesignKeyboard();action?.Invoke(text);RefreshCodeEditor();},Green);
+            for(int r=0;r<rows.Length;r++)for(int c=0;c<rows[r].Length;c++){string key=rows[r][c].ToString();var button=Button(designKeyboard,key,new Vector2((c-(rows[r].Length-1)/2f)*98,228-r*68),new Vector2(90,60),()=>TypeDesignText(codeCaps?key.ToUpperInvariant():key));if(char.IsLetter(key[0]))letterKeys.Add(button);}
+            Button(designKeyboard,"Espacio",new Vector2(-405,-190),new Vector2(245,60),()=>TypeDesignText(" "));
+            Button(designKeyboard,"Indentar 4",new Vector2(-135,-190),new Vector2(245,60),()=>TypeDesignText("    "));
+            Button(designKeyboard,"Borrar",new Vector2(135,-190),new Vector2(245,60),()=>TypeDesignText(null));
+            Button(designKeyboard,"Vaciar",new Vector2(405,-190),new Vector2(245,60),()=>{keyboardValue="";keyboardText.text="";});
+            Button(designKeyboard,"Mayús / minús",new Vector2(-280,-258),new Vector2(300,60),()=>{codeCaps=!codeCaps;foreach(var key in letterKeys)key.Label.text=codeCaps?key.Label.text.ToUpperInvariant():key.Label.text.ToLowerInvariant();});
+            Button(designKeyboard,"\\",new Vector2(10,-258),new Vector2(110,60),()=>TypeDesignText("\\"));
+            Button(designKeyboard,"#",new Vector2(145,-258),new Vector2(110,60),()=>TypeDesignText("#"));
+            Button(designKeyboard,"@",new Vector2(280,-258),new Vector2(110,60),()=>TypeDesignText("@"));
+            Button(designKeyboard,"Cancelar edición",new Vector2(-265,-338),new Vector2(480,64),CloseDesignKeyboard);
+            Button(designKeyboard,"Guardar texto",new Vector2(265,-338),new Vector2(480,64),()=>{var action=acceptKeyboard;var text=keyboardValue;CloseDesignKeyboard();action?.Invoke(text);RefreshCodeEditor();},Green);
         }
         IEnumerator LoadCode(bool replace,bool duringUpdate=false)
         {

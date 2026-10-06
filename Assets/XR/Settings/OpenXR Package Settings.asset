@@ -871,7 +871,7 @@ MonoBehaviour:
     enabled: 0
   - visibleName: Quest 2
     manifestName: quest2
-    enabled: 0
+    enabled: 1
   - visibleName: Quest Pro
     manifestName: cambria
     enabled: 0

@@ -49,6 +49,47 @@ class Transitions(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Revisión'):
             self.apply(command)
 
+    def move(self, node, position, request='move1', revision=0):
+        return dict(action='move', requestId=request, baseRevision=revision, objectId=node,
+                    position=position, leaseToken=self.value['locks'][node]['token'])
+
+    def test_concurrent_drops_merge_positions_without_reverting_other_changes(self):
+        self.apply(dict(action='claim', objectId='fn'))
+        self.apply(dict(action='claim', objectId='db'), 'host')
+        first = self.move('fn', dict(x=.25, y=1.3, z=2.4))
+        second = self.move('db', dict(x=1.2, y=1.5, z=3), 'move2')
+        self.apply(first)
+        self.apply(second, 'host')
+        self.assertEqual(2, self.value['revision'])
+        self.assertEqual(first['position'], next(n for n in self.value['graph']['nodes'] if n['id'] == 'fn')['position'])
+        self.assertEqual(second['position'], next(n for n in self.value['graph']['nodes'] if n['id'] == 'db')['position'])
+        self.assertEqual(graph()['links'], self.value['graph']['links'])
+        self.apply(second, 'host')
+        self.assertEqual(2, self.value['revision'], 'A duplicate drop must not reapply')
+
+    def test_move_requires_live_matching_lease_and_valid_position(self):
+        self.apply(dict(action='claim', objectId='fn'))
+        command = self.move('fn', dict(x=.25, y=1.3, z=2.4))
+        with self.assertRaisesRegex(ValueError, 'Concesión'):
+            self.apply(command, 'host')
+        command['leaseToken'] = 'outdated'
+        with self.assertRaisesRegex(ValueError, 'Concesión'):
+            self.apply(command)
+        command['leaseToken'] = self.value['locks']['fn']['token']
+        command['position']['x'] = float('nan')
+        with self.assertRaisesRegex(ValueError, 'Posición'):
+            self.apply(command)
+        command['position']['x'] = .25
+        self.value['locks']['fn']['expiresAt'] = self.now
+        with self.assertRaisesRegex(ValueError, 'Concesión'):
+            self.apply(command)
+
+    def test_duplicate_claim_keeps_current_token(self):
+        self.apply(dict(action='claim', objectId='fn'))
+        token = self.value['locks']['fn']['token']
+        self.apply(dict(action='claim', objectId='fn'))
+        self.assertEqual(token, self.value['locks']['fn']['token'])
+
     def test_duplicate_does_not_reapply_or_increment_revision(self):
         command = edit(self.value)
         self.apply(command)
@@ -153,6 +194,22 @@ class Transitions(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'membresía'):
             self.apply(edit(self.value))
 
+    def test_facilitator_sets_the_room_table_without_a_design_revision(self):
+        self.assertEqual(3, c.snapshot(self.value)['tableSize'], 'Rooms created before table sizes use the full table')
+        self.apply(dict(action='table', tableSize=1), 'host')
+        self.assertEqual(1, self.value['tableSize'])
+        self.assertEqual(1, c.snapshot(self.value)['tableSize'])
+        self.assertEqual(0, self.value['revision'])
+        self.assertEqual([], self.value['operations'])
+
+    def test_only_the_facilitator_changes_the_table_and_sizes_are_validated(self):
+        with self.assertRaisesRegex(ValueError, 'facilitador'):
+            self.apply(dict(action='table', tableSize=2))
+        for bad in (0, 4, '2', True, None, 2.0):
+            with self.assertRaisesRegex(ValueError, 'Tamaño'):
+                self.apply(dict(action='table', tableSize=bad), 'host')
+        self.assertNotIn('tableSize', self.value)
+
     def test_snapshot_excludes_history_tokens_and_expired_peers(self):
         self.value['members']['editor']['expiresAt'] = self.now - 1
         self.value['locks']['fn'] = dict(owner='host', token='lease', expiresAt=self.now - 1)
@@ -195,6 +252,21 @@ class Lifecycle(unittest.TestCase):
         self.assertEqual({0, 1, 2, 3}, {g['station'] for g in guests})
         self.assertEqual(['facilitator', 'editor', 'editor', 'editor'], [g['role'] for g in guests])
         with self.assertRaisesRegex(ValueError, 'llena'): self.join(first['roomId'])
+
+    def test_new_room_starts_with_the_creators_table_and_guests_cannot_resize_it(self):
+        host = c.bootstrap(dict(roomId='', name='Host', graph=graph(), tableSize=2), self.api)
+        guest = c.bootstrap(dict(roomId=host['roomId'], name='Guest', graph=graph(), tableSize=1), self.api)
+        self.assertEqual(2, MemoryStore.values['room:' + host['roomId']]['tableSize'])
+        legacy = self.join()
+        self.assertEqual(3, MemoryStore.values['room:' + legacy['roomId']]['tableSize'], 'Older apps send no size')
+        with self.assertRaisesRegex(ValueError, 'Tamaño'):
+            c.bootstrap(dict(roomId='', name='Bad', graph=graph(), tableSize=7), self.api)
+        ticket = c.connection_ticket(guest['token'], self.api)['ticket']
+        c.websocket(dict(requestContext=dict(routeKey='$connect', connectionId='guest'), queryStringParameters={'ticket': ticket}), self.api)
+        with patch.object(c, 'send') as send:
+            c.websocket(dict(requestContext=dict(routeKey='$default', connectionId='guest'), body=json.dumps(dict(action='table', tableSize=1, requestId='t1'))), self.api)
+            reply = send.call_args.args[2]
+        self.assertFalse(reply['accepted']); self.assertIn('facilitador', reply['message']); self.assertEqual(2, reply['tableSize'])
 
     def test_ticket_consumed_once_and_reconnect_fences_old_socket(self):
         first = self.join()
@@ -245,6 +317,30 @@ class Lifecycle(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'frecuente'): c.websocket(event, self.api)
         self.assertNotIn('PRIVATE', json.dumps(MemoryStore.values))
         self.assertNotIn('pose', MemoryStore.values['connection:one'])
+
+    def test_drag_preview_is_transient_and_fenced_by_lease_and_revision(self):
+        host = self.join()
+        ticket = c.connection_ticket(host['token'], self.api)['ticket']
+        c.websocket(dict(requestContext=dict(routeKey='$connect', connectionId='one'), queryStringParameters={'ticket': ticket}), self.api)
+        key = 'room:' + host['roomId']
+        c.apply_command(MemoryStore.values[key], host['userId'], dict(action='claim', objectId='fn'), int(time.time()))
+        lease = MemoryStore.values[key]['locks']['fn']
+        pose = dict(head=dict(x=0,y=1.6,z=0), hand=dict(x=0,y=1,z=0), pointAt=dict(x=0,y=1,z=2), rotation=dict(x=0,y=0,z=0,w=1),
+                    objectId='fn', objectPosition=dict(x=.2,y=1.4,z=2.5), leaseToken=lease['token'], revision=0, moveSequence=1)
+        def preview():
+            c.websocket(dict(requestContext=dict(routeKey='$default', connectionId='one'), body=json.dumps(dict(action='presence', pose=pose))), self.api)
+        committed = copy.deepcopy(MemoryStore.values[key]['graph'])
+        with patch.object(c, 'broadcast') as broadcast:
+            preview()
+            self.assertEqual('fn', broadcast.call_args.args[2]['pose']['objectId'])
+            self.assertEqual(committed, MemoryStore.values[key]['graph'])
+            self.assertNotIn('objectPosition', json.dumps(MemoryStore.values))
+            pose['leaseToken'] = 'forged'; preview()
+            self.assertNotIn('objectId', broadcast.call_args.args[2]['pose'])
+            pose['leaseToken'] = lease['token']; pose['revision'] = -1; preview()
+            self.assertNotIn('objectId', broadcast.call_args.args[2]['pose'])
+            pose['revision'] = 0; pose['objectPosition']['x'] = 50; preview()
+            self.assertNotIn('objectId', broadcast.call_args.args[2]['pose'])
 
 
 class ConditionalStore(unittest.TestCase):

@@ -13,7 +13,10 @@ namespace GuateGeeks.AwsVr
         public int ConnectionHint { get; private set; }
         Transform core, orbit;
         RectTransform label;
-        LineRenderer selection, stateRing;
+        LineRenderer selection, stateRing, serviceRing;
+        readonly System.Collections.Generic.List<Transform> ports = new System.Collections.Generic.List<Transform>();
+        readonly System.Collections.Generic.List<RectTransform> portTags = new System.Collections.Generic.List<RectTransform>();
+        float stroke = 1;
         Text stateText, nameText;
         ArchitectureLab owner;
         bool hovered, selected;
@@ -37,7 +40,7 @@ namespace GuateGeeks.AwsVr
             var pool = Shape(transform, "Service light pool", PrimitiveType.Quad, new Vector3(0, -.258f, 0), new Vector3(.44f, .44f, 1), service);
             pool.transform.localRotation = Quaternion.Euler(90, 0, 0);
             var poolColor = service; poolColor.a = .9f; pool.GetComponent<Renderer>().sharedMaterial = SpecialMaterial("LabGlow", poolColor);
-            var serviceRing = Ring(transform, new Vector3(0, -.259f, 0), .178f, service, .012f, 48);
+            serviceRing = Ring(transform, new Vector3(0, -.259f, 0), .178f, service, .012f, 48);
             serviceRing.sharedMaterial = Beam(service, false); serviceRing.textureMode = LineTextureMode.Stretch;
             var plate = new List<Vector3>();
             HoloGeometry.Circle(plate, new Vector3(0,-.258f,0), .23f, 48);
@@ -66,6 +69,23 @@ namespace GuateGeeks.AwsVr
             CreatePort(false); if (model.kind != ServiceKind.CloudWatch) CreatePort(true);
             var hit = gameObject.AddComponent<BoxCollider>(); hit.size=new Vector3(.55f,.65f,.5f);
             Target=gameObject.AddComponent<LabTarget>(); Target.Node=this; Target.Action=()=>lab.Select(this);
+            ApplyTable(lab.Table);
+        }
+        // The hologram scales with the table (it lives in the table's frame); its labels and ports keep their
+        // visual angle from the station instead, growing upward and outward so they never cover the emblem.
+        public void ApplyTable(TableLayout table)
+        {
+            float k = table.LabelScale, grow = k - 1; stroke = table.Stroke;
+            label.localScale = Vector3.one * .002f * k; label.localPosition = new Vector3(0, .232f + .128f * k, 0);
+            for (int i = 0; i < ports.Count; i++)
+            {
+                float side = Mathf.Sign(ports[i].localPosition.x);
+                ports[i].localScale = Vector3.one * .10f * Mathf.Sqrt(k);
+                portTags[i].localScale = Vector3.one * .002f * k;
+                portTags[i].localPosition = new Vector3(side * (.37f + .16f * grow), -.03f + .04f * grow, -.08f);
+            }
+            serviceRing.widthMultiplier = .012f * stroke; stateRing.widthMultiplier = .004f * stroke;
+            if (lockRing) lockRing.widthMultiplier = .03f * stroke;
         }
         void ProjectionSupports(Color tint)
         {
@@ -110,7 +130,7 @@ namespace GuateGeeks.AwsVr
                 var pivot = new GameObject("Teammate lock").transform; pivot.SetParent(transform, false);
                 var arcs = new Vector3[40];
                 for (int i = 0; i < arcs.Length; i++) { float a = i * Mathf.PI * 2 / arcs.Length; arcs[i] = new Vector3(Mathf.Cos(a), 0, Mathf.Sin(a)) * .36f + Vector3.down * .235f; }
-                lockRing = Line(pivot, "Lock ring", arcs, White, .03f, true); lockRing.textureMode = LineTextureMode.Stretch;
+                lockRing = Line(pivot, "Lock ring", arcs, White, .03f * stroke, true); lockRing.textureMode = LineTextureMode.Stretch;
             }
             lockRing.sharedMaterial = Beam(LockedBy.Color); lockRing.enabled = true;
         }
@@ -119,6 +139,7 @@ namespace GuateGeeks.AwsVr
             var port = Shape(transform, output ? "Output port" : "Input port", PrimitiveType.Sphere, new Vector3(output ? .37f : -.37f, -.12f, -.08f), Vector3.one * .10f, output ? Orange : Cyan, true);
             var target = port.AddComponent<LabTarget>(); target.Node = this; target.Port = output ? 2 : 1; target.Action = () => owner.SelectPort(this, output);
             var tag = Panel(transform, "Port label", new Vector3(output ? .37f : -.37f, -.03f, -.08f), new Vector2(160, 40), background: false, movable: false);
+            ports.Add(port.transform); portTags.Add(tag);
             Text(tag, output ? "SALIDA" : "ENTRADA", Vector2.zero, new Vector2(160, 40), 16, output ? Orange : Cyan, TextAnchor.MiddleCenter);
         }
         public void SetSelected(bool value) { selected=value; }
@@ -147,7 +168,7 @@ namespace GuateGeeks.AwsVr
             bool assistantHighlight=Time.unscaledTime<assistantHighlightUntil;
             if(assistantHighlight){stateText.text=assistantPreview?"ATLAS · OBJETIVO":"ATLAS · ACTUALIZADO";stateText.color=assistantPreview?Orange:Green;}
             selection.enabled=assistantHighlight||selected||hovered||Grabbed||ConnectionHint==2;
-            selection.widthMultiplier=assistantHighlight && !(LabFeedback.Current && LabFeedback.Current.ReducedMotion)?.024f+.01f*Mathf.Sin(Time.unscaledTime*7):hovered && !selected?.016f:.024f;
+            selection.widthMultiplier=stroke*(assistantHighlight && !(LabFeedback.Current && LabFeedback.Current.ReducedMotion)?.024f+.01f*Mathf.Sin(Time.unscaledTime*7):hovered && !selected?.016f:.024f);
             selection.sharedMaterial=Beam(assistantHighlight?(assistantPreview?Orange:Green):ConnectionHint==2?Green:selected?Ice:Cyan,false);
         }
     }

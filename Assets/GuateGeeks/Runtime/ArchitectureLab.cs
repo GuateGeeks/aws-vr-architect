@@ -62,7 +62,7 @@ namespace GuateGeeks.AwsVr
             Feedback = gameObject.AddComponent<LabFeedback>();
             world = new GameObject("AWS Day · Holographic lab").transform; world.SetParent(transform, false);
             var environment = new GameObject("Virtual room"); environment.transform.SetParent(world, false);
-            HoloEnvironment.Build(environment.transform); BuildSharedSpace(); BuildInterface();
+            HoloEnvironment.Build(environment.transform); BuildTableWorkspace(environment.GetComponent<HoloEnvironment>()); BuildSharedSpace(); BuildInterface();
             connectionPreview = Line(world,"Pending connection",previewPoints,Orange,.022f); connectionPreview.sharedMaterial=Beam(Orange); connectionPreview.textureMode=LineTextureMode.Stretch; connectionPreview.enabled=false;
             connectionHintPanel = Panel(world, "Connection explanation", Vector3.zero, new Vector2(550, 115), movable: false);
             connectionMeaning = Text(connectionHintPanel, "", Vector2.zero, new Vector2(520, 105), 20, White, TextAnchor.MiddleCenter);
@@ -116,11 +116,12 @@ namespace GuateGeeks.AwsVr
 
             objectInspector = Panel(PersonalRoot, "03 · Inspector", new Vector3(2.03f, 1.83f, 2.25f), new Vector2(570, 865), 29);
             objectInspector.GetComponent<LabMenu>().Moved = () => inspectorPinned = true;
-            workspaceInspector = inspector = Panel(PersonalRoot, "Workspace reader", new Vector3(0, 2.05f, .8f), new Vector2(570, 865));
-            workspaceInspector.localScale = Vector3.one * .0014f;
+            // Inspection, review and placement read in the right follow slot, clear of the table in front of you.
+            workspaceInspector = inspector = Panel(NearRoot, "Workspace reader", new Vector3(0, 2.05f, .8f), new Vector2(570, 865));
             workspaceInspector.GetComponent<HoloPanelGraphic>().color = new Color(.035f, .085f, .12f, 1);
+            Follow(workspaceInspector, 25, 1, ReaderScale);
             workspaceInspector.gameObject.SetActive(false);
-            var dock = Panel(PersonalRoot, "02 · Architecture controls", new Vector3(0, 1.16f, 1.2f), new Vector2(1250, 435));
+            var dock = controlsPanel = Panel(PersonalRoot, "02 · Architecture controls", new Vector3(0, 1.16f, 1.2f), new Vector2(1250, 435));
             dock.localScale = Vector3.one * .0017f;
             dock.localRotation = Quaternion.Euler(25, 0, 0);
             Text(dock, "02  /  MESA DE ARQUITECTURA", new Vector2(-300, 127), new Vector2(590, 32), 19, Cyan);
@@ -173,7 +174,7 @@ namespace GuateGeeks.AwsVr
             CancelPlacement(); draftId = null;
             bool preserveDeployment = Deployed && Graph != null && DesignSemantics.Definition(Graph) == DesignSemantics.Definition(graph);
             if (graphRoot) { graphRoot.gameObject.SetActive(false); Destroy(graphRoot.gameObject); }
-            graphRoot = new GameObject("Editable architecture").transform; graphRoot.SetParent(world, false);
+            graphRoot = new GameObject("Editable architecture").transform; graphRoot.SetParent(workspace, false);
             Graph = graph; if (IsCloud && !string.IsNullOrEmpty(Cloud.Region)) Graph.region = Cloud.Region;
             Graph.ResetStates(); views.Clear(); linkViews.Clear();
             selected = null; connectionSource = null; ConnectingMode = false;
@@ -250,15 +251,15 @@ namespace GuateGeeks.AwsVr
             bool active=ConnectingMode && connectionSource!=null && views.ContainsKey(connectionSource) && !Busy;
             connectionPreview.enabled=active; connectionHintPanel.gameObject.SetActive(active); if(!active) return;
             Vector3 a=views[connectionSource].transform.position;
-            Vector3 b=destination?destination.transform.position:ClampWorkspace(aim);
+            Vector3 b=destination?destination.transform.position:ClampToTable(aim);
             string reason = "Elige una entrada compatible.";
             bool valid=destination && Graph.CanConnect(connectionSource,destination.Model.id,out reason);
             connectionMeaning.text = valid ? DesignSemantics.Operation(views[connectionSource].Model.kind, destination.Model.kind) + "\n" + destination.Model.name : reason;
             connectionMeaning.richText = false;
-            connectionHintPanel.position = b + new Vector3(0, .65f, -.12f);
+            connectionHintPanel.position = b + new Vector3(0, .65f, -.12f) * Table.Ui; connectionHintPanel.localScale = Vector3.one * .002f * Table.Ui;
             if (Rig && Rig.ViewCamera) connectionHintPanel.rotation = Quaternion.LookRotation(connectionHintPanel.position - Rig.ViewCamera.transform.position);
-            connectionPreview.sharedMaterial=Beam(valid?Green:destination?Alert:Orange);
-            for(int i=0;i<previewPoints.Length;i++) {float t=(float)i/(previewPoints.Length-1); previewPoints[i]=world.InverseTransformPoint(Vector3.Lerp(a,b,t)+Vector3.up*Mathf.Sin(t*Mathf.PI)*.15f);}
+            connectionPreview.sharedMaterial=Beam(valid?Green:destination?Alert:Orange); connectionPreview.widthMultiplier=.022f*Table.Stroke;
+            for(int i=0;i<previewPoints.Length;i++) {float t=(float)i/(previewPoints.Length-1); previewPoints[i]=world.InverseTransformPoint(Vector3.Lerp(a,b,t)+Vector3.up*Mathf.Sin(t*Mathf.PI)*.15f*Table.Scale);}
             connectionPreview.SetPositions(previewPoints);
         }
         public void ToggleGridSnap() { GridSnap=!GridSnap; SetStatus(GridSnap?"Ajuste a cuadrícula: 10 cm al soltar.":"Movimiento libre activado."); }
@@ -298,8 +299,8 @@ namespace GuateGeeks.AwsVr
             UpdateCounts();
         }
         public static Vector3 ClampWorkspace(Vector3 position) => new Vector3(Mathf.Clamp(position.x, -1.6f, 1.6f), Mathf.Clamp(position.y, 1.02f, 2.1f), Mathf.Clamp(position.z, 1.65f, 3.65f));
-        // The projection table sits at (0, 0.74, 2.65) in lab space; pulses travel across its surface.
-        void TablePulse(Color color, float delay = 0) => HoloPulse.Spawn(world, new Vector3(0, .755f, 2.65f), .35f, 1.85f, color, .04f, delay);
+        // The projection table sits at (0, 0.74, 2.65) in design space; pulses travel across its surface at any size.
+        void TablePulse(Color color, float delay = 0) => HoloPulse.Spawn(workspace, new Vector3(0, .755f, 2.65f), .35f, 1.85f, color, .04f * Table.Stroke, delay);
         void LoadPreset(int index) { roomGlobal = NetworkRoom != null; Remember(); SetGraph(Architecture.Preset(index)); TablePulse(Cyan); SetStatus("Plantilla cargada. Puedes deshacer para recuperar el diseño anterior."); }
         void Undo() { if (UndoRoomOperation()) return; if (history.Count == 0) { SetStatus("Todavía no hay cambios para deshacer."); return; } var previous=history.Pop();if(historyScales.TryGetValue(previous,out float scale))RestoreViewScale(scale);historyScales.Remove(previous);SetGraph(previous);SetStatus("Cambio deshecho."); }
         void ValidateGraph()

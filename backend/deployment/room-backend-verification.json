@@ -1,0 +1,18 @@
+{
+  "stackStatus": "UPDATE_COMPLETE",
+  "authenticatedStatus": 200,
+  "unauthenticatedStatus": 401,
+  "createRoomStatus": 201,
+  "participants": 4,
+  "uniqueStations": 4,
+  "fifthParticipantStatus": 409,
+  "editBroadcastClients": 4,
+  "revision": 1,
+  "staleEditRejected": true,
+  "lockConflictRejected": true,
+  "ipRestrictionRemoved": true,
+  "realtimeModel": "gpt-realtime-2.1",
+  "deployedSourceMatches": true,
+  "gatewayIpRestrictionRemoved": true,
+  "verifiedAtUtc": "2026-10-06T00:08:30Z"
+}

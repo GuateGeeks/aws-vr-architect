@@ -1,0 +1,9 @@
+Backend: 104 tests passed.
+SAM validate --lint: valid.
+Live stack: UPDATE_COMPLETE.
+Gateway policy: no source-IP condition.
+Lambda source-IP guard and ALLOWED_CIDR removed.
+Authenticated API: HTTP 200.
+Unauthenticated API: HTTP 401.
+Remaining parameters preserved.
+No room resources or workload resources deployed by this change.

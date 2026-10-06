@@ -10,14 +10,25 @@ namespace GuateGeeks.AwsVr
     // to their station and, in a shared room, compacts to arm's reach so it never reaches into a neighbour's
     // sector (90° each). Alignment maps the physical head pose onto the chosen station: everyone stands in their
     // circle facing the table and presses «Alinear a mi estación». Networking replaces only ICollabSession.
+    //
+    // The compact console is a near-field cockpit: compact panels within arm's reach around the station, defined
+    // as physical offsets from the eyes — controls as a desk tilted toward the eyes in front of the waist, the
+    // catalog and the inspector as wings at chest height, settings and ATLAS popping up between them — so every
+    // button can be touched with a finger without raising or fully extending an arm. It is used in a shared room,
+    // on the smaller tables and, alone at the full table, in the headset. Desktop rehearsal keeps the panoramic
+    // console (a monitor cannot show arm's-reach panels); «Paneles» in settings overrides the automatic choice.
     public sealed class SharedSpace : MonoBehaviour
     {
         public const int MaxStations = 4;
         public const string SharedPreference = "GuateGeeks.Room.Shared.v1", StationPreference = "GuateGeeks.Room.Station.v1";
+        public const string LayoutPreference = "GuateGeeks.Layout.v1";
+        public const int LayoutAuto = 0, LayoutNear = 1, LayoutPanoramic = 2;
         public const float SoloDistance = 3.15f, SharedDistance = 2.6f, ZoneRadius = .75f, EyeHeight = 1.65f;
         // Personal panels stay inside ±MaxAngle of the station's forward axis and within reach of a controller ray.
         public const float MaxAngle = 40, NearDistance = .75f, FarDistance = 1.35f;
         public static readonly Vector3 Center = new Vector3(0, 0, 2.65f);
+        // Compact layouts are authored for station 1 of the full table; smaller tables move and scale them from here.
+        static readonly Vector3 AuthoredEye = new Vector3(0, EyeHeight, Center.z - SharedDistance);
         public static readonly Color[] Colors = { Cyan, Orange, Hex("#B38CFF"), Hex("#B8F25C") };
         public static readonly string[] ColorHex = { "#5CE1F2", "#FFB24F", "#B38CFF", "#B8F25C" };
         public static SharedSpace Current { get; private set; }
@@ -26,16 +37,31 @@ namespace GuateGeeks.AwsVr
         public int Station { get; private set; }
         public bool OutsideZone { get; private set; }
         public Transform Console { get; private set; }
+        // Table size (1 m, 3 m or the full 3.9 m). Stations keep their gap to the rim, so they move with it.
+        public TableLayout Table { get; private set; } = TableLayout.Full;
+        public float StationDistance => Table.StationDistance;
+        public static float ActiveStationDistance => Current ? Current.StationDistance : SharedDistance;
+        public static TableLayout ActiveTable => Current ? Current.Table : TableLayout.Full;
+        // The full solo console is laid out around the 3.9 m table; with a smaller table you stand at station 1's spot
+        // and use the compact console, as in a shared room (but with snap turn, no floor circles and no zone guard).
+        public bool CompactConsole => SharedRoom || Table.Size != TableSize.Large || NearCockpit;
+        // Alone at the full table: the cockpit when chosen, or automatically while the headset is on.
+        public int LayoutChoice { get; private set; }
+        public bool NearCockpit => LayoutChoice == LayoutNear || LayoutChoice == LayoutAuto && lab && lab.Rig && lab.Rig.IsXR;
+        public bool NearField => CompactConsole;
+        public static Vector3 SoloStand => Center + new Vector3(0, 0, -SoloDistance);
+        public string LayoutKey => !CompactConsole ? "" : Table.Size == TableSize.Small ? "shared.small." : "shared.";
         public float Yaw => SharedRoom ? StationYaw(Station) : 0;
         public Quaternion Rotation => Quaternion.Euler(0, Yaw, 0);
-        public Vector3 StandPosition => SharedRoom ? StationPosition(Station) : Center + new Vector3(0, 0, -SoloDistance);
+        public Vector3 StandPosition => CompactConsole ? StationPosition(SharedRoom ? Station : 0, StationDistance) : Center + new Vector3(0, 0, -SoloDistance);
         public Color LocalColor => Colors[Station];
         public int MarkerCount => markers.Count;
         // Editor tests have no headset: they can still evaluate the zone guard against the desktop camera.
         public bool EvaluateZoneWithoutXR;
         public event Action Changed;
         public static float StationYaw(int station) => station * 90f;
-        public static Vector3 StationPosition(int station, float distance = SharedDistance) =>
+        public static Vector3 StationPosition(int station) => StationPosition(station, ActiveStationDistance);
+        public static Vector3 StationPosition(int station, float distance) =>
             Center + Quaternion.Euler(0, StationYaw(station), 0) * new Vector3(0, 0, -distance);
         public static string StationName(int station) => "Estación " + (station + 1);
 
@@ -54,9 +80,10 @@ namespace GuateGeeks.AwsVr
 
         public void Initialize(ArchitectureLab owner, Transform labWorld)
         {
-            lab = owner; world = labWorld; Current = this;
+            lab = owner; world = labWorld; Current = this; Table = owner ? owner.Table : TableLayout.Full;
             SharedRoom = PlayerPrefs.GetInt(SharedPreference, 0) == 1;
             Station = Mathf.Clamp(PlayerPrefs.GetInt(StationPreference, 0), 0, MaxStations - 1);
+            LayoutChoice = Mathf.Clamp(PlayerPrefs.GetInt(LayoutPreference, LayoutAuto), LayoutAuto, LayoutPanoramic);
             Console = new GameObject("Personal console").transform; Console.SetParent(world, false);
             BuildMarkers(); ApplyConsole();
         }
@@ -80,19 +107,62 @@ namespace GuateGeeks.AwsVr
             Station = station; PlayerPrefs.SetInt(StationPreference, station); PlayerPrefs.Save();
             if (changed || SharedRoom) Apply();
         }
+        // The lab decides how people get there: alone it recentres you, in a shared room you walk to your circle.
+        public void SetTable(TableLayout table)
+        {
+            if (table.Size == Table.Size) return;
+            Table = table; ApplyConsole();
+        }
+        public void SetLayoutChoice(int choice)
+        {
+            LayoutChoice = Mathf.Clamp(choice, LayoutAuto, LayoutPanoramic);
+            PlayerPrefs.SetInt(LayoutPreference, LayoutChoice); PlayerPrefs.Save();
+            // Alone, the stand moves with the layout (cockpit at the station spot, panoramic further back).
+            Refresh(); if (!SharedRoom && lab && lab.Rig) lab.Rig.Recenter();
+        }
+        // Re-place every personal panel: the headset started or stopped, or the layout choice changed.
+        public void Refresh() { if (Console) ApplyConsole(); }
         void Apply()
         {
             ApplyConsole();
             if (lab && lab.Rig) lab.Rig.Recenter();
             Changed?.Invoke();
         }
-        void ApplyConsole()
+        // The console's home pose: turned to the station; on a smaller table also moved in with it and scaled about
+        // the eye (same visual angle).
+        void PoseConsole()
         {
             var rotation = Rotation;
-            Console.localRotation = rotation; Console.localPosition = Center - rotation * Center;
+            float k = CompactConsole ? Table.ConsoleScale : 1;
+            var eye = CompactConsole ? new Vector3(0, EyeHeight, Center.z - StationDistance) : AuthoredEye;
+            Console.localScale = Vector3.one * k; Console.localRotation = rotation;
+            Console.localPosition = Center - rotation * Center + rotation * (eye - AuthoredEye * k);
+        }
+        // Back home after «Traer aquí» (centring and restoring panels call this).
+        public void ResetAnchor() { if (Console) PoseConsole(); }
+        // «Traer aquí»: alone, the whole console (and the poses saved in it) moves so its eye point is where the
+        // person's eyes are, facing where they look — the cockpit also adopts their real eye height. In a shared
+        // room the console must stay on the station for co-location, so it only returns home.
+        public bool BringTo(Transform head)
+        {
+            if (!Console || !head || !world) return false;
+            if (SharedRoom) { PoseConsole(); return false; }
+            float k = CompactConsole ? Table.ConsoleScale : 1;
+            var reference = CompactConsole ? AuthoredEye : SoloStand + Vector3.up * EyeHeight;
+            var eye = world.InverseTransformPoint(head.position);
+            eye.y = CompactConsole ? Mathf.Clamp(eye.y, EyeHeight - .45f, EyeHeight + .35f) : EyeHeight;
+            var rotation = Quaternion.Euler(0, head.eulerAngles.y - world.eulerAngles.y, 0);
+            Console.localScale = Vector3.one * k; Console.localRotation = rotation;
+            Console.localPosition = eye - rotation * (reference * k);
+            return true;
+        }
+        void ApplyConsole()
+        {
+            PoseConsole();
             adopted.RemoveAll(t => !t || t.parent != Console);
             foreach (var panel in adopted) Place(panel, homes[panel]);
             if (markerRoot) markerRoot.gameObject.SetActive(SharedRoom);
+            for (int s = 0; s < markers.Count; s++) markers[s].root.localPosition = StationPosition(s) + Vector3.up * .012f;
             RefreshMarkers();
             identityPlaced = false; OutsideZone = false;
             if (guard) guard.gameObject.SetActive(false);
@@ -117,23 +187,48 @@ namespace GuateGeeks.AwsVr
         }
         void Place(Transform panel, Home home)
         {
-            var pose = SharedRoom ? Compact(panel.name, home) : home;
+            var pose = CompactConsole ? CompactPose(panel.name, home, Table) : home;
             panel.SetLocalPositionAndRotation(pose.position, pose.rotation); panel.localScale = pose.scale;
             var menu = panel.GetComponent<LabMenu>();
-            if (menu) menu.Rehome(pose.position, pose.rotation, SharedRoom ? "shared." : "");
+            if (menu) menu.Rehome(pose.position, pose.rotation, LayoutKey);
         }
-        // Personal-console layout in the station-1 frame. The four main surfaces get hand-tuned poses; any other
-        // panel keeps its direction and angular size relative to the user, clamped to the station's sector.
-        static Home Compact(string name, Home home)
+        // The cockpit as physical offsets from the eyes of a person standing at the station (x right, y up, z toward
+        // the table). Interactive surfaces sit 0.55–0.7 m from the eyes and about 0.5 m from a shoulder, below the eye
+        // line; text is about 15 dmm. On the 1 m table the holograms sit low and close (about 25° to 35° below the eye),
+        // so the desk goes lower, under them, and the status line closer, inside the small station's sector.
+        public static bool Cockpit(string name, TableSize table, out Vector3 fromEye, out Vector3 euler, out float scale)
         {
+            bool small = table == TableSize.Small;
             switch (name)
             {
-                case "02 · Architecture controls": return Pose(new Vector3(0, 1.06f, .74f), Quaternion.Euler(34, 0, 0), .001f);
-                case "Mission status": return Pose(new Vector3(0, 1.43f, .9f), Quaternion.Euler(14, 0, 0), .00112f);
-                case "01 · Service catalog": return Pose(new Vector3(-.82f, 1.42f, .7f), Quaternion.Euler(0, -50, 0), .00105f);
-                case "03 · Inspector": return Pose(new Vector3(.82f, 1.42f, .7f), Quaternion.Euler(0, 50, 0), .00105f);
+                case "02 · Architecture controls":
+                    fromEye = small ? new Vector3(0, -.55f, .40f) : new Vector3(0, -.48f, .44f); euler = new Vector3(small ? 50 : 44, 0, 0); scale = .00046f; return true;
+                case "01 · Service catalog": fromEye = new Vector3(-.44f, -.29f, .40f); euler = new Vector3(8, -48, 0); scale = .00044f; return true;
+                case "03 · Inspector": fromEye = new Vector3(.44f, -.29f, .40f); euler = new Vector3(8, 48, 0); scale = .00044f; return true;
+                case "Settings console": fromEye = new Vector3(0, -.15f, .52f); euler = new Vector3(16, 0, 0); scale = .00045f; return true;
+                case "ATLAS assistant": fromEye = new Vector3(-.3f, -.17f, .54f); euler = new Vector3(10, -30, 0); scale = .0004f; return true;
+                case "ATLAS compact presence": fromEye = new Vector3(-.5f, .09f, .46f); euler = new Vector3(-6, -47, 0); scale = .00036f; return true;
+                case "Guided mission": fromEye = new Vector3(.5f, .1f, .46f); euler = new Vector3(-6, 47, 0); scale = .00036f; return true;
+                case "Mission status":
+                    if (small) { fromEye = new Vector3(0, -.166f, .78f); euler = new Vector3(12, 0, 0); scale = .00101f; return true; }
+                    // High enough to clear every hologram on the larger tables.
+                    fromEye = new Vector3(0, .3f, 1f); euler = new Vector3(-14, 0, 0); scale = .0007f; return true;
             }
-            var soloStand = Center + new Vector3(0, 0, -SoloDistance); var sharedStand = StationPosition(0);
+            fromEye = euler = Vector3.zero; scale = 0; return false;
+        }
+        // Targets are physical offsets from the eye; the console's table scale is undone here, so the cockpit has the
+        // same physical size and reach at every table size.
+        static Home CompactPose(string name, Home home, TableLayout table)
+        {
+            if (Cockpit(name, table.Size, out var fromEye, out var euler, out float scale)) return FromEye(fromEye, euler, scale, table.ConsoleScale);
+            return Compact(name, home);
+        }
+        static Home FromEye(Vector3 offset, Vector3 euler, float scale, float k) => Pose(AuthoredEye + offset / k, Quaternion.Euler(euler), scale / k);
+        // Any other personal panel keeps its direction and angular size relative to the user, clamped to the
+        // station's sector (station-1 frame of the full table).
+        static Home Compact(string name, Home home)
+        {
+            var soloStand = Center + new Vector3(0, 0, -SoloDistance); var sharedStand = StationPosition(0, SharedDistance);
             var flat = home.position - soloStand; flat.y = 0;
             float distance = Mathf.Max(.01f, flat.magnitude), angle = Mathf.Atan2(flat.x, flat.z) * Mathf.Rad2Deg;
             float clamped = Mathf.Clamp(angle, -MaxAngle, MaxAngle), reach = Mathf.Clamp(distance, NearDistance, FarDistance), k = reach / distance;

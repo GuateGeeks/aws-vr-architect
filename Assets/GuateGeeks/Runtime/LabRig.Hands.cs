@@ -31,7 +31,13 @@ namespace GuateGeeks.AwsVr
             public LabTarget PressTarget;
             public Vector3 AimPosition;
             public Quaternion AimRotation;
-            public readonly DirectTouchState Touch = new DirectTouchState();
+            // Five fingertip probes per hand: any finger can press a button or a key.
+            public readonly MultiFingerTouch Fingers = new MultiFingerTouch();
+            public readonly LabTarget[] FingerHover = new LabTarget[MultiFingerTouch.Fingers];
+            public readonly object[] FingerTargets = new object[MultiFingerTouch.Fingers];
+            public readonly float[] FingerFronts = new float[MultiFingerTouch.Fingers];
+            public readonly Vector3[] FingerTips = new Vector3[MultiFingerTouch.Fingers];
+            public readonly LineRenderer[] Cursors = new LineRenderer[MultiFingerTouch.Fingers];
             public bool NearGrab;
         }
         readonly Dictionary<Hand, TrackedHand> trackedHands = new Dictionary<Hand, TrackedHand>();
@@ -41,7 +47,7 @@ namespace GuateGeeks.AwsVr
             if (!trackedHands.TryGetValue(hand, out var state) || !state.Active) return;
             EndHandGrab(hand); Hover(ref hand.Hover, null); state.Active = false; state.Pinch.Step(false, 0);
             state.PressTarget = null; state.PlaceOnRelease = false; state.Skeleton.SetActive(false);
-            state.Touch.Reset(); state.NearGrab=false; if(hand==left) HidePalm();
+            ResetFingers(state); state.NearGrab=false; if(IsWristHost(hand)) HideWrist();
             hand.Visual.Find("Controller").gameObject.SetActive(true);
             hand.WasGrip = hand.Grip.IsPressed();
         }
@@ -77,20 +83,29 @@ namespace GuateGeeks.AwsVr
             hand.Visual.gameObject.SetActive(true); hand.Visual.SetLocalPositionAndRotation(state.AimPosition, state.AimRotation);
             var ray = new Ray(hand.Visual.position, hand.Visual.forward);
             float distance=8; var target = hasAim?Pick(ray,out distance):null;
-            UpdatePalm(skeleton,isLeft);
+            UpdateWristFromHand(skeleton,isLeft);
             Vector3 tip=Vector3.zero; bool hasTip=skeleton.isTracked && skeleton.GetJoint(XRHandJointID.IndexTip).TryGetPose(out _);
             if(state.NearGrab && hand.Held && !hasTip) {EndHandGrab(hand);state.NearGrab=false;state.Pinch.Step(false,0);}
-            LabTarget touch=null;
-            if(hasTip) {
-                skeleton.GetJoint(XRHandJointID.IndexTip).TryGetPose(out var tipPose); tip=headOffset.TransformPoint(tipPose.position);
-                if(!hand.Held && !hand.HeldMenu) {
-                    touch=TouchTarget(tip,isLeft,out float front);
-                    bool fire=state.Touch.Step(touch,front,touch,Time.unscaledDeltaTime);
-                    if(touch) {target=touch; distance=Vector3.Distance(ray.origin,tip);}
-                    if(fire) { touch.Activate(); state.PressTarget=null; state.Pinch.Step(false,0); }
+            if(hasTip) { skeleton.GetJoint(XRHandJointID.IndexTip).TryGetPose(out var tipPose); tip=headOffset.TransformPoint(tipPose.position); }
+            // Every fingertip probes the surface in front of it; the closest contact steers the hand's hover and reticle.
+            LabTarget touch=null; Vector3 touchTip=tip; float touchFront=float.MaxValue;
+            bool canTouch=!hand.Held && !hand.HeldMenu && skeleton.isTracked;
+            for(int f=0;f<MultiFingerTouch.Fingers;f++) {
+                LabTarget hit=null; float front=0;
+                if(canTouch && skeleton.GetJoint(FingerTips[f]).TryGetPose(out var fingerPose)) {
+                    state.FingerTips[f]=headOffset.TransformPoint(fingerPose.position);
+                    hit=TouchTarget(state.FingerTips[f],isLeft,out front);
                 }
-            } else state.Touch.Reset();
-            NodeView near=null; float nearest=.16f;
+                state.FingerTargets[f]=hit; state.FingerFronts[f]=hit?front:0;
+                // Glow and cursor only for fingers that are really coming in (3 cm), so a flat hand is not noisy.
+                var shown=hit && front<.03f?hit:null;
+                Hover(ref state.FingerHover[f],shown); ShowTouchCursor(state,f,shown,front);
+                if(hit && Mathf.Abs(front)<Mathf.Abs(touchFront)) {touch=hit;touchFront=front;touchTip=state.FingerTips[f];}
+            }
+            int pressed=state.Fingers.Step(state.FingerTargets,state.FingerFronts,Time.unscaledTime,Time.unscaledDeltaTime);
+            if(touch) {target=touch; distance=Vector3.Distance(ray.origin,touchTip);}
+            if(pressed>=0 && state.FingerTargets[pressed] is LabTarget key && key) { key.Activate(); state.PressTarget=null; state.Pinch.Step(false,0); }
+            NodeView near=null; float nearest=.16f*lab.Table.Stroke;
             if(hasTip && !touch && !lab.ConnectingMode && !hand.HeldMenu) foreach(var view in lab.Views.Values) {
                 float d=Vector3.Distance(tip,view.transform.position); if(d<nearest && lab.CanInteract(view.Target)) {nearest=d;near=view;}
             }
@@ -98,10 +113,10 @@ namespace GuateGeeks.AwsVr
             Hover(ref hand.Hover, target);
             if(hasAim || target)lab.ObserveVoicePointer(isLeft?"left":"right",target,ray,!hasAim && !target || pointerBlocked);
             hand.Ray.SetPosition(0, Vector3.zero); hand.Ray.SetPosition(1, Vector3.forward * Mathf.Min(distance, 8));
-            hand.Reticle.gameObject.SetActive(target && target.Available); hand.Reticle.position = touch || near ? tip : ray.GetPoint(Mathf.Max(.01f, distance - .02f));
-            if (hasAim && lab.Placing && !target && !pointerBlocked) lab.PreviewPlacement(ray.GetPoint(3));
+            hand.Reticle.gameObject.SetActive(target && target.Available); hand.Reticle.position = touch ? touchTip : near ? tip : ray.GetPoint(Mathf.Max(.01f, distance - .02f));
+            if (hasAim && lab.Placing && !target && !pointerBlocked) lab.PreviewPlacement(ray.GetPoint(lab.PointerReach(3)));
             if (target && target.Node) { lab.PreviewConnection(target.Node, ray.GetPoint(distance)); previewHasTarget = true; }
-            else if (!previewHasTarget) lab.PreviewConnection(null, ray.GetPoint(3));
+            else if (!previewHasTarget) lab.PreviewConnection(null, ray.GetPoint(lab.PointerReach(3)));
             float strength=device.pinchStrengthIndex.ReadValue();
             // Entering the touch zone cancels a pending ray click; disabling pinch can emit Released.
             if(touch) { state.PressTarget=null; state.PlaceOnRelease=false; }
@@ -109,21 +124,30 @@ namespace GuateGeeks.AwsVr
             hand.Reticle.localScale=Vector3.one*Mathf.Lerp(.014f,.028f,strength);
             hand.Reticle.GetComponent<Renderer>().sharedMaterial=LabVisuals.Material(state.Pinch.Pressed?LabVisuals.Green:LabVisuals.White);
             hand.Ray.widthMultiplier=state.Pinch.Pressed?.012f:.007f; // soft beam: the visible core is about half its width
-            if (state.Pinch.Started || (lab.NetworkRoom != null && state.Pinch.Pressed && !hand.Held && !hand.HeldMenu && target && target.Node))
+            if (state.Pinch.Started || (lab.NetworkRoom != null && state.Pinch.Pressed && !hand.Held && !hand.HeldMenu && hand.PendingGrab))
             {
+                if (state.Pinch.Started) hand.PendingGrab = null;
                 state.PressTarget = target; state.PlaceOnRelease = hasAim && lab.Placing && !target && !pointerBlocked;
-                if (target && target.Menu && target.Menu.TryGrab(hand, ray, distance, hand.Visual.rotation)) hand.HeldMenu = target.Menu;
-                else if (target && target.Node && target.Port == 0)
+                if (state.Pinch.Started && target && target.Menu && target.Menu.TryGrab(hand, ray, distance, hand.Visual.rotation)) hand.HeldMenu = target.Menu;
+                else if (hand.PendingGrab || target && target.Node && target.Port == 0)
                 {
-                    target.Activate();
-                    if (!lab.ConnectingMode && lab.BeginGrab(target.Node)) { hand.Held = target.Node; state.NearGrab=near==target.Node; hand.Distance = distance; hand.Offset = hand.Held.transform.position - (state.NearGrab?tip:ray.GetPoint(distance)); }
+                    if (state.Pinch.Started)
+                    {
+                        target.Activate(); hand.PendingGrab = target.Node; hand.PendingNear = near == target.Node;
+                        hand.PendingDistance = distance; hand.PendingOffset = target.Node.transform.position - (hand.PendingNear ? tip : ray.GetPoint(distance));
+                    }
+                    if (!lab.ConnectingMode && hand.PendingGrab && lab.BeginGrab(hand.PendingGrab))
+                    {
+                        hand.Held = hand.PendingGrab; state.NearGrab = hand.PendingNear; hand.Distance = hand.PendingDistance; hand.Offset = hand.PendingOffset;
+                        hand.PendingGrab = null;
+                    }
                     state.PressTarget = null;
                 }
                 else if (target && target.Port == 2) { target.Activate(); hand.DrawingPort = true; state.PressTarget = null; }
             }
             if (state.Pinch.Pressed)
             {
-                if (hand.Held) hand.Held.transform.position = ArchitectureLab.ClampWorkspace((state.NearGrab && hasTip?tip:ray.GetPoint(hand.Distance)) + hand.Offset);
+                if (hand.Held) hand.Held.transform.position = lab.ClampToTable((state.NearGrab && hasTip?tip:ray.GetPoint(hand.Distance)) + hand.Offset);
                 if (hand.HeldMenu) hand.HeldMenu.Move(hand, ray, hand.Visual.rotation, 0);
             }
             if (state.Pinch.Released)
@@ -136,6 +160,35 @@ namespace GuateGeeks.AwsVr
             }
             state.Skeleton.SetActive(subsystem != null && skeleton.isTracked);
             if (subsystem != null && skeleton.isTracked) state.Mesh.UpdateHand(skeleton);
+        }
+        void ResetFingers(TrackedHand state)
+        {
+            state.Fingers.Reset();
+            for(int f=0;f<MultiFingerTouch.Fingers;f++) { Hover(ref state.FingerHover[f],null); state.FingerTargets[f]=null; ShowTouchCursor(state,f,null,0); }
+        }
+        // A small ring on the surface under each fingertip: it tightens as the finger approaches and turns green on
+        // contact, so depth is readable before the press (there is no haptic feedback with bare hands).
+        void ShowTouchCursor(TrackedHand state, int finger, LabTarget target, float front)
+        {
+            var cursor = state.Cursors[finger];
+            if (!target)
+            {
+                if (cursor && cursor.enabled) cursor.enabled = false;
+                if (state.Mesh) state.Mesh.SetTouch(finger, 0, false);
+                return;
+            }
+            if (!cursor)
+            {
+                cursor = state.Cursors[finger] = LabVisuals.Ring(transform, Vector3.zero, 1, LabVisuals.Ice, .0016f, 28);
+                cursor.name = "Fingertip touch cursor"; cursor.textureMode = LineTextureMode.Stretch;
+            }
+            float proximity = 1 - Mathf.Clamp01(front / .03f); bool pressing = front <= .004f;
+            var surface = target.transform;
+            cursor.transform.SetPositionAndRotation(state.FingerTips[finger] + surface.forward * (front - .0015f), surface.rotation * Quaternion.Euler(90, 0, 0));
+            cursor.transform.localScale = Vector3.one * Mathf.Lerp(.012f, .0045f, proximity);
+            cursor.sharedMaterial = LabVisuals.Beam(pressing ? LabVisuals.Green : LabVisuals.Ice, false);
+            cursor.enabled = true;
+            if (state.Mesh) state.Mesh.SetTouch(finger, proximity, pressing);
         }
     }
 }

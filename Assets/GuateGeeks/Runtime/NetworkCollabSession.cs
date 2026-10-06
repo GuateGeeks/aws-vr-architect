@@ -14,12 +14,17 @@ namespace GuateGeeks.AwsVr
     [Serializable] public sealed class RoomGrant { public string token, userId, roomId, role, websocketUrl; public int station; public long expiresAt; }
     [Serializable] public sealed class RoomMember { public string userId, name, role; public int station; }
     [Serializable] public sealed class RoomLease { public string objectId, owner, token; public long expiresAt; }
-    [Serializable] public sealed class RoomPose { public Vector3 head, hand, pointAt; public Quaternion rotation; public string focusId; public bool pointing; }
+    [Serializable] public sealed class RoomPose {
+        public Vector3 head, hand, pointAt, objectPosition; public Quaternion rotation;
+        public string focusId, objectId, leaseToken; public bool pointing; public int revision, moveSequence;
+    }
     [Serializable] public sealed class RoomDeployment { public string deploymentId, stackId, status, fingerprint; public int revision; public bool finished, success; public long expiresAt; }
     [Serializable] public sealed class RoomMessage
     {
         public string type, roomId, hostId, requestId, message, userId, focusId;
         public int revision, roomVersion;
+        // Room table (TableSize: 1 small, 2 medium, 3 full). 0 from an older backend means the full table.
+        public int tableSize;
         public bool accepted, pointing;
         public Architecture graph;
         public RoomMember[] members;
@@ -31,10 +36,13 @@ namespace GuateGeeks.AwsVr
     {
         public string action, requestId, objectId, leaseToken;
         public int baseRevision;
+        // action "table": the facilitator's new table size for the whole room.
+        public int tableSize;
         public Architecture graph;
         public RoomPose pose;
         public RoomLease[] leases;
         public bool global;
+        public Vector3 position;
     }
 
     // Tasks only handle bytes. Unity objects and session state are updated by Pump on the main thread.
@@ -46,7 +54,11 @@ namespace GuateGeeks.AwsVr
         readonly List<PeerState> peers = new List<PeerState>();
         readonly Dictionary<string, RoomPose> targets = new Dictionary<string, RoomPose>();
         readonly Dictionary<string, RoomLease> leases = new Dictionary<string, RoomLease>();
-        readonly HashSet<string> claims = new HashSet<string>();
+        readonly Dictionary<string, string> claims = new Dictionary<string, string>();
+        readonly Dictionary<string, float> claimSentAt = new Dictionary<string, float>();
+        readonly HashSet<string> releasing = new HashSet<string>();
+        readonly Dictionary<string, float> releaseSentAt = new Dictionary<string, float>();
+        readonly Dictionary<string, RoomPose> objectTargets = new Dictionary<string, RoomPose>();
         CancellationTokenSource cancellation;
         ClientWebSocket socket;
         volatile bool connected, failed;
@@ -147,10 +159,18 @@ namespace GuateGeeks.AwsVr
                     {
                         var peer = peers.FirstOrDefault(p => p.Id == message.userId);
                         if (peer != null && message.pose != null)
-                        { targets[peer.Id] = message.pose; peer.FocusId = message.focusId; peer.Pointing = message.pointing; }
+                        {
+                            targets[peer.Id] = message.pose; peer.FocusId = message.focusId; peer.Pointing = message.pointing;
+                            var pose = message.pose;
+                            if (!string.IsNullOrEmpty(pose.objectId) && pose.revision == Revision &&
+                                leases.TryGetValue(pose.objectId, out var held) && Live(held) && held.owner == peer.Id && held.token == pose.leaseToken &&
+                                (!objectTargets.TryGetValue(pose.objectId, out var previousPose) || previousPose.leaseToken != pose.leaseToken || pose.moveSequence > previousPose.moveSequence))
+                                objectTargets[pose.objectId] = pose;
+                        }
                         continue;
                     }
                     if (message.type != "snapshot" || message.graph == null || message.roomId != Grant.roomId) continue;
+                    foreach (var key in claims.Keys.ToArray()) if (claims[key] == message.requestId) { claims.Remove(key); claimSentAt.Remove(key); }
                     if (message.revision < Revision || LastSnapshot != null && message.roomVersion < LastSnapshot.roomVersion)
                     {
                         // A later broadcast may overtake an operation receipt. Complete that receipt
@@ -163,6 +183,12 @@ namespace GuateGeeks.AwsVr
                         }
                         continue;
                     }
+                    if (message.revision != Revision)
+                        foreach (var key in objectTargets.Keys.ToArray())
+                        {
+                            var before = Graph?.Find(key); var after = message.graph.Find(key);
+                            if (before == null || after == null || !before.position.Equals(after.position)) objectTargets.Remove(key);
+                        }
                     LastSnapshot = message; Revision = message.revision; Graph = message.graph;
                     var local = message.members?.FirstOrDefault(m => m.userId == Grant.userId);
                     if (local == null) { failed = true; break; }
@@ -182,7 +208,14 @@ namespace GuateGeeks.AwsVr
                     }
                     leases.Clear();
                     foreach (var lease in message.locks ?? Array.Empty<RoomLease>()) leases[lease.objectId] = lease;
-                    claims.Clear(); LocalHold = leases.Values.FirstOrDefault(l => l.owner == Grant.userId && Live(l))?.objectId;
+                    foreach (var key in claims.Keys.ToArray())
+                        if (claims[key] == message.requestId || HasLease(key)) { claims.Remove(key); claimSentAt.Remove(key); }
+                    foreach (var key in releasing.ToArray())
+                        if (!leases.TryGetValue(key, out var released) || released.owner != Grant.userId || !Live(released))
+                        { releasing.Remove(key); releaseSentAt.Remove(key); }
+                    foreach (var key in objectTargets.Keys.ToArray())
+                        if (!leases.TryGetValue(key, out var held) || !Live(held) || held.token != objectTargets[key].leaseToken) objectTargets.Remove(key);
+                    LocalHold = leases.Values.FirstOrDefault(l => l.owner == Grant.userId && Live(l) && !releasing.Contains(l.objectId))?.objectId;
                     foreach (var peer in peers) peer.Activity = leases.Values.Any(l => l.owner == peer.Id && Live(l)) ? "EDITA" : "OBSERVA";
                     Ready = true; lastSnapshot = Time.unscaledTime; Version++; Snapshot?.Invoke(message);
                 }
@@ -193,6 +226,14 @@ namespace GuateGeeks.AwsVr
             { connected = false; Ready = false; cancellation?.Cancel(); socket?.Abort(); Version++; LostConnection?.Invoke(); }
         }
         static bool Live(RoomLease lease) => lease.expiresAt > DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        public bool HasLease(string objectId) => objectId != null && !releasing.Contains(objectId) &&
+            leases.TryGetValue(objectId, out var lease) && lease.owner == Grant.userId && Live(lease);
+        public bool TryGetObjectPosition(string objectId, out Vector3 position)
+        {
+            if (objectTargets.TryGetValue(objectId, out var pose) && leases.TryGetValue(objectId, out var lease) && Live(lease))
+            { position = pose.objectPosition; return true; }
+            position = default; return false;
+        }
         public PeerState LockOwner(string objectId)
         {
             return objectId != null && leases.TryGetValue(objectId, out var lease) && Live(lease) && lease.owner != Grant.userId
@@ -201,15 +242,26 @@ namespace GuateGeeks.AwsVr
         public bool Claim(string objectId)
         {
             if (!CanWrite || objectId == null) return false;
-            if (leases.TryGetValue(objectId, out var lease) && lease.owner == Grant.userId && Live(lease)) return true;
-            if (LockOwner(objectId) != null || claims.Contains(objectId)) return false;
-            if (Send(new RoomCommand { action = "claim", objectId = objectId, requestId = Guid.NewGuid().ToString("N") })) claims.Add(objectId);
+            if (HasLease(objectId)) return true;
+            if (LockOwner(objectId) != null) return false;
+            if (releasing.Contains(objectId)) { Release(objectId); return false; }
+            if (claims.TryGetValue(objectId, out var pending))
+            {
+                if (Time.unscaledTime - claimSentAt[objectId] >= 1 && Send(new RoomCommand { action = "claim", objectId = objectId, requestId = pending }))
+                    claimSentAt[objectId] = Time.unscaledTime;
+                return false;
+            }
+            var request = Guid.NewGuid().ToString("N");
+            if (Send(new RoomCommand { action = "claim", objectId = objectId, requestId = request }))
+            { claims.Add(objectId, request); claimSentAt[objectId] = Time.unscaledTime; }
             return false;
         }
         public void Release(string objectId)
         {
-            if (objectId != null && leases.TryGetValue(objectId, out var lease) && lease.owner == Grant.userId)
-                Send(new RoomCommand { action = "release", objectId = objectId, leaseToken = lease.token, requestId = Guid.NewGuid().ToString("N") });
+            if (objectId != null && leases.TryGetValue(objectId, out var lease) && lease.owner == Grant.userId &&
+                (!releasing.Contains(objectId) || Time.unscaledTime - releaseSentAt[objectId] >= 1))
+                if (Send(new RoomCommand { action = "release", objectId = objectId, leaseToken = lease.token, requestId = Guid.NewGuid().ToString("N") }))
+                { releasing.Add(objectId); releaseSentAt[objectId] = Time.unscaledTime; }
         }
         public RoomLease[] OwnLeases() => leases.Values.Where(l => l.owner == Grant.userId && Live(l)).ToArray();
         public void SetLocalStation(int station) { /* Membership reserves stations on the server. */ }

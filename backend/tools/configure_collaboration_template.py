@@ -17,7 +17,7 @@ def configure(resources):
             {'Effect': 'Allow', 'Action': ['logs:CreateLogStream', 'logs:PutLogEvents'], 'Resource': att('CollabLogs')}]} }]}}
     resources['CollabFunction'] = {'Type': 'AWS::Serverless::Function', 'DependsOn': 'CollabLogs', 'Properties': {
         'FunctionName': sub('${DemoPrefix}-rooms'), 'Runtime': 'python3.13', 'Handler': 'collaboration.handler', 'CodeUri': 'src/',
-        'MemorySize': 256, 'Timeout': 10, 'ReservedConcurrentExecutions': 10, 'Role': att('CollabRole'),
+        'MemorySize': 256, 'Timeout': 10, 'Role': att('CollabRole'),
         'Environment': {'Variables': {'COLLAB_TABLE': ref('CollabTable')}}}}
     resources['CollabIntegration'] = {'Type': 'AWS::ApiGatewayV2::Integration', 'Properties': {
         'ApiId': ref('CollabApi'), 'IntegrationType': 'AWS_PROXY',

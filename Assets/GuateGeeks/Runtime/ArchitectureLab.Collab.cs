@@ -34,7 +34,8 @@ namespace GuateGeeks.AwsVr
             ClaimSelection(); teamVersion = -1; RefreshRoomSettings();
             SetStatus(Space.SharedRoom
                 ? "Sala compartida · " + SharedSpace.StationName(Space.Station) + ". Párate en tu círculo mirando la mesa y pulsa «Alinear a mi estación»."
-                : "Modo individual: la consola vuelve a su distribución completa.");
+                : Table.Size == TableSize.Large ? "Modo individual: la consola vuelve a su distribución completa."
+                : "Modo individual · mesa " + Table.Label + ": consola compacta frente a la mesa.");
         }
         public void SetSharedRoom(bool shared) { if (NetworkRoom != null || roomConnecting) { SetStatus("Sal de la sala real antes de cambiar la distribución."); return; } if (Space) Space.SetSharedRoom(shared); RefreshRoomSettings(); }
         public void SetStation(int station) { if (NetworkRoom != null || roomConnecting) { SetStatus("La estación está reservada por el servidor."); return; } if (Space) Space.SetStation(station); RefreshRoomSettings(); }
@@ -69,6 +70,19 @@ namespace GuateGeeks.AwsVr
         }
         void TickCollab()
         {
+            var room = NetworkRoom;
+            if (room != null)
+            {
+                float blend = 1 - Mathf.Exp(-Time.unscaledDeltaTime / .065f);
+                foreach (var pair in views)
+                {
+                    var view = pair.Value;
+                    if (!view || view.Grabbed) continue;
+                    var position = room.TryGetObjectPosition(pair.Key, out var preview) ? preview : view.Model.position;
+                    view.transform.localPosition = Vector3.Lerp(view.transform.localPosition, position, blend);
+                    if ((view.transform.localPosition - position).sqrMagnitude < .000001f) view.transform.localPosition = position;
+                }
+            }
             collabObjects.Clear();
             foreach (var pair in views) if (pair.Value) collabObjects[pair.Key] = pair.Value.transform.position;
             Collab.Tick(Time.unscaledTime, collabObjects);
@@ -118,10 +132,11 @@ namespace GuateGeeks.AwsVr
             if (simulateSetting) simulateSetting.text = "Simular 4 usuarios: " + (SimulatingPeers ? "SÍ" : "NO");
             for (int s = 0; s < stationButtons.Length; s++)
                 if (stationButtons[s]) stationButtons[s].Label.text = SharedSpace.StationName(s) + (Space && s == Space.Station ? "  ●" : "");
-            if (roomStatusText) roomStatusText.text = NetworkRoom != null ? "Estación reservada · " + SharedSpace.StationName(Space.Station) + ". Alinéate mirando al centro. Conversación y paneles personales privados."
+            string table = "Mesa " + Table.Label + (shared ? " · estaciones a " + Table.StationLabel + " del centro" : "");
+            if (roomStatusText) roomStatusText.text = NetworkRoom != null ? "Estación reservada · " + SharedSpace.StationName(Space.Station) + ". " + table + " (la elige el facilitador). Alinéate mirando al centro. Conversación y paneles personales privados."
                 : shared
-                ? "Estás en la " + SharedSpace.StationName(Space.Station) + ". Al salir de tu círculo verás un aviso.\n" + (SimulatingPeers ? "Ensayo simulado · no hay otros visores conectados." : "Distribución local · aún no conectaste una sala real.")
-                : "Modo individual: una persona, consola completa y giro por stick disponible.";
+                ? "Estás en la " + SharedSpace.StationName(Space.Station) + ". " + table + ". Al salir de tu círculo verás un aviso.\n" + (SimulatingPeers ? "Ensayo simulado · no hay otros visores conectados." : "Distribución local · aún no conectaste una sala real.")
+                : "Modo individual · " + table + ": una persona, consola " + (Table.Size == TableSize.Large ? "completa" : "compacta") + " y giro por stick disponible.";
             teamVersion = -1;
         }
     }

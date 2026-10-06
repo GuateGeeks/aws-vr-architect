@@ -1,4 +1,4 @@
-Quest 3 preflight | 2026-10-05T23:13:51.2837464Z
+Quest 3 preflight | 2026-10-06T04:22:27.0661466Z
 Unity 6000.6.3f1
 Active target: Android; selected group: Android
 PASS Android Build Support installed (restart Unity after installing modules)

@@ -1,5 +1,7 @@
 # Validación del backend · 1 de octubre de 2026
 
+**Actualización del 5 de octubre de 2026:** se retiraron las restricciones por IP de API Gateway y Lambda por solicitud y confirmación del usuario. La suite actual tiene 104 pruebas aprobadas; la comprobación desplegada devuelve 200 con credenciales y 401 sin ellas. Los ensayos de restricción/restauración de IP de la tabla siguiente son históricos. Véase [la verificación actual](../deployment/public-ip-access-verification.json).
+
 Pruebas ejecutadas en Ubuntu WSL 2, con Python 3.13.13, AWS CLI 2.37.7, SAM CLI 1.166.2, boto3 1.40.45 y cfn-lint 1.40.2. Se creó infraestructura temporal real en us-east-1 bajo el prefijo `ggtdadccc23`, usando la sesión AWS existente mediante `awsday-test`. Esa identidad era root; no se crearon access keys permanentes.
 
 **Ejecución completada y recursos temporales eliminados.** No quedó un backend permanente desplegado. El estado local registra `cleanupComplete: true`.

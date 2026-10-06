@@ -5,6 +5,7 @@ namespace GuateGeeks.AwsVr
     public sealed class LinkView : MonoBehaviour
     {
         NodeView from, to;
+        ArchitectureLab lab;
         LineRenderer line, arrow;
         Transform packet;
         RectTransform label;
@@ -15,7 +16,7 @@ namespace GuateGeeks.AwsVr
         bool reducedMotion, highlighted;
         TMPro.TMP_Text actionText;
         string meaning, simulationMeaning;
-        Vector3 lastFrom, lastTo; float lastScaleFrom, lastScaleTo; bool shaped;
+        Vector3 lastFrom, lastTo; float lastScaleFrom, lastScaleTo; bool shaped; TableSize lastTable;
         float observedUntil,assistantUntil;
         public void FlashAssistant(){assistantUntil=Time.unscaledTime+2;}
         public bool ObservedConfirmation => Time.unscaledTime < observedUntil;
@@ -26,7 +27,7 @@ namespace GuateGeeks.AwsVr
         public bool PacketVisible => packet && packet.gameObject.activeSelf;
         public void Initialize(NodeView a, NodeView b, ArchitectureLab owner)
         {
-            from = a; to = b;
+            from = a; to = b; lab = owner;
             var color = IsObservation ? LabVisuals.Muted : LabVisuals.Cyan;
             line = LabVisuals.Line(transform, "Directed connection", points, color, BaseWidth);
             line.sharedMaterial = Beam(color); line.textureMode = LineTextureMode.Stretch; line.numCapVertices = 0;
@@ -42,12 +43,14 @@ namespace GuateGeeks.AwsVr
         }
         // Data edges are soft additive beams with travelling dashes; observation edges stay quiet and static.
         float BaseWidth => IsObservation ? .012f : .024f;
+        // The beam lives in the table's frame: its curve scales with the table, its width a little less.
+        TableLayout Table => lab ? lab.Table : TableLayout.Full;
         Material Beam(Color color) => LabVisuals.Beam(color, !IsObservation);
         public void SetHighlighted(bool value)
         {
             highlighted=value;
             line.sharedMaterial = Beam(value ? LabVisuals.Ice : IsObservation ? LabVisuals.Muted : LabVisuals.Cyan);
-            line.widthMultiplier = value ? .036f : BaseWidth;
+            line.widthMultiplier = (value ? .036f : BaseWidth) * Table.Stroke;
         }
         public void Preview(float startDelay, float seconds, bool reduced)
         {
@@ -65,7 +68,7 @@ namespace GuateGeeks.AwsVr
         {
             var a = from.transform.TransformPoint(new Vector3(.37f, -.12f, -.08f));
             var b = to.transform.TransformPoint(new Vector3(-.37f, -.12f, -.08f));
-            return Vector3.Lerp(a, b, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * .16f;
+            return Vector3.Lerp(a, b, t) + Vector3.up * Mathf.Sin(t * Mathf.PI) * .16f * Table.Scale;
         }
         void LateUpdate()
         {
@@ -73,24 +76,25 @@ namespace GuateGeeks.AwsVr
             // Rebuild the 25-point curve and arrow only when an endpoint moves or rescales.
             var fromPosition = from.transform.position; var toPosition = to.transform.position;
             float fromScale = from.transform.localScale.x, toScale = to.transform.localScale.x;
-            bool moved = !shaped || fromPosition != lastFrom || toPosition != lastTo || fromScale != lastScaleFrom || toScale != lastScaleTo;
-            lastFrom = fromPosition; lastTo = toPosition; lastScaleFrom = fromScale; lastScaleTo = toScale; shaped = true;
+            var table = Table;
+            bool moved = !shaped || fromPosition != lastFrom || toPosition != lastTo || fromScale != lastScaleFrom || toScale != lastScaleTo || table.Size != lastTable;
+            lastFrom = fromPosition; lastTo = toPosition; lastScaleFrom = fromScale; lastScaleTo = toScale; lastTable = table.Size; shaped = true;
             var direction = (Point(.81f) - Point(.79f)).normalized;
             if (moved)
             {
-                label.localScale=labelScale*Mathf.Max(.6f,fromScale);
+                label.localScale=labelScale*Mathf.Max(.6f,fromScale)*table.LabelScale;
                 for (int i = 0; i < points.Length; i++) points[i] = transform.InverseTransformPoint(Point((float)i / (points.Length - 1)));
                 line.SetPositions(points);
                 var tip = Point(.8f);
-                var side = Vector3.Cross(direction, Mathf.Abs(direction.y) > .9f ? Vector3.forward : Vector3.up).normalized * .035f;
-                arrowPoints[0] = transform.InverseTransformPoint(tip - direction * .07f + side);
+                var side = Vector3.Cross(direction, Mathf.Abs(direction.y) > .9f ? Vector3.forward : Vector3.up).normalized * .035f * table.Scale;
+                arrowPoints[0] = transform.InverseTransformPoint(tip - direction * .07f * table.Scale + side);
                 arrowPoints[1] = transform.InverseTransformPoint(tip);
-                arrowPoints[2] = transform.InverseTransformPoint(tip - direction * .07f - side);
-                arrow.SetPositions(arrowPoints);
-                label.position = Point(.5f) + Vector3.up * .10f;
+                arrowPoints[2] = transform.InverseTransformPoint(tip - direction * .07f * table.Scale - side);
+                arrow.SetPositions(arrowPoints); arrow.widthMultiplier = .012f * table.Stroke;
+                label.position = Point(.5f) + Vector3.up * .10f * table.Ui;
             }
-            if(Time.unscaledTime<assistantUntil)line.widthMultiplier=LabFeedback.Current && LabFeedback.Current.ReducedMotion?.036f:.03f+.01f*Mathf.Sin(Time.unscaledTime*7);
-            else line.widthMultiplier=highlighted?.036f:BaseWidth;
+            if(Time.unscaledTime<assistantUntil)line.widthMultiplier=table.Stroke*(LabFeedback.Current && LabFeedback.Current.ReducedMotion?.036f:.03f+.01f*Mathf.Sin(Time.unscaledTime*7));
+            else line.widthMultiplier=(highlighted?.036f:BaseWidth)*table.Stroke;
             if (Camera.main) label.rotation = Quaternion.LookRotation(label.position - Camera.main.transform.position);
             if (previewTime >= 0) previewTime += Time.unscaledDeltaTime;
             bool visible = Flowing && !IsObservation && previewTime >= delay && previewTime <= delay + duration;

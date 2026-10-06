@@ -6,7 +6,7 @@ namespace GuateGeeks.AwsVr
 {
     public sealed partial class AwsCloudApi
     {
-        [Serializable] sealed class RoomBootstrap { public string roomId, name; public Architecture graph; }
+        [Serializable] sealed class RoomBootstrap { public string roomId, name; public Architecture graph; public int tableSize; }
         [Serializable] sealed class TicketRequest { public string token; }
         [Serializable] public sealed class RoomTicket { public string ticket, websocketUrl; }
         public string RoomToken { get; set; }
@@ -20,10 +20,10 @@ namespace GuateGeeks.AwsVr
         {
             yield return Request("GET", "/v1/deployments/" + slot, null, true, _ => { });
         }
-        public IEnumerator CreateRoom(string code, string name, Architecture graph, Action<RoomGrant, string> complete)
+        public IEnumerator CreateRoom(string code, string name, Architecture graph, TableSize table, Action<RoomGrant, string> complete)
         {
             CloudReply reply = null;
-            yield return Request("POST", "/v1/collab/rooms", JsonUtility.ToJson(new RoomBootstrap { roomId = code, name = name, graph = graph }), false, r => reply = r);
+            yield return Request("POST", "/v1/collab/rooms", JsonUtility.ToJson(new RoomBootstrap { roomId = code, name = name, graph = graph, tableSize = (int)table }), false, r => reply = r);
             var grant = Parse<RoomGrant>(reply);
             complete(reply.Ok && !string.IsNullOrEmpty(grant?.token) ? grant : null, reply.Ok ? null : Describe(reply));
         }

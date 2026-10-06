@@ -10,6 +10,16 @@ Los recursos temporales de las pruebas anteriores se eliminaron. El **1 de octub
 
 **Actualización 0.4.0:** el backend genera una contraseña Basic aleatoria de exactamente seis caracteres y rechaza contraseñas vacías o mayores de seis. La actualización rota la credencial anterior. Unity permite configurarla dentro del visor, recordarla cifrada y reconectar por Wi-Fi; el script USB es legado.
 
+## Contexto del evento para ATLAS
+
+El contexto de cada sesión nueva de ATLAS incluye los datos de [AWS Community Day Guatemala 2026](https://awscommunitygt.com/), verificados el 5 de octubre de 2026: **sábado 10 de octubre de 2026, desde las 8:00 a. m. (hora de Guatemala), en la Universidad Rafael Landívar, Zona 16, Ciudad de Guatemala**. El evento reúne a la comunidad AWS con charlas técnicas, casos de uso y networking; el registro es gratuito en el sitio oficial.
+
+Según el responsable del proyecto, **GuateGeeks lleva esta experiencia al AWS Community Day Guatemala 2026**: GuateGeeks AWS Architect Lab con ATLAS, un laboratorio inmersivo para explorar arquitectura AWS en Meta Quest. Los participantes crean y conectan hologramas de servicios, inspeccionan sus relaciones y reciben explicaciones y ayuda por voz de ATLAS. El laboratorio ofrece simulación local y operaciones reales en AWS con revisión y confirmación explícitas. ATLAS acredita a GuateGeeks al explicar quién trae la experiencia y qué se presenta, sin atribuirle la organización completa del evento ni afiliaciones no confirmadas.
+
+Las 8:00 a. m. corresponden al inicio del evento; no hay horario, salón, ponente ni título confirmados para la demostración. ATLAS remite al sitio oficial para esos detalles y responde con la fecha absoluta, sin asumir que el evento ocurre hoy.
+
+Los datos viven en `src/assistant.py`, junto al contexto de la sesión; los ejemplos de integración del grafo siguen llegando mediante `get_context`. Para activar esta actualización se requiere publicar el backend y reconectar ATLAS; no requiere cambiar el APK. Actualiza este contexto si la organización cambia fecha o sede.
+
 ## Arquitectura
 
 ```mermaid
@@ -24,7 +34,7 @@ flowchart LR
 
 La cuenta de servicio del cliente es `quest-demo`, con contraseña aleatoria de 40 caracteres guardada en Secrets Manager. AWS recibe llamadas autenticadas mediante credenciales temporales de roles IAM; no se crean usuarios IAM ni access keys para el visor. La API admite una cuenta de servicio compartida en esta versión: todos los clientes autorizados comparten los tres slots.
 
-El endpoint de control es regional y público, restringido por IP. `AllowedCidr` debe ser la IP pública de salida de la red del evento, por ejemplo `203.0.113.8/32` **solo como ejemplo, reemplázala**. El Quest debe usar esa misma salida; una IP privada como `192.168.x.x` no sirve. La Lambda no necesita VPC, VPN ni NAT Gateway.
+El endpoint de control es regional y acepta conexiones autenticadas desde cualquier IP. No utiliza lista de IP permitidas en API Gateway ni una comprobación de origen en Lambda. Los visores pueden usar distintas redes. La Lambda no necesita VPC, VPN ni NAT Gateway.
 
 ## Preparación manual de la cuenta nueva
 
@@ -46,7 +56,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 .\.venv\Scripts\cfn-lint.exe template.json
 
-.\tools\Deploy.ps1 -Profile awsday -Region us-east-1 -AllowedCidr '<IP-PUBLICA>/32' -BudgetEmail '<TU-CORREO>' -UseContainer
+.\tools\Deploy.ps1 -Profile awsday -Region us-east-1 -BudgetEmail '<TU-CORREO>' -UseContainer
 ```
 
 El script comprueba la identidad, valida SAM, compila y despliega el control plane. Los parámetros entre `<...>` deben reemplazarse. Omite `-UseContainer` si Python 3.13 está disponible para SAM. `BudgetEmail` es opcional; al establecerlo se crea un presupuesto mensual para toda la cuenta, con alerta al 80% del importe configurable `MonthlyBudgetUsd` (10 por defecto). **Ese importe es un umbral de aviso elegido para la demo, no una estimación ni un límite de gasto.**
@@ -119,9 +129,9 @@ sam delete --stack-name guategeeks-aws2026 --profile awsday --region us-east-1
 
 CloudFormation elimina el secreto sin ventana de recuperación al borrar el control plane, según su [política de eliminación predeterminada](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-deletionpolicy.html). El bucket de artefactos SAM puede permanecer; revísalo en la consola antes de dar por terminada la limpieza. No hay TTL para stacks; el operador debe ejecutar la limpieza al finalizar la demo.
 
-Rotación posterior al evento: `./tools/Rotate-Password.ps1 -Profile awsday`. Invalida la contraseña anterior en un máximo de 60 segundos de caché por entorno Lambda. Actualiza los clientes por el mismo canal de configuración. Los cambios de IP se aplican repitiendo Deploy con otro `AllowedCidr`.
+Rotación posterior al evento: `./tools/Rotate-Password.ps1 -Profile awsday`. Invalida la contraseña anterior en un máximo de 60 segundos de caché por entorno Lambda. Actualiza los clientes por el mismo canal de configuración. Cambiar de red no requiere redesplegar la API.
 
-La API mantiene una política de recursos y `AlwaysDeploy`. Durante las pruebas, una actualización de IP no bloqueó al cliente en API Gateway incluso después de desplegar. Por ello la Lambda también aplica `AllowedCidr` antes de autenticar, usando exclusivamente `requestContext.identity.sourceIp`; ignora cabeceras de origen y rechaza contexto o configuración ausentes o inválidos. No se debe depender únicamente de la política del gateway para esta restricción. El rol de aprovisionamiento incluye `apigateway:TagResource` y `apigateway:UntagResource`, necesarios para crear los recursos HTTP API etiquetados por CloudFormation.
+La API mantiene una política de recursos sin condiciones de IP y `AlwaysDeploy`. La autenticación, cuotas, roles de sala y permisos AWS continúan aplicándose. El rol de aprovisionamiento incluye `apigateway:TagResource` y `apigateway:UntagResource`, necesarios para crear los recursos HTTP API etiquetados por CloudFormation.
 
 CloudWatch incluye alarmas para errores de Lambda y 5xx de la API, visibles en consola; no tienen suscriptores SNS. Secrets Manager, API Gateway, logs, dashboards y recursos de demo pueden generar cargos, incluso con poca actividad. Los límites de nodos/slots reducen alcance, pero no constituyen un límite de gasto o de concurrencia. No se presupone cobertura por Free Tier.
 

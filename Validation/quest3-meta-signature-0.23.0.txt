@@ -1,0 +1,17 @@
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): false
+Verified using v3 scheme (APK Signature Scheme v3): true
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: CN=GuateGeeks AWS Architect Lab, O=GuateGeeks, C=GT
+Signer #1 certificate SHA-256 digest: 770b39c27d4252c0974cb1f4c7e9a4e7857f065c967d2a971e3de486284287ba
+Signer #1 certificate SHA-1 digest: 6e81f9228fb4a2d19bbc51e7f0993f88538f7564
+Signer #1 certificate MD5 digest: ba0391619bfbd953e2d8fb82e842a51f
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 3072
+Signer #1 public key SHA-256 digest: 943bc884c2f9a29d8120d8b2cb08e593a4fae6e0e3ee593ec2a52d37e6f2230a
+Signer #1 public key SHA-1 digest: c87f0700387597801fdbe87b5007db191ecc2015
+Signer #1 public key MD5 digest: d9c85e2b4938f56118679c2cc80f19b0

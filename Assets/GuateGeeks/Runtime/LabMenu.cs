@@ -10,6 +10,11 @@ namespace GuateGeeks.AwsVr
         public const string PreferencePrefix = "GuateGeeks.Menu.v1.";
         public Transform Handle { get; private set; }
         public Action Moved;
+        // Called by «Restaurar paneles» after the home pose is restored (follow panels use it to unpin).
+        public Action Restored;
+        // Transient surfaces (keyboards, head-following readers) are placed relative to the person each time,
+        // so a pose dragged by hand is not remembered between sessions.
+        public bool Persist = true;
         public bool Grabbed => owner != null;
         object owner;
         Vector3 defaultPosition, grabOffset;
@@ -35,7 +40,7 @@ namespace GuateGeeks.AwsVr
             // Capture after callers have applied their panel tilt and scale (unless the shared space already did).
             if (initialized) return;
             defaultPosition = transform.localPosition; defaultRotation = transform.localRotation; initialized = true;
-            LoadSaved();
+            if (Persist) LoadSaved();
         }
         public bool TryGetDefault(out Vector3 position, out Quaternion rotation)
         {
@@ -51,6 +56,7 @@ namespace GuateGeeks.AwsVr
         }
         void LoadSaved()
         {
+            if (!Persist) return;
             if (!PlayerPrefs.HasKey(Key)) return;
             try
             {
@@ -84,15 +90,19 @@ namespace GuateGeeks.AwsVr
         {
             if (!ReferenceEquals(owner, grabber) || owner == null) return;
             owner = null;
-            PlayerPrefs.SetString(Key, JsonUtility.ToJson(new Pose { position = transform.localPosition, rotation = transform.localRotation }));
-            PlayerPrefs.Save();
+            if (Persist)
+            {
+                PlayerPrefs.SetString(Key, JsonUtility.ToJson(new Pose { position = transform.localPosition, rotation = transform.localRotation }));
+                PlayerPrefs.Save();
+            }
             Moved?.Invoke();
         }
         public void ResetPose()
         {
             owner = null;
             if (initialized) transform.SetLocalPositionAndRotation(defaultPosition, defaultRotation);
-            PlayerPrefs.DeleteKey(Key); PlayerPrefs.Save();
+            if (Persist) { PlayerPrefs.DeleteKey(Key); PlayerPrefs.Save(); }
+            Restored?.Invoke();
         }
         void OnDisable() { owner = null; }
     }

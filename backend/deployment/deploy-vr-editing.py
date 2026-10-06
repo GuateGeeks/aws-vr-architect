@@ -1,11 +1,16 @@
 """Deploy this VR backend source, retaining every existing stack parameter."""
 import os
+import argparse
 import json
 import subprocess
 import sys
 from pathlib import Path
 import boto3
 
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--skip-build',action='store_true')
+parser.add_argument('--build-dir',default='.aws-sam/build')
+args=parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 os.chdir(root)
 os.environ['SAM_CLI_TELEMETRY'] = '0'
@@ -21,9 +26,9 @@ for value in stack['Parameters']:
 # SAM rejects Key= with an empty value. Unspecified existing parameters use previous values;
 # verify that their template defaults also remain empty before omitting them.
 params = [v['ParameterKey'] + '=' + v['ParameterValue'] for v in stack['Parameters'] if v['ParameterValue'] and v['ParameterKey'] in template['Parameters']]
-if '--skip-build' not in sys.argv:
-    subprocess.run(['sam', 'build', '--template-file', 'template.json'], check=True)
-subprocess.run(['sam', 'deploy', '--template-file', '.aws-sam/build/template.yaml',
+if not args.skip_build:
+    subprocess.run(['sam', 'build', '--template-file', 'template.json', '--build-dir',args.build_dir], check=True)
+subprocess.run(['sam', 'deploy', '--template-file', str(Path(args.build_dir)/'template.yaml'),
     '--stack-name', 'guategeeks-aws2026', '--profile', 'awsday', '--region', 'us-east-1',
     '--s3-bucket', 'guategeeks-aws2026-artifacts-590183968738-us-east-1',
     '--capabilities', 'CAPABILITY_IAM', '--no-confirm-changeset', '--no-fail-on-empty-changeset',

@@ -17,6 +17,15 @@ from graph import EDGES, SETTINGS
 
 LEASE_SECONDS = 20
 SESSION_SECONDS = 7200
+# Room table (Unity TableSize): 1 small (1 m), 2 medium (3 m), 3 full (3.9 m). Its size moves every station, so it
+# is room state that only the facilitator changes. Rooms created before this field use the full table.
+TABLE_SIZES = (1, 2, 3)
+FULL_TABLE = 3
+
+
+def table_size(value):
+    require(type(value) is int and value in TABLE_SIZES, 'Tamaño de mesa inválido.')
+    return value
 
 
 def encode(value):
@@ -129,6 +138,9 @@ def apply_command(room, user, data, now):
         require(key in {n['id'] for n in room['graph']['nodes']}, 'Objeto inexistente.')
         lock = room['locks'].get(key)
         require(not lock or lock['expiresAt'] <= now or lock['owner'] == user, 'Objeto en uso.')
+        if lock and lock['owner'] == user and lock['expiresAt'] > now:
+            lock['expiresAt'] = now + LEASE_SECONDS
+            return
         room['locks'][key] = dict(owner=user, token=secrets.token_hex(12), expiresAt=now + LEASE_SECONDS)
         return
     if action == 'release':
@@ -137,7 +149,12 @@ def apply_command(room, user, data, now):
         require(lock and lock['owner'] == user and lock['token'] == data.get('leaseToken'), 'Concesión vencida.')
         del room['locks'][key]
         return
-    require(action in ('op', 'undo'), 'Acción desconocida.')
+    if action == 'table':
+        # Not a design edit: no revision, receipt or undo. Everyone sees the new size in the next snapshot.
+        require(member['role'] == 'facilitator', 'Solo el facilitador cambia el tamaño de la mesa.')
+        room['tableSize'] = table_size(data.get('tableSize'))
+        return
+    require(action in ('op', 'undo', 'move'), 'Acción desconocida.')
     request_id = data.get('requestId')
     require(identifier(request_id), 'ID de operación inválido.')
     receipt = user + ':' + request_id
@@ -145,11 +162,26 @@ def apply_command(room, user, data, now):
         return
     deployment = room.get('deployment', {})
     require(deployment.get('expiresAt', 0) <= now or deployment.get('finished', True), 'Espera a que termine el despliegue de la sala.')
-    require(type(data.get('baseRevision')) is int and data['baseRevision'] == room['revision'], 'Revisión vencida; actualiza el contexto.')
+    require(type(data.get('baseRevision')) is int and
+            (0 <= data['baseRevision'] <= room['revision'] if action == 'move' else data['baseRevision'] == room['revision']),
+            'Revisión vencida; actualiza el contexto.')
     require(member['role'] in ('facilitator', 'editor'), 'Sin permiso de edición.')
     previous = room['graph']
     undo_target = None
-    if action == 'undo':
+    if action == 'move':
+        # A lease serializes edits to this object. Merge just its position into the
+        # latest graph so two people dropping different objects cannot overwrite
+        # each other or fail solely because another object advanced the revision.
+        key = data.get('objectId')
+        lock = room['locks'].get(key)
+        require(lock and lock['owner'] == user and lock['expiresAt'] > now and
+                lock['token'] == data.get('leaseToken'), 'Concesión vencida; solicita el objeto nuevamente.')
+        next_graph = copy.deepcopy(previous)
+        node = next((n for n in next_graph['nodes'] if n['id'] == key), None)
+        require(node is not None, 'Objeto inexistente.')
+        node['position'] = data.get('position')
+        next_graph = normalize_graph(next_graph, previous['region'])
+    elif action == 'undo':
         undo_target = next((op for op in reversed(room['operations']) if op['userId'] == user and not op.get('undone') and not op.get('isUndo')), None)
         require(undo_target is not None, 'No hay operaciones propias para deshacer.')
         next_graph = inverse(previous, undo_target)
@@ -164,6 +196,8 @@ def apply_command(room, user, data, now):
     supplied_leases = data.get('leases') or []
     require(isinstance(supplied_leases, list), 'Concesiones inválidas.')
     lease_tokens = {v.get('objectId'): v.get('token') for v in supplied_leases if isinstance(v, dict)}
+    if action == 'move':
+        lease_tokens[data['objectId']] = data['leaseToken']
     for key in touched:
         lock = room['locks'].get(key)
         require(not lock or lock['expiresAt'] <= now or lock['owner'] == user, 'Objeto en uso por otro usuario.')
@@ -233,6 +267,7 @@ def grant(store, token):
 def snapshot(room, request_id='', accepted=True, message=''):
     now = time.time()
     return dict(type='snapshot', roomId=room['roomId'], revision=room['revision'], roomVersion=room.get('version', 0), hostId=room['hostId'], graph=room['graph'],
+                tableSize=room.get('tableSize', FULL_TABLE),
                 members=[dict(userId=k, name=v['name'], station=v['station'], role=v['role']) for k, v in room['members'].items() if v['expiresAt'] > now],
                 locks=[dict(objectId=k, **v) for k, v in room['locks'].items() if v['expiresAt'] > now], deployment=room.get('deployment'), requestId=request_id, accepted=accepted, message=message)
 
@@ -322,7 +357,9 @@ def bootstrap(data, api):
     if not room_id:
         room_id = secrets.token_hex(4).upper()
         graph = normalize_graph(data.get('graph'), os.environ['AWS_REGION'])
-        room = dict(roomId=room_id, hostId=user, graph=graph, revision=0, members={}, locks={}, receipts=[], operations=[], expiresAt=now + SESSION_SECONDS)
+        # A new room starts with the creator's table; older apps send none (full table). Joining ignores it.
+        table = table_size(data.get('tableSize') or FULL_TABLE)
+        room = dict(roomId=room_id, hostId=user, graph=graph, revision=0, tableSize=table, members={}, locks={}, receipts=[], operations=[], expiresAt=now + SESSION_SECONDS)
         store.put('room:' + room_id, room)
         role = 'facilitator'
     else:
@@ -434,7 +471,21 @@ def websocket(event, api):
             require(isinstance(v, dict) and all(type(v.get(a)) in (int, float) and math.isfinite(v[a]) and abs(v[a]) <= limit_value for a in axes), 'Pose inválida.')
         focus = pose.get('focusId', '')
         require(not focus or focus in {n['id'] for n in room['graph']['nodes']}, 'Foco inválido.')
-        broadcast(ws, room, dict(type='presence', userId=user, pose={k: pose[k] for k in ('head', 'hand', 'pointAt', 'rotation')}, focusId=focus, pointing=pose.get('pointing') is True), exclude=connection)
+        public_pose = {k: pose[k] for k in ('head', 'hand', 'pointAt', 'rotation')}
+        key = pose.get('objectId')
+        if key:
+            lock = room['locks'].get(key)
+            position = pose.get('objectPosition')
+            # Uncommitted movement is transient and only forwarded for the current
+            # lease owner. Never persist previews or treat them as graph edits.
+            if (lock and lock['owner'] == user and lock['expiresAt'] > now and lock['token'] == pose.get('leaseToken') and
+                    type(pose.get('revision')) is int and pose['revision'] == room['revision'] and
+                    type(pose.get('moveSequence')) is int and 0 < pose['moveSequence'] <= 2147483647 and
+                    isinstance(position, dict) and all(type(position.get(axis)) in (int, float) and
+                        math.isfinite(position[axis]) and low <= position[axis] <= high
+                        for axis, low, high in [('x', -1.6, 1.6), ('y', 1.02, 2.1), ('z', 1.65, 3.65)])):
+                public_pose.update({k: pose[k] for k in ('objectId', 'objectPosition', 'leaseToken', 'revision', 'moveSequence')})
+        broadcast(ws, room, dict(type='presence', userId=user, pose=public_pose, focusId=focus, pointing=pose.get('pointing') is True), exclude=connection)
         return
     request_id = data.get('requestId', '')
     try:

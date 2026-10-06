@@ -73,11 +73,6 @@ def main():
         if not built.is_file():
             raise RuntimeError('Complete sam build before preparing a live deployment: ' + str(built))
         state['buildTemplate'] = str(built.resolve())
-        with urllib.request.urlopen('https://checkip.amazonaws.com', timeout=10) as response:
-            ip = response.read().decode().strip()
-        import ipaddress
-        ipaddress.IPv4Address(ip)
-        state['cidr'] = ip + '/32'
         save()
         if not state.get('artifactBucketCreated'):
             s3.create_bucket(Bucket=state['artifacts'])

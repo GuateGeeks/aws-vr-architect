@@ -99,13 +99,15 @@ namespace GuateGeeks.AwsVr
             var toward = cam.transform.position - center; toward.y = 0;
             if (toward.sqrMagnitude < .0001f) toward = Vector3.back;
             toward.Normalize();
-            float scale = selected.transform.lossyScale.x / Mathf.Max(.0001f, world.lossyScale.x);
+            // The hologram's size in the room (component size × table size); the actions keep their visual angle,
+            // so on a smaller table they shrink with the viewing distance rather than with the hologram.
+            float scale = selected.transform.lossyScale.x / Mathf.Max(.0001f, world.lossyScale.x), ui = scale * Table.LabelScale;
             bool reduced = LabFeedback.Current && LabFeedback.Current.ReducedMotion;
             float t = reduced ? 1 : Mathf.Clamp01((Time.unscaledTime - contextOpenedAt) / .24f);
             float bloom = 1 + 2.2f * Mathf.Pow(t - 1, 3) + 1.2f * Mathf.Pow(t - 1, 2); // ease-out with a small overshoot
             contextRing.position = center + toward * .3f * scale; // in front of the projector plinth
             contextRing.rotation = Quaternion.LookRotation(-toward, Vector3.up);
-            contextRing.localScale = Vector3.one * .001f * scale * Mathf.Lerp(.72f, 1, bloom);
+            contextRing.localScale = Vector3.one * .001f * ui * Mathf.Lerp(.72f, 1, bloom);
             contextSpin.localRotation = Quaternion.Euler(0, 0, LabFeedback.Clock * 14);
             contextCounterSpin.localRotation = Quaternion.Euler(0, 0, -LabFeedback.Clock * 22);
         }
