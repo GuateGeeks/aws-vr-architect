@@ -17,13 +17,13 @@ namespace GuateGeeks.AwsVr.Tests
             var far = (float[])fronts.Clone(); foreach (int f in fingers) far[f] = .03f;
             now += .03f; touch.Step(targets, far, now, .03f);
         }
-        [Test] public void EveryFingerCanPress()
+        [Test] public void OnlyIndexFingerCanPressUiInProduction0244()
         {
             for (int finger = 0; finger < MultiFingerTouch.Fingers; finger++)
             {
                 var touch = new MultiFingerTouch(); var targets = new object[5]; var fronts = new float[5]; float now = 0;
                 targets[finger] = A; Approach(touch, targets, fronts, ref now, finger);
-                Assert.AreEqual(finger, Press(touch, targets, fronts, ref now), MultiFingerTouch.Names[finger] + " presses");
+                Assert.AreEqual(finger == MultiFingerTouch.IndexFinger ? finger : -1, Press(touch, targets, fronts, ref now), MultiFingerTouch.Names[finger]);
             }
         }
         [Test] public void FlatHandPressesOnlyTheDeepestFingerAndNeighboursMustWithdraw()
@@ -34,7 +34,7 @@ namespace GuateGeeks.AwsVr.Tests
             fronts[1] = .001f; fronts[2] = .003f;
             Assert.AreEqual(1, Press(touch, targets, fronts, ref now), "The deeper index wins");
             now += 1; Assert.AreEqual(-1, Press(touch, targets, fronts, ref now), "A resting middle finger never fires later");
-            Approach(touch, targets, fronts, ref now, 2); Assert.AreEqual(2, Press(touch, targets, fronts, ref now), "…until it withdraws and presses again");
+            Approach(touch, targets, fronts, ref now, 2); Assert.AreEqual(-1, Press(touch, targets, fronts, ref now), "A withdrawn middle finger still cannot activate UI");
         }
         [Test] public void RefractoryBlocksAnAccidentalSecondKey()
         {
@@ -52,7 +52,7 @@ namespace GuateGeeks.AwsVr.Tests
         [Test] public void ResetCancelsAPressInProgress()
         {
             var touch = new MultiFingerTouch(); var targets = new object[5]; var fronts = new float[5]; float now = 0;
-            targets[4] = A; Approach(touch, targets, fronts, ref now, 4);
+            targets[1] = A; Approach(touch, targets, fronts, ref now, 1);
             now += .03f; touch.Step(targets, fronts, now, .03f); touch.Reset();
             Assert.AreEqual(-1, Press(touch, targets, fronts, ref now), "Tracking loss mid-press never completes it");
         }

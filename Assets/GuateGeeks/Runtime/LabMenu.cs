@@ -18,6 +18,8 @@ namespace GuateGeeks.AwsVr
         public bool Grabbed => owner != null;
         object owner;
         Vector3 defaultPosition, grabOffset;
+        Vector3 nearOffset;
+        readonly RectTransform[] gripEdges = new RectTransform[4];
         Quaternion defaultRotation, grabRotation, initialAim;
         float distance;
         bool initialized;
@@ -34,6 +36,36 @@ namespace GuateGeeks.AwsVr
             target.HoverLabel = "MOVER PANEL";
             LabVisuals.Ghost(target);
             target.Menu = this; Handle = target.transform;
+            for (int i = 0; i < gripEdges.Length; i++)
+            {
+                bool side = i < 2;
+                var edge = LabVisuals.Button(transform, "", side ? new Vector2((i == 0 ? -1 : 1) * (size.x / 2 + 8), 0)
+                    : new Vector2(0, (i == 2 ? -1 : 1) * (size.y / 2 + 8)),
+                    side ? new Vector2(18, size.y) : new Vector2(size.x, 18), null, LabVisuals.Muted);
+                edge.Menu = this; edge.HoverLabel = "MOVER PANEL"; LabVisuals.Ghost(edge);
+                gripEdges[i] = edge.transform as RectTransform;
+            }
+        }
+        public bool IsGrip(Transform child) => child && (Handle && child.IsChildOf(Handle) ||
+            Array.Exists(gripEdges, edge => edge && child.IsChildOf(edge)));
+        public void RemoveGripControls()
+        {
+            if (Handle) { Handle.gameObject.SetActive(false); Destroy(Handle.gameObject); Handle = null; }
+            for (int i = 0; i < gripEdges.Length; i++) if (gripEdges[i])
+            { gripEdges[i].gameObject.SetActive(false); Destroy(gripEdges[i].gameObject); gripEdges[i] = null; }
+        }
+        public bool TryGrabNear(object grabber, Vector3 gripPosition, Quaternion handRotation)
+        {
+            if (grabber == null || Grabbed || !isActiveAndEnabled) return false;
+            owner = grabber; initialAim = handRotation; grabRotation = transform.rotation;
+            nearOffset = transform.position - gripPosition;
+            return true;
+        }
+        public void MoveNear(object grabber, Vector3 gripPosition, Quaternion handRotation)
+        {
+            if (owner == null || !ReferenceEquals(owner, grabber)) return;
+            var delta = handRotation * Quaternion.Inverse(initialAim);
+            transform.SetPositionAndRotation(gripPosition + delta * nearOffset, delta * grabRotation);
         }
         void Start()
         {

@@ -1,0 +1,14 @@
+{
+  "unity": "C:/Program Files/Unity/Hub/Editor/6000.6.6f1/Editor/Unity.exe",
+  "sourceUnchangedDuringValidation": true,
+  "headsetAcceptance": "pending",
+  "desktopBuild": "Builds/Recovery/GuateGeeksAWSVR-Recovered.exe",
+  "originalSourceRecoveredVerbatim": false,
+  "tests": [
+    "unity-edit-tests-final.xml",
+    "unity-playmode-verified.xml"
+  ],
+  "quetzalPreview": "Recovery/0.24.4/render-checks/20261018T054613540Z/recovery-quetzal-perch.png",
+  "verifiedUtc": "2026-10-18T05:50:04.2059871Z",
+  "latestRerun": "blocked before tests by Unity Licensing Client connection failure on 2026-10-18"
+}

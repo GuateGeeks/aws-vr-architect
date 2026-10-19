@@ -83,7 +83,7 @@ namespace GuateGeeks.AwsVr
             bool show = visible ? Time.unscaledTime <= wristGrace : wristDwell > .22f;
             if (!show) { HideWrist(); return; }
             var ulnar = (little - index).normalized; var along = (middle - wrist).normalized;
-            ShowWristAt(wrist + ulnar * .1f - along * .02f + toward * .035f, !visible, "Toca con cualquier dedo");
+            ShowWristAt(wrist + ulnar * .1f - along * .02f + toward * .035f, !visible, "Toca con el índice");
             wristShownByHand = true;
         }
         // Controller: the menu button latches the menu above the host controller.

@@ -99,7 +99,8 @@ namespace GuateGeeks.AwsVr.Tests
             var rt = new RenderTexture(1920, 1080, 24) { antiAliasing = 4 }; camera.targetTexture = rt; camera.Render();
             var active = RenderTexture.active; RenderTexture.active = rt;
             var texture = new Texture2D(1920, 1080, TextureFormat.RGB24, false); texture.ReadPixels(new Rect(0, 0, 1920, 1080), 0, 0); texture.Apply();
-            Directory.CreateDirectory("Validation"); File.WriteAllBytes("Validation/" + name + ".png", texture.EncodeToPNG());
+            string captures = System.Environment.GetEnvironmentVariable("GG_RECOVERY_CAPTURE_DIR") ?? "Validation";
+            Directory.CreateDirectory(captures); File.WriteAllBytes(Path.Combine(captures, name + ".png"), texture.EncodeToPNG());
             RenderTexture.active = active; camera.targetTexture = previous; Object.Destroy(rt); Object.Destroy(texture);
         }
         [UnityTest] public IEnumerator OfficialAwsIconsRemainReadableAndDoNotInterceptInteractions()
@@ -708,7 +709,7 @@ namespace GuateGeeks.AwsVr.Tests
                 Assert.IsFalse(quetzal.Flying, "Reduced motion keeps the quetzal grounded");
                 lab.Feedback.ToggleMotion(); quetzal.Preview(.33f); yield return null; yield return null;
                 Assert.IsTrue(quetzal.Flying); Assert.IsTrue(quetzal.Bird.gameObject.activeInHierarchy);
-                Assert.Greater(quetzal.Head.GetComponentInChildren<MeshFilter>().sharedMesh.vertexCount, 600, "Sculpted head with crest, bill and eyes");
+                Assert.Greater(quetzal.Head.GetComponentsInChildren<MeshFilter>().Sum(f => f.sharedMesh.vertexCount), 600, "Articulated head with separate crest, bill and eyes");
                 cam.transform.position = new Vector3(0, 1.7f, .1f); cam.transform.LookAt(quetzal.Bird.position); yield return new WaitForSecondsRealtime(.25f);
                 cam.transform.LookAt(quetzal.Bird.position); yield return null; Capture("42-digital-quetzal");
                 // The hover: the quetzal faces the main station over the table and looks at the viewer.

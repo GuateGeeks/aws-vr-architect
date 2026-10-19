@@ -1,12 +1,17 @@
 param(
     [string]$Apk,
     [string]$Output,
-    [string]$AndroidTools = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/PlaybackEngines/AndroidPlayer'
+    [string]$AndroidTools = 'C:/Program Files/Unity/Hub/Editor/6000.6.6f1/Editor/Data/PlaybackEngines/AndroidPlayer'
 )
 $ErrorActionPreference = 'Stop'
 $questProject = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 if (-not $Apk) { $Apk = Join-Path $questProject 'Builds/Quest3/GuateGeeksAWSVR-Quest3.apk' }
-if (-not $Output) { $Output = Join-Path $questProject 'Builds/Quest3/GuateGeeksAWSVR-Quest3-0.21.0-meta.apk' }
+if (-not $Output) {
+    $versionLine = Get-Content (Join-Path $questProject 'ProjectSettings/ProjectSettings.asset') | Where-Object { $_ -match '^\s*bundleVersion:' } | Select-Object -First 1
+    if (-not $versionLine) { throw 'No se encontró bundleVersion en ProjectSettings.' }
+    $artifactVersion = ($versionLine -split ':', 2)[1].Trim()
+    $Output = Join-Path $questProject ("Builds/Quest3/GuateGeeksAWSVR-Quest3-$artifactVersion-meta.apk")
+}
 $questSigning = Join-Path $questProject 'Builds/Signing'
 $questKey = Join-Path $questSigning 'guategeeks-quest-release.keystore'
 $questPasswordFile = Join-Path $questSigning 'keystore-password.dpapi'

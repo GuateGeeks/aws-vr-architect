@@ -38,6 +38,21 @@ class Transitions(unittest.TestCase):
     def apply(self, data, user='editor'):
         c.apply_command(self.value, user, data, self.now)
 
+    def test_float32_table_edge_roundoff_is_clamped(self):
+        position = dict(x=1.6000001, y=1.01999998, z=3.6500001)
+        value = graph()
+        value['nodes'][0]['position'] = position
+        normalized = c.normalize_graph(value, 'us-east-1')
+        self.assertEqual(dict(x=1.6, y=1.02, z=3.65), normalized['nodes'][0]['position'])
+
+    def test_table_edge_tolerance_does_not_allow_real_out_of_bounds_or_nonfinite_positions(self):
+        for axis, invalid in [('x', 1.601), ('y', 1.019), ('z', 3.651), ('x', float('nan')), ('z', float('inf'))]:
+            with self.subTest(axis=axis, invalid=invalid):
+                value = graph()
+                value['nodes'][0]['position'][axis] = invalid
+                with self.assertRaisesRegex(ValueError, 'Posición'):
+                    c.normalize_graph(value, 'us-east-1')
+
     def test_editor_commits_with_revision_and_no_client_identity(self):
         self.apply(edit(self.value))
         self.assertEqual(1, self.value['revision'])
@@ -244,6 +259,18 @@ class Lifecycle(unittest.TestCase):
         self.store_patch.stop(); self.env_patch.stop()
     def join(self, code=''):
         return c.bootstrap(dict(roomId=code, name='Test', graph=graph()), self.api)
+
+    def test_heartbeat_broadcasts_renewed_object_lease_to_observers(self):
+        host = self.join()
+        ticket = c.connection_ticket(host['token'], self.api)['ticket']
+        c.websocket(dict(requestContext=dict(routeKey='$connect', connectionId='one'), queryStringParameters={'ticket': ticket}), self.api)
+        value = MemoryStore.values['room:' + host['roomId']]
+        c.apply_command(value, host['userId'], dict(action='claim', objectId='fn'), int(time.time()))
+        event = dict(requestContext=dict(routeKey='$default', connectionId='one'), body=json.dumps(dict(action='heartbeat')))
+        with patch.object(c, 'broadcast') as broadcast:
+            c.websocket(event, self.api)
+            broadcast.assert_called_once()
+            self.assertTrue(broadcast.call_args.args[2]['locks'])
 
     def test_four_distinct_identities_and_exclusive_stations(self):
         first = self.join()

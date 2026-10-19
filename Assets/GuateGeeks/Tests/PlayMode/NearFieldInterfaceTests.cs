@@ -76,7 +76,8 @@ namespace GuateGeeks.AwsVr.Tests
             var rt = new RenderTexture(1920, 1080, 24) { antiAliasing = 4 }; camera.targetTexture = rt; camera.Render();
             var active = RenderTexture.active; RenderTexture.active = rt;
             var texture = new Texture2D(1920, 1080, TextureFormat.RGB24, false); texture.ReadPixels(new Rect(0, 0, 1920, 1080), 0, 0); texture.Apply();
-            Directory.CreateDirectory("Validation"); File.WriteAllBytes("Validation/" + name + ".png", texture.EncodeToPNG());
+            string captures = System.Environment.GetEnvironmentVariable("GG_RECOVERY_CAPTURE_DIR") ?? "Validation";
+            Directory.CreateDirectory(captures); File.WriteAllBytes(Path.Combine(captures, name + ".png"), texture.EncodeToPNG());
             RenderTexture.active = active; camera.targetTexture = previous; camera.fieldOfView = previousFov; Object.Destroy(rt); Object.Destroy(texture);
         }
         static Vector2 Size(Component c) => ComfortLayout.WorldSize(c.transform as RectTransform);
@@ -162,7 +163,7 @@ namespace GuateGeeks.AwsVr.Tests
         }
 
         [UnityTest]
-        public IEnumerator KeyboardsOpenAtTheTypingPoseAndAnyFingerTypes()
+        public IEnumerator KeyboardsOpenAtTheTypingPoseAndIndexFingerTypes()
         {
             var eye = StandEye; LookFrom(eye, 0, 30);
             var node = lab.Views.Values.First(v => v.Model.kind == ServiceKind.Lambda);
@@ -183,18 +184,18 @@ namespace GuateGeeks.AwsVr.Tests
             Assert.AreEqual(ComfortLayout.KeyPitch, Vector3.Distance(q.position, w.position), .001f, "3.6 cm key pitch");
             AssertNotClipped(keyboard);
             Capture("67-touch-keyboard");
-            // Press G with the middle finger: approach from the front, touch, dwell. Thumb, ring and little do the same.
+            // Production 0.24.4: only the index finger activates UI; other fingers remain quetzal touch probes.
             var g = keys.Single(k => k.Label.text == "G");
             var fingers = new MultiFingerTouch(); var targets = new object[MultiFingerTouch.Fingers]; var fronts = new float[MultiFingerTouch.Fingers];
             int pressed = -1; float now = 0;
             foreach (float depth in new[] { .04f, .03f, .02f, .01f, .003f, .002f, .001f, .001f, .001f })
             {
-                targets[2] = lab.Rig.TouchProbe(g.transform.position - g.transform.forward * depth, false, out fronts[2]);
-                Assert.AreSame(g, targets[2], "The middle fingertip in front of G finds G");
+                targets[1] = lab.Rig.TouchProbe(g.transform.position - g.transform.forward * depth, false, out fronts[1]);
+                Assert.AreSame(g, targets[1], "The index fingertip in front of G finds G");
                 now += .03f; int finger = fingers.Step(targets, fronts, now, .03f);
                 if (finger >= 0) { pressed = finger; ((LabTarget)targets[finger]).Activate(); }
             }
-            Assert.AreEqual(2, pressed, "The middle finger pressed");
+            Assert.AreEqual(1, pressed, "The index finger pressed");
             Assert.IsTrue(keyboard.GetComponentsInChildren<TMPro.TMP_Text>().Any(t => t.text.EndsWith("G")), "G was typed");
             Assert.IsNull(lab.Rig.TouchProbe(g.transform.position + g.transform.forward * .04f, false, out _), "No press from behind the keyboard");
             Click("Cancelar nombre"); Assert.IsFalse(lab.EditingText);

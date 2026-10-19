@@ -1,6 +1,6 @@
 param(
-    [string]$Unity = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Unity.exe',
-    [string]$Backend = (Join-Path $PSScriptRoot '../../GuateGeeksAWS2026'),
+    [string]$Unity = 'C:/Program Files/Unity/Hub/Editor/6000.6.6f1/Editor/Unity.exe',
+    [string]$Backend = (Join-Path $PSScriptRoot '../backend'),
     [string]$Python,
     [int]$TimeoutMinutes = 40
 )
@@ -10,9 +10,9 @@ $backendRoot = (Resolve-Path $Backend).Path
 $validation = Join-Path $project 'Validation'
 $command = Join-Path $validation 'editor-command.txt'
 if (-not (Test-Path -LiteralPath $Unity)) { throw 'Install the pinned Unity editor and Android modules first.' }
-if ((Get-Content (Join-Path $project 'ProjectSettings/ProjectVersion.txt') -Raw) -notmatch 'm_EditorVersion: 6000.6.3f1') { throw 'Unexpected Unity version.' }
-if ((Get-Item -LiteralPath $Unity).VersionInfo.ProductVersion -notmatch '^6000\.6\.3') { throw 'The supplied editor must be Unity 6000.6.3f1.' }
-if (-not (Get-Process Unity -ErrorAction SilentlyContinue)) { throw 'Open this project in Unity 6000.6.3f1, exit Play Mode, and retry.' }
+if ((Get-Content (Join-Path $project 'ProjectSettings/ProjectVersion.txt') -Raw) -notmatch 'm_EditorVersion: 6000.6.6f1') { throw 'Unexpected Unity version.' }
+if ((Get-Item -LiteralPath $Unity).VersionInfo.ProductVersion -notmatch '^6000\.6\.6') { throw 'The supplied editor must be Unity 6000.6.6f1.' }
+if (-not (Get-Process Unity -ErrorAction SilentlyContinue)) { throw 'Open this project in Unity 6000.6.6f1, exit Play Mode, and retry.' }
 if (Test-Path -LiteralPath $command) { throw 'An editor command is already queued.' }
 New-Item -ItemType Directory -Path $validation -Force | Out-Null
 $lockPath = Join-Path $validation 'release.lock'
@@ -95,6 +95,6 @@ try {
     } finally { $zip.Dispose() }
     $inputs | ConvertTo-Json -Depth 4 | Set-Content (Join-Path $release 'source-hashes.json')
     $artifacts = Get-ChildItem -LiteralPath $release -Recurse -File | ForEach-Object { @{path=$_.FullName.Substring($release.Length+1);bytes=$_.Length;sha256=(Get-FileHash -LiteralPath $_.FullName).Hash.ToLowerInvariant()} }
-    @{version=$version;versionCode=[int]$versionCode;createdUtc=[DateTime]::UtcNow.ToString('O');unity='6000.6.3f1';platform='Quest 3 / Android ARM64 / Vulkan';signing='local debug certificate';headsetAcceptance='pending';backendDeployment='separate; not performed by release script';artifacts=@($artifacts)} | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $release 'manifest.json')
+    @{version=$version;versionCode=[int]$versionCode;createdUtc=[DateTime]::UtcNow.ToString('O');unity='6000.6.6f1';platform='Quest 3 / Android ARM64 / Vulkan';signing='local debug certificate';headsetAcceptance='pending';backendDeployment='separate; not performed by release script';artifacts=@($artifacts)} | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $release 'manifest.json')
     Write-Output "Release ready: $release"
 } finally { $releaseLock.Dispose() }

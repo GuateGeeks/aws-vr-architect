@@ -21,6 +21,10 @@ SESSION_SECONDS = 7200
 # is room state that only the facilitator changes. Rooms created before this field use the full table.
 TABLE_SIZES = (1, 2, 3)
 FULL_TABLE = 3
+POSITION_BOUNDS = (('x', -1.6, 1.6), ('y', 1.02, 2.1), ('z', 1.65, 3.65))
+# Unity float32 coordinates can cross an endpoint by a few ULPs, especially
+# after converting through a scaled table transform. Keep the stored bounds exact.
+POSITION_EPSILON = 1e-5
 
 
 def table_size(value):
@@ -41,6 +45,17 @@ def identifier(value):
     return isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_-]{1,64}', value)
 
 
+def normalize_position(position):
+    require(isinstance(position, dict), 'Posición inválida.')
+    result = {}
+    for axis, low, high in POSITION_BOUNDS:
+        n = position.get(axis)
+        require(type(n) in (int, float) and math.isfinite(n) and
+                low - POSITION_EPSILON <= n <= high + POSITION_EPSILON, 'Posición fuera de la mesa.')
+        result[axis] = min(high, max(low, n))
+    return result
+
+
 def normalize_graph(value, region):
     require(isinstance(value, dict) and type(value.get('schemaVersion')) is int and value.get('schemaVersion') == 1, 'Diseño inválido.')
     require(value.get('region') == region, 'La región de sala no puede cambiar.')
@@ -53,11 +68,7 @@ def normalize_graph(value, region):
         require(type(kind) is int and 0 <= kind < 7 and type(setting) is int and 0 <= setting < SETTINGS[kind], 'Configuración inválida.')
         name = node.get('name')
         require(isinstance(name, str) and 1 <= len(name) <= 80 and '<' not in name and '>' not in name, 'Nombre inválido.')
-        position = node.get('position')
-        require(isinstance(position, dict), 'Posición inválida.')
-        for axis, low, high in [('x', -1.6, 1.6), ('y', 1.02, 2.1), ('z', 1.65, 3.65)]:
-            n = position.get(axis)
-            require(type(n) in (int, float) and math.isfinite(n) and low <= n <= high, 'Posición fuera de la mesa.')
+        position = normalize_position(node.get('position'))
         scale = node.get('viewScale', 0)
         require(type(scale) in (int, float) and (scale == 0 or .5 <= scale <= 1.25), 'Escala inválida.')
         result.append(dict(id=node['id'], kind=kind, setting=setting, name=name, position=position, viewScale=scale, state=0))
@@ -475,16 +486,17 @@ def websocket(event, api):
         key = pose.get('objectId')
         if key:
             lock = room['locks'].get(key)
-            position = pose.get('objectPosition')
+            try:
+                position = normalize_position(pose.get('objectPosition'))
+            except ValueError:
+                position = None
             # Uncommitted movement is transient and only forwarded for the current
             # lease owner. Never persist previews or treat them as graph edits.
             if (lock and lock['owner'] == user and lock['expiresAt'] > now and lock['token'] == pose.get('leaseToken') and
                     type(pose.get('revision')) is int and pose['revision'] == room['revision'] and
-                    type(pose.get('moveSequence')) is int and 0 < pose['moveSequence'] <= 2147483647 and
-                    isinstance(position, dict) and all(type(position.get(axis)) in (int, float) and
-                        math.isfinite(position[axis]) and low <= position[axis] <= high
-                        for axis, low, high in [('x', -1.6, 1.6), ('y', 1.02, 2.1), ('z', 1.65, 3.65)])):
+                    type(pose.get('moveSequence')) is int and 0 < pose['moveSequence'] <= 2147483647 and position is not None):
                 public_pose.update({k: pose[k] for k in ('objectId', 'objectPosition', 'leaseToken', 'revision', 'moveSequence')})
+                public_pose['objectPosition'] = position
         broadcast(ws, room, dict(type='presence', userId=user, pose=public_pose, focusId=focus, pointing=pose.get('pointing') is True), exclude=connection)
         return
     request_id = data.get('requestId', '')
@@ -493,7 +505,9 @@ def websocket(event, api):
             require(value['members'][user]['connectionId'] == connection, 'Conexión reemplazada.')
             apply_command(value, user, data, now)
         room = store.mutate(room_key, transition)
-        if action == 'heartbeat':
+        # Observers must receive lease renewals too, or their live drag preview
+        # expires after 20 seconds even though the owner is still holding it.
+        if action == 'heartbeat' and not any(lock['owner'] == user and lock['expiresAt'] > now for lock in room['locks'].values()):
             send(ws, connection, snapshot(room))
         else:
             broadcast(ws, room, snapshot(room, request_id))

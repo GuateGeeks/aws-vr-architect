@@ -142,13 +142,13 @@ namespace GuateGeeks.AwsVr
                 }
                 else { origin.SetPositionAndRotation(Vector3.zero, Quaternion.identity); headOffset.localPosition = Vector3.zero; cam.transform.localPosition = new Vector3(0, 1.94f, -1.5f); cam.transform.localRotation = Quaternion.Euler(9, 0, 0); }
             }
-            hint.text = xr ? "MUÑECA  gírala hacia ti: menú / TOCA  con cualquier dedo / GATILLO o PINZA  lejos / GRIP  mover / B o Y  soltar\nBotón menú (izq.): muñeca con controles · A + X: recuperar paneles"
+            hint.text = xr ? "MUÑECA  gírala hacia ti: menú / TOCA  con el índice / GATILLO o PINZA  lejos / GRIP  mover / B o Y  soltar\nBotón menú (izq.): muñeca con controles · A + X: recuperar paneles"
                 : "CLIC  seleccionar    /    ARRASTRAR  mover    /    RUEDA  distancia    /    CLIC DERECHO  mirar\nWASD  explorar  ·  Q / E  altura  ·  C  conectar  ·  M  muñeca  ·  Esc  cancelar  ·  R  centrar / Shift+R  menús";
             if (xr) {
                 if (wristButton.WasPressedThisFrame()) ToggleWristMenu();
                 bool reset = left.Tracked.IsPressed() && right.Tracked.IsPressed() && left.Reset.IsPressed() && right.Reset.IsPressed();
                 if (reset && !wasReset) ResetMenus(); wasReset = reset;
-                previewHasTarget=false; lab.HideConnectionPreview(); mouseReticle.gameObject.SetActive(false); UpdateHead(); UpdateHand(left); UpdateHand(right);
+                previewHasTarget=false; lab.HideConnectionPreview(); mouseReticle.gameObject.SetActive(false); UpdateHead(); UpdateHand(left); UpdateHand(right); UpdateBeacons();
             }
             else UpdateDesktop();
         }

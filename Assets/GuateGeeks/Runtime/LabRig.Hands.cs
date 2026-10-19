@@ -39,6 +39,8 @@ namespace GuateGeeks.AwsVr
             public readonly Vector3[] FingerTips = new Vector3[MultiFingerTouch.Fingers];
             public readonly LineRenderer[] Cursors = new LineRenderer[MultiFingerTouch.Fingers];
             public bool NearGrab;
+            public bool NearMenu;
+            public bool HasIndexTip;
         }
         readonly Dictionary<Hand, TrackedHand> trackedHands = new Dictionary<Hand, TrackedHand>();
         readonly List<XRHandSubsystem> handSubsystems = new List<XRHandSubsystem>();
@@ -69,7 +71,7 @@ namespace GuateGeeks.AwsVr
             {
                 state = new TrackedHand { Skeleton = new GameObject(isLeft ? "Left armored hand" : "Right armored hand") };
                 state.Skeleton.transform.SetParent(headOffset, false);
-                state.Mesh = state.Skeleton.AddComponent<ArmoredHandVisual>(); state.Mesh.Initialize(isLeft);
+                state.Mesh = state.Skeleton.AddComponent<ArmoredHandVisual>(); state.Mesh.Initialize(isLeft); state.Mesh.Viewer = cam.transform;
                 trackedHands.Add(hand, state);
             }
             Vector3 aim = device.devicePosition.ReadValue(); Quaternion rotation = device.deviceRotation.ReadValue();
@@ -85,14 +87,15 @@ namespace GuateGeeks.AwsVr
             float distance=8; var target = hasAim?Pick(ray,out distance):null;
             UpdateWristFromHand(skeleton,isLeft);
             Vector3 tip=Vector3.zero; bool hasTip=skeleton.isTracked && skeleton.GetJoint(XRHandJointID.IndexTip).TryGetPose(out _);
-            if(state.NearGrab && hand.Held && !hasTip) {EndHandGrab(hand);state.NearGrab=false;state.Pinch.Step(false,0);}
+            state.HasIndexTip = hasTip;
+            if((state.NearGrab && hand.Held || state.NearMenu && hand.HeldMenu) && !hasTip) {EndHandGrab(hand);state.NearGrab=state.NearMenu=false;state.Pinch.Step(false,0);}
             if(hasTip) { skeleton.GetJoint(XRHandJointID.IndexTip).TryGetPose(out var tipPose); tip=headOffset.TransformPoint(tipPose.position); }
             // Every fingertip probes the surface in front of it; the closest contact steers the hand's hover and reticle.
             LabTarget touch=null; Vector3 touchTip=tip; float touchFront=float.MaxValue;
             bool canTouch=!hand.Held && !hand.HeldMenu && skeleton.isTracked;
             for(int f=0;f<MultiFingerTouch.Fingers;f++) {
                 LabTarget hit=null; float front=0;
-                if(canTouch && skeleton.GetJoint(FingerTips[f]).TryGetPose(out var fingerPose)) {
+                if(canTouch && f == MultiFingerTouch.IndexFinger && skeleton.GetJoint(FingerTips[f]).TryGetPose(out var fingerPose)) {
                     state.FingerTips[f]=headOffset.TransformPoint(fingerPose.position);
                     hit=TouchTarget(state.FingerTips[f],isLeft,out front);
                 }
@@ -110,6 +113,8 @@ namespace GuateGeeks.AwsVr
                 float d=Vector3.Distance(tip,view.transform.position); if(d<nearest && lab.CanInteract(view.Target)) {nearest=d;near=view;}
             }
             if(near && !touch) target=near.Target;
+            var nearGrip = hasTip && !hand.Held && !hand.HeldMenu && !touch ? NearGrip(tip) : null;
+            if (nearGrip) target = nearGrip;
             Hover(ref hand.Hover, target);
             if(hasAim || target)lab.ObserveVoicePointer(isLeft?"left":"right",target,ray,!hasAim && !target || pointerBlocked);
             hand.Ray.SetPosition(0, Vector3.zero); hand.Ray.SetPosition(1, Vector3.forward * Mathf.Min(distance, 8));
@@ -128,7 +133,13 @@ namespace GuateGeeks.AwsVr
             {
                 if (state.Pinch.Started) hand.PendingGrab = null;
                 state.PressTarget = target; state.PlaceOnRelease = hasAim && lab.Placing && !target && !pointerBlocked;
-                if (state.Pinch.Started && target && target.Menu && target.Menu.TryGrab(hand, ray, distance, hand.Visual.rotation)) hand.HeldMenu = target.Menu;
+                if (state.Pinch.Started && target && target.Menu)
+                {
+                    state.NearMenu = target == nearGrip;
+                    bool grabbed = state.NearMenu ? target.Menu.TryGrabNear(hand, tip, hand.Visual.rotation) : target.Menu.TryGrab(hand, ray, distance, hand.Visual.rotation);
+                    if (grabbed) hand.HeldMenu = target.Menu;
+                    state.PressTarget = null;
+                }
                 else if (hand.PendingGrab || target && target.Node && target.Port == 0)
                 {
                     if (state.Pinch.Started)
@@ -148,7 +159,8 @@ namespace GuateGeeks.AwsVr
             if (state.Pinch.Pressed)
             {
                 if (hand.Held) hand.Held.transform.position = lab.ClampToTable((state.NearGrab && hasTip?tip:ray.GetPoint(hand.Distance)) + hand.Offset);
-                if (hand.HeldMenu) hand.HeldMenu.Move(hand, ray, hand.Visual.rotation, 0);
+                if (hand.HeldMenu)
+                { if (state.NearMenu && hasTip) hand.HeldMenu.MoveNear(hand, tip, hand.Visual.rotation); else hand.HeldMenu.Move(hand, ray, hand.Visual.rotation, 0); }
             }
             if (state.Pinch.Released)
             {
@@ -156,10 +168,23 @@ namespace GuateGeeks.AwsVr
                 if (hand.DrawingPort && target && target.Port == 1) target.Activate();
                 else if (!wasHolding && state.PressTarget && target == state.PressTarget) target.Activate();
                 else if (state.PlaceOnRelease && lab.Placing && !target && !pointerBlocked) lab.ConfirmPlacement();
-                EndHandGrab(hand); state.PressTarget = null; state.PlaceOnRelease = false;
+                EndHandGrab(hand); state.PressTarget = null; state.PlaceOnRelease = false; state.NearMenu = false;
             }
             state.Skeleton.SetActive(subsystem != null && skeleton.isTracked);
             if (subsystem != null && skeleton.isTracked) state.Mesh.UpdateHand(skeleton);
+        }
+        LabTarget NearGrip(Vector3 tip)
+        {
+            int count = Physics.OverlapSphereNonAlloc(tip, .045f, touchHits, ~0, QueryTriggerInteraction.Collide);
+            LabTarget best = null; float nearest = .045f;
+            for (int i = 0; i < count; i++)
+            {
+                var target = touchHits[i].GetComponent<LabTarget>();
+                if (!target || !target.Menu || !target.Menu.IsGrip(target.transform) || !lab.CanInteract(target)) continue;
+                float d = Vector3.Distance(tip, touchHits[i].ClosestPoint(tip));
+                if (d <= nearest) { nearest = d; best = target; }
+            }
+            return best;
         }
         void ResetFingers(TrackedHand state)
         {

@@ -1,7 +1,7 @@
 param(
     [string]$Apk = (Join-Path $PSScriptRoot '../Builds/Quest3/GuateGeeksAWSVR-Quest3.apk'),
     [string]$Serial,
-    [string]$Adb = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb.exe'
+    [string]$Adb = 'C:/Program Files/Unity/Hub/Editor/6000.6.6f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb.exe'
 )
 $ErrorActionPreference = 'Stop'
 if (-not (Test-Path -LiteralPath $Apk -PathType Leaf)) { throw "Primero genera el APK: $Apk" }

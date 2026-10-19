@@ -22,18 +22,15 @@ namespace GuateGeeks.AwsVr
         }
     }
 
-    // Every fingertip of a hand can press (thumb, index, middle, ring and little finger), each with its own
-    // approach → dwell → withdraw cycle. A flat hand can reach several buttons at once, so when more than one
-    // finger completes a press in the same instant only the deepest one presses, and right after a press the
-    // hand has a short refractory period. Fingers that lose that arbitration must withdraw before pressing again,
-    // so a resting neighbour finger never fires a second key later.
+    // Production 0.24.4 restricts UI presses to the index finger. Other fingers remain available to the
+    // quetzal's touch sensing, but cannot accidentally type or activate a neighbouring control.
     public sealed class MultiFingerTouch
     {
         public const int Fingers = 5;
+        public const int IndexFinger = 1;
         public const float Refractory = .12f;
         public static readonly string[] Names = { "pulgar", "índice", "medio", "anular", "meñique" };
         readonly DirectTouchState[] states = { new DirectTouchState(), new DirectTouchState(), new DirectTouchState(), new DirectTouchState(), new DirectTouchState() };
-        readonly bool[] firing = new bool[Fingers];
         float lastPress = float.NegativeInfinity;
         public int LastFinger { get; private set; } = -1;
         public void Reset() { foreach (var s in states) s.Reset(); lastPress = float.NegativeInfinity; LastFinger = -1; }
@@ -42,17 +39,10 @@ namespace GuateGeeks.AwsVr
         // Returns the finger that presses this frame, or -1.
         public int Step(object[] targets, float[] fronts, float now, float delta)
         {
-            int best = -1;
-            for (int f = 0; f < Fingers; f++)
-            {
-                firing[f] = states[f].Step(targets[f], fronts[f], targets[f] != null, delta);
-                if (firing[f] && (best < 0 || fronts[f] < fronts[best])) best = f;
-            }
-            if (best < 0) return -1;
-            bool cooling = now - lastPress < Refractory;
-            for (int f = 0; f < Fingers; f++) if (firing[f] && (cooling || f != best)) states[f].Consume();
-            if (cooling) return -1;
-            lastPress = now; LastFinger = best; return best;
+            for (int f = 0; f < Fingers; f++) if (f != IndexFinger) states[f].Reset();
+            if (!states[IndexFinger].Step(targets[IndexFinger], fronts[IndexFinger], targets[IndexFinger] != null, delta)) return -1;
+            if (now - lastPress < Refractory) { states[IndexFinger].Consume(); return -1; }
+            lastPress = now; LastFinger = IndexFinger; return IndexFinger;
         }
     }
 }

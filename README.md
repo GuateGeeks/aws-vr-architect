@@ -1,6 +1,8 @@
 # GuateGeeks · AWS Architect Lab
 
-**Hand-first, near-field interface (source update):** panels are compact and within arm's reach, a wrist menu gives access to everything, keyboards are sized for fingers, code and inspection follow your head, and any finger can press.
+**Recovery build 0.24.4-recovery.1:** the lost production APK has been used to reconstruct interactive quetzal perching/touch, hand-beacon permissions, index-finger UI pressing and near panel grabs. Open this recovered project with **Unity 6000.6.6f1**. See [reconstruction status, controls and validation](Recovery/0.24.4/UNITY-RECONSTRUCTION.md) for what is restored and what remains approximate. The original signed APK is preserved separately.
+
+**Hand-first, near-field interface:** panels are compact and within arm's reach, a wrist menu gives access to everything, keyboards are sized for fingers, and code and inspection follow your head. Production 0.24.4 uses the index finger for UI presses; other fingers can still interact with the quetzal.
 
 - **Cockpit:** in the headset the personal console sits around your station.
   - The controls desk is 0.65 m away, tilted toward you in front of the waist.
@@ -12,7 +14,7 @@
 - **Wrist menu:** turn the inside of your left wrist toward your face to open a 17 × 13 cm menu beside it. It has 12 buttons of 3.6 × 2.9 cm:
   - CREAR, MESA, FICHA, ATLAS, INSPECCIÓN, CÓDIGO, AJUSTES, GUÍA, DESHACER, CONECTAR, TRAER AQUÍ, CENTRAR;
   - buttons light up while their panel is open;
-  - tap with any finger of the other hand;
+  - tap with the index finger of the other hand;
   - *Menú de muñeca* moves it to the right wrist; the left controller's menu button or desktop **M** toggles it.
   - **TRAER AQUÍ** brings the console and the reading panels to where you stand and look.
 - **Keyboards** (names, code, search, ATLAS text) open at a typing pose in front of the chest: 0.55 m from the eyes, 40° down, fixed in the world. Keys are 3.6 cm apart and at least 2.2 cm tall; the code keyboard was re-laid out to meet this. The connection keyboard sits in the settings panel at chest height, with 3.2 × 2.3 cm keys.
@@ -20,10 +22,10 @@
   - They follow lazily: glances, leaning in and reading never move them, but a turn or a step brings them along.
   - Panels never overlap.
   - Dragging one pins it; TRAER AQUÍ releases it.
-- **Every finger presses:** all five fingertips of both hands press buttons and keys (approach, touch, lift).
-  - With a flat hand only the deepest finger presses, and there is a 120 ms guard against a second key.
-  - A ring under each approaching fingertip turns green on contact, and every fingertip glows.
-- Validation: EditMode 93/93, PlayMode 66/66 (new `NearFieldInterfaceTests`, `FingerTouchTests`). Renders: `Validation/65-near-cockpit.png`, `66-wrist-menu.png`, `67-touch-keyboard.png`, `68-follow-readers.png`. Wrist gesture thresholds, five-finger typing feel and frame time still need a Quest 3 session. See [hand-first interface](Documentation/Experience-Hand-First-Interface.md).
+- **Index finger presses:** the production 0.24.4 policy limits button/key activation to the index finger, using approach, contact dwell and withdrawal.
+  - A 120 ms guard prevents an accidental second key.
+  - Its approaching touch cursor turns green on contact. Other articulated fingers can touch the quetzal.
+- Recovery validation and pending Quest checks are recorded in [Unity reconstruction](Recovery/0.24.4/UNITY-RECONSTRUCTION.md). Earlier hand-first renders and notes remain in [the original interface report](Documentation/Experience-Hand-First-Interface.md).
 
 **Table sizes (source update):** *Ajustes → Espacio → Tamaño de mesa* switches the projection table between **Pequeña · 1 m**, **Mediana · 3 m** and **Grande · 3.9 m** (the original table), alone or in a shared room.
 
@@ -131,13 +133,13 @@ A Spanish-language, VR architecture playground with controllers and hand trackin
 
 ## Run the experience
 
-1. Open this project with **Unity 6000.6.3f1** and let Package Manager finish resolving packages.
+1. Open the recovered project with **Unity 6000.6.6f1** and let Package Manager finish resolving packages.
 2. Open **Assets/Scenes/AWSArchitectLab.unity** (or **GuateGeeks → Open AWS Architect Lab**).
 3. Press **Play**. The scene builds its holographic workspace at runtime. The original SampleScene is preserved.
 
 The default PC mode works without a headset. For Quest Link / a PC OpenXR headset, stop Play mode and choose **GuateGeeks → PC preview → Enable OpenXR headset**, then start Play again with a working OpenXR runtime. Select **Desktop mode (no headset)** to return to desktop rehearsal.
 
-A Windows rehearsal build is also available at **Builds/GuateGeeksAWSVR.exe**. Keep the entire Builds folder together when copying it to another Windows machine.
+A recovered Windows rehearsal build is available at **Builds/Recovery/GuateGeeksAWSVR-Recovered.exe**. Keep its data/runtime files alongside it, or extract the complete [Windows recovery ZIP](Recovery/0.24.4/recovered-windows-player.zip). Hold **1** or **2** to rehearse offering an arm to the quetzal.
 
 ![Unity-rendered lab preview](Validation/01-lab-overview.png)
 
@@ -210,7 +212,7 @@ This is an implementation recommendation, not an on-device performance result. U
 
 El menú **GuateGeeks → Meta Quest 3** contiene **Prepare project**, **Check readiness** y **Build demo APK**. El proyecto usa `com.guategeeks.awsarchitectlab`, IL2CPP/ARM64, Vulkan, OpenXR al iniciar, estéreo single-pass y el perfil Touch Plus. El destino del manifest es Quest 3 (`eureka`). El perfil gráfico Mobile usa MSAA 4x, escala 1, sin HDR, sombras ni copias de profundidad/color. La experiencia inicia en modo simulado; la versión 0.3.0 conserva el permiso de Internet para conectar explícitamente con la API real.
 
-1. En Unity Hub, agrega **Android Build Support**, **Android SDK & NDK Tools** y **OpenJDK** a **6000.6.3f1**. Reinicia el editor tras instalar los módulos.
+1. En Unity Hub, agrega **Android Build Support**, **Android SDK & NDK Tools** y **OpenJDK** a **6000.6.6f1** para esta recuperación. Reinicia el editor tras instalar los módulos.
 2. Ejecuta **Prepare project** y consulta `Validation/quest3-preflight.txt`. El target SDK es el mayor instalado; la comprobación exige API 34 o superior, según el requisito de Meta para aplicaciones nuevas desde marzo de 2026. [Requisito Android de Meta](https://developers.meta.com/horizon/blog/meta-quest-apps-android-14-march-1/).
 3. Ejecuta **Build demo APK**. Cambia a Android, espera la recompilación y genera **Builds/Quest3/GuateGeeksAWSVR-Quest3.apk**. El resultado se registra en `Validation/quest3-build.txt`. Es un APK para instalación local con la firma de desarrollo de Unity, no una publicación en Meta Horizon Store.
 4. Activa el modo desarrollador del visor desde tu cuenta de Meta, conecta un cable USB de datos y acepta dentro del visor la autorización de depuración USB. Ejecuta desde PowerShell `./Tools/Install-Quest3.ps1`. Si hay varios dispositivos, usa `-Serial`. El script verifica que sea un Quest 3, instala mediante `adb install -r` y abre la demo; no desinstala la app ni borra su diseño guardado.
@@ -222,9 +224,9 @@ La validación de configuración no sustituye una compilación Android ni una pr
 
 ## Quest build: detalles del entorno
 
-OpenXR 1.16.1 is pinned in `Packages/manifest.json`. The saved project enables the Android OpenXR loader, Meta Quest Support, Oculus Touch and Touch Plus controller profiles, Meta camera/session and composition-layer features, single-pass rendering, Vulkan, ARM64, IL2CPP, and Android API 32 minimum. Desktop XR initialization is off by default.
+OpenXR 1.18.0 is pinned in `Packages/manifest.json`. The saved project enables the Android OpenXR loader, Meta Quest Support, Oculus Touch and Touch Plus controller profiles, Meta camera/session and composition-layer features, single-pass rendering, Vulkan, ARM64, IL2CPP, and Android API 32 minimum. Desktop XR initialization is off by default.
 
-Esta estación tiene **Android Build Support**, SDK/NDK y OpenJDK instalados para Unity 6000.6.3f1. Tras instalar módulos, es necesario reiniciar el editor: una sesión anterior puede devolver un informe de compilación exitoso aunque falle el empaquetado. El helper verifica también cero errores, destino Android y existencia del APK. Para regenerarlo:
+Esta estación de recuperación tiene Unity **6000.6.6f1** con Android Build Support, SDK/NDK y OpenJDK. La compilación demo de Android terminó con **0 errores y 8 avisos** el 18 de octubre de 2026; `Validation/quest3-build.txt` registra el resultado. El helper verifica también el destino Android y la existencia del APK. Sigue pendiente la validación física en Quest 3. Para regenerarlo:
 
 1. Run **GuateGeeks → Configure lab and Quest** if settings need regeneration (this also restores desktop preview defaults).
 2. Switch the build profile to Android; ensure AWSArchitectLab is the first enabled scene.

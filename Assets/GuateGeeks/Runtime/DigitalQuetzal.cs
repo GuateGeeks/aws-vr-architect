@@ -12,8 +12,8 @@ namespace GuateGeeks.AwsVr
     //   hover and carry the waves that each wingbeat sends down them.
     // Each pass enters between two ribs, swoops past the left of station 1 and over the far side of the table, hovers over
     // the table in three-quarter profile, then rises over the reactor's rim and recedes into the horizon. Passes alternate
-    // mirrored. Decorative; hidden with reduced motion.
-    public sealed class DigitalQuetzal : MonoBehaviour
+    // mirrored. Decorative; hidden with reduced motion. Calling, perching and touch are in DigitalQuetzal.Interaction.cs.
+    public sealed partial class DigitalQuetzal : MonoBehaviour
     {
         // Lab space (table centre at z 2.65). The hover is above the near half of the table, ~2.2 m from station 1.
         public static readonly Vector3 HoverPoint = new Vector3(0, 2.72f, 2.05f);
@@ -31,25 +31,26 @@ namespace GuateGeeks.AwsVr
         Streamer[] streamers;
         Material plumage;
         readonly System.Collections.Generic.List<Object> owned = new System.Collections.Generic.List<Object>();
-        float clock, wingPhase, hoverBlend, tuck, nextGlance; int pass; bool flying, resetStreamers = true;
-        Vector3 lastForward = Vector3.forward, glance, lastPosition, lastRest = Vector3.back; float lastStep = 1 / 90f;
+        float clock, wingPhase, hoverBlend, tuck, wingFold; int pass; bool flying, resetStreamers = true;
+        Vector3 lastForward = Vector3.forward, lastPosition, lastRest = Vector3.back; float lastStep = 1 / 90f;
         public bool Flying => flying;
-        public bool Hovering => flying && clock >= InSeconds && clock < InSeconds + HoverSeconds;
+        public bool Hovering => State == Mode.Approach || State == Mode.Excursion || State == Mode.Patrol && flying && clock >= InSeconds && clock < InSeconds + HoverSeconds;
         public Transform Bird => bird;
         public Transform Head => head;
         // Deterministic poses for validation renders.
-        public void Preview(float progress) { clock = Mathf.Clamp01(progress) * FlightSeconds; pass = 0; resetStreamers = true; }
-        public void PreviewHover() { clock = InSeconds + HoverSeconds * .5f; pass = 0; resetStreamers = true; }
+        public void Preview(float progress) { SetPatrolPreview(); clock = Mathf.Clamp01(progress) * FlightSeconds; pass = 0; resetStreamers = true; }
+        public void PreviewHover() { SetPatrolPreview(); clock = InSeconds + HoverSeconds * .5f; pass = 0; resetStreamers = true; }
         public static DigitalQuetzal Create(Transform world)
         {
             var root = new GameObject("Digital quetzal").transform; root.SetParent(world, false);
-            var quetzal = root.gameObject.AddComponent<DigitalQuetzal>(); quetzal.Build(); quetzal.clock = FlightSeconds + RestSeconds - 4; // first pass soon after start
+            var quetzal = root.gameObject.AddComponent<DigitalQuetzal>(); quetzal.Build(); quetzal.BuildBehaviour();
             return quetzal;
         }
         Transform Part(Transform parent, string name, Mesh mesh, Vector3 position)
         {
             var go = new GameObject(name, typeof(MeshFilter), typeof(MeshRenderer)); go.transform.SetParent(parent, false); go.transform.localPosition = position;
             go.GetComponent<MeshFilter>().sharedMesh = mesh; owned.Add(mesh);
+            // One material whose two passes draw each part's depth, then its hologram.
             var renderer = go.GetComponent<MeshRenderer>(); renderer.sharedMaterial = plumage;
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; renderer.receiveShadows = false;
             return go.transform;
@@ -60,7 +61,7 @@ namespace GuateGeeks.AwsVr
             bird = new GameObject("Quetzal body").transform; bird.SetParent(transform, false);
             Part(bird, "Body and tail", QuetzalMesh.Body(), Vector3.zero);
             head = new GameObject("Head").transform; head.SetParent(bird, false); head.localPosition = QuetzalMesh.NeckPivot;
-            Part(head, "Head, crest and bill", QuetzalMesh.Head(), Vector3.zero);
+            Part(head, "Head and bill", QuetzalMesh.Head(), Vector3.zero);
             var shoulder = QuetzalMesh.ShoulderPivot;
             leftArm = Part(bird, "Left wing", QuetzalMesh.Arm(-1), new Vector3(-shoulder.x, shoulder.y, shoulder.z));
             rightArm = Part(bird, "Right wing", QuetzalMesh.Arm(1), shoulder);
@@ -80,7 +81,7 @@ namespace GuateGeeks.AwsVr
             }
             gameObject.SetActive(true); SetVisible(false);
         }
-        void OnDestroy() { foreach (var o in owned) if (o) Destroy(o); owned.Clear(); }
+        void OnDestroy() { if (Active == this) Active = null; foreach (var o in owned) if (o) Destroy(o); owned.Clear(); }
         void SetVisible(bool value) { bird.gameObject.SetActive(value); foreach (var s in streamers) s.view.gameObject.SetActive(value); }
         static Vector3 CatmullRom(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
         {
@@ -93,16 +94,13 @@ namespace GuateGeeks.AwsVr
             Vector3 Get(int k) { var p = route[Mathf.Clamp(k, 0, route.Length - 1)]; return mirror ? new Vector3(-p.x, p.y, p.z) : p; }
             return CatmullRom(Get(i - 1), Get(i), Get(i + 1), Get(i + 2), t);
         }
-        void Update()
+        void StepPatrol(float dt, Camera cam)
         {
-            bool reduced = LabFeedback.Current && LabFeedback.Current.ReducedMotion;
-            if (reduced) { if (flying) { flying = false; SetVisible(false); } return; }
-            float dt = Mathf.Min(Time.unscaledDeltaTime, .05f);
-            clock += Time.unscaledDeltaTime;
+            clock += dt;
             float cycle = FlightSeconds + RestSeconds;
             if (clock >= cycle) { clock -= cycle; pass++; }
             bool shouldFly = clock < FlightSeconds;
-            if (shouldFly != flying) { flying = shouldFly; SetVisible(flying); resetStreamers = true; }
+            if (shouldFly != flying) { flying = shouldFly; SetVisible(flying); resetStreamers = true; hasHeadWorld = false; }
             if (!flying) return;
             bool mirror = pass % 2 == 1;
             var parent = transform.parent;
@@ -148,51 +146,73 @@ namespace GuateGeeks.AwsVr
             bird.position = parent.TransformPoint(position);
             // Poses: banked level flight; a flare that pitches the body up; the near-upright hover in three-quarter profile.
             var flightPose = Quaternion.LookRotation(forward, Vector3.up) * Quaternion.Euler(-35 * flare, 0, Mathf.Clamp(-bank * 300, -35, 35));
-            var cam = Camera.main;
             var toViewer = cam ? parent.InverseTransformPoint(cam.transform.position) - position : Vector3.back;
             toViewer.y = 0; if (toViewer.sqrMagnitude < 1e-4f) toViewer = Vector3.back;
             var hoverPose = Quaternion.LookRotation(Quaternion.Euler(0, mirror ? 50 : -50, 0) * toViewer.normalized, Vector3.up) * Quaternion.Euler(-60, 0, 0);
             bird.rotation = parent.rotation * Quaternion.Slerp(flightPose, hoverPose, hoverBlend);
-            bird.localScale = Vector3.one * size;
+            bird.localScale = Vector3.one * size; scale = Mathf.Max(size, .01f);
             AnimateWings(dt);
-            AnimateHead(dt, cam, parent.rotation * forward);
+            PoseFeet(0, dt);
+            AnimateFlightHead(dt, cam, parent.rotation * forward);
             if ((bird.position - lastPosition).sqrMagnitude > 1) resetStreamers = true;
             lastPosition = bird.position;
-            SimulateStreamers(Mathf.Min(Time.unscaledDeltaTime, .25f), size);
+            SimulateStreamers(dt, size);
         }
-        void AnimateWings(float dt)
+        // flap: 1 beats fully, 0 glides on spread wings with a slight dihedral. brake: the landing flare, wings swept
+        // forward and beating high over the back. follow < 1 eases toward the pose (wings opening from the fold).
+        void AnimateWings(float dt, float flap = 1, float brake = 0, float follow = 1)
         {
             // Deep wingbeats (~4 Hz in flight, ~5 Hz in the hover); the hover beats over the back with a figure-of-eight sweep.
-            float frequency = Mathf.Lerp(26, 32, hoverBlend), amplitude = Mathf.Lerp(48, 64, hoverBlend), mean = Mathf.Lerp(8, 26, hoverBlend);
-            wingPhase += dt * frequency * (1 - tuck * .85f);
+            float frequency = Mathf.Lerp(26, 32, hoverBlend) + brake * 5, amplitude = Mathf.Lerp(48, 64, hoverBlend) * Mathf.Lerp(.12f, 1, flap) + brake * 8;
+            float mean = Mathf.Lerp(4, Mathf.Lerp(8, 26, hoverBlend), flap) + brake * 14;
+            wingPhase += dt * frequency * Mathf.Lerp(.4f, 1, flap) * (1 - tuck * .85f);
             float elevation = Mathf.Sin(wingPhase) * amplitude + mean;
-            float upstroke = Mathf.Clamp01(Mathf.Cos(wingPhase));                   // rising wing: wrist folds, hand sweeps back
-            float sweep = Mathf.Cos(wingPhase) * Mathf.Lerp(8, 28, hoverBlend);
-            float handSweep = upstroke * 38, handElevation = Mathf.Sin(wingPhase - .8f) * amplitude * .4f - upstroke * 12;
+            float upstroke = Mathf.Clamp01(Mathf.Cos(wingPhase)) * flap;            // rising wing: wrist folds, hand sweeps back
+            float sweep = Mathf.Cos(wingPhase) * Mathf.Lerp(8, 28, hoverBlend) * flap + (1 - flap) * 7 - brake * 20;
+            float handSweep = upstroke * 38 + (1 - flap) * 6 - brake * 10, handElevation = Mathf.Sin(wingPhase - .8f) * amplitude * .4f - upstroke * 12;
             // Bound: wings closed against the body, hands folded back over the arms.
             elevation = Mathf.Lerp(elevation, -32, tuck); sweep = Mathf.Lerp(sweep, 58, tuck);
             handSweep = Mathf.Lerp(handSweep, 125, tuck); handElevation = Mathf.Lerp(handElevation, 0, tuck);
-            float twist = -upstroke * 18;                                          // feathers feather on the upstroke
-            leftArm.localRotation = Quaternion.Euler(twist, -sweep, -elevation); rightArm.localRotation = Quaternion.Euler(twist, sweep, elevation);
-            leftHand.localRotation = Quaternion.Euler(0, -handSweep, -handElevation); rightHand.localRotation = Quaternion.Euler(0, handSweep, handElevation);
+            float twist = -upstroke * 18 - brake * 14;                             // feathers feather on the upstroke; flare cups the wing
+            PoseWings(Quaternion.Euler(twist, -sweep, -elevation), Quaternion.Euler(twist, sweep, elevation),
+                Quaternion.Euler(0, -handSweep, -handElevation), Quaternion.Euler(0, handSweep, handElevation), follow);
         }
-        // The head is held steady in the world (level, looking along the flight or at the viewer) whatever the body does,
-        // with small curious glances.
-        void AnimateHead(float dt, Camera cam, Vector3 flightDirection)
+        // handDepth < 1 closes the primaries' fan (a folded hand); folded > 0 seats the wing's root lower on the flank,
+        // where a folded wing lies, instead of at the flight shoulder.
+        void PoseWings(Quaternion leftArmPose, Quaternion rightArmPose, Quaternion leftHandPose, Quaternion rightHandPose, float follow,
+            float leftHandDepth = 1, float rightHandDepth = 1, float leftFolded = 0, float rightFolded = 0)
         {
-            if (Time.unscaledTime > nextGlance) { glance = new Vector3(Random.Range(-8f, 8f), Random.Range(-12f, 12f), Random.Range(-16f, 16f)); nextGlance = Time.unscaledTime + Random.Range(.5f, 1.4f); }
-            var look = new Vector3(flightDirection.x, flightDirection.y * .5f, flightDirection.z);
+            float k = Mathf.Min(1, follow);
+            wingFold = Mathf.Lerp(wingFold, Mathf.Max(tuck, (leftFolded + rightFolded) * .5f), k);
+            leftHand.localScale = new Vector3(1, 1, Mathf.Lerp(leftHand.localScale.z, leftHandDepth, k));
+            rightHand.localScale = new Vector3(1, 1, Mathf.Lerp(rightHand.localScale.z, rightHandDepth, k));
+            Vector3 Shoulder(int side, float folded) => Vector3.Lerp(new Vector3(side * QuetzalMesh.ShoulderPivot.x, QuetzalMesh.ShoulderPivot.y, QuetzalMesh.ShoulderPivot.z),
+                new Vector3(side * QuetzalMesh.FoldedShoulder.x, QuetzalMesh.FoldedShoulder.y, QuetzalMesh.FoldedShoulder.z), folded);
+            leftArm.localPosition = Vector3.Lerp(leftArm.localPosition, Shoulder(-1, leftFolded), k);
+            rightArm.localPosition = Vector3.Lerp(rightArm.localPosition, Shoulder(1, rightFolded), k);
+            if (follow >= 1)
+            {
+                leftArm.localRotation = leftArmPose; rightArm.localRotation = rightArmPose; leftHand.localRotation = leftHandPose; rightHand.localRotation = rightHandPose;
+                return;
+            }
+            leftArm.localRotation = Quaternion.Slerp(leftArm.localRotation, leftArmPose, follow); rightArm.localRotation = Quaternion.Slerp(rightArm.localRotation, rightArmPose, follow);
+            leftHand.localRotation = Quaternion.Slerp(leftHand.localRotation, leftHandPose, follow); rightHand.localRotation = Quaternion.Slerp(rightHand.localRotation, rightHandPose, follow);
+        }
+        // The head is held level in the world whatever the body does: along the flight, turning to the viewer as the bird
+        // comes near, and in the hover fixating the viewer with quick saccades (DigitalQuetzal.Gaze.cs).
+        void AnimateFlightHead(float dt, Camera cam, Vector3 flightDirection)
+        {
+            var look = new Vector3(flightDirection.x, flightDirection.y * .5f, flightDirection.z).normalized;
+            float interest = 0;
             if (cam)
             {
                 var toCam = cam.transform.position - head.position;
-                float interest = Mathf.Max(hoverBlend, Mathf.Clamp01(1 - (toCam.magnitude - 2.5f) / 3) * .75f);
-                look = Vector3.Slerp(look.normalized, toCam.normalized, interest);
+                interest = Mathf.Max(hoverBlend, Mathf.Clamp01(1 - (toCam.magnitude - 2.5f) / 3) * .75f);
+                look = Vector3.Slerp(look, toCam.normalized, interest);
             }
-            var local = bird.InverseTransformDirection(look.normalized);
-            float yaw = Mathf.Clamp(Mathf.Atan2(local.x, local.z) * Mathf.Rad2Deg, -80, 80);
-            float pitch = Mathf.Clamp(-Mathf.Asin(Mathf.Clamp(local.y, -1, 1)) * Mathf.Rad2Deg, -75, 75);
-            var goal = Quaternion.Euler(pitch + glance.x, yaw + glance.y, glance.z);
-            head.localRotation = Quaternion.Slerp(head.localRotation, goal, 1 - Mathf.Exp(-18 * dt));
+            bool hovering = hoverBlend > .9f && cam;
+            Gaze(dt, hovering ? cam.transform.position : head.position + look * 2, hovering ? 0 : 20, false, .3f, !hovering, 85);
+            PoseHead(dt, .3f, false, false);
         }
         // Verlet chains in world space. Each point is drawn toward the feather's rest line (straight back from the tail,
         // drooping slightly) with a stiffness that fades toward the tip, so the streamers follow the body like real
@@ -257,6 +277,8 @@ namespace GuateGeeks.AwsVr
                             if (i == 1) s.points[i + 2] -= correction; else { s.points[i] += correction * .5f; s.points[i + 2] -= correction * .5f; }
                         }
                     }
+                    // Fingertips brush the streamers aside, and they drape over the forearm instead of passing through it.
+                    for (int i = 2; i < n; i++) s.points[i] = PushOutOfHands(s.points[i]);
                 }
                 s.lastRoot = rootNow;
             }

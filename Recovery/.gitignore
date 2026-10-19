@@ -1,0 +1,17 @@
+# Large raw evidence and downloaded tools stay on disk; keep original APK separately.
+0.24.4/apk/
+0.24.4/lambda/
+0.24.4/tools/
+0.24.4/cpp2il-types/
+0.24.4/cpp2il-il/
+0.24.4/cpp2il-addresses/
+0.24.4/exported-assets/
+0.24.4/render-checks/
+0.24.4/deployment/platform-tools/
+0.24.4/deployment/platform-tools.zip
+0.24.4/*.zip
+**/__pycache__/
+**/*.pyc
+
+# 0.24.3 QA build pulled from the headset (60 MB); keep on disk only.
+0.24.3-qa/apk/

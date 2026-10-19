@@ -28,6 +28,7 @@ Recordings/
 
 # Packaged releases and generated Android validation output
 Releases/
+GuateGeeksAWSVR-Quest3-0.24.4-meta.apk
 Validation/VaultAndroidTest/
 Validation/release.lock
 

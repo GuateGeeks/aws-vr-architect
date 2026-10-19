@@ -35,7 +35,7 @@ namespace GuateGeeks.AwsVr
             for(int i=0;i<sizes.Length;i++){float scale=sizes[i];Button(settingsPages[1].transform,sizeNames[i],new Vector2((i-1.5f)*250,-350),new Vector2(235,58),()=>SetComponentScale(scale));}
             Button(settingsPages[1].transform,"Distribuir en la mesa",new Vector2(0,-422),new Vector2(980,54),ArrangeDesign);
             RefreshComponentSize();
-            Text(settingsPages[2].transform, "MANOS\nGira la muñeca hacia ti: menú de muñeca.\nToca botones y teclas con cualquier dedo de la otra mano.\nLejos: apunta y junta pulgar e índice; mantén para mover.\n\nCONTROLES\nGatillo: seleccionar · Grip: mover · Stick: distancia\nMenú (izq.): muñeca · B / Y: cancelar · A + X: recuperar", new Vector2(0, -90), new Vector2(970, 380), 26, White);
+            Text(settingsPages[2].transform, "MANOS\nGira la muñeca hacia ti: menú de muñeca.\nToca botones y teclas con el índice de la otra mano.\nPellizca los bordes para mover un panel cercano.\nToca la luz del dorso para permitir o impedir al quetzal posarse.\n\nCONTROLES\nGatillo: seleccionar · Grip: mover · Stick: distancia\nMenú (izq.): muñeca · B / Y: cancelar · A + X: recuperar", new Vector2(0, -90), new Vector2(970, 380), 26, White);
             Button(settingsPages[2].transform, "Restaurar paneles", new Vector2(-250, -343), new Vector2(460, 62), Rig.ResetMenus);
             Button(settingsPages[2].transform, "Centrar vista", new Vector2(250, -343), new Vector2(460, 62), Rig.Recenter);
             BuildComfortSettings(settingsPages[2].transform);

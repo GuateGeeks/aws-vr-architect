@@ -1,6 +1,6 @@
 param([string]$Serial = '2G0YC5ZG9J06XL')
 $ErrorActionPreference = 'Stop'
-$android = 'C:/Program Files/Unity/Hub/Editor/6000.6.3f1/Editor/Data/PlaybackEngines/AndroidPlayer'
+$android = 'C:/Program Files/Unity/Hub/Editor/6000.6.6f1/Editor/Data/PlaybackEngines/AndroidPlayer'
 $sdk = Join-Path $android 'SDK'
 $build = Join-Path $sdk 'build-tools/36.0.0'
 $java = Join-Path $android 'OpenJDK/bin'
